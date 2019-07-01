@@ -26,7 +26,7 @@ void LoginMenu::display() {
     connect(&loginButton, SIGNAL(released()), this, SLOT(loginFunction()));
     signUpButton.setText("Sign up");
     signUpButton.setVisible(true);
-    connect(&signUpButton, SIGNAL(released()), this, SLOT(backFunction()));
+    connect(&signUpButton, SIGNAL(released()), this, SLOT(signUpFunction()));
     backButton.setText("Back");
     backButton.setVisible(true);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -50,12 +50,24 @@ void LoginMenu::loginFunction() {
     QMessageBox::warning(window, "Warning", "Invalid login");
 }
 
+void LoginMenu::signUpFunction() {
+    for (int i = 0; i < window->users.size(); ++i) {
+        if (window->users[i].getUsername() == loginText.text()) {
+            QMessageBox::warning(window, "Warning", "This user already exists");
+            return;
+        }
+    }
+    window->users.push_back(User(loginText.text()));
+    QMessageBox::information(window, "Information",
+                             "New user " + loginText.text() + " successfully created!");
+}
+
 void LoginMenu::hide() {
     loginText.setVisible(false);
     loginButton.setVisible(false);
     disconnect(&loginButton, SIGNAL(released()), this, SLOT(loginFunction()));
     signUpButton.setVisible(false);
-    disconnect(&signUpButton, SIGNAL(released()), this, SLOT(backFunction()));
+    disconnect(&signUpButton, SIGNAL(released()), this, SLOT(signUpFunction()));
     backButton.setVisible(false);
     disconnect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }

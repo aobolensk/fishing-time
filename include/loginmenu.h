@@ -16,6 +16,7 @@ private:
     QGridLayout *grid;
 private slots:
     void loginFunction();
+    void signUpFunction();
     void backFunction();
 public:
     LoginMenu(MainWindow *w, QGridLayout *g);
