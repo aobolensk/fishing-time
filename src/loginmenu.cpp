@@ -1,3 +1,4 @@
+#include <QMessageBox>
 #include "loginmenu.h"
 #include "mainwindow.h"
 
@@ -22,7 +23,7 @@ void LoginMenu::display() {
     loginText.setVisible(true);
     loginButton.setText("Log in");
     loginButton.setVisible(true);
-    connect(&loginButton, SIGNAL(released()), this, SLOT(backFunction()));
+    connect(&loginButton, SIGNAL(released()), this, SLOT(loginFunction()));
     signUpButton.setText("Sign up");
     signUpButton.setVisible(true);
     connect(&signUpButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -36,10 +37,23 @@ void LoginMenu::backFunction() {
     window->mainMenu.display();
 }
 
+void LoginMenu::loginFunction() {
+    for (int i = 0; i < window->users.size(); ++i) {
+        if (window->users[i].getUsername() == loginText.text()) {
+            qDebug() << "Logged in as " << loginText.text();
+            window->activeUser = i;
+            this->hide();
+            window->gameMenu.display();
+            return;
+        }
+    }
+    QMessageBox::warning(window, "Warning", "Invalid login");
+}
+
 void LoginMenu::hide() {
     loginText.setVisible(false);
     loginButton.setVisible(false);
-    disconnect(&loginButton, SIGNAL(released()), this, SLOT(backFunction()));
+    disconnect(&loginButton, SIGNAL(released()), this, SLOT(loginFunction()));
     signUpButton.setVisible(false);
     disconnect(&signUpButton, SIGNAL(released()), this, SLOT(backFunction()));
     backButton.setVisible(false);

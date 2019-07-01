@@ -14,7 +14,7 @@ private:
     // General information
     QString username;
     // Statistics
-    qint64 clicks;
+    qint64 clicks = 0ll;
 public:
     User(const QString &name = "");
     ~User() = default;
@@ -36,6 +36,8 @@ public:
         return QVariant::fromValue(user);
     }
     QString getUsername() const;
+    void incClicks();
+    qint64 getClicks();
 };
 
 Q_DECLARE_METATYPE(User);

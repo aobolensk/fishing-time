@@ -5,6 +5,7 @@
 #include <QString>
 #include "mainmenu.h"
 #include "loginmenu.h"
+#include "gamemenu.h"
 #include "user.h"
 
 class MainWindow : public QWidget {
@@ -16,7 +17,9 @@ private:
 public:
     MainMenu mainMenu;
     LoginMenu loginMenu;
+    GameMenu gameMenu;
     QVector <User> users;
+    int activeUser = -1;
     MainWindow(QWidget *parent, const QString &config_file);
     ~MainWindow();
 };

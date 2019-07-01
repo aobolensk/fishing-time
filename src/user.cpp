@@ -17,3 +17,11 @@ QByteArray User::serialize() const {
 QString User::getUsername() const {
     return username;
 }
+
+void User::incClicks() {
+    ++clicks;
+}
+
+qint64 User::getClicks() {
+    return clicks;
+}

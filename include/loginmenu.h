@@ -15,6 +15,7 @@ private:
     QPushButton loginButton, signUpButton, backButton;
     QGridLayout *grid;
 private slots:
+    void loginFunction();
     void backFunction();
 public:
     LoginMenu(MainWindow *w, QGridLayout *g);
