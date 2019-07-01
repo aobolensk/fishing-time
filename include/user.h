@@ -16,28 +16,24 @@ private:
     // Statistics
     qint64 clicks = 0ll;
 public:
+    class Inventory {
+    private:
+        QMap <QString, int> inventory;
+    public:
+        int getItem(const QString &name);
+        void changeItem(const QString &name, int quantity);
+    };
+    // Object creation & deletion
     User(const QString &name = "");
     ~User() = default;
+    // Serialization
     QByteArray serialize() const;
-    static QVariant deserialize(const QByteArray &data) {
-        QJsonParseError jsonParseError;
-        QVariantMap map = QJsonDocument::fromJson(data, &jsonParseError)
-                .object().toVariantMap();
-        if (map["ftobj_type"] != QString("user")) {
-            qDebug() << map["ftobj_type"];
-            return QVariant();
-        }
-        if (jsonParseError.error != QJsonParseError::NoError) {
-            qDebug() << jsonParseError.errorString();
-            return QVariant();
-        }
-        User user = User(map["username"].toString());
-        user.clicks = map["clicks"].toLongLong();
-        return QVariant::fromValue(user);
-    }
-    QString getUsername() const;
+    static QVariant deserialize(const QByteArray &data);
+    // Setters
     void incClicks();
+    // Getters
     qint64 getClicks();
+    QString getUsername() const;
 };
 
 Q_DECLARE_METATYPE(User);
