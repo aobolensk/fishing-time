@@ -11,7 +11,8 @@ private:
     Q_OBJECT
 private:
     MainWindow *window;
-    QPushButton startButton, exitButton;
+    QPushButton startButton,
+                exitButton;
     QGridLayout *grid;
     int cnt = 0;
 private slots:
