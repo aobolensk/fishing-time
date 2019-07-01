@@ -1,0 +1,46 @@
+language: cpp
+
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-9
+            - qt5-default
+      install:
+        - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 --slave /usr/bin/g++ g++ /usr/bin/g++-9
+      script:
+        - mkdir build
+        - cd build
+        - cmake ..
+        - cmake --build . -- -j
+    - os: linux
+      dist: xenial
+      compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - qt5-default
+      script:
+        - mkdir build
+        - cd build
+        - cmake ..
+        - cmake --build . -- -j
+    - os: osx
+      osx_image: xcode10.2
+      addons:
+        homebrew:
+          packages:
+            - qt
+      script:
+        - mkdir build
+        - cd build
+        - cmake .. -DCMAKE_PREFIX_PATH=$(brew --prefix qt)/lib/cmake/Qt5
+        - cmake --build . -- -j

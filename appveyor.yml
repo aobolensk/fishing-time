@@ -1,0 +1,7 @@
+image: Visual Studio 2017
+
+build_script:
+  - mkdir build
+  - cd build
+  - cmake .. -DCMAKE_PREFIX_PATH="C:\\Qt\\5.12.2\\msvc2017\\"
+  - cmake --build .
