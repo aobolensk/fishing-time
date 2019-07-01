@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QLineEdit>
 #include <QLabel>
+#include <QTableWidget>
 
 class MainWindow;
 
@@ -12,12 +13,18 @@ private:
     Q_OBJECT
 private:
     MainWindow *window;
-    QPushButton clickButton, backButton;
+    QPushButton clickButton,
+                backButton,
+                inventoryButton;
     QLabel infoLabel;
+    QTableWidget table;
+    QTableWidgetItem nameWidget,
+                     quantityWidget;
     QGridLayout *grid;
 private slots:
     void clickFunction();
     void backFunction();
+    void inventoryFunction();
 private:
     void updateInfo();
 public:

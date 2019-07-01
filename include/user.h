@@ -22,7 +22,8 @@ public:
     public:
         int getItem(const QString &name);
         void changeItem(const QString &name, int quantity);
-    };
+        const QMap <QString, int> &get();
+    } inventory;
     // Object creation & deletion
     User(const QString &name = "");
     ~User() = default;

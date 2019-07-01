@@ -33,15 +33,26 @@ QVariant User::deserialize(const QByteArray &data) {
 
 void User::Inventory::changeItem(const QString &name, int quantity) {
     QMap <QString, int>::iterator it = inventory.find(name);
-    if (it != inventory.end()) {
+    if (it == inventory.end()) {
         if (quantity <= 0)
             return;
         inventory.insert(name, quantity);
     } else {
-        it.value() -= quantity;
+        it.value() += quantity;
         if (it.value() <= 0)
             inventory.erase(it);
     }
+}
+
+int User::Inventory::getItem(const QString &name) {
+    QMap <QString, int>::iterator it = inventory.find(name);
+    if (it != inventory.end())
+        return it.value();
+    return 0;
+}
+
+const QMap <QString, int> &User::Inventory::get() {
+    return inventory;
 }
 
 QString User::getUsername() const {
@@ -54,11 +65,4 @@ void User::incClicks() {
 
 qint64 User::getClicks() {
     return clicks;
-}
-
-int User::Inventory::getItem(const QString &name) {
-    QMap <QString, int>::iterator it = inventory.find(name);
-    if (it != inventory.end())
-        return it.value();
-    return 0;
 }
