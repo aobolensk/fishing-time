@@ -5,6 +5,9 @@
 #include <QVariant>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonParseError>
+#include <QDebug>
+#include <QCoreApplication>
 
 class User {
 private:
@@ -13,16 +16,28 @@ private:
     // Statistics
     qint64 clicks;
 public:
-    User() = delete;
-    User(const QString &name);
+    User(const QString &name = "");
     ~User() = default;
-    QByteArray serialize();
-    User deserialize(const QByteArray &data) {
-        QVariantMap map = QJsonDocument::fromJson(data).object().toVariantMap();
+    QByteArray serialize() const;
+    static QVariant deserialize(const QByteArray &data) {
+        QJsonParseError jsonParseError;
+        QVariantMap map = QJsonDocument::fromJson(data, &jsonParseError)
+                .object().toVariantMap();
+        if (map["ftobj_type"] != QString("user")) {
+            qDebug() << map["ftobj_type"];
+            return QVariant();
+        }
+        if (jsonParseError.error != QJsonParseError::NoError) {
+            qDebug() << jsonParseError.errorString();
+            return QVariant();
+        }
         User user = User(map["username"].toString());
         user.clicks = map["clicks"].toLongLong();
-        return user;
+        return QVariant::fromValue(user);
     }
+    QString getUsername() const;
 };
+
+Q_DECLARE_METATYPE(User);
 
 #endif  // INCLUDE_USER_H_

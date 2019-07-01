@@ -5,10 +5,15 @@ User::User(const QString &name) :
     
 }
 
-QByteArray User::serialize() {
+QByteArray User::serialize() const {
     QJsonObject jsonObj;
+    jsonObj["ftobj_type"] = "user";
     jsonObj["username"] = username;
     jsonObj["clicks"] = clicks;
     QJsonDocument doc(jsonObj);
     return doc.toJson();
+}
+
+QString User::getUsername() const {
+    return username;
 }
