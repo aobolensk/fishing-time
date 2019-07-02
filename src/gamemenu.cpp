@@ -1,5 +1,9 @@
+#include <random>
 #include "gamemenu.h"
 #include "mainwindow.h"
+
+static std::random_device rd;
+std::mt19937 generator(rd());
 
 GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
         window(w),
@@ -41,12 +45,18 @@ void GameMenu::display() {
 }
 
 void GameMenu::clickFunction() {
+    const int MOD = 100;
+    std::uniform_int_distribution<> dist(1, 100);
+    int rnd = dist(generator) % MOD;
+    window->users[window->activeUser].inventory.
+            changeItem(window->locations[window->activeLocation].getFishName(rnd / (MOD / 3)), 1);
     window->users[window->activeUser].incClicks();
     updateInfo();
 }
 
 void GameMenu::backFunction() {
     window->activeUser = -1;
+    window->activeLocation = -1;
     this->hide();
     window->mainMenu.display();
 }
