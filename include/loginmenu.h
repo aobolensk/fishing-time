@@ -12,7 +12,9 @@ private:
 private:
     MainWindow *window;
     QLineEdit loginText;
-    QPushButton loginButton, signUpButton, backButton;
+    QPushButton loginButton,
+                signUpButton,
+                backButton;
     QGridLayout *grid;
 private slots:
     void loginFunction();
