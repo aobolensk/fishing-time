@@ -5,7 +5,6 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QTableWidget>
-#include <QMutex>
 
 class MainWindow;
 
@@ -21,7 +20,6 @@ private:
     QTableWidget table;
     QTableWidgetItem nameWidget,
                      quantityWidget;
-    QMutex updateMutex;
     QGridLayout *grid;
 private slots:
     void clickFunction();
