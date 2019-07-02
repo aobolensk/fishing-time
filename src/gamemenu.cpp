@@ -62,6 +62,11 @@ void GameMenu::backFunction() {
 }
 
 void GameMenu::inventoryFunction() {
+    updateInfo();
+    table.setVisible(true);
+}
+
+void GameMenu::updateInfo() {
     auto inv = window->users[window->activeUser].inventory.get();
     table.setRowCount(inv.size());
     QMap<QString, int>::const_iterator it = inv.constBegin();
@@ -82,10 +87,6 @@ void GameMenu::inventoryFunction() {
         ++it;
         ++i;
     }
-    table.setVisible(true);
-}
-
-void GameMenu::updateInfo() {
     QString s;
     s += "Welcome, " + window->users[window->activeUser].getUsername() + '\n';
     s += "Clicks: " + QString::number(window->users[window->activeUser].getClicks()) + '\n';
