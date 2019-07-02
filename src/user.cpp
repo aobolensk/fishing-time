@@ -1,3 +1,5 @@
+#include <QTemporaryFile>
+#include <QDataStream>
 #include "user.h"
 
 User::User(const QString &name) :
@@ -10,6 +12,23 @@ QByteArray User::serialize() const {
     jsonObj["ftobj_type"] = "user";
     jsonObj["username"] = username;
     jsonObj["clicks"] = clicks;
+    QMap<QString, int>::const_iterator it = inventory.get().constBegin();
+    while (it != inventory.get().constEnd()) {
+        qDebug() << it.key() << it.value();
+        ++it;
+    }
+    QTemporaryFile f;
+    f.open();
+    QDataStream out(&f);
+    out << inventory.get();
+    f.flush();
+    f.close();
+    f.open();
+    QTextStream in(&f);
+    QString buf = in.readAll();
+    f.close();
+    qDebug() << "Inventory:" << buf;
+    jsonObj["inventory"] = buf;
     QJsonDocument doc(jsonObj);
     return doc.toJson();
 }
@@ -28,6 +47,22 @@ QVariant User::deserialize(const QByteArray &data) {
     }
     User user = User(map["username"].toString());
     user.clicks = map["clicks"].toLongLong();
+    QString buf = map["inventory"].toString();
+    qDebug() << "Inventory:" << buf;
+    QTemporaryFile f;
+    f.open();
+    QTextStream out(&f);
+    out << buf;
+    f.close();
+    f.open();
+    QDataStream in(&f);
+    in >> user.inventory.set();
+    f.close();
+    QMap<QString, int>::const_iterator it = user.inventory.get().constBegin();
+    while (it != user.inventory.get().constEnd()) {
+        qDebug() << it.key() << it.value();
+        ++it;
+    }
     return QVariant::fromValue(user);
 }
 
@@ -51,7 +86,11 @@ int User::Inventory::getItem(const QString &name) {
     return 0;
 }
 
-const QMap <QString, int> &User::Inventory::get() {
+const QMap <QString, int> &User::Inventory::get() const {
+    return inventory;
+}
+
+QMap <QString, int> &User::Inventory::set() {
     return inventory;
 }
 

@@ -52,8 +52,6 @@ void GameMenu::backFunction() {
 }
 
 void GameMenu::inventoryFunction() {
-    window->users[window->activeUser].inventory.changeItem("zulul", 10);
-    window->users[window->activeUser].inventory.changeItem("abacaba", 5);
     auto inv = window->users[window->activeUser].inventory.get();
     table.setRowCount(inv.size());
     QMap<QString, int>::const_iterator it = inv.constBegin();
