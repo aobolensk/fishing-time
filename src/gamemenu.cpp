@@ -67,6 +67,7 @@ void GameMenu::inventoryFunction() {
 }
 
 void GameMenu::updateInfo() {
+    updateMutex.lock();
     auto inv = window->users[window->activeUser].inventory.get();
     table.setRowCount(inv.size());
     QMap<QString, int>::const_iterator it = inv.constBegin();
@@ -91,6 +92,7 @@ void GameMenu::updateInfo() {
     s += "Welcome, " + window->users[window->activeUser].getUsername() + '\n';
     s += "Clicks: " + QString::number(window->users[window->activeUser].getClicks()) + '\n';
     infoLabel.setText(s);
+    updateMutex.unlock();
 }
 
 void GameMenu::hide() {
