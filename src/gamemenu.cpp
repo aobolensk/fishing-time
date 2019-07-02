@@ -46,10 +46,10 @@ void GameMenu::display() {
 
 void GameMenu::clickFunction() {
     const int MOD = 100;
-    std::uniform_int_distribution<> dist(1, 100);
+    std::uniform_int_distribution<> dist(1, 99);
     int rnd = dist(generator) % MOD;
     window->users[window->activeUser].inventory.
-            changeItem(window->locations[window->activeLocation].getFishName(rnd / (MOD / 3)), 1);
+            changeItem(window->locations[window->activeLocation].getFishName(qMin(rnd / (MOD / 3), 2)), 1);
     window->users[window->activeUser].incClicks();
     updateInfo();
 }
@@ -67,7 +67,6 @@ void GameMenu::inventoryFunction() {
 }
 
 void GameMenu::updateInfo() {
-    updateMutex.lock();
     auto inv = window->users[window->activeUser].inventory.get();
     table.setRowCount(inv.size());
     QMap<QString, int>::const_iterator it = inv.constBegin();
@@ -92,7 +91,6 @@ void GameMenu::updateInfo() {
     s += "Welcome, " + window->users[window->activeUser].getUsername() + '\n';
     s += "Clicks: " + QString::number(window->users[window->activeUser].getClicks()) + '\n';
     infoLabel.setText(s);
-    updateMutex.unlock();
 }
 
 void GameMenu::hide() {
