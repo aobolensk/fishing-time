@@ -42,6 +42,7 @@ void LoginMenu::loginFunction() {
         if (window->users[i].getUsername() == loginText.text()) {
             qDebug() << "Logged in as " << loginText.text();
             window->activeUser = i;
+            window->activeLocation = 0;
             this->hide();
             window->gameMenu.display();
             return;
