@@ -7,6 +7,7 @@
 #include "loginmenu.h"
 #include "gamemenu.h"
 #include "user.h"
+#include "location.h"
 
 class MainWindow : public QWidget {
 private:
@@ -19,7 +20,9 @@ public:
     LoginMenu loginMenu;
     GameMenu gameMenu;
     QVector <User> users;
+    QVector <Location> locations;
     int activeUser = -1;
+    int activeLocation = -1;
     MainWindow(QWidget *parent, const QString &config_file);
     ~MainWindow();
 };
