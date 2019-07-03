@@ -13,10 +13,10 @@ MainMenu::MainMenu(MainWindow *w, QGridLayout *g) :
 }
 
 void MainMenu::display() {
-    startButton.setText("Start");
+    startButton.setText(window->str.start);
     startButton.setVisible(true);
     connect(&startButton, SIGNAL(released()), this, SLOT(startFunction()));
-    exitButton.setText("Exit");
+    exitButton.setText(window->str.exit);
     exitButton.setVisible(true);
     connect(&exitButton, SIGNAL(released()), this, SLOT(exitFunction()));
 }

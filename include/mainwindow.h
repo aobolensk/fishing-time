@@ -8,6 +8,7 @@
 #include "gamemenu.h"
 #include "user.h"
 #include "location.h"
+#include "dictionary.h"
 
 class MainWindow : public QWidget {
 private:
@@ -16,6 +17,7 @@ private:
     QGridLayout grid;
     QString config_file;
 public:
+    Dictionary str;
     MainMenu mainMenu;
     LoginMenu loginMenu;
     GameMenu gameMenu;

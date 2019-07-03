@@ -38,6 +38,6 @@ public:
     QString getUsername() const;
 };
 
-Q_DECLARE_METATYPE(User);
+Q_DECLARE_METATYPE(User)
 
 #endif  // INCLUDE_USER_H_

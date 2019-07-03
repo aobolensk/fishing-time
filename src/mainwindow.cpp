@@ -24,11 +24,11 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
     } else {
         while (!config.atEnd()) {
             QVariant result;
-            QByteArray arr, str;
+            QByteArray arr, s;
             while (!config.atEnd()) {
-                str = config.readLine();
-                arr += str;
-                if (str == "}\n")
+                s = config.readLine();
+                arr += s;
+                if (s == "}\n")
                     break;
             }
             result = User::deserialize(arr);
