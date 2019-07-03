@@ -12,8 +12,8 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
         inventoryButton(QPushButton(window)),
         infoLabel(QLabel(window)),
         table(QTableWidget(nullptr)),
-        nameWidget(QTableWidgetItem("Name")),
-        quantityWidget(QTableWidgetItem("Quantity")),
+        nameWidget(QTableWidgetItem(window->str.start)),
+        quantityWidget(QTableWidgetItem(window->str.quantity)),
         grid(g) {
     table.setRowCount(0);
     table.setColumnCount(2);
@@ -33,13 +33,13 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
 void GameMenu::display() {
     updateInfo();
     infoLabel.setVisible(true);
-    clickButton.setText("Click");
+    clickButton.setText(window->str.click);
     clickButton.setVisible(true);
     connect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
-    backButton.setText("Back");
+    backButton.setText(window->str.back);
     backButton.setVisible(true);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
-    inventoryButton.setText("Inventory");
+    inventoryButton.setText(window->str.inventory);
     inventoryButton.setVisible(true);
     connect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
 }
