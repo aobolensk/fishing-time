@@ -12,7 +12,7 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
         inventoryButton(QPushButton(window)),
         infoLabel(QLabel(window)),
         table(QTableWidget(nullptr)),
-        nameWidget(QTableWidgetItem(window->str.start)),
+        nameWidget(QTableWidgetItem(window->str.name)),
         quantityWidget(QTableWidgetItem(window->str.quantity)),
         grid(g) {
     table.setRowCount(0);
@@ -24,10 +24,12 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
     infoLabel.setVisible(false);
     grid->addWidget(&clickButton, 1, 1);
     clickButton.setVisible(false);
-    grid->addWidget(&backButton, 1, 2);
+    grid->addWidget(&backButton, 2, 2);
     backButton.setVisible(false);
-    grid->addWidget(&inventoryButton, 2, 2);
+    grid->addWidget(&inventoryButton, 2, 0);
     inventoryButton.setVisible(false);
+    grid->addWidget(&marketButton, 2, 1);
+    marketButton.setVisible(false);
 }
 
 void GameMenu::display() {
@@ -42,6 +44,9 @@ void GameMenu::display() {
     inventoryButton.setText(window->str.inventory);
     inventoryButton.setVisible(true);
     connect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
+    marketButton.setText(window->str.market);
+    marketButton.setVisible(true);
+    connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
 }
 
 void GameMenu::clickFunction() {
@@ -64,6 +69,11 @@ void GameMenu::backFunction() {
 void GameMenu::inventoryFunction() {
     updateInfo();
     table.setVisible(true);
+}
+
+void GameMenu::marketFunction() {
+    this->hide();
+    window->marketMenu.display();
 }
 
 void GameMenu::updateInfo() {
@@ -101,6 +111,8 @@ void GameMenu::hide() {
     disconnect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
     inventoryButton.setVisible(false);
     disconnect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
+    marketButton.setVisible(false);
+    disconnect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
 }
 
 GameMenu::~GameMenu() {

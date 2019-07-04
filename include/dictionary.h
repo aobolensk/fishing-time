@@ -17,6 +17,8 @@ struct Dictionary {
             invalidLoginText,
             inventory,
             logIn,
+            market,
+            name,
             newUserCreatedText,
             quantity,
             signUp,

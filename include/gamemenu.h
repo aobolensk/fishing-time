@@ -15,7 +15,8 @@ private:
     MainWindow *window;
     QPushButton clickButton,
                 backButton,
-                inventoryButton;
+                inventoryButton,
+                marketButton;
     QLabel infoLabel;
     QTableWidget table;
     QTableWidgetItem nameWidget,
@@ -25,6 +26,7 @@ private slots:
     void clickFunction();
     void backFunction();
     void inventoryFunction();
+    void marketFunction();
 private:
     void updateInfo();
 public:

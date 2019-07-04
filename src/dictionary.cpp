@@ -18,6 +18,8 @@ void Dictionary::setLanguage(Language l) {
         SET(invalidLoginText) = "Invalid login";
         SET(inventory) = "Inventory";
         SET(logIn) = "Log in";
+        SET(market) = "Market";
+        SET(name) = "Name";
         SET(newUserCreatedText) = "New user successfully created";
         SET(quantity) = "Quantity";
         SET(signUp) = "Sign up";
