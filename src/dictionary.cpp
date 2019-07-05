@@ -12,6 +12,7 @@ void Dictionary::setLanguage(Language l) {
         constexpr int ENGLISH_START = __LINE__;
         SET(back) = "Back";
         SET(click) = "Click";
+        SET(dialog) = "Dialog";
         SET(enterYourLoginHereText) = "Enter you login here";
         SET(exit) = "Exit";
         SET(information) = "Information";

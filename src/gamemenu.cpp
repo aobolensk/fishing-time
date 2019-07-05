@@ -3,7 +3,7 @@
 #include "mainwindow.h"
 
 static std::random_device rd;
-std::mt19937 generator(rd());
+static std::mt19937 generator(rd());
 
 GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
         window(w),
@@ -20,16 +20,25 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
     table.setHorizontalHeaderItem(0, &nameWidget);
     table.setHorizontalHeaderItem(1, &quantityWidget);
     table.setVisible(false);
+
     grid->addWidget(&infoLabel, 0, 0);
     infoLabel.setVisible(false);
+
     grid->addWidget(&clickButton, 1, 1);
     clickButton.setVisible(false);
+    connect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
+
     grid->addWidget(&backButton, 2, 2);
     backButton.setVisible(false);
+    connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
+
     grid->addWidget(&inventoryButton, 2, 0);
     inventoryButton.setVisible(false);
+    connect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
+
     grid->addWidget(&marketButton, 2, 1);
     marketButton.setVisible(false);
+    connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
 }
 
 void GameMenu::display() {
@@ -37,16 +46,12 @@ void GameMenu::display() {
     infoLabel.setVisible(true);
     clickButton.setText(window->str.click);
     clickButton.setVisible(true);
-    connect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
     backButton.setText(window->str.back);
     backButton.setVisible(true);
-    connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
     inventoryButton.setText(window->str.inventory);
     inventoryButton.setVisible(true);
-    connect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
     marketButton.setText(window->str.market);
     marketButton.setVisible(true);
-    connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
 }
 
 void GameMenu::clickFunction() {
@@ -106,13 +111,9 @@ void GameMenu::updateInfo() {
 void GameMenu::hide() {
     infoLabel.setVisible(false);
     clickButton.setVisible(false);
-    disconnect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
     backButton.setVisible(false);
-    disconnect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
     inventoryButton.setVisible(false);
-    disconnect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
     marketButton.setVisible(false);
-    disconnect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
 }
 
 GameMenu::~GameMenu() {

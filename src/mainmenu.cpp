@@ -6,19 +6,21 @@ MainMenu::MainMenu(MainWindow *w, QGridLayout *g) :
         startButton(QPushButton(window)),
         exitButton(QPushButton(window)),
         grid(g) {
+
     grid->addWidget(&startButton, 0, 1);
-    grid->addWidget(&exitButton, 1, 1);
     startButton.setVisible(false);
+    startButton.setText(window->str.start);
+    connect(&startButton, SIGNAL(released()), this, SLOT(startFunction()));
+
+    grid->addWidget(&exitButton, 1, 1);
+    exitButton.setText(window->str.exit);
     exitButton.setVisible(false);
+    connect(&exitButton, SIGNAL(released()), this, SLOT(exitFunction()));
 }
 
 void MainMenu::display() {
-    startButton.setText(window->str.start);
     startButton.setVisible(true);
-    connect(&startButton, SIGNAL(released()), this, SLOT(startFunction()));
-    exitButton.setText(window->str.exit);
     exitButton.setVisible(true);
-    connect(&exitButton, SIGNAL(released()), this, SLOT(exitFunction()));
 }
 
 void MainMenu::startFunction() {
@@ -33,9 +35,7 @@ void MainMenu::exitFunction() {
 
 void MainMenu::hide() {
     startButton.setVisible(false);
-    disconnect(&startButton, SIGNAL(released()), this, SLOT(startFunction()));
     exitButton.setVisible(false);
-    disconnect(&exitButton, SIGNAL(released()), this, SLOT(exitFunction()));
 }
 
 MainMenu::~MainMenu() {

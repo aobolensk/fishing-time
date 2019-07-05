@@ -11,6 +11,7 @@ struct Dictionary {
     const QString
             back,
             click,
+            dialog,
             enterYourLoginHereText,
             exit,
             information,
