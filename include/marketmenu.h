@@ -13,7 +13,10 @@ private:
     Q_OBJECT
 private:
     MainWindow *window;
-    QPushButton backButton;
+    QPushButton backButton,
+                dialog1Button,
+                dialog2Button,
+                dialog3Button;
     QGridLayout *grid;
 private slots:
     void backFunction();
