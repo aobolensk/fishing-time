@@ -44,12 +44,16 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
 void GameMenu::display() {
     updateInfo();
     infoLabel.setVisible(true);
+
     clickButton.setText(window->str.click);
     clickButton.setVisible(true);
+
     backButton.setText(window->str.back);
     backButton.setVisible(true);
+
     inventoryButton.setText(window->str.inventory);
     inventoryButton.setVisible(true);
+
     marketButton.setText(window->str.market);
     marketButton.setVisible(true);
 }

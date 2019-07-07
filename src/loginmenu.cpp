@@ -27,10 +27,13 @@ LoginMenu::LoginMenu(MainWindow *w, QGridLayout *g) :
 void LoginMenu::display() {
     loginText.setText(window->str.enterYourLoginHereText);
     loginText.setVisible(true);
+
     loginButton.setText(window->str.logIn);
     loginButton.setVisible(true);
+
     signUpButton.setText(window->str.signUp);
     signUpButton.setVisible(true);
+
     backButton.setText(window->str.back);
     backButton.setVisible(true);
 }
