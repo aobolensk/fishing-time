@@ -12,11 +12,11 @@ class MarketMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    static const int SELLERS_COUNT = 3;
     MainWindow *window;
     QPushButton backButton,
-                dialog1Button,
-                dialog2Button,
-                dialog3Button;
+                dialogButton[SELLERS_COUNT];
+    QLabel dialogLabel[SELLERS_COUNT];
     QGridLayout *grid;
 private slots:
     void backFunction();
