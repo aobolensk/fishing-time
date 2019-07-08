@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
         loginMenu(LoginMenu(this, &grid)),
         gameMenu(GameMenu(this, &grid)),
         marketMenu(MarketMenu(this, &grid)),
-        locations(Location::initializeLocations()) {
+        locations(Location::initializeLocations(this)) {
     this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
     mainMenu.display();
     setLayout(&grid);

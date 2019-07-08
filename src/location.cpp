@@ -1,15 +1,17 @@
 #include "location.h"
+#include "mainwindow.h"
 
-Location::Location(const QString &locName, const QVector <QString> &fishList) :
+Location::Location(MainWindow *w, const QString &locName, const QVector <QString> &fishList) :
+    window(w),
     name(locName),
     fish(fishList) {}
 
-QVector <Location> Location::initializeLocations() {
+QVector <Location> Location::initializeLocations(MainWindow *w) {
     return QVector <Location>({
-        Location("location1", {"Carp", "Perch", "Pike"})
+        Location(w, w->str.volga, {"fish.carp", "fish.perch", "fish.pike"})
     });
 }
 
-QString Location::getFishName(int index) {
+const QString &Location::getFish(int index) {
     return fish[index];
 }

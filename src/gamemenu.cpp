@@ -63,7 +63,7 @@ void GameMenu::clickFunction() {
     std::uniform_int_distribution<> dist(1, 99);
     int rnd = dist(generator) % MOD;
     window->users[window->activeUser].inventory.
-            changeItem(window->locations[window->activeLocation].getFishName(qMin(rnd / (MOD / 3), 2)), 1);
+            changeItem(window->locations[window->activeLocation].getFish(qMin(rnd / (MOD / 3), 2)), 1);
     window->users[window->activeUser].incClicks();
     updateInfo();
 }
@@ -96,7 +96,7 @@ void GameMenu::updateInfo() {
             cell = new QTableWidgetItem;
             table.setItem(i, 0, cell);
         }
-        cell->setText(it.key());
+        cell->setText(window->str.getItemName(it.key()));
         cell = table.item(i, 1);
         if (!cell) {
             cell = new QTableWidgetItem;
