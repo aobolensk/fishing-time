@@ -3,8 +3,6 @@
 
 MainMenu::MainMenu(MainWindow *w, QGridLayout *g) :
         window(w),
-        startButton(QPushButton(window)),
-        exitButton(QPushButton(window)),
         grid(g) {
 
     grid->addWidget(&startButton, 0, 1);

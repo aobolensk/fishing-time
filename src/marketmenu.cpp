@@ -5,7 +5,6 @@
 
 MarketMenu::MarketMenu(MainWindow *w, QGridLayout *g) :
         window(w),
-        backButton(QPushButton(window)),
         grid(g) {
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         grid->addWidget(&dialogButton[i], 2, i);

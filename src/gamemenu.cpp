@@ -7,13 +7,6 @@ static std::mt19937 generator(rd());
 
 GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
         window(w),
-        clickButton(QPushButton(window)),
-        backButton(QPushButton(window)),
-        inventoryButton(QPushButton(window)),
-        infoLabel(QLabel(window)),
-        table(QTableWidget(nullptr)),
-        nameWidget(QTableWidgetItem(window->str.name)),
-        quantityWidget(QTableWidgetItem(window->str.quantity)),
         grid(g) {
     table.setRowCount(0);
     table.setColumnCount(2);

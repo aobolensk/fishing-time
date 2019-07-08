@@ -4,9 +4,6 @@
 
 LoginMenu::LoginMenu(MainWindow *w, QGridLayout *g) :
         window(w),
-        loginButton(QPushButton(window)),
-        signUpButton(QPushButton(window)),
-        backButton(QPushButton(window)),
         grid(g) {
     grid->addWidget(&loginText, 0, 0);
     loginText.setVisible(false);
