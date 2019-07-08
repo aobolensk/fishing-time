@@ -1,11 +1,18 @@
 #include "dictionary.h"
 
-Dictionary::Dictionary() {
+Dictionary::Dictionary() :
+    itemIds({
+        "fish.carp",
+        "fish.perch",
+        "fish.pike"
+    }),
+    itemNames({
+        {"fish.carp", &carp},
+        {"fish.perch", &perch},
+        {"fish.pike", &pike}
+    })
+    {
     setLanguage(Language::English);
-    // Initialize item names dictionary
-    itemNames.insert("fish.carp", &carp);
-    itemNames.insert("fish.perch", &perch);
-    itemNames.insert("fish.pike", &pike);
 }
 
 const QString &Dictionary::getItemName(const QString &id) const {

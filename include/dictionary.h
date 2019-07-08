@@ -8,9 +8,9 @@ enum class Language {
 };
 
 class Dictionary {
-private:
-    QMap <QString, const QString*> itemNames;
 public:
+    const QVector <QString> itemIds;
+    const QMap <QString, const QString*> itemNames;
     static constexpr int DICTIONARY_START = __LINE__;
     const QString
             back,

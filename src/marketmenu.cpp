@@ -19,10 +19,13 @@ MarketMenu::MarketMenu(MainWindow *w, QGridLayout *g) :
 }
 
 void MarketMenu::display() {
+    std::mt19937 randGen(QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0))));
+    std::uniform_int_distribution<> gen(0, window->str.itemIds.size() - 1); 
     for (int i = 0; i < 3; ++i) {
         dialogButton[i].setText(window->str.dialog);
         dialogButton[i].setVisible(true);
-        dialogLabel[i].setText(window->str.dialog);
+        dialogLabel[i].setText("Seller " + QString::number(i) + "\nbuys " +
+                window->str.getItemName(window->str.itemIds[gen(randGen)]) + "\nfor " + QString::number(randGen() % 100) + " coins each");
         dialogLabel[i].setVisible(true);
     }
     backButton.setText(window->str.back);
