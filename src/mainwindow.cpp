@@ -31,15 +31,15 @@ void MainWindow::deserialize() {
     } else {
         while (!config.atEnd()) {
             QVariant result;
-            QByteArray data, s;
+            QByteArray jsonStr, s;
             while (!config.atEnd()) {
                 s = config.readLine();
-                data += s;
+                jsonStr += s;
                 if (s == "}\n")
                     break;
             }
             QJsonParseError jsonParseError;
-            QVariantMap map = QJsonDocument::fromJson(data, &jsonParseError)
+            QVariantMap map = QJsonDocument::fromJson(jsonStr, &jsonParseError)
                     .object().toVariantMap();
             if (jsonParseError.error != QJsonParseError::NoError) {
                 qDebug() << jsonParseError.errorString();
