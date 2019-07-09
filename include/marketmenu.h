@@ -4,7 +4,6 @@
 #include <QGridLayout>
 #include <QLineEdit>
 #include <QLabel>
-#include <QTableWidget>
 
 class MainWindow;
 
@@ -17,11 +16,13 @@ private:
     QPushButton backButton,
                 dialogButton[SELLERS_COUNT];
     QLabel dialogLabel[SELLERS_COUNT];
+    QLineEdit quantityText[SELLERS_COUNT];
     QString goodId[SELLERS_COUNT];
     qint64 goodPrice[SELLERS_COUNT];
     QGridLayout *grid;
 private slots:
     void backFunction();
+    void processDialog(int seller);
 private:
     void updateDeals();
     void updateInfo();

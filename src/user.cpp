@@ -104,6 +104,12 @@ void User::incClicks() {
     ++clicks;
 }
 
+void User::changeCoins(qint64 quantity) {
+    if (coins + quantity >= 0) {
+        coins += quantity;
+    }
+}
+
 qint64 User::getClicks() const {
     return clicks;
 }

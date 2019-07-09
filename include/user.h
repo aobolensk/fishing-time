@@ -34,6 +34,7 @@ public:
     static QVariant deserialize(const QByteArray &data);
     // Setters
     void incClicks();
+    void changeCoins(qint64 quantity);
     // Getters
     qint64 getClicks() const;
     qint64 getCoins() const;

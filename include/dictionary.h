@@ -31,12 +31,15 @@ public:
             perch,
             pike,
             quantity,
+            quantityShouldBeANumber,
+            quantityShouldBeMoreThanZero,
             sellerText,
             signUp,
             start,
             thisUserAlreadyExistsText,
             volga,
-            warning;
+            warning,
+            youDontHaveEnoughItems;
     static constexpr int DICTIONARY_END = __LINE__;
     Dictionary();
     void setLanguage(Language l);
