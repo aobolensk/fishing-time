@@ -39,7 +39,7 @@ void Dictionary::setLanguage(Language l) {
         SET(invalidValue) = "<INVALID>";
         SET(inventory) = "Inventory";
         SET(logIn) = "Log in";
-        SET(mainLabelText) = "Welcome, %1\nClicks: %2\n";
+        SET(mainLabelText) = "Welcome, %1\nCoins: %2\nTotal clicks: %3\n";
         SET(market) = "Market";
         SET(name) = "Name";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";

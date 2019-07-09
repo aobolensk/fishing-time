@@ -101,6 +101,7 @@ void GameMenu::updateInfo() {
     }
     infoLabel.setText(window->str.mainLabelText.arg(
         window->users[window->activeUser].getUsername(),
+        QString::number(window->users[window->activeUser].getCoins()),
         QString::number(window->users[window->activeUser].getClicks())
     ));
 }
