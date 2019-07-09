@@ -18,17 +18,27 @@ MarketMenu::MarketMenu(MainWindow *w, QGridLayout *g) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
-void MarketMenu::display() {
-    std::mt19937 randGen(QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0))));
+void MarketMenu::updateDeals() {
+    int seed = QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0)));
+    std::mt19937 randGen(seed);
+    qDebug() << "Random seed:" << seed;
     std::uniform_int_distribution<> gen(0, window->str.itemIds.size() - 1); 
+    for (int i = 0; i < SELLERS_COUNT; ++i) {
+        goodId[i] = window->str.itemIds[gen(randGen)];
+        goodPrice[i] = randGen() % 100;
+    }
+}
+
+void MarketMenu::display() {
+    updateDeals();
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         dialogButton[i].setText(window->str.dialog);
         dialogButton[i].setVisible(true);
         dialogLabel[i].setText(
                 window->str.sellerText.arg(
                     QString::number(i),
-                    window->str.getItemName(window->str.itemIds[gen(randGen)]),
-                    QString::number(randGen() % 100)
+                    window->str.getItemName(goodId[i]),
+                    QString::number(goodPrice[i])
                 ));
         dialogLabel[i].setVisible(true);
     }

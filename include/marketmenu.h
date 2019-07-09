@@ -17,10 +17,13 @@ private:
     QPushButton backButton,
                 dialogButton[SELLERS_COUNT];
     QLabel dialogLabel[SELLERS_COUNT];
+    QString goodId[SELLERS_COUNT];
+    qint64 goodPrice[SELLERS_COUNT];
     QGridLayout *grid;
 private slots:
     void backFunction();
 private:
+    void updateDeals();
     void updateInfo();
 public:
     MarketMenu(MainWindow *w, QGridLayout *g);
