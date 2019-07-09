@@ -3,45 +3,52 @@
 #include "mainwindow.h"
 
 static std::random_device rd;
-std::mt19937 generator(rd());
+static std::mt19937 generator(rd());
 
 GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
         window(w),
-        clickButton(QPushButton(window)),
-        backButton(QPushButton(window)),
-        inventoryButton(QPushButton(window)),
-        infoLabel(QLabel(window)),
-        table(QTableWidget(nullptr)),
-        nameWidget(QTableWidgetItem(window->str.start)),
-        quantityWidget(QTableWidgetItem(window->str.quantity)),
         grid(g) {
     table.setRowCount(0);
     table.setColumnCount(2);
     table.setHorizontalHeaderItem(0, &nameWidget);
     table.setHorizontalHeaderItem(1, &quantityWidget);
     table.setVisible(false);
+
     grid->addWidget(&infoLabel, 0, 0);
     infoLabel.setVisible(false);
+
     grid->addWidget(&clickButton, 1, 1);
     clickButton.setVisible(false);
-    grid->addWidget(&backButton, 1, 2);
+    connect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
+
+    grid->addWidget(&backButton, 2, 2);
     backButton.setVisible(false);
-    grid->addWidget(&inventoryButton, 2, 2);
+    connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
+
+    grid->addWidget(&inventoryButton, 2, 0);
     inventoryButton.setVisible(false);
+    connect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
+
+    grid->addWidget(&marketButton, 2, 1);
+    marketButton.setVisible(false);
+    connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
 }
 
 void GameMenu::display() {
     updateInfo();
     infoLabel.setVisible(true);
+
     clickButton.setText(window->str.click);
     clickButton.setVisible(true);
-    connect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
+
     backButton.setText(window->str.back);
     backButton.setVisible(true);
-    connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
+
     inventoryButton.setText(window->str.inventory);
     inventoryButton.setVisible(true);
-    connect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
+
+    marketButton.setText(window->str.market);
+    marketButton.setVisible(true);
 }
 
 void GameMenu::clickFunction() {
@@ -49,7 +56,7 @@ void GameMenu::clickFunction() {
     std::uniform_int_distribution<> dist(1, 99);
     int rnd = dist(generator) % MOD;
     window->users[window->activeUser].inventory.
-            changeItem(window->locations[window->activeLocation].getFishName(qMin(rnd / (MOD / 3), 2)), 1);
+            changeItem(window->locations[window->activeLocation].getFish(qMin(rnd / (MOD / 3), 2)), 1);
     window->users[window->activeUser].incClicks();
     updateInfo();
 }
@@ -66,7 +73,12 @@ void GameMenu::inventoryFunction() {
     table.setVisible(true);
 }
 
-void GameMenu::updateInfo() {
+void GameMenu::marketFunction() {
+    this->hide();
+    window->marketMenu.display();
+}
+
+void GameMenu::updateInventoryTable() {
     auto inv = window->users[window->activeUser].inventory.get();
     table.setRowCount(inv.size());
     QMap<QString, int>::const_iterator it = inv.constBegin();
@@ -77,7 +89,7 @@ void GameMenu::updateInfo() {
             cell = new QTableWidgetItem;
             table.setItem(i, 0, cell);
         }
-        cell->setText(it.key());
+        cell->setText(window->str.getItemName(it.key()));
         cell = table.item(i, 1);
         if (!cell) {
             cell = new QTableWidgetItem;
@@ -87,20 +99,23 @@ void GameMenu::updateInfo() {
         ++it;
         ++i;
     }
-    QString s;
-    s += "Welcome, " + window->users[window->activeUser].getUsername() + '\n';
-    s += "Clicks: " + QString::number(window->users[window->activeUser].getClicks()) + '\n';
-    infoLabel.setText(s);
+}
+
+void GameMenu::updateInfo() {
+    updateInventoryTable();
+    infoLabel.setText(window->str.mainLabelText.arg(
+        window->users[window->activeUser].getUsername(),
+        QString::number(window->users[window->activeUser].getCoins()),
+        QString::number(window->users[window->activeUser].getClicks())
+    ));
 }
 
 void GameMenu::hide() {
     infoLabel.setVisible(false);
     clickButton.setVisible(false);
-    disconnect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
     backButton.setVisible(false);
-    disconnect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
     inventoryButton.setVisible(false);
-    disconnect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
+    marketButton.setVisible(false);
 }
 
 GameMenu::~GameMenu() {

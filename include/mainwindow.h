@@ -6,6 +6,7 @@
 #include "mainmenu.h"
 #include "loginmenu.h"
 #include "gamemenu.h"
+#include "marketmenu.h"
 #include "user.h"
 #include "location.h"
 #include "dictionary.h"
@@ -21,6 +22,7 @@ public:
     MainMenu mainMenu;
     LoginMenu loginMenu;
     GameMenu gameMenu;
+    MarketMenu marketMenu;
     QVector <User> users;
     QVector <Location> locations;
     int activeUser = -1;

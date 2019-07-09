@@ -13,6 +13,7 @@ class User {
 private:
     // General information
     QString username;
+    qint64 coins = 0ll;
     // Statistics
     qint64 clicks = 0ll;
 public:
@@ -33,8 +34,10 @@ public:
     static QVariant deserialize(const QByteArray &data);
     // Setters
     void incClicks();
+    void changeCoins(qint64 quantity);
     // Getters
-    qint64 getClicks();
+    qint64 getClicks() const;
+    qint64 getCoins() const;
     QString getUsername() const;
 };
 

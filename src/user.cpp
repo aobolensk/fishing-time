@@ -12,6 +12,7 @@ QByteArray User::serialize() const {
     jsonObj["ftobj_type"] = "user";
     jsonObj["username"] = username;
     jsonObj["clicks"] = clicks;
+    jsonObj["coins"] = coins;
     QMap<QString, int>::const_iterator it = inventory.get().constBegin();
     while (it != inventory.get().constEnd()) {
         qDebug() << it.key() << it.value();
@@ -47,6 +48,7 @@ QVariant User::deserialize(const QByteArray &data) {
     }
     User user = User(map["username"].toString());
     user.clicks = map["clicks"].toLongLong();
+    user.coins = map["coins"].toLongLong();
     QString buf = map["inventory"].toString();
     qDebug() << "Inventory:" << buf;
     QTemporaryFile f;
@@ -102,6 +104,16 @@ void User::incClicks() {
     ++clicks;
 }
 
-qint64 User::getClicks() {
+void User::changeCoins(qint64 quantity) {
+    if (coins + quantity >= 0) {
+        coins += quantity;
+    }
+}
+
+qint64 User::getClicks() const {
     return clicks;
+}
+
+qint64 User::getCoins() const {
+    return coins;
 }
