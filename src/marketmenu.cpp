@@ -7,19 +7,21 @@
 MarketMenu::MarketMenu(MainWindow *w, QGridLayout *g) :
         window(w),
         grid(g) {
+    grid->addWidget(&infoLabel, 0, 0);
+    infoLabel.setVisible(false);
     for (int i = 0; i < SELLERS_COUNT; ++i) {
-        grid->addWidget(&dialogButton[i], 2, i);
+        grid->addWidget(&dialogButton[i], 3, i);
         dialogButton[i].setVisible(false);
-        grid->addWidget(&dialogLabel[i], 0, i);
+        grid->addWidget(&dialogLabel[i], 1, i);
         dialogLabel[i].setVisible(false);
-        grid->addWidget(&quantityText[i], 1, i);
+        grid->addWidget(&quantityText[i], 2, i);
         quantityText[i].setText("0");
         quantityText[i].setVisible(false);
     }
     #define X(i) connect(&dialogButton[i], &QPushButton::clicked, [this](){processDialog(i);})
     X(0); X(1); X(2);
     #undef X
-    grid->addWidget(&backButton, 3, 2);
+    grid->addWidget(&backButton, 4, 2);
     backButton.setVisible(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
@@ -36,6 +38,11 @@ void MarketMenu::updateDeals() {
 }
 
 void MarketMenu::updateInfo() {
+    infoLabel.setText(window->str.mainLabelText.arg(
+        window->users[window->activeUser].getUsername(),
+        QString::number(window->users[window->activeUser].getCoins()),
+        QString::number(window->users[window->activeUser].getClicks())
+    ));
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         dialogLabel[i].setText(
             window->str.sellerText.arg(
@@ -45,6 +52,7 @@ void MarketMenu::updateInfo() {
                 QString::number(window->users[window->activeUser].inventory.getItem(goodId[i]))
             ));
     }
+    window->gameMenu.updateInventoryTable();
 }
 
 void MarketMenu::processDialog(int seller) {
@@ -55,7 +63,6 @@ void MarketMenu::processDialog(int seller) {
         QMessageBox::warning(window, window->str.warning, window->str.quantityShouldBeANumber);
         return;
     }
-    qDebug() << quantity << QString::number(window->users[window->activeUser].inventory.getItem(goodId[seller]));
     if (quantity > window->users[window->activeUser].inventory.getItem(goodId[seller])) {
         QMessageBox::warning(window, window->str.warning, window->str.youDontHaveEnoughItems);
         return;
@@ -74,6 +81,7 @@ void MarketMenu::processDialog(int seller) {
 void MarketMenu::display() {
     updateDeals();
     updateInfo();
+    infoLabel.setVisible(true);
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         dialogButton[i].setText(window->str.dialog);
         dialogButton[i].setVisible(true);
@@ -90,6 +98,7 @@ void MarketMenu::backFunction() {
 }
 
 void MarketMenu::hide() {
+    infoLabel.setVisible(false);
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         dialogButton[i].setVisible(false);
         dialogLabel[i].setVisible(false);

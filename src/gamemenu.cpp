@@ -78,7 +78,7 @@ void GameMenu::marketFunction() {
     window->marketMenu.display();
 }
 
-void GameMenu::updateInfo() {
+void GameMenu::updateInventoryTable() {
     auto inv = window->users[window->activeUser].inventory.get();
     table.setRowCount(inv.size());
     QMap<QString, int>::const_iterator it = inv.constBegin();
@@ -99,6 +99,10 @@ void GameMenu::updateInfo() {
         ++it;
         ++i;
     }
+}
+
+void GameMenu::updateInfo() {
+    updateInventoryTable();
     infoLabel.setText(window->str.mainLabelText.arg(
         window->users[window->activeUser].getUsername(),
         QString::number(window->users[window->activeUser].getCoins()),

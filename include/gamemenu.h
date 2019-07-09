@@ -30,6 +30,8 @@ private slots:
 private:
     void updateInfo();
 public:
+    void updateInventoryTable();
+public:
     GameMenu(MainWindow *w, QGridLayout *g);
     ~GameMenu();
     void display();

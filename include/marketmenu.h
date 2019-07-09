@@ -15,7 +15,8 @@ private:
     MainWindow *window;
     QPushButton backButton,
                 dialogButton[SELLERS_COUNT];
-    QLabel dialogLabel[SELLERS_COUNT];
+    QLabel infoLabel,
+           dialogLabel[SELLERS_COUNT];
     QLineEdit quantityText[SELLERS_COUNT];
     QString goodId[SELLERS_COUNT];
     qint64 goodPrice[SELLERS_COUNT];
