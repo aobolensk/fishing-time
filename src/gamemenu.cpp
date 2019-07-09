@@ -99,10 +99,10 @@ void GameMenu::updateInfo() {
         ++it;
         ++i;
     }
-    QString s;
-    s += "Welcome, " + window->users[window->activeUser].getUsername() + '\n';
-    s += "Clicks: " + QString::number(window->users[window->activeUser].getClicks()) + '\n';
-    infoLabel.setText(s);
+    infoLabel.setText(window->str.mainLabelText.arg(
+        window->users[window->activeUser].getUsername(),
+        QString::number(window->users[window->activeUser].getClicks())
+    ));
 }
 
 void GameMenu::hide() {

@@ -63,7 +63,7 @@ void LoginMenu::signUpFunction() {
     }
     window->users.push_back(User(loginText.text()));
     QMessageBox::information(window, window->str.information,
-                             window->str.newUserCreatedText + loginText.text());
+                             window->str.newUserCreatedText.arg(loginText.text()));
 }
 
 void LoginMenu::hide() {
