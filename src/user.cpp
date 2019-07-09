@@ -34,18 +34,7 @@ QByteArray User::serialize() const {
     return doc.toJson();
 }
 
-QVariant User::deserialize(const QByteArray &data) {
-    QJsonParseError jsonParseError;
-    QVariantMap map = QJsonDocument::fromJson(data, &jsonParseError)
-            .object().toVariantMap();
-    if (map["ftobj_type"] != QString("user")) {
-        qDebug() << map["ftobj_type"];
-        return QVariant();
-    }
-    if (jsonParseError.error != QJsonParseError::NoError) {
-        qDebug() << jsonParseError.errorString();
-        return QVariant();
-    }
+QVariant User::deserialize(const QVariantMap &map) {
     User user = User(map["username"].toString());
     user.clicks = map["clicks"].toLongLong();
     user.coins = map["coins"].toLongLong();

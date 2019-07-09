@@ -16,7 +16,13 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
     grid.setColumnStretch(0, 1);
     grid.setColumnStretch(1, 1);
     grid.setColumnStretch(2, 1);
-    // Deserialization
+    deserialize();
+    for (const User &user : users) {
+        qDebug() << user.getUsername();
+    }
+}
+
+void MainWindow::deserialize() {
     QFile config(config_file);
     if (!config.exists()) {
         qDebug() << "File " << config_file << " does not exist";
@@ -25,27 +31,33 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
     } else {
         while (!config.atEnd()) {
             QVariant result;
-            QByteArray arr, s;
+            QByteArray data, s;
             while (!config.atEnd()) {
                 s = config.readLine();
-                arr += s;
+                data += s;
                 if (s == "}\n")
                     break;
             }
-            result = User::deserialize(arr);
-            if (!result.isNull()) {
-                users.push_back(result.value<User>());
+            QJsonParseError jsonParseError;
+            QVariantMap map = QJsonDocument::fromJson(data, &jsonParseError)
+                    .object().toVariantMap();
+            if (jsonParseError.error != QJsonParseError::NoError) {
+                qDebug() << jsonParseError.errorString();
+            }
+            if (map["ftobj_type"] == QString("user")) {
+                result = User::deserialize(map);
+                if (!result.isNull()) {
+                    users.push_back(result.value<User>());
+                } else {
+                    qDebug() << "Result of user deserialization is null";
+                }
             }
         }
         config.close();
     }
-    for (const User &user : users) {
-        qDebug() << user.getUsername();
-    }
 }
 
-MainWindow::~MainWindow() {
-    // Serialization
+void MainWindow::serialize() {
     QFile config(config_file);
     if (!config.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Can not open file: " << config_file;
@@ -55,4 +67,8 @@ MainWindow::~MainWindow() {
         }
         config.close();
     }
+}
+
+MainWindow::~MainWindow() {
+    serialize();
 }

@@ -17,6 +17,9 @@ private:
 private:
     QGridLayout grid;
     QString config_file;
+private:
+    void deserialize();
+    void serialize();
 public:
     Dictionary str;
     MainMenu mainMenu;

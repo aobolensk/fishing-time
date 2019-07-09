@@ -31,7 +31,7 @@ public:
     ~User() = default;
     // Serialization
     QByteArray serialize() const;
-    static QVariant deserialize(const QByteArray &data);
+    static QVariant deserialize(const QVariantMap &map);
     // Setters
     void incClicks();
     void changeCoins(qint64 quantity);
