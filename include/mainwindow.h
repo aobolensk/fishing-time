@@ -10,6 +10,7 @@
 #include "user.h"
 #include "location.h"
 #include "dictionary.h"
+#include "config.h"
 
 class MainWindow : public QWidget {
 private:
@@ -21,6 +22,7 @@ private:
     void deserialize();
     void serialize();
 public:
+    Config cfg;
     Dictionary str;
     MainMenu mainMenu;
     LoginMenu loginMenu;

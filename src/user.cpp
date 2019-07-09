@@ -9,7 +9,7 @@ User::User(const QString &name) :
 
 QByteArray User::serialize() const {
     QJsonObject jsonObj;
-    jsonObj["ftobj_type"] = "user";
+    jsonObj["fishingtime_object"] = "user";
     jsonObj["username"] = username;
     jsonObj["clicks"] = clicks;
     jsonObj["coins"] = coins;

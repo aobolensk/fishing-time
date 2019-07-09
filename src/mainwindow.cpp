@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
         QWidget(parent),
         grid(QGridLayout(this)),
         config_file(file),
+        str(Dictionary(this)),
         mainMenu(MainMenu(this, &grid)),
         loginMenu(LoginMenu(this, &grid)),
         gameMenu(GameMenu(this, &grid)),
@@ -44,13 +45,17 @@ void MainWindow::deserialize() {
             if (jsonParseError.error != QJsonParseError::NoError) {
                 qDebug() << jsonParseError.errorString();
             }
-            if (map["ftobj_type"] == QString("user")) {
+            if (map["fishingtime_object"] == QString("user")) {
                 result = User::deserialize(map);
                 if (!result.isNull()) {
                     users.push_back(result.value<User>());
                 } else {
                     qDebug() << "Result of user deserialization is null";
                 }
+            } else if (map["fishingtime_object"] == QString("config")) {
+                cfg.deserialize(map);
+            } else {
+                qDebug() << "Unknown object found in JSON file";
             }
         }
         config.close();
@@ -62,6 +67,7 @@ void MainWindow::serialize() {
     if (!config.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Can not open file: " << config_file;
     } else {
+        config.write(cfg.serialize());
         for (const User &user : users) {
             config.write(user.serialize());
         }
