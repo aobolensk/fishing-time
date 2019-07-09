@@ -32,7 +32,7 @@ void Dictionary::setLanguage(Language l) {
         SET(carp) = "Carp";
         SET(click) = "Click";
         SET(dialog) = "Dialog";
-        SET(enterYourLoginHereText) = "Enter you login here";
+        SET(enterYourLoginHereText) = "Enter your login here";
         SET(exit) = "Exit";
         SET(information) = "Information";
         SET(invalidLoginText) = "Invalid login";
