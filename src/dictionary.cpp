@@ -1,18 +1,19 @@
 #include "dictionary.h"
+#include "mainwindow.h"
 
-Dictionary::Dictionary() :
-    itemIds({
-        "fish.carp",
-        "fish.perch",
-        "fish.pike"
-    }),
-    itemNames({
-        {"fish.carp", &carp},
-        {"fish.perch", &perch},
-        {"fish.pike", &pike}
-    })
-    {
-    setLanguage(Language::English);
+Dictionary::Dictionary(MainWindow *w) :
+        window(w),
+        itemIds({
+            "fish.carp",
+            "fish.perch",
+            "fish.pike"
+        }),
+        itemNames({
+            {"fish.carp", &carp},
+            {"fish.perch", &perch},
+            {"fish.pike", &pike}
+        }) {
+    setLanguage(window->cfg.language);
 }
 
 const QString &Dictionary::getItemName(const QString &id) const {

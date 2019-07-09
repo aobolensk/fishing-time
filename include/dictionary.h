@@ -3,11 +3,15 @@
 #include <QVector>
 #include <QMap>
 
+class MainWindow;
+
 enum class Language {
     English
 };
 
 class Dictionary {
+private:
+    MainWindow *window;
 public:
     const QVector <QString> itemIds;
     const QMap <QString, const QString*> itemNames;
@@ -41,7 +45,7 @@ public:
             warning,
             youDontHaveEnoughItems;
     static constexpr int DICTIONARY_END = __LINE__;
-    Dictionary();
+    Dictionary(MainWindow *w = nullptr);
     void setLanguage(Language l);
     const QString &getItemName(const QString &id) const;
 };
