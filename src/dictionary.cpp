@@ -65,6 +65,7 @@ void Dictionary::setLanguage(Language l) {
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
         SET(signUp) = "Sign up";
         SET(start) = "Start";
+        SET(store) = "Store";
         SET(thisUserAlreadyExistsText) = "This user already exists";
         SET(volga) = "Volga";
         SET(warning) = "Warning";
@@ -101,6 +102,7 @@ void Dictionary::setLanguage(Language l) {
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
         SET(signUp) = "Зарегистрироваться";
         SET(start) = "Начать";
+        SET(store) = "Магазин";
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";
         SET(volga) = "Волга";
         SET(warning) = "Внимание";

@@ -44,6 +44,7 @@ public:
             sellerText,
             signUp,
             start,
+            store,
             thisUserAlreadyExistsText,
             volga,
             warning,

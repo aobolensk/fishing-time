@@ -34,6 +34,10 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
     marketButton.setVisible(false);
     connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
 
+    grid->addWidget(&storeButton, 1, 0);
+    storeButton.setVisible(false);
+    connect(&storeButton, SIGNAL(released()), this, SLOT(storeFunction()));
+
     grid->addWidget(&locationSelector, 1, 2);
     locationSelector.setCurrentIndex(0);
     connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
@@ -56,6 +60,9 @@ void GameMenu::display() {
 
     marketButton.setText(window->str.market);
     marketButton.setVisible(true);
+
+    storeButton.setText(window->str.store);
+    storeButton.setVisible(true);
 
     for (int i = 0; i < window->locations.size(); ++i) {
         locationSelector.addItem(window->locations[i].getName());
@@ -90,6 +97,11 @@ void GameMenu::inventoryFunction() {
 void GameMenu::marketFunction() {
     this->hide();
     window->marketMenu.display();
+}
+
+void GameMenu::storeFunction() {
+    this->hide();
+    window->storeMenu.display();
 }
 
 void GameMenu::updateInventoryTable() {
@@ -130,6 +142,7 @@ void GameMenu::hide() {
     backButton.setVisible(false);
     inventoryButton.setVisible(false);
     marketButton.setVisible(false);
+    storeButton.setVisible(false);
 
     locationSelector.clear();
     locationSelector.setVisible(false);
