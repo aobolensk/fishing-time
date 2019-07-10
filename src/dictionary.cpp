@@ -74,7 +74,7 @@ void Dictionary::setLanguage(Language l) {
         constexpr int ENGLISH_END = __LINE__;
         static_assert((DICTIONARY_END - DICTIONARY_START) == (ENGLISH_END - ENGLISH_START));
     } case Language::Russian: {
-        constexpr int ENGLISH_START = __LINE__;
+        constexpr int RUSSIAN_START = __LINE__;
         SET(back) = "Назад";
         SET(bream) = "Лещ";
         SET(carp) = "Карп";
@@ -108,8 +108,8 @@ void Dictionary::setLanguage(Language l) {
         SET(warning) = "Внимание";
         SET(youDontHaveEnoughItems) = "Недостаточно предметов";
         break;
-        constexpr int ENGLISH_END = __LINE__;
-        static_assert((DICTIONARY_END - DICTIONARY_START) == (ENGLISH_END - ENGLISH_START));
+        constexpr int RUSSIAN_END = __LINE__;
+        static_assert((DICTIONARY_END - DICTIONARY_START) == (RUSSIAN_END - RUSSIAN_START));
     } default: {
         qDebug() << "Unknown language";
         break;
