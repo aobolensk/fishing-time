@@ -1,8 +1,12 @@
+#include <stdexcept>
 #include "dictionary.h"
 #include "mainwindow.h"
 
-Dictionary::Dictionary(MainWindow *w) :
-        window(w),
+Dictionary::Dictionary() :
+        languages({
+            "English",
+            "Russian"
+        }),
         itemIds({
             "fish.bream",
             "fish.carp",
@@ -19,7 +23,6 @@ Dictionary::Dictionary(MainWindow *w) :
             {"fish.pike", &pike},
             {"fish.roach", &roach}
         }) {
-    setLanguage(window->cfg.language);
 }
 
 const QString &Dictionary::getItemName(const QString &id) const {
@@ -33,7 +36,7 @@ const QString &Dictionary::getItemName(const QString &id) const {
 
 void Dictionary::setLanguage(Language l) {
     switch (l) {
-    case Language::English:
+    case Language::English: {
         constexpr int ENGLISH_START = __LINE__;
         SET(back) = "Back";
         SET(bream) = "Bream";
@@ -69,5 +72,45 @@ void Dictionary::setLanguage(Language l) {
         break;
         constexpr int ENGLISH_END = __LINE__;
         static_assert((DICTIONARY_END - DICTIONARY_START) == (ENGLISH_END - ENGLISH_START));
+    } case Language::Russian: {
+        constexpr int ENGLISH_START = __LINE__;
+        SET(back) = "Назад";
+        SET(bream) = "Лещ";
+        SET(carp) = "Карп";
+        SET(click) = "Нажимай!";
+        SET(dialog) = "Диалог";
+        SET(enterYourLoginHereText) = "Введите ваш логин";
+        SET(exit) = "Выход";
+        SET(ide) = "Язь";
+        SET(information) = "Информация";
+        SET(invalidLoginText) = "Неверный логин";
+        SET(invalidValue) = "<INVALID>";
+        SET(inventory) = "Инвентарь";
+        SET(logIn) = "Войти";
+        SET(mainLabelText) = "Добро пожаловать, %1\nМонет: %2\nВсего кликов: %3\n";
+        SET(market) = "Рынок";
+        SET(name) = "Имя";
+        SET(oka) = "Ока";
+        SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
+        SET(quantity) = "Количество";
+        SET(quantityShouldBeANumber) = "Количество должно быть числом";
+        SET(quantityShouldBeMoreThanZero) = "Количество должно быть больше нуля";
+        SET(roach) = "Плотва";
+        SET(perch) = "Окунь";
+        SET(pike) = "Щука";
+        SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
+        SET(signUp) = "Зарегистрироваться";
+        SET(start) = "Начать";
+        SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";
+        SET(volga) = "Волга";
+        SET(warning) = "Внимание";
+        SET(youDontHaveEnoughItems) = "Недостаточно предметов";
+        break;
+        constexpr int ENGLISH_END = __LINE__;
+        static_assert((DICTIONARY_END - DICTIONARY_START) == (ENGLISH_END - ENGLISH_START));
+    } default: {
+        qDebug() << "Unknown language";
+        break;
+    }
     }
 }

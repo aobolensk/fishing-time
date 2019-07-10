@@ -32,6 +32,7 @@ public:
     MarketMenu marketMenu;
     int activeUser = -1;
     int activeLocation = -1;
+    Language activeLanguage = Language::English;
     MainWindow(QWidget *parent, const QString &config_file);
     ~MainWindow();
 };

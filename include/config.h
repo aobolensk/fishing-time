@@ -3,15 +3,14 @@
 #include <QVariantMap>
 #include <QByteArray>
 
-enum class Language;
+class MainWindow;
 
 class Config {
 private:
+    MainWindow *window;
     bool isReady = false;
 public:
-    Language language = (Language)0;
-public:
-    Config() = default;
+    Config(MainWindow *w = nullptr);
     ~Config() = default;
     void deserialize(const QVariantMap &map);
     QByteArray serialize() const;
