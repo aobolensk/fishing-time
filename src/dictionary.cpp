@@ -4,14 +4,20 @@
 Dictionary::Dictionary(MainWindow *w) :
         window(w),
         itemIds({
+            "fish.bream",
             "fish.carp",
+            "fish.ide",
             "fish.perch",
-            "fish.pike"
+            "fish.pike",
+            "fish.roach"
         }),
         itemNames({
+            {"fish.bream", &bream},
             {"fish.carp", &carp},
+            {"fish.ide", &ide},
             {"fish.perch", &perch},
-            {"fish.pike", &pike}
+            {"fish.pike", &pike},
+            {"fish.roach", &roach}
         }) {
     setLanguage(window->cfg.language);
 }
@@ -30,11 +36,13 @@ void Dictionary::setLanguage(Language l) {
     case Language::English:
         constexpr int ENGLISH_START = __LINE__;
         SET(back) = "Back";
+        SET(bream) = "Bream";
         SET(carp) = "Carp";
         SET(click) = "Click";
         SET(dialog) = "Dialog";
         SET(enterYourLoginHereText) = "Enter your login here";
         SET(exit) = "Exit";
+        SET(ide) = "Ide";
         SET(information) = "Information";
         SET(invalidLoginText) = "Invalid login";
         SET(invalidValue) = "<INVALID>";
@@ -43,10 +51,12 @@ void Dictionary::setLanguage(Language l) {
         SET(mainLabelText) = "Welcome, %1\nCoins: %2\nTotal clicks: %3\n";
         SET(market) = "Market";
         SET(name) = "Name";
+        SET(oka) = "Oka";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
         SET(quantity) = "Quantity";
         SET(quantityShouldBeANumber) = "Quantity should be a number";
         SET(quantityShouldBeMoreThanZero) = "Quantity should be more than zero";
+        SET(roach) = "Roach";
         SET(perch) = "Perch";
         SET(pike) = "Pike";
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
