@@ -6,7 +6,7 @@ class MainWindow;
 
 class Location {
 private:
-    QString name;
+    const QString *name;
     QVector <QString> fish;
 public:
     Location(const QString &locName = "", const QVector <QString> &fishList = {});

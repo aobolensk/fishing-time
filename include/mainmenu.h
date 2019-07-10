@@ -3,6 +3,7 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QApplication>
+#include <QComboBox>
 
 class MainWindow;
 
@@ -13,6 +14,7 @@ private:
     MainWindow *window;
     QPushButton startButton,
                 exitButton;
+    QComboBox languageSelector;
     QGridLayout *grid;
     int cnt = 0;
 private slots:

@@ -35,9 +35,6 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
     connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
 
     grid->addWidget(&locationSelector, 1, 2);
-    for (int i = 0; i < window->locations.size(); ++i) {
-        locationSelector.addItem(window->locations[i].getName());
-    }
     locationSelector.setCurrentIndex(0);
     connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
         [this](int index){ window->activeLocation = index; });
@@ -60,6 +57,9 @@ void GameMenu::display() {
     marketButton.setText(window->str.market);
     marketButton.setVisible(true);
 
+    for (int i = 0; i < window->locations.size(); ++i) {
+        locationSelector.addItem(window->locations[i].getName());
+    }
     locationSelector.setVisible(true);
 }
 
@@ -130,6 +130,8 @@ void GameMenu::hide() {
     backButton.setVisible(false);
     inventoryButton.setVisible(false);
     marketButton.setVisible(false);
+
+    locationSelector.clear();
     locationSelector.setVisible(false);
 }
 

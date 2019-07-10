@@ -1,10 +1,12 @@
 #include "mainwindow.h"
 #include <QFile>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent, const QString &file) :
         QWidget(parent),
         grid(QGridLayout(this)),
         config_file(file),
+        cfg(Config(this)),
         str(Dictionary(this)),
         locations(Location::initializeLocations(this)),
         mainMenu(MainMenu(this, &grid)),
@@ -12,15 +14,17 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
         gameMenu(GameMenu(this, &grid)),
         marketMenu(MarketMenu(this, &grid)) {
     this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
-    mainMenu.display();
     setLayout(&grid);
     grid.setColumnStretch(0, 1);
     grid.setColumnStretch(1, 1);
     grid.setColumnStretch(2, 1);
     deserialize();
+    str.setLanguage(activeLanguage);
+    qDebug() << "lang:" << (int)activeLanguage;
     for (const User &user : users) {
         qDebug() << user.getUsername();
     }
+    mainMenu.display();
 }
 
 void MainWindow::deserialize() {

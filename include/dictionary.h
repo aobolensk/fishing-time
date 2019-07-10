@@ -6,13 +6,15 @@
 class MainWindow;
 
 enum class Language {
-    English
+    English,
+    Russian
 };
 
 class Dictionary {
 private:
     MainWindow *window;
 public:
+    const QVector <QString> languages;
     const QVector <QString> itemIds;
     const QMap <QString, const QString*> itemNames;
     static constexpr int DICTIONARY_START = __LINE__;

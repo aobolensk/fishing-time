@@ -2,7 +2,7 @@
 #include "mainwindow.h"
 
 Location::Location(const QString &locName, const QVector <QString> &fishList) :
-    name(locName),
+    name(&locName),
     fish(fishList) {}
 
 QVector <Location> Location::initializeLocations(MainWindow *w) {
@@ -13,7 +13,7 @@ QVector <Location> Location::initializeLocations(MainWindow *w) {
 }
 
 const QString &Location::getName() const {
-    return name;
+    return *name;
 }
 
 const QString &Location::getFish(int index) const {
