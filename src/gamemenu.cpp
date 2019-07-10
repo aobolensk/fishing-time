@@ -39,7 +39,7 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
         locationSelector.addItem(window->locations[i].getName());
     }
     locationSelector.setCurrentIndex(0);
-    connect(&locationSelector, QOverload<int>::of(&QComboBox::currentIndexChanged),
+    connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
         [this](int index){ window->activeLocation = index; });
     locationSelector.setVisible(false);
 }
