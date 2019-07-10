@@ -12,7 +12,11 @@ QVector <Location> Location::initializeLocations(MainWindow *w) {
     });
 }
 
-const QString &Location::getFish(int index) {
+const QString &Location::getName() const {
+    return name;
+}
+
+const QString &Location::getFish(int index) const {
     return fish[index];
 }
 

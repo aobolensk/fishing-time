@@ -24,12 +24,12 @@ private:
 public:
     Config cfg;
     Dictionary str;
+    QVector <User> users;
+    QVector <Location> locations;
     MainMenu mainMenu;
     LoginMenu loginMenu;
     GameMenu gameMenu;
     MarketMenu marketMenu;
-    QVector <User> users;
-    QVector <Location> locations;
     int activeUser = -1;
     int activeLocation = -1;
     MainWindow(QWidget *parent, const QString &config_file);

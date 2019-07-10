@@ -4,14 +4,20 @@
 Dictionary::Dictionary(MainWindow *w) :
         window(w),
         itemIds({
+            "fish.bream",
             "fish.carp",
+            "fish.ide",
             "fish.perch",
-            "fish.pike"
+            "fish.pike",
+            "fish.roach"
         }),
         itemNames({
+            {"fish.bream", &bream},
             {"fish.carp", &carp},
+            {"fish.ide", &ide},
             {"fish.perch", &perch},
-            {"fish.pike", &pike}
+            {"fish.pike", &pike},
+            {"fish.roach", &roach}
         }) {
     setLanguage(window->cfg.language);
 }

@@ -1,4 +1,5 @@
 #include <random>
+#include <QStringList>
 #include "gamemenu.h"
 #include "mainwindow.h"
 
@@ -32,6 +33,15 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
     grid->addWidget(&marketButton, 2, 1);
     marketButton.setVisible(false);
     connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
+
+    grid->addWidget(&locationSelector, 1, 2);
+    for (int i = 0; i < window->locations.size(); ++i) {
+        locationSelector.addItem(window->locations[i].getName());
+    }
+    locationSelector.setCurrentIndex(0);
+    connect(&locationSelector, QOverload<int>::of(&QComboBox::currentIndexChanged),
+        [this](int index){ window->activeLocation = index; });
+    locationSelector.setVisible(false);
 }
 
 void GameMenu::display() {
@@ -49,6 +59,8 @@ void GameMenu::display() {
 
     marketButton.setText(window->str.market);
     marketButton.setVisible(true);
+
+    locationSelector.setVisible(true);
 }
 
 void GameMenu::clickFunction() {
@@ -118,6 +130,7 @@ void GameMenu::hide() {
     backButton.setVisible(false);
     inventoryButton.setVisible(false);
     marketButton.setVisible(false);
+    locationSelector.setVisible(false);
 }
 
 GameMenu::~GameMenu() {

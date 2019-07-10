@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QTableWidget>
+#include <QComboBox>
 
 class MainWindow;
 
@@ -21,6 +22,7 @@ private:
     QTableWidget table;
     QTableWidgetItem nameWidget,
                      quantityWidget;
+    QComboBox locationSelector;
     QGridLayout *grid;
 private slots:
     void clickFunction();
