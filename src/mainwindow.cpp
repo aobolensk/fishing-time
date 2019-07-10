@@ -7,7 +7,6 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
         grid(QGridLayout(this)),
         config_file(file),
         cfg(Config(this)),
-        str(Dictionary(this)),
         locations(Location::initializeLocations(this)),
         mainMenu(MainMenu(this, &grid)),
         loginMenu(LoginMenu(this, &grid)),

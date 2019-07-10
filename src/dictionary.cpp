@@ -2,8 +2,7 @@
 #include "dictionary.h"
 #include "mainwindow.h"
 
-Dictionary::Dictionary(MainWindow *w) :
-        window(w),
+Dictionary::Dictionary() :
         languages({
             "English",
             "Russian"

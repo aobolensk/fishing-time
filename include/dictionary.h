@@ -11,8 +11,6 @@ enum class Language {
 };
 
 class Dictionary {
-private:
-    MainWindow *window;
 public:
     const QVector <QString> languages;
     const QVector <QString> itemIds;
@@ -51,7 +49,7 @@ public:
             warning,
             youDontHaveEnoughItems;
     static constexpr int DICTIONARY_END = __LINE__;
-    Dictionary(MainWindow *w = nullptr);
+    Dictionary();
     void setLanguage(Language l);
     const QString &getItemName(const QString &id) const;
 };
