@@ -12,6 +12,7 @@ public:
     Location(const QString &locName = "", const QVector <QString> &fishList = {});
     ~Location() = default;
     const QString &getFish(int index);
+    int getFishCount() const;
     static QVector <Location> initializeLocations(MainWindow *w);
 };
 

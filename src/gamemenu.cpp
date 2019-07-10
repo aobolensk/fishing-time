@@ -56,7 +56,9 @@ void GameMenu::clickFunction() {
     std::uniform_int_distribution<> dist(1, 99);
     int rnd = dist(generator) % MOD;
     window->users[window->activeUser].inventory.
-            changeItem(window->locations[window->activeLocation].getFish(qMin(rnd / (MOD / 3), 2)), 1);
+            changeItem(window->locations[window->activeLocation].getFish(
+            qMin(rnd / (MOD / window->locations[window->activeLocation].getFishCount()),
+            window->locations[window->activeLocation].getFishCount() - 1)), 1);
     window->users[window->activeUser].incClicks();
     updateInfo();
 }
