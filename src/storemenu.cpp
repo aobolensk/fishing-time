@@ -8,22 +8,27 @@ StoreMenu::StoreMenu(MainWindow *w, QGridLayout *g) :
         grid(g) {
     grid->addWidget(&infoLabel, 1, 2);
     infoLabel.setVisible(false);
+    infoLabel.setEnabled(false);
 
     grid->addWidget(&storeTable, 1, 0, 1, 2);
     storeTable.setRowCount(0);
     storeTable.setColumnCount(3);
     storeTable.setVisible(false);
+    storeTable.setEnabled(false);
 
     grid->addWidget(&quantityText, 0, 0);
     quantityText.setText("0");
     quantityText.setVisible(false);
+    quantityText.setEnabled(false);
 
     grid->addWidget(&buyButton, 0, 1);
     buyButton.setVisible(false);
+    buyButton.setEnabled(false);
     connect(&buyButton, SIGNAL(released()), this, SLOT(buyFunction()));
 
     grid->addWidget(&backButton, 0, 2);
     backButton.setVisible(false);
+    backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
@@ -31,15 +36,20 @@ void StoreMenu::display() {
     updateTable();
     updateInfo();
     infoLabel.setVisible(true);
+    infoLabel.setEnabled(true);
     storeTable.setVisible(true);
+    storeTable.setEnabled(true);
 
     quantityText.setVisible(true);
+    quantityText.setEnabled(true);
 
     buyButton.setText(window->str.buy);
     buyButton.setVisible(true);
+    buyButton.setEnabled(true);
 
     backButton.setText(window->str.back);
     backButton.setVisible(true);
+    backButton.setEnabled(true);
 }
 
 void StoreMenu::updateTable() {
@@ -112,10 +122,19 @@ void StoreMenu::backFunction() {
 
 void StoreMenu::hide() {
     infoLabel.setVisible(false);
+    infoLabel.setEnabled(false);
+
     storeTable.setVisible(false);
+    storeTable.setEnabled(false);
+
     quantityText.setVisible(false);
+    quantityText.setEnabled(false);
+
     buyButton.setVisible(false);
+    buyButton.setEnabled(false);
+
     backButton.setVisible(false);
+    backButton.setEnabled(false);
 }
 
 StoreMenu::~StoreMenu() {
