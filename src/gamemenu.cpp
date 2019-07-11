@@ -132,12 +132,14 @@ void GameMenu::updateInventoryTable() {
             table.setItem(i, 0, cell);
         }
         cell->setText(window->str.getItemName(it.key()));
+        cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
         cell = table.item(i, 1);
         if (!cell) {
             cell = new QTableWidgetItem;
             table.setItem(i, 1, cell);
         }
         cell->setText(QString::number(it.value()));
+        cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
         ++it;
         ++i;
     }
