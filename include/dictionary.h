@@ -19,6 +19,7 @@ public:
     const QString
             back,
             bream,
+            buy,
             carp,
             click,
             dialog,
@@ -41,12 +42,15 @@ public:
             quantityShouldBeANumber,
             quantityShouldBeMoreThanZero,
             roach,
+            selectItemFromList,
             sellerText,
             signUp,
             start,
+            store,
             thisUserAlreadyExistsText,
             volga,
             warning,
+            youDontHaveEnoughCoins,
             youDontHaveEnoughItems;
     static constexpr int DICTIONARY_END = __LINE__;
     Dictionary();
