@@ -19,6 +19,7 @@ public:
     const QString
             back,
             bream,
+            buy,
             carp,
             click,
             dialog,

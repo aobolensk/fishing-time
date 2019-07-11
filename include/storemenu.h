@@ -2,6 +2,8 @@
 #define INCLUDE_STOREMENU_H_
 #include <QPushButton>
 #include <QGridLayout>
+#include <QTableWidget>
+#include <QLineEdit>
 
 class MainWindow;
 
@@ -10,9 +12,13 @@ private:
     Q_OBJECT
 private:
     MainWindow *window;
-    QPushButton backButton;
+    QLineEdit quantityText;
+    QPushButton buyButton,
+                backButton;
+    QTableWidget storeTable;
     QGridLayout *grid;
 private slots:
+    void buyFunction();
     void backFunction();
 public:
     StoreMenu(MainWindow *w, QGridLayout *g);

@@ -40,6 +40,7 @@ void Dictionary::setLanguage(Language l) {
         constexpr int ENGLISH_START = __LINE__;
         SET(back) = "Back";
         SET(bream) = "Bream";
+        SET(buy) = "Buy";
         SET(carp) = "Carp";
         SET(click) = "Click";
         SET(dialog) = "Dialog";
@@ -77,6 +78,7 @@ void Dictionary::setLanguage(Language l) {
         constexpr int RUSSIAN_START = __LINE__;
         SET(back) = "Назад";
         SET(bream) = "Лещ";
+        SET(buy) = "Купить";
         SET(carp) = "Карп";
         SET(click) = "Нажимай!";
         SET(dialog) = "Диалог";
