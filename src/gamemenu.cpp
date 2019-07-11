@@ -14,28 +14,35 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
     table.setHorizontalHeaderItem(0, &nameWidget);
     table.setHorizontalHeaderItem(1, &quantityWidget);
     table.setVisible(false);
+    table.setEnabled(false);
 
     grid->addWidget(&infoLabel, 0, 0);
     infoLabel.setVisible(false);
+    infoLabel.setEnabled(false);
 
     grid->addWidget(&clickButton, 1, 1);
     clickButton.setVisible(false);
+    clickButton.setEnabled(false);
     connect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
 
     grid->addWidget(&backButton, 2, 2);
     backButton.setVisible(false);
+    backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 
     grid->addWidget(&inventoryButton, 2, 0);
     inventoryButton.setVisible(false);
+    inventoryButton.setEnabled(false);
     connect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
 
     grid->addWidget(&marketButton, 2, 1);
     marketButton.setVisible(false);
+    marketButton.setEnabled(false);
     connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
 
     grid->addWidget(&storeButton, 1, 0);
     storeButton.setVisible(false);
+    storeButton.setEnabled(false);
     connect(&storeButton, SIGNAL(released()), this, SLOT(storeFunction()));
 
     grid->addWidget(&locationSelector, 1, 2);
@@ -43,31 +50,39 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
     connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
         [this](int index){ window->activeLocation = index; });
     locationSelector.setVisible(false);
+    locationSelector.setEnabled(false);
 }
 
 void GameMenu::display() {
     updateInfo();
     infoLabel.setVisible(true);
+    infoLabel.setEnabled(true);
 
     clickButton.setText(window->str.click);
     clickButton.setVisible(true);
+    clickButton.setEnabled(true);
 
     backButton.setText(window->str.back);
     backButton.setVisible(true);
+    backButton.setEnabled(true);
 
     inventoryButton.setText(window->str.inventory);
     inventoryButton.setVisible(true);
+    inventoryButton.setEnabled(true);
 
     marketButton.setText(window->str.market);
     marketButton.setVisible(true);
+    marketButton.setEnabled(true);
 
     storeButton.setText(window->str.store);
     storeButton.setVisible(true);
+    storeButton.setEnabled(true);
 
     for (int i = 0; i < window->locations.size(); ++i) {
         locationSelector.addItem(window->locations[i].getName());
     }
     locationSelector.setVisible(true);
+    locationSelector.setEnabled(true);
 }
 
 void GameMenu::clickFunction() {
@@ -92,6 +107,7 @@ void GameMenu::backFunction() {
 void GameMenu::inventoryFunction() {
     updateInfo();
     table.setVisible(true);
+    table.setEnabled(true);
 }
 
 void GameMenu::marketFunction() {
@@ -116,12 +132,14 @@ void GameMenu::updateInventoryTable() {
             table.setItem(i, 0, cell);
         }
         cell->setText(window->str.getItemName(it.key()));
+        cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
         cell = table.item(i, 1);
         if (!cell) {
             cell = new QTableWidgetItem;
             table.setItem(i, 1, cell);
         }
         cell->setText(QString::number(it.value()));
+        cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
         ++it;
         ++i;
     }
@@ -138,14 +156,26 @@ void GameMenu::updateInfo() {
 
 void GameMenu::hide() {
     infoLabel.setVisible(false);
+    infoLabel.setEnabled(false);
+
     clickButton.setVisible(false);
+    clickButton.setEnabled(false);
+
     backButton.setVisible(false);
+    backButton.setEnabled(false);
+
     inventoryButton.setVisible(false);
+    inventoryButton.setEnabled(false);
+
     marketButton.setVisible(false);
+    marketButton.setEnabled(false);
+
     storeButton.setVisible(false);
+    storeButton.setEnabled(false);
 
     locationSelector.clear();
     locationSelector.setVisible(false);
+    locationSelector.setEnabled(false);
 }
 
 GameMenu::~GameMenu() {

@@ -6,10 +6,12 @@ MainMenu::MainMenu(MainWindow *w, QGridLayout *g) :
         grid(g) {
     grid->addWidget(&startButton, 0, 1);
     startButton.setVisible(false);
+    startButton.setEnabled(false);
     connect(&startButton, SIGNAL(released()), this, SLOT(startFunction()));
 
     grid->addWidget(&exitButton, 1, 1);
     exitButton.setVisible(false);
+    exitButton.setEnabled(false);
     connect(&exitButton, SIGNAL(released()), this, SLOT(exitFunction()));
 
     grid->addWidget(&languageSelector, 1, 2);
@@ -25,17 +27,21 @@ MainMenu::MainMenu(MainWindow *w, QGridLayout *g) :
             this->display();
         });
     languageSelector.setVisible(false);
+    languageSelector.setEnabled(false);
 }
 
 void MainMenu::display() {
     startButton.setText(window->str.start);
     startButton.setVisible(true);
+    startButton.setEnabled(true);
 
     exitButton.setText(window->str.exit);
     exitButton.setVisible(true);
+    exitButton.setEnabled(true);
 
     languageSelector.setCurrentIndex((int)window->activeLanguage);
     languageSelector.setVisible(true);
+    languageSelector.setEnabled(true);
 }
 
 void MainMenu::startFunction() {
@@ -50,8 +56,13 @@ void MainMenu::exitFunction() {
 
 void MainMenu::hide() {
     startButton.setVisible(false);
+    startButton.setEnabled(false);
+
     exitButton.setVisible(false);
+    exitButton.setEnabled(false);
+
     languageSelector.setVisible(false);
+    languageSelector.setEnabled(false);
 }
 
 MainMenu::~MainMenu() {

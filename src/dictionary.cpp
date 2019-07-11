@@ -71,7 +71,7 @@ void Dictionary::setLanguage(Language l) {
         SET(thisUserAlreadyExistsText) = "This user already exists";
         SET(volga) = "Volga";
         SET(warning) = "Warning";
-        SET(youDontHaveEnoughCoins) = "You don't have enough items";
+        SET(youDontHaveEnoughCoins) = "You don't have enough coins";
         SET(youDontHaveEnoughItems) = "You don't have enough items";
         break;
         constexpr int ENGLISH_END = __LINE__;

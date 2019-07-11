@@ -7,32 +7,40 @@ LoginMenu::LoginMenu(MainWindow *w, QGridLayout *g) :
         grid(g) {
     grid->addWidget(&loginText, 0, 0);
     loginText.setVisible(false);
+    loginText.setEnabled(false);
 
     grid->addWidget(&loginButton, 0, 1);
     loginButton.setVisible(false);
+    loginButton.setEnabled(false);
     connect(&loginButton, SIGNAL(released()), this, SLOT(loginFunction()));
 
     connect(&signUpButton, SIGNAL(released()), this, SLOT(signUpFunction()));
     grid->addWidget(&signUpButton, 0, 2);
     signUpButton.setVisible(false);
+    signUpButton.setEnabled(false);
 
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
     grid->addWidget(&backButton, 1, 1);
     backButton.setVisible(false);
+    backButton.setEnabled(false);
 }
 
 void LoginMenu::display() {
     loginText.setText(window->str.enterYourLoginHereText);
     loginText.setVisible(true);
+    loginText.setEnabled(true);
 
     loginButton.setText(window->str.logIn);
     loginButton.setVisible(true);
+    loginButton.setEnabled(true);
 
     signUpButton.setText(window->str.signUp);
     signUpButton.setVisible(true);
+    signUpButton.setEnabled(true);
 
     backButton.setText(window->str.back);
     backButton.setVisible(true);
+    backButton.setEnabled(true);
 }
 
 void LoginMenu::backFunction() {
@@ -68,9 +76,16 @@ void LoginMenu::signUpFunction() {
 
 void LoginMenu::hide() {
     loginText.setVisible(false);
+    loginText.setEnabled(false);
+
     loginButton.setVisible(false);
+    loginButton.setEnabled(false);
+
     signUpButton.setVisible(false);
+    signUpButton.setEnabled(false);
+
     backButton.setVisible(false);
+    backButton.setEnabled(false);
 }
 
 LoginMenu::~LoginMenu() {
