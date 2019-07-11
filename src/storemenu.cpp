@@ -60,21 +60,21 @@ void StoreMenu::updateTable() {
             storeTable.setItem(index, 0, cell);
         }
         cell->setText(name);
-        cell->setFlags(cell->flags() ^ Qt::ItemIsEditable);
+        cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
         cell = storeTable.item(index, 1);
         if (!cell) {
             cell = new QTableWidgetItem;
             storeTable.setItem(index, 1, cell);
         }
         cell->setText(description);
-        cell->setFlags(cell->flags() ^ Qt::ItemIsEditable);
+        cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
         cell = storeTable.item(index, 2);
         if (!cell) {
             cell = new QTableWidgetItem;
             storeTable.setItem(index, 2, cell);
         }
         cell->setText(QString::number(price));
-        cell->setFlags(cell->flags() ^ Qt::ItemIsEditable);
+        cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
     };
     storeTable.setRowCount(1);
     addDeal(0, "fish.pike", window->str.pike, 1000);
