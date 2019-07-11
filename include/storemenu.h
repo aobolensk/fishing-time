@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QTableWidget>
 #include <QLineEdit>
+#include <QLabel>
 
 class MainWindow;
 
@@ -12,6 +13,7 @@ private:
     Q_OBJECT
 private:
     MainWindow *window;
+    QLabel infoLabel;
     QLineEdit quantityText;
     QPushButton buyButton,
                 backButton;
@@ -20,6 +22,9 @@ private:
 private slots:
     void buyFunction();
     void backFunction();
+private:
+    void updateInfo();
+    void updateTable();
 public:
     StoreMenu(MainWindow *w, QGridLayout *g);
     ~StoreMenu();

@@ -42,6 +42,7 @@ public:
             quantityShouldBeANumber,
             quantityShouldBeMoreThanZero,
             roach,
+            selectItemFromList,
             sellerText,
             signUp,
             start,
@@ -49,6 +50,7 @@ public:
             thisUserAlreadyExistsText,
             volga,
             warning,
+            youDontHaveEnoughCoins,
             youDontHaveEnoughItems;
     static constexpr int DICTIONARY_END = __LINE__;
     Dictionary();
