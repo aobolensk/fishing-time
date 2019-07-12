@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
         qDebug() << user.getUsername();
     }
     mainMenu.display();
+    connect(&autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSaveFunction()));
+    autoSaveTimer.start(3 * 60 * 1000);
 }
 
 void MainWindow::deserialize() {
@@ -77,6 +79,12 @@ void MainWindow::serialize() {
         }
         config.close();
     }
+}
+
+void MainWindow::autoSaveFunction() {
+    qDebug() << "Performing autosave";
+    serialize();
+    qDebug() << "Autosave is complete";
 }
 
 MainWindow::~MainWindow() {

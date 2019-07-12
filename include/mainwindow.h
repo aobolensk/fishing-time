@@ -3,6 +3,7 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QString>
+#include <QTimer>
 #include "mainmenu.h"
 #include "loginmenu.h"
 #include "gamemenu.h"
@@ -22,6 +23,8 @@ private:
 private:
     void deserialize();
     void serialize();
+private slots:
+    void autoSaveFunction();
 public:
     Config cfg;
     Dictionary str;
@@ -35,6 +38,7 @@ public:
     int activeUser = -1;
     int activeLocation = -1;
     Language activeLanguage = Language::English;
+    QTimer autoSaveTimer;
     MainWindow(QWidget *parent, const QString &config_file);
     ~MainWindow();
 };
