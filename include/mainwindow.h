@@ -9,6 +9,7 @@
 #include "gamemenu.h"
 #include "marketmenu.h"
 #include "storemenu.h"
+#include "settingsmenu.h"
 #include "user.h"
 #include "location.h"
 #include "dictionary.h"
@@ -35,6 +36,7 @@ public:
     GameMenu gameMenu;
     MarketMenu marketMenu;
     StoreMenu storeMenu;
+    SettingsMenu settingsMenu;
     int activeUser = -1;
     int activeLocation = -1;
     Language activeLanguage = Language::English;

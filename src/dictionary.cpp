@@ -65,6 +65,7 @@ void Dictionary::setLanguage(Language l) {
         SET(perch) = "Perch";
         SET(pike) = "Pike";
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
+        SET(settings) = "Settings";
         SET(signUp) = "Sign up";
         SET(start) = "Start";
         SET(store) = "Store";
@@ -105,6 +106,7 @@ void Dictionary::setLanguage(Language l) {
         SET(perch) = "Окунь";
         SET(pike) = "Щука";
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
+        SET(settings) = "Настройки";
         SET(signUp) = "Зарегистрироваться";
         SET(start) = "Начать";
         SET(store) = "Магазин";

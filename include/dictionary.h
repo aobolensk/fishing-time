@@ -44,6 +44,7 @@ public:
             roach,
             selectItemFromList,
             sellerText,
+            settings,
             signUp,
             start,
             store,

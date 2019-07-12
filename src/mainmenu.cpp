@@ -9,7 +9,12 @@ MainMenu::MainMenu(MainWindow *w, QGridLayout *g) :
     startButton.setEnabled(false);
     connect(&startButton, SIGNAL(released()), this, SLOT(startFunction()));
 
-    grid->addWidget(&exitButton, 1, 1);
+    grid->addWidget(&settingsButton, 1, 1);
+    settingsButton.setVisible(false);
+    settingsButton.setEnabled(false);
+    connect(&settingsButton, SIGNAL(released()), this, SLOT(settingsFunction()));
+
+    grid->addWidget(&exitButton, 2, 1);
     exitButton.setVisible(false);
     exitButton.setEnabled(false);
     connect(&exitButton, SIGNAL(released()), this, SLOT(exitFunction()));
@@ -35,6 +40,10 @@ void MainMenu::display() {
     startButton.setVisible(true);
     startButton.setEnabled(true);
 
+    settingsButton.setText(window->str.settings);
+    settingsButton.setVisible(true);
+    settingsButton.setEnabled(true);
+
     exitButton.setText(window->str.exit);
     exitButton.setVisible(true);
     exitButton.setEnabled(true);
@@ -49,6 +58,11 @@ void MainMenu::startFunction() {
     window->loginMenu.display();
 }
 
+void MainMenu::settingsFunction() {
+    this->hide();
+    window->settingsMenu.display();
+}
+
 void MainMenu::exitFunction() {
     this->hide();
     QApplication::quit();
@@ -57,6 +71,9 @@ void MainMenu::exitFunction() {
 void MainMenu::hide() {
     startButton.setVisible(false);
     startButton.setEnabled(false);
+
+    settingsButton.setVisible(false);
+    settingsButton.setEnabled(false);
 
     exitButton.setVisible(false);
     exitButton.setEnabled(false);

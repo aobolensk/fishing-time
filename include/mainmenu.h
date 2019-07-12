@@ -13,12 +13,14 @@ private:
 private:
     MainWindow *window;
     QPushButton startButton,
+                settingsButton,
                 exitButton;
     QComboBox languageSelector;
     QGridLayout *grid;
     int cnt = 0;
 private slots:
     void startFunction();
+    void settingsFunction();
     void exitFunction();
 public:
     MainMenu(MainWindow *w, QGridLayout *g);
