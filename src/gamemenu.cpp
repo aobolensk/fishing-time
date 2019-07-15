@@ -58,6 +58,9 @@ void GameMenu::display() {
     infoLabel.setVisible(true);
     infoLabel.setEnabled(true);
 
+    nameWidget.setText(window->str.name);
+    quantityWidget.setText(window->str.quantity);
+
     clickButton.setText(window->str.click);
     clickButton.setVisible(true);
     clickButton.setEnabled(true);
