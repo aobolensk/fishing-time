@@ -26,6 +26,8 @@ private:
     void serialize();
 private slots:
     void autoSaveFunction();
+private:
+    int autoSavePeriod = 3;
 public:
     Config cfg;
     Dictionary str;
@@ -39,6 +41,7 @@ public:
     SettingsMenu settingsMenu;
     int activeUser = -1;
     int activeLocation = -1;
+    void setAutoSavePeriod(int period);
     Language activeLanguage = Language::English;
     QTimer autoSaveTimer;
     MainWindow(QWidget *parent, const QString &config_file);
