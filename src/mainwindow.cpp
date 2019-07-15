@@ -26,16 +26,15 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
         qDebug() << user.getUsername();
     }
     mainMenu.display();
-    connect(&autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSaveFunction()));
-    autoSaveTimer.start(3 * 60 * 1000);
+    setAutoSavePeriod(3);
 }
 
-void MainWindow::setAutoSavePeriod(int period) {
+void MainWindow::setAutoSavePeriod(int periodInMinutes) {
     disconnect(&autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSaveFunction()));
     autoSaveTimer.stop();
-    autoSaveTimer.start(period * 60 * 1000);
+    autoSaveTimer.start(periodInMinutes * 60 * 1000);
     connect(&autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSaveFunction()));
-    qDebug() << "Autosave period is set to " << period << " mins";
+    qDebug() << "Autosave period is set to " << periodInMinutes << " mins";
 }
 
 void MainWindow::deserialize() {
@@ -94,7 +93,6 @@ void MainWindow::autoSaveFunction() {
     qDebug() << "Performing autosave";
     serialize();
     qDebug() << "Autosave is complete";
-    qDebug() << autoSaveTimer.interval();
 }
 
 MainWindow::~MainWindow() {

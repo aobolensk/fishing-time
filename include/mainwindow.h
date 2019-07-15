@@ -41,7 +41,7 @@ public:
     SettingsMenu settingsMenu;
     int activeUser = -1;
     int activeLocation = -1;
-    void setAutoSavePeriod(int period);
+    void setAutoSavePeriod(int periodInMinutes);
     Language activeLanguage = Language::English;
     QTimer autoSaveTimer;
     MainWindow(QWidget *parent, const QString &config_file);

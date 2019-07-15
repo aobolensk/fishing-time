@@ -14,7 +14,7 @@ SettingsMenu::SettingsMenu(MainWindow *w, QGridLayout *g) :
         autoSaveSelector.addItem(QString::number(autoSaveOptions[i]) + ' ' + window->str.min);
     }
     connect(&autoSaveSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-       [this](int index){ qDebug() << "Set " << autoSaveOptions[index]; window->setAutoSavePeriod(autoSaveOptions[index]); });
+       [this](int index){ window->setAutoSavePeriod(autoSaveOptions[index]); });
 
     grid->addWidget(&backButton, 2, 1);
     backButton.setVisible(false);
