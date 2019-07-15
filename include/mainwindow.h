@@ -26,6 +26,8 @@ private:
     void serialize();
 private slots:
     void autoSaveFunction();
+private:
+    int autoSavePeriod = 3;
 public:
     Config cfg;
     Dictionary str;
