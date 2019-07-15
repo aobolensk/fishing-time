@@ -28,6 +28,13 @@ void SettingsMenu::display() {
     autoSaveSelector.setVisible(true);
     autoSaveSelector.setEnabled(true);
     autoSaveSelector.setCurrentIndex(-1);
+    int currentPeriod = window->autoSaveTimer.interval() / (60 * 1000);
+    for (int i = 0; i < 6; ++i) {
+        if (currentPeriod == autoSaveOptions[i]) {
+            autoSaveSelector.setCurrentIndex(i);
+            break;
+        }
+    }
     autoSaveUpdater = connect(&autoSaveSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
        [this](int index){ window->setAutoSavePeriod(autoSaveOptions[index]); });
 
