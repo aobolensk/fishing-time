@@ -26,6 +26,8 @@ private:
     void serialize();
 private slots:
     void autoSaveFunction();
+private:
+    int autoSavePeriod = 3;
 public:
     Config cfg;
     Dictionary str;
@@ -44,6 +46,8 @@ public:
     QTimer autoSaveTimer;
     MainWindow(QWidget *parent, const QString &config_file);
     ~MainWindow();
+    friend QByteArray Config::serialize() const;
+    friend void Config::deserialize(const QVariantMap &map);
 };
 
 #endif  // INCLUDE_MAINWINDOW_H_
