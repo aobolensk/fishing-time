@@ -8,13 +8,9 @@ SettingsMenu::SettingsMenu(MainWindow *w, QGridLayout *g) :
     autoSavePeriodText.setVisible(false);
 
     grid->addWidget(&autoSaveSelector, 0, 1);
+    autoSaveSelector.setCurrentIndex(-1);
     autoSaveSelector.setVisible(false);
     autoSaveSelector.setEnabled(false);
-    for (int i = 0; i < 6; ++i) {
-        autoSaveSelector.addItem(QString::number(autoSaveOptions[i]) + ' ' + window->str.min);
-    }
-    connect(&autoSaveSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-       [this](int index){ window->setAutoSavePeriod(autoSaveOptions[index]); });
 
     grid->addWidget(&backButton, 2, 1);
     backButton.setVisible(false);
@@ -26,8 +22,14 @@ void SettingsMenu::display() {
     autoSavePeriodText.setText(window->str.autoSavePeriod);
     autoSavePeriodText.setVisible(true);
 
+    for (int i = 0; i < 6; ++i) {
+        autoSaveSelector.addItem(QString::number(autoSaveOptions[i]) + ' ' + window->str.min);
+    }
     autoSaveSelector.setVisible(true);
     autoSaveSelector.setEnabled(true);
+    autoSaveSelector.setCurrentIndex(-1);
+    autoSaveUpdater = connect(&autoSaveSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+       [this](int index){ window->setAutoSavePeriod(autoSaveOptions[index]); });
 
     backButton.setText(window->str.back);
     backButton.setVisible(true);
@@ -44,6 +46,9 @@ void SettingsMenu::hide() {
 
     autoSaveSelector.setVisible(false);
     autoSaveSelector.setEnabled(false);
+    disconnect(autoSaveUpdater);
+    autoSaveSelector.setCurrentIndex(-1);
+    autoSaveSelector.clear();
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
