@@ -38,6 +38,7 @@ void Dictionary::setLanguage(Language l) {
     switch (l) {
     case Language::English: {
         constexpr int ENGLISH_START = __LINE__;
+        SET(autoSavePeriod) = "Autosave period:";
         SET(back) = "Back";
         SET(bream) = "Bream";
         SET(buy) = "Buy";
@@ -54,6 +55,7 @@ void Dictionary::setLanguage(Language l) {
         SET(logIn) = "Log in";
         SET(mainLabelText) = "Welcome, %1\nCoins: %2\nTotal clicks: %3\n";
         SET(market) = "Market";
+        SET(min) = "min";
         SET(name) = "Name";
         SET(oka) = "Oka";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
@@ -65,6 +67,7 @@ void Dictionary::setLanguage(Language l) {
         SET(perch) = "Perch";
         SET(pike) = "Pike";
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
+        SET(settings) = "Settings";
         SET(signUp) = "Sign up";
         SET(start) = "Start";
         SET(store) = "Store";
@@ -78,6 +81,7 @@ void Dictionary::setLanguage(Language l) {
         static_assert((DICTIONARY_END - DICTIONARY_START) == (ENGLISH_END - ENGLISH_START));
     } case Language::Russian: {
         constexpr int RUSSIAN_START = __LINE__;
+        SET(autoSavePeriod) = "Период автосохранения:";
         SET(back) = "Назад";
         SET(bream) = "Лещ";
         SET(buy) = "Купить";
@@ -94,6 +98,7 @@ void Dictionary::setLanguage(Language l) {
         SET(logIn) = "Войти";
         SET(mainLabelText) = "Добро пожаловать, %1\nМонет: %2\nВсего кликов: %3\n";
         SET(market) = "Рынок";
+        SET(min) = "мин";
         SET(name) = "Имя";
         SET(oka) = "Ока";
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
@@ -105,6 +110,7 @@ void Dictionary::setLanguage(Language l) {
         SET(perch) = "Окунь";
         SET(pike) = "Щука";
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
+        SET(settings) = "Настройки";
         SET(signUp) = "Зарегистрироваться";
         SET(start) = "Начать";
         SET(store) = "Магазин";

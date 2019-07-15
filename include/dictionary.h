@@ -17,6 +17,7 @@ public:
     const QMap <QString, const QString*> itemNames;
     static constexpr int DICTIONARY_START = __LINE__;
     const QString
+            autoSavePeriod,
             back,
             bream,
             buy,
@@ -33,6 +34,7 @@ public:
             logIn,
             mainLabelText,
             market,
+            min,
             name,
             newUserCreatedText,
             oka,
@@ -44,6 +46,7 @@ public:
             roach,
             selectItemFromList,
             sellerText,
+            settings,
             signUp,
             start,
             store,

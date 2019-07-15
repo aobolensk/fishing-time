@@ -12,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
         loginMenu(LoginMenu(this, &grid)),
         gameMenu(GameMenu(this, &grid)),
         marketMenu(MarketMenu(this, &grid)),
-        storeMenu(StoreMenu(this, &grid)) {
+        storeMenu(StoreMenu(this, &grid)),
+        settingsMenu(SettingsMenu(this, &grid)) {
     this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
     setLayout(&grid);
     grid.setColumnStretch(0, 1);
@@ -25,8 +26,15 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
         qDebug() << user.getUsername();
     }
     mainMenu.display();
+    setAutoSavePeriod(3);
+}
+
+void MainWindow::setAutoSavePeriod(int periodInMinutes) {
+    disconnect(&autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSaveFunction()));
+    autoSaveTimer.stop();
+    autoSaveTimer.start(periodInMinutes * 60 * 1000);
     connect(&autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSaveFunction()));
-    autoSaveTimer.start(3 * 60 * 1000);
+    qDebug() << "Autosave period is set to " << periodInMinutes << " mins";
 }
 
 void MainWindow::deserialize() {
