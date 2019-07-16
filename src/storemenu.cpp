@@ -138,5 +138,16 @@ void StoreMenu::hide() {
 }
 
 StoreMenu::~StoreMenu() {
-
+    for (int i = 0; ; ++i) {
+        int cnt = 0;
+        for (int j = 0; j < 3; ++j) {
+            if (storeTable.item(i, j)) {
+                ++cnt;
+                delete storeTable.item(i, j);
+            }
+        }
+        if (!cnt) {
+            break;
+        }
+    }
 }
