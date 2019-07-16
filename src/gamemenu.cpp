@@ -1,5 +1,6 @@
 #include <random>
 #include <QStringList>
+#include <QStringList>
 #include "gamemenu.h"
 #include "mainwindow.h"
 
@@ -19,6 +20,10 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
     grid->addWidget(&infoLabel, 0, 0);
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
+
+    grid->addWidget(&fishLabel, 0, 2);
+    fishLabel.setVisible(false);
+    fishLabel.setEnabled(false);
 
     grid->addWidget(&clickButton, 1, 1);
     clickButton.setVisible(false);
@@ -48,7 +53,10 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
     grid->addWidget(&locationSelector, 1, 2);
     locationSelector.setCurrentIndex(0);
     connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-        [this](int index){ window->activeLocation = index; });
+        [this](int index) {
+            window->activeLocation = index;
+            updateInfo();
+        });
     locationSelector.setVisible(false);
     locationSelector.setEnabled(false);
 }
@@ -57,6 +65,9 @@ void GameMenu::display() {
     updateInfo();
     infoLabel.setVisible(true);
     infoLabel.setEnabled(true);
+
+    fishLabel.setVisible(true);
+    fishLabel.setEnabled(true);
 
     nameWidget.setText(window->str.name);
     quantityWidget.setText(window->str.quantity);
@@ -149,17 +160,31 @@ void GameMenu::updateInventoryTable() {
 }
 
 void GameMenu::updateInfo() {
-    updateInventoryTable();
-    infoLabel.setText(window->str.mainLabelText.arg(
-        window->users[window->activeUser].getUsername(),
-        QString::number(window->users[window->activeUser].getCoins()),
-        QString::number(window->users[window->activeUser].getClicks())
-    ));
+    if (window->activeUser != -1) {
+        updateInventoryTable();
+        infoLabel.setText(window->str.mainLabelText.arg(
+            window->users[window->activeUser].getUsername(),
+            QString::number(window->users[window->activeUser].getCoins()),
+            QString::number(window->users[window->activeUser].getClicks())
+        ));
+    }
+    if (window->activeLocation != -1) {
+        QStringList fishList;
+        for (int i = 0; i < window->locations[window->activeLocation].getFishCount(); ++i) {
+            fishList.push_back(
+                window->str.getItemName(window->locations[window->activeLocation].getFish(i)));
+        }
+        fishLabel.setText(window->str.fishLabelText.arg(
+            window->locations[window->activeLocation].getName(),
+            fishList.join(", ")
+        ));
+    }
 }
 
 void GameMenu::hide() {
     infoLabel.setVisible(false);
-    infoLabel.setEnabled(false);
+
+    fishLabel.setVisible(false);
 
     clickButton.setVisible(false);
     clickButton.setEnabled(false);

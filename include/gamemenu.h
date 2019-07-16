@@ -19,7 +19,8 @@ private:
                 inventoryButton,
                 marketButton,
                 storeButton;
-    QLabel infoLabel;
+    QLabel infoLabel,
+           fishLabel;
     QTableWidget table;
     QTableWidgetItem nameWidget,
                      quantityWidget;
