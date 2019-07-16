@@ -207,5 +207,16 @@ void GameMenu::hide() {
 }
 
 GameMenu::~GameMenu() {
-
+    for (int i = 0; ; ++i) {
+        int cnt = 0;
+        for (int j = 0; j < 2; ++j) {
+            if (table.item(i, j)) {
+                ++cnt;
+                delete table.item(i, j);
+            }
+        }
+        if (!cnt) {
+            break;
+        }
+    }
 }
