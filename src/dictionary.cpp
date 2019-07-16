@@ -47,6 +47,7 @@ void Dictionary::setLanguage(Language l) {
         SET(dialog) = "Dialog";
         SET(enterYourLoginHereText) = "Enter your login here";
         SET(exit) = "Exit";
+        SET(fishLabelText) = "Fish that can be caught in location %1:\n%2";
         SET(ide) = "Ide";
         SET(information) = "Information";
         SET(invalidLoginText) = "Invalid login";
@@ -90,6 +91,7 @@ void Dictionary::setLanguage(Language l) {
         SET(dialog) = "Диалог";
         SET(enterYourLoginHereText) = "Введите ваш логин";
         SET(exit) = "Выход";
+        SET(fishLabelText) = "Рыба, которую можно поймать в локации %1:\n%2";
         SET(ide) = "Язь";
         SET(information) = "Информация";
         SET(invalidLoginText) = "Неверный логин";

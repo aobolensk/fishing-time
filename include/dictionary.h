@@ -26,6 +26,7 @@ public:
             dialog,
             enterYourLoginHereText,
             exit,
+            fishLabelText,
             ide,
             information,
             invalidLoginText,
