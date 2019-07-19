@@ -13,8 +13,10 @@ private:
 private:
     MainWindow *window;
     QPushButton backButton;
-    QLabel autoSavePeriodText;
-    QComboBox autoSaveSelector;
+    QLabel autoSavePeriodText,
+           languageText;
+    QComboBox autoSaveSelector,
+              languageSelector;
     QMetaObject::Connection autoSaveUpdater;
     int autoSaveOptions[6] = {
         1, 3, 5, 10, 30, 60

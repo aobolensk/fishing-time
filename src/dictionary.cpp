@@ -53,6 +53,7 @@ void Dictionary::setLanguage(Language l) {
         SET(invalidLoginText) = "Invalid login";
         SET(invalidValue) = "<INVALID>";
         SET(inventory) = "Inventory";
+        SET(language) = "Language";
         SET(logIn) = "Log in";
         SET(mainLabelText) = "Welcome, %1\nCoins: %2\nTotal clicks: %3\n";
         SET(market) = "Market";
@@ -97,6 +98,7 @@ void Dictionary::setLanguage(Language l) {
         SET(invalidLoginText) = "Неверный логин";
         SET(invalidValue) = "<INVALID>";
         SET(inventory) = "Инвентарь";
+        SET(language) = "Язык";
         SET(logIn) = "Войти";
         SET(mainLabelText) = "Добро пожаловать, %1\nМонет: %2\nВсего кликов: %3\n";
         SET(market) = "Рынок";
