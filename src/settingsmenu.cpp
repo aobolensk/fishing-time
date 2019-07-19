@@ -4,16 +4,16 @@
 SettingsMenu::SettingsMenu(MainWindow *w, QGridLayout *g) :
         window(w),
         grid(g) {
-    grid->addWidget(&autoSavePeriodText, 0, 0);
-    autoSavePeriodText.setVisible(false);
+    grid->addWidget(&autoSavePeriodLabel, 0, 0);
+    autoSavePeriodLabel.setVisible(false);
 
     grid->addWidget(&autoSaveSelector, 0, 1);
     autoSaveSelector.setCurrentIndex(-1);
     autoSaveSelector.setVisible(false);
     autoSaveSelector.setEnabled(false);
 
-    grid->addWidget(&languageText, 1, 0);
-    languageText.setVisible(false);
+    grid->addWidget(&languageLabel, 1, 0);
+    languageLabel.setVisible(false);
 
     grid->addWidget(&languageSelector, 1, 1);
     for (int i = 0; i < window->str.languages.size(); ++i) {
@@ -37,8 +37,8 @@ SettingsMenu::SettingsMenu(MainWindow *w, QGridLayout *g) :
 }
 
 void SettingsMenu::display() {
-    autoSavePeriodText.setText(window->str.autoSavePeriod);
-    autoSavePeriodText.setVisible(true);
+    autoSavePeriodLabel.setText(window->str.autoSavePeriod);
+    autoSavePeriodLabel.setVisible(true);
 
     for (int i = 0; i < 6; ++i) {
         autoSaveSelector.addItem(QString::number(autoSaveOptions[i]) + ' ' + window->str.min);
@@ -56,8 +56,8 @@ void SettingsMenu::display() {
     autoSaveUpdater = connect(&autoSaveSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
        [this](int index){ window->setAutoSavePeriod(autoSaveOptions[index]); });
 
-    languageText.setText(window->str.language);
-    languageText.setVisible(true);
+    languageLabel.setText(window->str.language);
+    languageLabel.setVisible(true);
 
     languageSelector.setCurrentIndex((int)window->activeLanguage);
     languageSelector.setVisible(true);
@@ -74,7 +74,7 @@ void SettingsMenu::backFunction() {
 }
 
 void SettingsMenu::hide() {
-    autoSavePeriodText.setVisible(false);
+    autoSavePeriodLabel.setVisible(false);
 
     autoSaveSelector.setVisible(false);
     autoSaveSelector.setEnabled(false);
@@ -82,7 +82,7 @@ void SettingsMenu::hide() {
     autoSaveSelector.setCurrentIndex(-1);
     autoSaveSelector.clear();
 
-    languageText.setVisible(false);
+    languageLabel.setVisible(false);
 
     languageSelector.setVisible(false);
     languageSelector.setEnabled(false);
