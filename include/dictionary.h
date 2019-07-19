@@ -32,6 +32,7 @@ public:
             invalidLoginText,
             invalidValue,
             inventory,
+            language,
             logIn,
             mainLabelText,
             market,
