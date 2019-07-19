@@ -15,6 +15,7 @@ MarketMenu::MarketMenu(MainWindow *w, QGridLayout *g) :
         dialogButton[i].setVisible(false);
         dialogButton[i].setEnabled(false);
         grid->addWidget(&dialogLabel[i], 1, i);
+        dialogLabel[i].setWordWrap(true);
         dialogLabel[i].setVisible(false);
         dialogLabel[i].setEnabled(false);
         grid->addWidget(&quantityText[i], 2, i);
@@ -25,6 +26,7 @@ MarketMenu::MarketMenu(MainWindow *w, QGridLayout *g) :
     #define X(i) connect(&dialogButton[i], &QPushButton::clicked, [this](){processDialog(i);})
     X(0); X(1); X(2);
     #undef X
+
     grid->addWidget(&backButton, 4, 2);
     backButton.setVisible(false);
     backButton.setEnabled(false);

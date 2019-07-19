@@ -7,6 +7,7 @@ StoreMenu::StoreMenu(MainWindow *w, QGridLayout *g) :
         storeTable(window),
         grid(g) {
     grid->addWidget(&infoLabel, 1, 2);
+    infoLabel.setWordWrap(true);
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
 
