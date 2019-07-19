@@ -13,8 +13,8 @@ private:
 private:
     MainWindow *window;
     QPushButton backButton;
-    QLabel autoSavePeriodText,
-           languageText;
+    QLabel autoSavePeriodLabel,
+           languageLabel;
     QComboBox autoSaveSelector,
               languageSelector;
     QMetaObject::Connection autoSaveUpdater;

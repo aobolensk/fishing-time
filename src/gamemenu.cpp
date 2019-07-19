@@ -18,10 +18,12 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
     table.setEnabled(false);
 
     grid->addWidget(&infoLabel, 0, 0);
+    infoLabel.setWordWrap(true);
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
 
     grid->addWidget(&fishLabel, 0, 2);
+    fishLabel.setWordWrap(true);
     fishLabel.setVisible(false);
     fishLabel.setEnabled(false);
 
