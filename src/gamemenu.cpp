@@ -55,8 +55,8 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     grid->addWidget(&locationSelector, 1, 2);
     locationSelector.setCurrentIndex(0);
     connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-        [&](int index) {
-            game->activeLocation = index;
+        [this](int index) {
+            this->game->activeLocation = index;
             updateInfo();
         });
     locationSelector.setVisible(false);

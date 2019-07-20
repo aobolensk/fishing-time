@@ -21,10 +21,9 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     }
     qDebug() << (int)game->activeLanguage;
     connect(&languageSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-        [&](int index){
-            game->activeLanguage = (Language)index;
-            game->str.setLanguage(game->activeLanguage);
+        [this](int index) {
             this->hide();
+            this->game->str.setLanguage(this->game->activeLanguage = (Language)index);
             this->display();
         });
     languageSelector.setVisible(false);
