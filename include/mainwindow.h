@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QString>
 #include <QTimer>
+#include <QCloseEvent>
 #include "mainmenu.h"
 #include "loginmenu.h"
 #include "gamemenu.h"
@@ -24,6 +25,8 @@ private:
 private:
     void deserialize();
     void serialize();
+private:
+    void closeEvent(QCloseEvent *event);
 private slots:
     void autoSaveFunction();
 private:

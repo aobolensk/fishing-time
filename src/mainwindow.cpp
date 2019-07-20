@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QFile>
 #include <QDebug>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent, const QString &file) :
         QWidget(parent),
@@ -87,6 +88,17 @@ void MainWindow::serialize() {
             config.write(user.serialize());
         }
         config.close();
+    }
+}
+
+void MainWindow::closeEvent(QCloseEvent *event) {
+    QMessageBox::StandardButton closeResult =
+        QMessageBox::question(this, "fishing-time", str.exitConfirmation,
+        QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+    if (closeResult != QMessageBox::Yes) {
+        event->ignore();
+    } else {
+        event->accept();
     }
 }
 
