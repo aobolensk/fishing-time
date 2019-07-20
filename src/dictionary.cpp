@@ -7,22 +7,33 @@ Dictionary::Dictionary() :
             "English",
             "Russian"
         }),
+
+        #define LIST_OF_FISH \
+            X("fish.bream", &bream) \
+            X("fish.carp", &carp) \
+            X("fish.ide", &ide) \
+            X("fish.perch", &perch) \
+            X("fish.pike", &pike) \
+            X("fish.roach", &roach) \
+
+        #define X(itemId, itemNamePtr) \
+              itemId ,
         itemIds({
-            "fish.bream",
-            "fish.carp",
-            "fish.ide",
-            "fish.perch",
-            "fish.pike",
-            "fish.roach"
+            LIST_OF_FISH
+            "fish.undefined"
         }),
+        #undef X
+
+        #define X(itemId, itemNamePtr) \
+            { itemId, itemNamePtr } ,
         itemNames({
-            {"fish.bream", &bream},
-            {"fish.carp", &carp},
-            {"fish.ide", &ide},
-            {"fish.perch", &perch},
-            {"fish.pike", &pike},
-            {"fish.roach", &roach}
-        }) {
+            LIST_OF_FISH
+            {"fish.undefined", nullptr}
+        })
+        #undef X
+
+        {
+
 }
 
 const QString &Dictionary::getItemName(const QString &id) const {
