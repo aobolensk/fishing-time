@@ -2,14 +2,14 @@
 #include <QStringList>
 #include <QStringList>
 #include "gamemenu.h"
-#include "mainwindow.h"
+#include "game.h"
 
 static std::random_device rd;
 static std::mt19937 generator(rd());
 
-GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
-        window(w),
-        grid(g) {
+GameMenu::GameMenu(Game *game, QGridLayout *grid) :
+        game(game),
+        grid(grid) {
     table.setRowCount(0);
     table.setColumnCount(2);
     table.setHorizontalHeaderItem(0, &nameWidget);
@@ -55,8 +55,8 @@ GameMenu::GameMenu(MainWindow *w, QGridLayout *g) :
     grid->addWidget(&locationSelector, 1, 2);
     locationSelector.setCurrentIndex(0);
     connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-        [this](int index) {
-            window->activeLocation = index;
+        [&](int index) {
+            game->activeLocation = index;
             updateInfo();
         });
     locationSelector.setVisible(false);
@@ -71,31 +71,31 @@ void GameMenu::display() {
     fishLabel.setVisible(true);
     fishLabel.setEnabled(true);
 
-    nameWidget.setText(window->str.name);
-    quantityWidget.setText(window->str.quantity);
+    nameWidget.setText(game->str.name);
+    quantityWidget.setText(game->str.quantity);
 
-    clickButton.setText(window->str.click);
+    clickButton.setText(game->str.click);
     clickButton.setVisible(true);
     clickButton.setEnabled(true);
 
-    backButton.setText(window->str.back);
+    backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
 
-    inventoryButton.setText(window->str.inventory);
+    inventoryButton.setText(game->str.inventory);
     inventoryButton.setVisible(true);
     inventoryButton.setEnabled(true);
 
-    marketButton.setText(window->str.market);
+    marketButton.setText(game->str.market);
     marketButton.setVisible(true);
     marketButton.setEnabled(true);
 
-    storeButton.setText(window->str.store);
+    storeButton.setText(game->str.store);
     storeButton.setVisible(true);
     storeButton.setEnabled(true);
 
-    for (int i = 0; i < window->locations.size(); ++i) {
-        locationSelector.addItem(window->locations[i].getName());
+    for (int i = 0; i < game->locations.size(); ++i) {
+        locationSelector.addItem(game->locations[i].getName());
     }
     locationSelector.setVisible(true);
     locationSelector.setEnabled(true);
@@ -105,19 +105,19 @@ void GameMenu::clickFunction() {
     const int MOD = 100;
     std::uniform_int_distribution<> dist(1, 99);
     int rnd = dist(generator) % MOD;
-    window->users[window->activeUser].inventory.
-            changeItem(window->locations[window->activeLocation].getFish(
-            qMin(rnd / (MOD / window->locations[window->activeLocation].getFishCount()),
-            window->locations[window->activeLocation].getFishCount() - 1)), 1);
-    window->users[window->activeUser].incClicks();
+    game->users[game->activeUser].inventory.
+            changeItem(game->locations[game->activeLocation].getFish(
+            qMin(rnd / (MOD / game->locations[game->activeLocation].getFishCount()),
+            game->locations[game->activeLocation].getFishCount() - 1)), 1);
+    game->users[game->activeUser].incClicks();
     updateInfo();
 }
 
 void GameMenu::backFunction() {
-    window->activeUser = -1;
-    window->activeLocation = -1;
+    game->activeUser = -1;
+    game->activeLocation = -1;
     this->hide();
-    window->mainMenu.display();
+    game->mainMenu.display();
 }
 
 void GameMenu::inventoryFunction() {
@@ -128,16 +128,16 @@ void GameMenu::inventoryFunction() {
 
 void GameMenu::marketFunction() {
     this->hide();
-    window->marketMenu.display();
+    game->marketMenu.display();
 }
 
 void GameMenu::storeFunction() {
     this->hide();
-    window->storeMenu.display();
+    game->storeMenu.display();
 }
 
 void GameMenu::updateInventoryTable() {
-    auto inv = window->users[window->activeUser].inventory.get();
+    auto inv = game->users[game->activeUser].inventory.get();
     table.setRowCount(inv.size());
     QMap<QString, int>::const_iterator it = inv.constBegin();
     int i = 0;
@@ -147,7 +147,7 @@ void GameMenu::updateInventoryTable() {
             cell = new QTableWidgetItem;
             table.setItem(i, 0, cell);
         }
-        cell->setText(window->str.getItemName(it.key()));
+        cell->setText(game->str.getItemName(it.key()));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
         cell = table.item(i, 1);
         if (!cell) {
@@ -162,22 +162,22 @@ void GameMenu::updateInventoryTable() {
 }
 
 void GameMenu::updateInfo() {
-    if (window->activeUser != -1) {
+    if (game->activeUser != -1) {
         updateInventoryTable();
-        infoLabel.setText(window->str.mainLabelText.arg(
-            window->users[window->activeUser].getUsername(),
-            QString::number(window->users[window->activeUser].getCoins()),
-            QString::number(window->users[window->activeUser].getClicks())
+        infoLabel.setText(game->str.mainLabelText.arg(
+            game->users[game->activeUser].getUsername(),
+            QString::number(game->users[game->activeUser].getCoins()),
+            QString::number(game->users[game->activeUser].getClicks())
         ));
     }
-    if (window->activeLocation != -1) {
+    if (game->activeLocation != -1) {
         QStringList fishList;
-        for (int i = 0; i < window->locations[window->activeLocation].getFishCount(); ++i) {
+        for (int i = 0; i < game->locations[game->activeLocation].getFishCount(); ++i) {
             fishList.push_back(
-                window->str.getItemName(window->locations[window->activeLocation].getFish(i)));
+                game->str.getItemName(game->locations[game->activeLocation].getFish(i)));
         }
-        fishLabel.setText(window->str.fishLabelText.arg(
-            window->locations[window->activeLocation].getName(),
+        fishLabel.setText(game->str.fishLabelText.arg(
+            game->locations[game->activeLocation].getName(),
             fishList.join(", ")
         ));
     }

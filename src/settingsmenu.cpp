@@ -1,9 +1,9 @@
 #include "settingsmenu.h"
-#include "mainwindow.h"
+#include "game.h"
 
-SettingsMenu::SettingsMenu(MainWindow *w, QGridLayout *g) :
-        window(w),
-        grid(g) {
+SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
+        game(game),
+        grid(grid) {
     grid->addWidget(&autoSavePeriodLabel, 0, 0);
     autoSavePeriodLabel.setVisible(false);
 
@@ -16,14 +16,14 @@ SettingsMenu::SettingsMenu(MainWindow *w, QGridLayout *g) :
     languageLabel.setVisible(false);
 
     grid->addWidget(&languageSelector, 1, 1);
-    for (int i = 0; i < window->str.languages.size(); ++i) {
-        languageSelector.addItem(window->str.languages[i]);
+    for (int i = 0; i < game->str.languages.size(); ++i) {
+        languageSelector.addItem(game->str.languages[i]);
     }
-    qDebug() << (int)window->activeLanguage;
+    qDebug() << (int)game->activeLanguage;
     connect(&languageSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-        [this](int index){
-            window->activeLanguage = (Language)index;
-            window->str.setLanguage(window->activeLanguage);
+        [&](int index){
+            game->activeLanguage = (Language)index;
+            game->str.setLanguage(game->activeLanguage);
             this->hide();
             this->display();
         });
@@ -37,16 +37,16 @@ SettingsMenu::SettingsMenu(MainWindow *w, QGridLayout *g) :
 }
 
 void SettingsMenu::display() {
-    autoSavePeriodLabel.setText(window->str.autoSavePeriod);
+    autoSavePeriodLabel.setText(game->str.autoSavePeriod);
     autoSavePeriodLabel.setVisible(true);
 
     for (int i = 0; i < 6; ++i) {
-        autoSaveSelector.addItem(QString::number(autoSaveOptions[i]) + ' ' + window->str.min);
+        autoSaveSelector.addItem(QString::number(autoSaveOptions[i]) + ' ' + game->str.min);
     }
     autoSaveSelector.setVisible(true);
     autoSaveSelector.setEnabled(true);
     autoSaveSelector.setCurrentIndex(-1);
-    int currentPeriod = window->autoSaveTimer.interval() / (60 * 1000);
+    int currentPeriod = game->autoSaveTimer.interval() / (60 * 1000);
     for (int i = 0; i < 6; ++i) {
         if (currentPeriod == autoSaveOptions[i]) {
             autoSaveSelector.setCurrentIndex(i);
@@ -54,23 +54,23 @@ void SettingsMenu::display() {
         }
     }
     autoSaveUpdater = connect(&autoSaveSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-       [this](int index){ window->setAutoSavePeriod(autoSaveOptions[index]); });
+       [this](int index){ game->setAutoSavePeriod(autoSaveOptions[index]); });
 
-    languageLabel.setText(window->str.language);
+    languageLabel.setText(game->str.language);
     languageLabel.setVisible(true);
 
-    languageSelector.setCurrentIndex((int)window->activeLanguage);
+    languageSelector.setCurrentIndex((int)game->activeLanguage);
     languageSelector.setVisible(true);
     languageSelector.setEnabled(true);
 
-    backButton.setText(window->str.back);
+    backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
 }
 
 void SettingsMenu::backFunction() {
     this->hide();
-    window->mainMenu.display();
+    game->mainMenu.display();
 }
 
 void SettingsMenu::hide() {

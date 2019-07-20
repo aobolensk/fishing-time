@@ -4,13 +4,13 @@
 #include <QGridLayout>
 #include <QLineEdit>
 
-class MainWindow;
+class Game;
 
 class LoginMenu : public QObject {
 private:
     Q_OBJECT
 private:
-    MainWindow *window;
+    Game *game;
     QLineEdit loginText;
     QPushButton loginButton,
                 signUpButton,
@@ -21,7 +21,7 @@ private slots:
     void signUpFunction();
     void backFunction();
 public:
-    LoginMenu(MainWindow *w, QGridLayout *g);
+    LoginMenu(Game *game, QGridLayout *grid);
     ~LoginMenu();
     void display();
     void hide();

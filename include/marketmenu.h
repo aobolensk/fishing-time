@@ -5,14 +5,14 @@
 #include <QLineEdit>
 #include <QLabel>
 
-class MainWindow;
+class Game;
 
 class MarketMenu : public QObject {
 private:
     Q_OBJECT
 private:
     static const int SELLERS_COUNT = 3;
-    MainWindow *window;
+    Game *game;
     QPushButton backButton,
                 dialogButton[SELLERS_COUNT];
     QLabel infoLabel,
@@ -28,7 +28,7 @@ private:
     void updateDeals();
     void updateInfo();
 public:
-    MarketMenu(MainWindow *w, QGridLayout *g);
+    MarketMenu(Game *game, QGridLayout *grid);
     ~MarketMenu();
     void display();
     void hide();

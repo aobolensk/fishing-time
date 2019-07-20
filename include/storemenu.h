@@ -6,13 +6,13 @@
 #include <QLineEdit>
 #include <QLabel>
 
-class MainWindow;
+class Game;
 
 class StoreMenu : public QObject {
 private:
     Q_OBJECT
 private:
-    MainWindow *window;
+    Game *game;
     QLabel infoLabel;
     QLineEdit quantityText;
     QPushButton buyButton,
@@ -26,7 +26,7 @@ private:
     void updateInfo();
     void updateTable();
 public:
-    StoreMenu(MainWindow *w, QGridLayout *g);
+    StoreMenu(Game *game, QGridLayout *grid);
     ~StoreMenu();
     void display();
     void hide();

@@ -3,8 +3,6 @@
 #include <QVector>
 #include <QMap>
 
-class MainWindow;
-
 enum class Language {
     English,
     Russian

@@ -1,10 +1,10 @@
 #include <QMessageBox>
 #include "loginmenu.h"
-#include "mainwindow.h"
+#include "game.h"
 
-LoginMenu::LoginMenu(MainWindow *w, QGridLayout *g) :
-        window(w),
-        grid(g) {
+LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
+        game(game),
+        grid(grid) {
     grid->addWidget(&loginText, 0, 0);
     loginText.setVisible(false);
     loginText.setEnabled(false);
@@ -26,52 +26,52 @@ LoginMenu::LoginMenu(MainWindow *w, QGridLayout *g) :
 }
 
 void LoginMenu::display() {
-    loginText.setText(window->str.enterYourLoginHereText);
+    loginText.setText(game->str.enterYourLoginHereText);
     loginText.setVisible(true);
     loginText.setEnabled(true);
 
-    loginButton.setText(window->str.logIn);
+    loginButton.setText(game->str.logIn);
     loginButton.setVisible(true);
     loginButton.setEnabled(true);
 
-    signUpButton.setText(window->str.signUp);
+    signUpButton.setText(game->str.signUp);
     signUpButton.setVisible(true);
     signUpButton.setEnabled(true);
 
-    backButton.setText(window->str.back);
+    backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
 }
 
 void LoginMenu::backFunction() {
     this->hide();
-    window->mainMenu.display();
+    game->mainMenu.display();
 }
 
 void LoginMenu::loginFunction() {
-    for (int i = 0; i < window->users.size(); ++i) {
-        if (window->users[i].getUsername() == loginText.text()) {
+    for (int i = 0; i < game->users.size(); ++i) {
+        if (game->users[i].getUsername() == loginText.text()) {
             qDebug() << "Logged in as " << loginText.text();
-            window->activeUser = i;
-            window->activeLocation = 0;
+            game->activeUser = i;
+            game->activeLocation = 0;
             this->hide();
-            window->gameMenu.display();
+            game->gameMenu.display();
             return;
         }
     }
-    QMessageBox::warning(window, window->str.warning, window->str.invalidLoginText);
+    QMessageBox::warning(game, game->str.warning, game->str.invalidLoginText);
 }
 
 void LoginMenu::signUpFunction() {
-    for (int i = 0; i < window->users.size(); ++i) {
-        if (window->users[i].getUsername() == loginText.text()) {
-            QMessageBox::warning(window, window->str.warning, window->str.thisUserAlreadyExistsText);
+    for (int i = 0; i < game->users.size(); ++i) {
+        if (game->users[i].getUsername() == loginText.text()) {
+            QMessageBox::warning(game, game->str.warning, game->str.thisUserAlreadyExistsText);
             return;
         }
     }
-    window->users.push_back(User(loginText.text()));
-    QMessageBox::information(window, window->str.information,
-                             window->str.newUserCreatedText.arg(loginText.text()));
+    game->users.push_back(User(loginText.text()));
+    QMessageBox::information(game, game->str.information,
+                             game->str.newUserCreatedText.arg(loginText.text()));
 }
 
 void LoginMenu::hide() {

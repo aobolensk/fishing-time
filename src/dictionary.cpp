@@ -1,6 +1,6 @@
 #include <stdexcept>
+#include <QDebug>
 #include "dictionary.h"
-#include "mainwindow.h"
 
 Dictionary::Dictionary() :
         languages({

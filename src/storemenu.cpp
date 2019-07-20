@@ -1,11 +1,11 @@
 #include <QMessageBox>
 #include "storemenu.h"
-#include "mainwindow.h"
+#include "game.h"
 
-StoreMenu::StoreMenu(MainWindow *w, QGridLayout *g) :
-        window(w),
-        storeTable(window),
-        grid(g) {
+StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
+        game(game),
+        storeTable(game),
+        grid(grid) {
     grid->addWidget(&infoLabel, 1, 2);
     infoLabel.setWordWrap(true);
     infoLabel.setVisible(false);
@@ -44,11 +44,11 @@ void StoreMenu::display() {
     quantityText.setVisible(true);
     quantityText.setEnabled(true);
 
-    buyButton.setText(window->str.buy);
+    buyButton.setText(game->str.buy);
     buyButton.setVisible(true);
     buyButton.setEnabled(true);
 
-    backButton.setText(window->str.back);
+    backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
 }
@@ -78,47 +78,47 @@ void StoreMenu::updateTable() {
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
     };
     storeTable.setRowCount(1);
-    addDeal(0, "fish.pike", window->str.pike, 1000);
+    addDeal(0, "fish.pike", game->str.pike, 1000);
 }
 
 void StoreMenu::updateInfo() {
-    infoLabel.setText(window->str.mainLabelText.arg(
-        window->users[window->activeUser].getUsername(),
-        QString::number(window->users[window->activeUser].getCoins()),
-        QString::number(window->users[window->activeUser].getClicks())
+    infoLabel.setText(game->str.mainLabelText.arg(
+        game->users[game->activeUser].getUsername(),
+        QString::number(game->users[game->activeUser].getCoins()),
+        QString::number(game->users[game->activeUser].getClicks())
     ));
-    window->gameMenu.updateInventoryTable();
+    game->gameMenu.updateInventoryTable();
 }
 
 void StoreMenu::buyFunction() {
     if (storeTable.currentRow() == -1) {
-        QMessageBox::warning(window, window->str.warning, window->str.selectItemFromList);
+        QMessageBox::warning(game, game->str.warning, game->str.selectItemFromList);
         return;
     }
     bool ok;
     int quantity = quantityText.text().toInt(&ok, 10);
     if (!ok) {
-        QMessageBox::warning(window, window->str.warning, window->str.quantityShouldBeANumber);
+        QMessageBox::warning(game, game->str.warning, game->str.quantityShouldBeANumber);
         return;
     }
     qint64 price = storeTable.item(storeTable.currentRow(), 2)->text().toLongLong();
-    if (quantity * price > window->users[window->activeUser].getCoins()) {
-        QMessageBox::warning(window, window->str.warning, window->str.youDontHaveEnoughCoins);
+    if (quantity * price > game->users[game->activeUser].getCoins()) {
+        QMessageBox::warning(game, game->str.warning, game->str.youDontHaveEnoughCoins);
         return;
     }
     if (quantity < 0) {
-        QMessageBox::warning(window, window->str.warning, window->str.quantityShouldBeMoreThanZero);
+        QMessageBox::warning(game, game->str.warning, game->str.quantityShouldBeMoreThanZero);
         return;
     }
-    window->users[window->activeUser].inventory.changeItem(storeTable.item(storeTable.currentRow(), 0)->text(), quantity);
-    window->users[window->activeUser].changeCoins(-quantity * storeTable.item(storeTable.currentRow(), 2)->text().toLongLong() * quantity);
+    game->users[game->activeUser].inventory.changeItem(storeTable.item(storeTable.currentRow(), 0)->text(), quantity);
+    game->users[game->activeUser].changeCoins(-quantity * storeTable.item(storeTable.currentRow(), 2)->text().toLongLong() * quantity);
     qDebug() << "Bought" << quantity << "of" << storeTable.currentRow();
     updateInfo();
 }
 
 void StoreMenu::backFunction() {
     this->hide();
-    window->gameMenu.display();
+    game->gameMenu.display();
 }
 
 void StoreMenu::hide() {

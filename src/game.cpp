@@ -1,9 +1,9 @@
-#include "mainwindow.h"
+#include "game.h"
 #include <QFile>
 #include <QDebug>
 #include <QMessageBox>
 
-MainWindow::MainWindow(QWidget *parent, const QString &file) :
+Game::Game(QWidget *parent, const QString &file) :
         QWidget(parent),
         grid(QGridLayout(this)),
         config_file(file),
@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent, const QString &file) :
     setAutoSavePeriod(autoSavePeriod);
 }
 
-void MainWindow::setAutoSavePeriod(int periodInMinutes) {
+void Game::setAutoSavePeriod(int periodInMinutes) {
     disconnect(&autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSaveFunction()));
     autoSaveTimer.stop();
     autoSavePeriod = periodInMinutes;
@@ -39,7 +39,7 @@ void MainWindow::setAutoSavePeriod(int periodInMinutes) {
     qDebug() << "Autosave period is set to " << autoSavePeriod << " mins";
 }
 
-void MainWindow::deserialize() {
+void Game::deserialize() {
     QFile config(config_file);
     if (!config.exists()) {
         qDebug() << "File " << config_file << " does not exist";
@@ -78,7 +78,7 @@ void MainWindow::deserialize() {
     }
 }
 
-void MainWindow::serialize() {
+void Game::serialize() {
     QFile config(config_file);
     if (!config.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Can not open file: " << config_file;
@@ -91,7 +91,7 @@ void MainWindow::serialize() {
     }
 }
 
-void MainWindow::closeEvent(QCloseEvent *event) {
+void Game::closeEvent(QCloseEvent *event) {
     QMessageBox::StandardButton closeResult =
         QMessageBox::question(this, "fishing-time", str.exitConfirmation,
         QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
@@ -102,12 +102,12 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     }
 }
 
-void MainWindow::autoSaveFunction() {
+void Game::autoSaveFunction() {
     qDebug() << "Performing autosave";
     serialize();
     qDebug() << "Autosave is complete";
 }
 
-MainWindow::~MainWindow() {
+Game::~Game() {
     serialize();
 }

@@ -4,13 +4,13 @@
 #include <QGridLayout>
 #include <QApplication>
 
-class MainWindow;
+class Game;
 
 class MainMenu : public QObject {
 private:
     Q_OBJECT
 private:
-    MainWindow *window;
+    Game *game;
     QPushButton startButton,
                 settingsButton,
                 exitButton;
@@ -21,7 +21,7 @@ private slots:
     void settingsFunction();
     void exitFunction();
 public:
-    MainMenu(MainWindow *w, QGridLayout *g);
+    MainMenu(Game *game, QGridLayout *grid);
     ~MainMenu();
     void display();
     void hide();
