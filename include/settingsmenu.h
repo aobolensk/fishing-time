@@ -5,13 +5,13 @@
 #include <QLabel>
 #include <QComboBox>
 
-class MainWindow;
+class Game;
 
 class SettingsMenu : public QObject {
 private:
     Q_OBJECT
 private:
-    MainWindow *window;
+    Game *game;
     QPushButton backButton;
     QLabel autoSavePeriodLabel,
            languageLabel;
@@ -25,7 +25,7 @@ private:
 private slots:
     void backFunction();
 public:
-    SettingsMenu(MainWindow *w, QGridLayout *g);
+    SettingsMenu(Game *game, QGridLayout *grid);
     ~SettingsMenu();
     void display();
     void hide();

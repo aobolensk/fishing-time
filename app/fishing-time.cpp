@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QDebug>
-#include "mainwindow.h"
+#include "game.h"
 #include "user.h"
 
 int main(int argc, char *argv[]) {
@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
     QString config = "config.txt";
     if (argc >= 2)
         config = argv[1];
-    MainWindow window(nullptr, config);
-    window.show();
+    Game game(nullptr, config);
+    game.show();
     return app.exec();
 }

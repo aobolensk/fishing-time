@@ -7,13 +7,13 @@
 #include <QTableWidget>
 #include <QComboBox>
 
-class MainWindow;
+class Game;
 
 class GameMenu : public QObject {
 private:
     Q_OBJECT
 private:
-    MainWindow *window;
+    Game *game;
     QPushButton clickButton,
                 backButton,
                 inventoryButton,
@@ -37,7 +37,7 @@ private:
 public:
     void updateInventoryTable();
 public:
-    GameMenu(MainWindow *w, QGridLayout *g);
+    GameMenu(Game *game, QGridLayout *grid);
     ~GameMenu();
     void display();
     void hide();

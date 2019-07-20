@@ -3,14 +3,14 @@
 #include <QVariantMap>
 #include <QByteArray>
 
-class MainWindow;
+class Game;
 
 class Config {
 private:
-    MainWindow *window;
+    Game *game;
     bool isReady = false;
 public:
-    Config(MainWindow *w = nullptr);
+    Config(Game *game = nullptr);
     ~Config() = default;
     void deserialize(const QVariantMap &map);
     QByteArray serialize() const;

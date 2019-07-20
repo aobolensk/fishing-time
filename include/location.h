@@ -2,7 +2,7 @@
 #define INCLUDE_LOCATION_H_
 #include <QVector>
 
-class MainWindow;
+class Game;
 
 class Location {
 private:
@@ -14,7 +14,7 @@ public:
     const QString &getName() const;
     const QString &getFish(int index) const;
     int getFishCount() const;
-    static QVector <Location> initializeLocations(MainWindow *w);
+    static QVector <Location> initializeLocations(Game *game);
 };
 
 #endif  // INCLUDE_LOCATION_H_

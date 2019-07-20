@@ -2,11 +2,11 @@
 #include <QDateTime>
 #include <QMessageBox>
 #include "gamemenu.h"
-#include "mainwindow.h"
+#include "game.h"
 
-MarketMenu::MarketMenu(MainWindow *w, QGridLayout *g) :
-        window(w),
-        grid(g) {
+MarketMenu::MarketMenu(Game *game, QGridLayout *grid) :
+        game(game),
+        grid(grid) {
     grid->addWidget(&infoLabel, 0, 0);
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
@@ -37,29 +37,29 @@ void MarketMenu::updateDeals() {
     int seed = QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0)));
     std::mt19937 randGen(seed);
     qDebug() << "Random seed:" << seed;
-    std::uniform_int_distribution<> gen(0, window->str.itemIds.size() - 1); 
+    std::uniform_int_distribution<> gen(0, game->str.itemIds.size() - 1); 
     for (int i = 0; i < SELLERS_COUNT; ++i) {
-        goodId[i] = window->str.itemIds[gen(randGen)];
+        goodId[i] = game->str.itemIds[gen(randGen)];
         goodPrice[i] = randGen() % 100;
     }
 }
 
 void MarketMenu::updateInfo() {
-    infoLabel.setText(window->str.mainLabelText.arg(
-        window->users[window->activeUser].getUsername(),
-        QString::number(window->users[window->activeUser].getCoins()),
-        QString::number(window->users[window->activeUser].getClicks())
+    infoLabel.setText(game->str.mainLabelText.arg(
+        game->users[game->activeUser].getUsername(),
+        QString::number(game->users[game->activeUser].getCoins()),
+        QString::number(game->users[game->activeUser].getClicks())
     ));
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         dialogLabel[i].setText(
-            window->str.sellerText.arg(
+            game->str.sellerText.arg(
                 QString::number(i),
-                window->str.getItemName(goodId[i]),
+                game->str.getItemName(goodId[i]),
                 QString::number(goodPrice[i]),
-                QString::number(window->users[window->activeUser].inventory.getItem(goodId[i]))
+                QString::number(game->users[game->activeUser].inventory.getItem(goodId[i]))
             ));
     }
-    window->gameMenu.updateInventoryTable();
+    game->gameMenu.updateInventoryTable();
 }
 
 void MarketMenu::processDialog(int seller) {
@@ -67,19 +67,19 @@ void MarketMenu::processDialog(int seller) {
     bool ok;
     int quantity = quantityText[seller].text().toInt(&ok, 10);
     if (!ok) {
-        QMessageBox::warning(window, window->str.warning, window->str.quantityShouldBeANumber);
+        QMessageBox::warning(game, game->str.warning, game->str.quantityShouldBeANumber);
         return;
     }
-    if (quantity > window->users[window->activeUser].inventory.getItem(goodId[seller])) {
-        QMessageBox::warning(window, window->str.warning, window->str.youDontHaveEnoughItems);
+    if (quantity > game->users[game->activeUser].inventory.getItem(goodId[seller])) {
+        QMessageBox::warning(game, game->str.warning, game->str.youDontHaveEnoughItems);
         return;
     }
     if (quantity < 0) {
-        QMessageBox::warning(window, window->str.warning, window->str.quantityShouldBeMoreThanZero);
+        QMessageBox::warning(game, game->str.warning, game->str.quantityShouldBeMoreThanZero);
         return;
     }
-    window->users[window->activeUser].inventory.changeItem(goodId[seller], -quantity);
-    window->users[window->activeUser].changeCoins(goodPrice[seller] * quantity);
+    game->users[game->activeUser].inventory.changeItem(goodId[seller], -quantity);
+    game->users[game->activeUser].changeCoins(goodPrice[seller] * quantity);
     qDebug() << "Sold" << quantity << "of" << goodId[seller] << "to seller" << seller;
     qDebug() << "Earned" << goodPrice[seller] * quantity << "coins";
     updateInfo();
@@ -91,7 +91,7 @@ void MarketMenu::display() {
     infoLabel.setVisible(true);
     infoLabel.setEnabled(true);
     for (int i = 0; i < SELLERS_COUNT; ++i) {
-        dialogButton[i].setText(window->str.dialog);
+        dialogButton[i].setText(game->str.dialog);
         dialogButton[i].setVisible(true);
         dialogButton[i].setEnabled(true);
         dialogLabel[i].setVisible(true);
@@ -99,14 +99,14 @@ void MarketMenu::display() {
         quantityText[i].setVisible(true);
         quantityText[i].setEnabled(true);
     }
-    backButton.setText(window->str.back);
+    backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
 }
 
 void MarketMenu::backFunction() {
     this->hide();
-    window->gameMenu.display();
+    game->gameMenu.display();
 }
 
 void MarketMenu::hide() {

@@ -1,9 +1,9 @@
 #include "mainmenu.h"
-#include "mainwindow.h"
+#include "game.h"
 
-MainMenu::MainMenu(MainWindow *w, QGridLayout *g) :
-        window(w),
-        grid(g) {
+MainMenu::MainMenu(Game *game, QGridLayout *grid) :
+        game(game),
+        grid(grid) {
     grid->addWidget(&startButton, 0, 1);
     startButton.setVisible(false);
     startButton.setEnabled(false);
@@ -22,27 +22,27 @@ MainMenu::MainMenu(MainWindow *w, QGridLayout *g) :
 }
 
 void MainMenu::display() {
-    startButton.setText(window->str.start);
+    startButton.setText(game->str.start);
     startButton.setVisible(true);
     startButton.setEnabled(true);
 
-    settingsButton.setText(window->str.settings);
+    settingsButton.setText(game->str.settings);
     settingsButton.setVisible(true);
     settingsButton.setEnabled(true);
 
-    exitButton.setText(window->str.exit);
+    exitButton.setText(game->str.exit);
     exitButton.setVisible(true);
     exitButton.setEnabled(true);
 }
 
 void MainMenu::startFunction() {
     this->hide();
-    window->loginMenu.display();
+    game->loginMenu.display();
 }
 
 void MainMenu::settingsFunction() {
     this->hide();
-    window->settingsMenu.display();
+    game->settingsMenu.display();
 }
 
 void MainMenu::exitFunction() {

@@ -1,5 +1,5 @@
-#ifndef INCLUDE_MAINWINDOW_H_
-#define INCLUDE_MAINWINDOW_H_
+#ifndef INCLUDE_GAME_H_
+#define INCLUDE_GAME_H_
 #include <QPushButton>
 #include <QGridLayout>
 #include <QString>
@@ -16,7 +16,7 @@
 #include "dictionary.h"
 #include "config.h"
 
-class MainWindow : public QWidget {
+class Game : public QWidget {
 private:
     Q_OBJECT
 private:
@@ -47,10 +47,10 @@ public:
     void setAutoSavePeriod(int periodInMinutes);
     Language activeLanguage = Language::English;
     QTimer autoSaveTimer;
-    MainWindow(QWidget *parent, const QString &config_file);
-    ~MainWindow();
+    Game(QWidget *parent, const QString &config_file);
+    ~Game();
     friend QByteArray Config::serialize() const;
     friend void Config::deserialize(const QVariantMap &map);
 };
 
-#endif  // INCLUDE_MAINWINDOW_H_
+#endif  // INCLUDE_GAME_H_
