@@ -54,7 +54,7 @@ void StoreMenu::display() {
 }
 
 void StoreMenu::updateTable() {
-    static auto addDeal = [&](int index, const QString &name, const QString &description, qint64 price) {
+    static auto addDeal = [this](int index, const QString &name, const QString &description, qint64 price) {
         QTableWidgetItem *cell = storeTable.item(index, 0);
         if (!cell) {
             cell = new QTableWidgetItem;
