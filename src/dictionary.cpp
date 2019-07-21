@@ -56,6 +56,7 @@ void Dictionary::setLanguage(Language l) {
         SET(carp) = "Carp";
         SET(click) = "Click";
         SET(dialog) = "Dialog";
+        SET(empty) = "<EMPTY>";
         SET(enterYourLoginHereText) = "Enter your login here";
         SET(exit) = "Exit";
         SET(exitConfirmation) = "Do you want to exit?";
@@ -105,6 +106,7 @@ void Dictionary::setLanguage(Language l) {
         SET(carp) = "Карп";
         SET(click) = "Нажимай!";
         SET(dialog) = "Диалог";
+        SET(empty) = "<ПУСТО>";
         SET(enterYourLoginHereText) = "Введите ваш логин";
         SET(exit) = "Выход";
         SET(exitConfirmation) = "Вы действительно хотите выйти из игры?";

@@ -18,6 +18,8 @@ private:
            netSlotLabel[SLOTS_COUNT];
     QComboBox netSlot[SLOTS_COUNT];
     QGridLayout *grid;
+private:
+    void updateNets();
 private slots:
     void backFunction();
 public:

@@ -1,3 +1,4 @@
+#include <QRegExp>
 #include "netsmenu.h"
 #include "game.h"
 
@@ -22,7 +23,25 @@ NetsMenu::NetsMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
+void NetsMenu::updateNets() {
+    const QMap<QString, int> &inv = game->users[game->activeUser].inventory.get();
+    auto it = inv.begin();
+    for (int i = 0; i < SLOTS_COUNT; ++i) {
+        netSlot[i].addItem(game->str.empty);
+    }
+    while (it != inv.end()) {
+        if (QRegExp("net.*").exactMatch(it.key())) {
+            for (int i = 0; i < SLOTS_COUNT; ++i) {
+                netSlot[i].addItem(it.key() + " (" + QString::number(it.value()) + ')');
+            }
+        }
+        ++it;
+    }
+}
+
 void NetsMenu::display() {
+    updateNets();
+
     netsDescription.setText(game->str.netsDescription);
     netsDescription.setVisible(true);
 
