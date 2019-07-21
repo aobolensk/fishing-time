@@ -74,7 +74,7 @@ void Dictionary::setLanguage(Language l) {
         SET(name) = "Name";
         SET(nets) = "Nets";
         SET(netsDescription) = "TODO: nets description";
-        SET(netSlot) = "Net slot %1";
+        SET(netSlot) = "Net slot %1\nNet: %2";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
         SET(oka) = "Oka";
         SET(perch) = "Perch";
@@ -124,7 +124,7 @@ void Dictionary::setLanguage(Language l) {
         SET(name) = "Имя";
         SET(nets) = "Сети";
         SET(netsDescription) = "TODO: nets description";
-        SET(netSlot) = "Слот для сетей %1";
+        SET(netSlot) = "Слот для сетей %1\nСеть: %2";
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
         SET(oka) = "Ока";
         SET(perch) = "Окунь";

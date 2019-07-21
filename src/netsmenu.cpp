@@ -46,7 +46,10 @@ void NetsMenu::display() {
     netsDescription.setVisible(true);
 
     for (int i = 0; i < SLOTS_COUNT; ++i) {
-        netSlotLabel[i].setText(game->str.netSlot.arg(i));
+        netSlotLabel[i].setText(game->str.netSlot.arg(
+            QString::number(i),
+            nets[i] == "" ? game->str.empty : nets[i]
+        ));
         netSlotLabel[i].setVisible(true);
 
         netSlot[i].setVisible(true);

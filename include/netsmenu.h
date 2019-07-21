@@ -17,6 +17,7 @@ private:
     QLabel netsDescription,
            netSlotLabel[SLOTS_COUNT];
     QComboBox netSlot[SLOTS_COUNT];
+    QString nets[SLOTS_COUNT];
     QGridLayout *grid;
 private:
     void updateNets();
