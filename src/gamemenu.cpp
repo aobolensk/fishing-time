@@ -27,32 +27,37 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     fishLabel.setVisible(false);
     fishLabel.setEnabled(false);
 
-    grid->addWidget(&clickButton, 1, 1);
+    grid->addWidget(&clickButton, 2, 1);
     clickButton.setVisible(false);
     clickButton.setEnabled(false);
     connect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
 
-    grid->addWidget(&backButton, 2, 2);
+    grid->addWidget(&backButton, 3, 2);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 
-    grid->addWidget(&inventoryButton, 2, 0);
+    grid->addWidget(&inventoryButton, 3, 0);
     inventoryButton.setVisible(false);
     inventoryButton.setEnabled(false);
     connect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
 
-    grid->addWidget(&marketButton, 2, 1);
+    grid->addWidget(&marketButton, 3, 1);
     marketButton.setVisible(false);
     marketButton.setEnabled(false);
     connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
 
-    grid->addWidget(&storeButton, 1, 0);
+    grid->addWidget(&storeButton, 2, 0);
     storeButton.setVisible(false);
     storeButton.setEnabled(false);
     connect(&storeButton, SIGNAL(released()), this, SLOT(storeFunction()));
 
-    grid->addWidget(&locationSelector, 1, 2);
+    grid->addWidget(&netsButton, 1, 2);
+    netsButton.setVisible(false);
+    netsButton.setEnabled(false);
+    connect(&netsButton, SIGNAL(released()), this, SLOT(netsFunction()));
+
+    grid->addWidget(&locationSelector, 2, 2);
     locationSelector.setCurrentIndex(0);
     connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
         [this](int index) {
@@ -94,6 +99,10 @@ void GameMenu::display() {
     storeButton.setVisible(true);
     storeButton.setEnabled(true);
 
+    netsButton.setText(game->str.nets);
+    netsButton.setVisible(true);
+    netsButton.setEnabled(true);
+
     for (int i = 0; i < game->locations.size(); ++i) {
         locationSelector.addItem(game->locations[i].getName());
     }
@@ -134,6 +143,11 @@ void GameMenu::marketFunction() {
 void GameMenu::storeFunction() {
     this->hide();
     game->storeMenu.display();
+}
+
+void GameMenu::netsFunction() {
+    this->hide();
+    game->netsMenu.display();
 }
 
 void GameMenu::updateInventoryTable() {
@@ -202,6 +216,9 @@ void GameMenu::hide() {
 
     storeButton.setVisible(false);
     storeButton.setEnabled(false);
+
+    netsButton.setVisible(false);
+    netsButton.setEnabled(false);
 
     locationSelector.clear();
     locationSelector.setVisible(false);

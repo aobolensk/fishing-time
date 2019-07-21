@@ -71,6 +71,7 @@ void Dictionary::setLanguage(Language l) {
         SET(market) = "Market";
         SET(min) = "min";
         SET(name) = "Name";
+        SET(nets) = "Nets";
         SET(oka) = "Oka";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
         SET(quantity) = "Quantity";
@@ -117,6 +118,7 @@ void Dictionary::setLanguage(Language l) {
         SET(market) = "Рынок";
         SET(min) = "мин";
         SET(name) = "Имя";
+        SET(nets) = "Сети";
         SET(oka) = "Ока";
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
         SET(quantity) = "Количество";

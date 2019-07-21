@@ -17,6 +17,7 @@ private:
     QPushButton clickButton,
                 backButton,
                 inventoryButton,
+                netsButton,
                 marketButton,
                 storeButton;
     QLabel infoLabel,
@@ -32,6 +33,7 @@ private slots:
     void inventoryFunction();
     void marketFunction();
     void storeFunction();
+    void netsFunction();
 private:
     void updateInfo();
 public:

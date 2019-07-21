@@ -37,6 +37,7 @@ public:
             market,
             min,
             name,
+            nets,
             newUserCreatedText,
             oka,
             perch,

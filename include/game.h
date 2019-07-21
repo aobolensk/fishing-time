@@ -11,6 +11,7 @@
 #include "marketmenu.h"
 #include "storemenu.h"
 #include "settingsmenu.h"
+#include "netsmenu.h"
 #include "user.h"
 #include "location.h"
 #include "dictionary.h"
@@ -42,6 +43,7 @@ public:
     MarketMenu marketMenu;
     StoreMenu storeMenu;
     SettingsMenu settingsMenu;
+    NetsMenu netsMenu;
     int activeUser = -1;
     int activeLocation = -1;
     void setAutoSavePeriod(int periodInMinutes);
