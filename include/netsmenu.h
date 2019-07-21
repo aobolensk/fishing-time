@@ -11,8 +11,12 @@ class NetsMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    static const int SLOTS_COUNT = 9;
     Game *game;
     QPushButton backButton;
+    QLabel netsDescription,
+           netSlotLabel[SLOTS_COUNT];
+    QComboBox netSlot[SLOTS_COUNT];
     QGridLayout *grid;
 private slots:
     void backFunction();

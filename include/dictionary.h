@@ -38,6 +38,8 @@ public:
             min,
             name,
             nets,
+            netsDescription,
+            netSlot,
             newUserCreatedText,
             oka,
             perch,
