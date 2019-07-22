@@ -2,7 +2,7 @@
 #include "netsmenu.h"
 #include "game.h"
 
-static const int netsTimerInterval = 1 * 1000;
+static const int netsTimerInterval = 5 * 60 * 1000;
 
 NetsMenu::NetsMenu(Game *game, QGridLayout *grid) :
         game(game),
@@ -63,6 +63,7 @@ void NetsMenu::netsTimerTick() {
                         changeItem(game->locations[game->activeLocation].getFish(
                         qMin(rnd / (MOD / game->locations[game->activeLocation].getFishCount()),
                         game->locations[game->activeLocation].getFishCount() - 1)), 1);
+                game->gameMenu.updateInventoryTable();
             }
         }
     }
