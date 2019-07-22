@@ -57,6 +57,7 @@ void Dictionary::setLanguage(Language l) {
         SET(buy) = "Buy";
         SET(carp) = "Carp";
         SET(click) = "Click";
+        SET(console) = "Console";
         SET(dialog) = "Dialog";
         SET(empty) = "<EMPTY>";
         SET(enterYourLoginHereText) = "Enter your login here";
@@ -69,7 +70,10 @@ void Dictionary::setLanguage(Language l) {
         SET(invalidValue) = "<INVALID>";
         SET(inventory) = "Inventory";
         SET(language) = "Language";
+        SET(logError) = "[ERROR]";
         SET(logIn) = "Log in";
+        SET(logInfo) = "[INFO]";
+        SET(logWarning) = "[WARNING]";
         SET(mainLabelText) = "Welcome, %1\nCoins: %2\nTotal clicks: %3\n";
         SET(market) = "Market";
         SET(min) = "min";
@@ -108,6 +112,7 @@ void Dictionary::setLanguage(Language l) {
         SET(buy) = "Купить";
         SET(carp) = "Карп";
         SET(click) = "Нажимай!";
+        SET(console) = "Консоль";
         SET(dialog) = "Диалог";
         SET(empty) = "<ПУСТО>";
         SET(enterYourLoginHereText) = "Введите ваш логин";
@@ -120,7 +125,10 @@ void Dictionary::setLanguage(Language l) {
         SET(invalidValue) = "<INVALID>";
         SET(inventory) = "Инвентарь";
         SET(language) = "Язык";
+        SET(logError) = "[ОШИБКА]";
         SET(logIn) = "Войти";
+        SET(logInfo) = "[ИНФО]";
+        SET(logWarning) = "[ПРЕДУПРЕЖДЕНИЕ]";
         SET(mainLabelText) = "Добро пожаловать, %1\nМонет: %2\nВсего кликов: %3\n";
         SET(market) = "Рынок";
         SET(min) = "мин";

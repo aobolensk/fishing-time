@@ -17,6 +17,7 @@
 #include "location.h"
 #include "dictionary.h"
 #include "config.h"
+#include "console.h"
 
 class Game : public QWidget {
 private:
@@ -37,6 +38,7 @@ private:
 public:
     std::mt19937 randomGenerator;
     Config cfg;
+    Console console;
     Dictionary str;
     QVector <User> users;
     QVector <Location> locations;

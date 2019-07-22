@@ -11,12 +11,14 @@ private:
     Q_OBJECT
 private:
     Game *game;
-    QPushButton startButton,
+    QPushButton consoleButton,
+                startButton,
                 settingsButton,
                 exitButton;
     QGridLayout *grid;
     int cnt = 0;
 private slots:
+    void consoleFunction();
     void startFunction();
     void settingsFunction();
     void exitFunction();

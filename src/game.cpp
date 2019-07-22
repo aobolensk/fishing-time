@@ -11,6 +11,7 @@ Game::Game(QWidget *parent, const QString &file) :
         config_file(file),
         randomGenerator(rd()),
         cfg(Config(this)),
+        console(Console(this)),
         locations(Location::initializeLocations(this)),
         mainMenu(MainMenu(this, &grid)),
         loginMenu(LoginMenu(this, &grid)),
@@ -98,6 +99,7 @@ void Game::closeEvent(QCloseEvent *event) {
         event->ignore();
     } else {
         event->accept();
+        QApplication::quit();
     }
 }
 
