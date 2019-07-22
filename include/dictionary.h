@@ -22,6 +22,7 @@ public:
             buy,
             carp,
             click,
+            console,
             dialog,
             empty,
             enterYourLoginHereText,

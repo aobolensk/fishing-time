@@ -4,6 +4,11 @@
 MainMenu::MainMenu(Game *game, QGridLayout *grid) :
         game(game),
         grid(grid) {
+    grid->addWidget(&consoleButton, 0, 2);
+    consoleButton.setVisible(false);
+    consoleButton.setEnabled(false);
+    connect(&consoleButton, SIGNAL(released()), this, SLOT(consoleFunction()));
+
     grid->addWidget(&startButton, 0, 1);
     startButton.setVisible(false);
     startButton.setEnabled(false);
@@ -22,6 +27,10 @@ MainMenu::MainMenu(Game *game, QGridLayout *grid) :
 }
 
 void MainMenu::display() {
+    consoleButton.setText(game->str.console);
+    consoleButton.setVisible(true);
+    consoleButton.setEnabled(true);
+
     startButton.setText(game->str.start);
     startButton.setVisible(true);
     startButton.setEnabled(true);
@@ -33,6 +42,10 @@ void MainMenu::display() {
     exitButton.setText(game->str.exit);
     exitButton.setVisible(true);
     exitButton.setEnabled(true);
+}
+
+void MainMenu::consoleFunction() {
+    game->console.display();
 }
 
 void MainMenu::startFunction() {
@@ -51,6 +64,9 @@ void MainMenu::exitFunction() {
 }
 
 void MainMenu::hide() {
+    consoleButton.setVisible(false);
+    consoleButton.setEnabled(false);
+
     startButton.setVisible(false);
     startButton.setEnabled(false);
 

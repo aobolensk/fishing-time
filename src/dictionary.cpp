@@ -57,6 +57,7 @@ void Dictionary::setLanguage(Language l) {
         SET(buy) = "Buy";
         SET(carp) = "Carp";
         SET(click) = "Click";
+        SET(console) = "Console";
         SET(dialog) = "Dialog";
         SET(empty) = "<EMPTY>";
         SET(enterYourLoginHereText) = "Enter your login here";
@@ -108,6 +109,7 @@ void Dictionary::setLanguage(Language l) {
         SET(buy) = "Купить";
         SET(carp) = "Карп";
         SET(click) = "Нажимай!";
+        SET(console) = "Консоль";
         SET(dialog) = "Диалог";
         SET(empty) = "<ПУСТО>";
         SET(enterYourLoginHereText) = "Введите ваш логин";
