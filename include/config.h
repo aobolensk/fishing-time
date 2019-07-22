@@ -13,7 +13,7 @@ public:
     Config(Game *game = nullptr);
     ~Config() = default;
     void deserialize(const QVariantMap &map);
-    QByteArray serialize() const;
+    QJsonObject serialize() const;
 };
 
 #endif  // INCLUDE_CONFIG_H_

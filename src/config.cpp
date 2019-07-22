@@ -1,5 +1,3 @@
-#include <QJsonObject>
-#include <QJsonDocument>
 #include <QDebug>
 #include "config.h"
 #include "game.h"
@@ -17,11 +15,10 @@ void Config::deserialize(const QVariantMap &map) {
     isReady = true;
 }
 
-QByteArray Config::serialize() const {
+QJsonObject Config::serialize() const {
     QJsonObject jsonObj;
     jsonObj["fishingtime_object"] = "config";
     jsonObj["language"] = (int)game->activeLanguage;
     jsonObj["autoSavePeriod"] = game->autoSavePeriod;
-    QJsonDocument doc(jsonObj);
-    return doc.toJson();
+    return jsonObj;
 }

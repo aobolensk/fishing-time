@@ -7,7 +7,7 @@ User::User(const QString &name) :
     
 }
 
-QByteArray User::serialize() const {
+QJsonObject User::serialize() const {
     QJsonObject jsonObj;
     jsonObj["fishingtime_object"] = "user";
     jsonObj["username"] = username;
@@ -30,8 +30,7 @@ QByteArray User::serialize() const {
     f.close();
     qDebug() << "Inventory:" << buf;
     jsonObj["inventory"] = buf;
-    QJsonDocument doc(jsonObj);
-    return doc.toJson();
+    return jsonObj;
 }
 
 QVariant User::deserialize(const QVariantMap &map) {
