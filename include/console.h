@@ -13,6 +13,8 @@ private:
     QGridLayout grid;
     QTextEdit console;
     QLineEdit input;
+private slots:
+    void commandParser();
 public:
     Console(Game *game = nullptr);
     ~Console() = default;
