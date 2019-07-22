@@ -121,6 +121,7 @@ void GameMenu::clickFunction() {
 }
 
 void GameMenu::backFunction() {
+    game->netsMenu.foldNets();
     game->activeUser = -1;
     game->activeLocation = -1;
     this->hide();

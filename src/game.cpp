@@ -81,6 +81,8 @@ void Game::deserialize() {
 }
 
 void Game::serialize() {
+    if (activeUser != -1 && activeLocation != -1)
+        netsMenu.foldNets();
     QFile config(config_file);
     if (!config.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Can not open file: " << config_file;

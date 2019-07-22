@@ -32,6 +32,7 @@ public:
     ~NetsMenu();
     void display();
     void hide();
+    void foldNets();
 };
 
 #endif  // INCLUDE_NETSMENU_H_

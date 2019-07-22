@@ -51,6 +51,15 @@ void NetsMenu::updateNets() {
     }
 }
 
+void NetsMenu::foldNets() {
+    for (int i = 0; i < SLOTS_COUNT; ++i) {
+        if (nets[i] != "") {
+            this->game->users[this->game->activeUser].inventory.changeItem(nets[i], 1);
+            nets[i] = "";
+        }
+    }
+}
+
 void NetsMenu::netsTimerTick() {
     for (int i = 0; i < SLOTS_COUNT; ++i) {
         if (nets[i] != "") {
