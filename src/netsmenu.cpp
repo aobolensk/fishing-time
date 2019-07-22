@@ -15,27 +15,6 @@ NetsMenu::NetsMenu(Game *game, QGridLayout *grid) :
         grid->addWidget(&netSlot[i], 2 + (i / 3) * 2, i % 3);
         netSlot[i].setVisible(false);
         netSlot[i].setEnabled(false);
-        #define X(i) \
-        connect(&netSlot[i], static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), \
-            [this](int index) { \
-                if (index == 0) \
-                    return; \
-                if (nets[i] != "") { \
-                    this->game->users[this->game->activeUser].inventory.changeItem(nets[i], 1); \
-                } \
-                if (index == 1) { \
-                    nets[i] = ""; \
-                } else { \
-                    nets[i] = netSlot[i].itemText(index).split(' ').first(); \
-                    qDebug() << netSlot[i].itemText(index).split(' ').first(); \
-                    this->game->users[this->game->activeUser].inventory.changeItem(nets[i], -1); \
-                } \
-                netSlot[i].setCurrentIndex(0); \
-            });
-        X(0); X(1); X(2);
-        X(3); X(4); X(5);
-        X(6); X(7); X(8);
-        #undef X
     }
 
     grid->addWidget(&backButton, 3 + SLOTS_COUNT / 3 * 2, 1);
@@ -73,6 +52,31 @@ void NetsMenu::display() {
     netsDescription.setText(game->str.netsDescription);
     netsDescription.setVisible(true);
 
+    #define X(i) \
+    connect(&netSlot[i], static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), \
+        [this](int index) { \
+            if (index < 1) \
+                return; \
+            qDebug() << "before:" << nets[i]; \
+            if (nets[i] != "") { \
+                this->game->users[this->game->activeUser].inventory.changeItem(nets[i], 1); \
+            } \
+            if (index == 1) { \
+                nets[i] = ""; \
+            } else { \
+                nets[i] = netSlot[i].itemText(index).split(' ').first(); \
+                qDebug() << "after:" << netSlot[i].itemText(index).split(' ').first(); \
+                this->game->users[this->game->activeUser].inventory.changeItem(nets[i], -1); \
+            } \
+            netSlot[i].setCurrentIndex(0); \
+            updateNets(); \
+            game->gameMenu.updateInventoryTable(); \
+        });
+    X(0); X(1); X(2);
+    X(3); X(4); X(5);
+    X(6); X(7); X(8);
+    #undef X
+
     for (int i = 0; i < SLOTS_COUNT; ++i) {
         netSlotLabel[i].setVisible(true);
 
@@ -98,7 +102,7 @@ void NetsMenu::hide() {
 
         netSlot[i].setVisible(false);
         netSlot[i].setEnabled(false);
-        disconnect(&netSlot[i]);
+        netSlot[i].disconnect();
     }
 
     backButton.setVisible(false);
