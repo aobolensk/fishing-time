@@ -1,5 +1,6 @@
 #ifndef INCLUDE_GAME_H_
 #define INCLUDE_GAME_H_
+#include <random>
 #include <QPushButton>
 #include <QGridLayout>
 #include <QString>
@@ -11,6 +12,7 @@
 #include "marketmenu.h"
 #include "storemenu.h"
 #include "settingsmenu.h"
+#include "netsmenu.h"
 #include "user.h"
 #include "location.h"
 #include "dictionary.h"
@@ -30,8 +32,10 @@ private:
 private slots:
     void autoSaveFunction();
 private:
+    std::random_device rd;
     int autoSavePeriod = 3;
 public:
+    std::mt19937 randomGenerator;
     Config cfg;
     Dictionary str;
     QVector <User> users;
@@ -42,6 +46,7 @@ public:
     MarketMenu marketMenu;
     StoreMenu storeMenu;
     SettingsMenu settingsMenu;
+    NetsMenu netsMenu;
     int activeUser = -1;
     int activeLocation = -1;
     void setAutoSavePeriod(int periodInMinutes);

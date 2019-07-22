@@ -7,6 +7,7 @@ Game::Game(QWidget *parent, const QString &file) :
         QWidget(parent),
         grid(QGridLayout(this)),
         config_file(file),
+        randomGenerator(rd()),
         cfg(Config(this)),
         locations(Location::initializeLocations(this)),
         mainMenu(MainMenu(this, &grid)),
@@ -14,7 +15,8 @@ Game::Game(QWidget *parent, const QString &file) :
         gameMenu(GameMenu(this, &grid)),
         marketMenu(MarketMenu(this, &grid)),
         storeMenu(StoreMenu(this, &grid)),
-        settingsMenu(SettingsMenu(this, &grid)) {
+        settingsMenu(SettingsMenu(this, &grid)),
+        netsMenu(NetsMenu(this, &grid)) {
     this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
     setLayout(&grid);
     grid.setColumnStretch(0, 1);
@@ -79,6 +81,8 @@ void Game::deserialize() {
 }
 
 void Game::serialize() {
+    if (activeUser != -1 && activeLocation != -1)
+        netsMenu.foldNets();
     QFile config(config_file);
     if (!config.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Can not open file: " << config_file;

@@ -8,27 +8,28 @@ Dictionary::Dictionary() :
             "Russian"
         }),
 
-        #define LIST_OF_FISH \
+        #define LIST_OF_ITEMS \
             X("fish.bream", &bream) \
             X("fish.carp", &carp) \
             X("fish.ide", &ide) \
             X("fish.perch", &perch) \
             X("fish.pike", &pike) \
             X("fish.roach", &roach) \
+            X("net.basic", &basicNet) \
 
         #define X(itemId, itemNamePtr) \
               itemId ,
         itemIds({
-            LIST_OF_FISH
-            "fish.undefined"
+            LIST_OF_ITEMS
+            "item.undefined"
         }),
         #undef X
 
         #define X(itemId, itemNamePtr) \
             { itemId, itemNamePtr } ,
         itemNames({
-            LIST_OF_FISH
-            {"fish.undefined", nullptr}
+            LIST_OF_ITEMS
+            {"item.undefined", nullptr}
         })
         #undef X
 
@@ -51,11 +52,13 @@ void Dictionary::setLanguage(Language l) {
         constexpr int ENGLISH_START = __LINE__;
         SET(autoSavePeriod) = "Autosave period:";
         SET(back) = "Back";
+        SET(basicNet) = "Basic net";
         SET(bream) = "Bream";
         SET(buy) = "Buy";
         SET(carp) = "Carp";
         SET(click) = "Click";
         SET(dialog) = "Dialog";
+        SET(empty) = "<EMPTY>";
         SET(enterYourLoginHereText) = "Enter your login here";
         SET(exit) = "Exit";
         SET(exitConfirmation) = "Do you want to exit?";
@@ -71,15 +74,18 @@ void Dictionary::setLanguage(Language l) {
         SET(market) = "Market";
         SET(min) = "min";
         SET(name) = "Name";
-        SET(oka) = "Oka";
+        SET(nets) = "Nets";
+        SET(netsDescription) = "TODO: nets description";
+        SET(netSlot) = "Net slot %1\nNet: %2";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
+        SET(oka) = "Oka";
+        SET(perch) = "Perch";
+        SET(pike) = "Pike";
         SET(quantity) = "Quantity";
         SET(quantityShouldBeANumber) = "Quantity should be a number";
         SET(quantityShouldBeMoreThanZero) = "Quantity should be more than zero";
         SET(roach) = "Roach";
         SET(selectItemFromList) = "Select item from list";
-        SET(perch) = "Perch";
-        SET(pike) = "Pike";
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
         SET(settings) = "Settings";
         SET(signUp) = "Sign up";
@@ -97,11 +103,13 @@ void Dictionary::setLanguage(Language l) {
         constexpr int RUSSIAN_START = __LINE__;
         SET(autoSavePeriod) = "Период автосохранения:";
         SET(back) = "Назад";
+        SET(basicNet) = "Базовая сеть";
         SET(bream) = "Лещ";
         SET(buy) = "Купить";
         SET(carp) = "Карп";
         SET(click) = "Нажимай!";
         SET(dialog) = "Диалог";
+        SET(empty) = "<ПУСТО>";
         SET(enterYourLoginHereText) = "Введите ваш логин";
         SET(exit) = "Выход";
         SET(exitConfirmation) = "Вы действительно хотите выйти из игры?";
@@ -117,15 +125,18 @@ void Dictionary::setLanguage(Language l) {
         SET(market) = "Рынок";
         SET(min) = "мин";
         SET(name) = "Имя";
-        SET(oka) = "Ока";
+        SET(nets) = "Сети";
+        SET(netsDescription) = "TODO: nets description";
+        SET(netSlot) = "Слот для сетей %1\nСеть: %2";
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
+        SET(oka) = "Ока";
+        SET(perch) = "Окунь";
+        SET(pike) = "Щука";
         SET(quantity) = "Количество";
         SET(quantityShouldBeANumber) = "Количество должно быть числом";
         SET(quantityShouldBeMoreThanZero) = "Количество должно быть больше нуля";
         SET(roach) = "Плотва";
         SET(selectItemFromList) = "Выберите предмет из списка";
-        SET(perch) = "Окунь";
-        SET(pike) = "Щука";
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
         SET(settings) = "Настройки";
         SET(signUp) = "Зарегистрироваться";

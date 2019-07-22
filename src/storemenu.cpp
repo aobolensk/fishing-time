@@ -77,8 +77,9 @@ void StoreMenu::updateTable() {
         cell->setText(QString::number(price));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
     };
-    storeTable.setRowCount(1);
+    storeTable.setRowCount(2);
     addDeal(0, "fish.pike", game->str.pike, 1000);
+    addDeal(1, "net.basic", game->str.basicNet, 1000);
 }
 
 void StoreMenu::updateInfo() {
@@ -102,7 +103,8 @@ void StoreMenu::buyFunction() {
         return;
     }
     qint64 price = storeTable.item(storeTable.currentRow(), 2)->text().toLongLong();
-    if (quantity * price > game->users[game->activeUser].getCoins()) {
+    qint64 sum = quantity * price;
+    if (sum > game->users[game->activeUser].getCoins()) {
         QMessageBox::warning(game, game->str.warning, game->str.youDontHaveEnoughCoins);
         return;
     }
@@ -111,7 +113,7 @@ void StoreMenu::buyFunction() {
         return;
     }
     game->users[game->activeUser].inventory.changeItem(storeTable.item(storeTable.currentRow(), 0)->text(), quantity);
-    game->users[game->activeUser].changeCoins(-quantity * storeTable.item(storeTable.currentRow(), 2)->text().toLongLong() * quantity);
+    game->users[game->activeUser].changeCoins(-sum);
     qDebug() << "Bought" << quantity << "of" << storeTable.currentRow();
     updateInfo();
 }
