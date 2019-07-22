@@ -2,6 +2,8 @@
 #include <QFile>
 #include <QDebug>
 #include <QMessageBox>
+#include <QJsonArray>
+#include <QJsonParseError>
 
 Game::Game(QWidget *parent, const QString &file) :
         QWidget(parent),
@@ -48,18 +50,13 @@ void Game::deserialize() {
     } else if (!config.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Can not open file: " << config_file;
     } else {
-        while (!config.atEnd()) {
-            QVariant result;
-            QByteArray jsonStr, s;
-            while (!config.atEnd()) {
-                s = config.readLine();
-                jsonStr += s;
-                if (s == "}\n")
-                    break;
-            }
-            QJsonParseError jsonParseError;
-            QVariantMap map = QJsonDocument::fromJson(jsonStr, &jsonParseError)
-                    .object().toVariantMap();
+        QVariant result;
+        QString jsons = config.readAll();
+        config.close();
+        QJsonArray arr = QJsonDocument::fromJson(jsons.toUtf8()).array();
+        QJsonParseError jsonParseError;
+        for (int i = 0; i < arr.count(); ++i) {
+            QVariantMap map = arr[i].toObject().toVariantMap();
             if (jsonParseError.error != QJsonParseError::NoError) {
                 qDebug() << jsonParseError.errorString();
             }
@@ -76,7 +73,6 @@ void Game::deserialize() {
                 qDebug() << "Unknown object found in JSON file";
             }
         }
-        config.close();
     }
 }
 
@@ -87,10 +83,13 @@ void Game::serialize() {
     if (!config.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Can not open file: " << config_file;
     } else {
-        config.write(cfg.serialize());
+        QJsonArray jsons;
+        jsons.push_back(cfg.serialize());
         for (const User &user : users) {
-            config.write(user.serialize());
+            jsons.push_back(user.serialize());
         }
+        QJsonDocument doc(jsons);
+        config.write(doc.toJson());
         config.close();
     }
 }

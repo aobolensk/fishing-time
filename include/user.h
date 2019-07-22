@@ -3,9 +3,7 @@
 #include <QString>
 #include <QByteArray>
 #include <QVariant>
-#include <QJsonDocument>
 #include <QJsonObject>
-#include <QJsonParseError>
 #include <QDebug>
 #include <QCoreApplication>
 
@@ -30,7 +28,7 @@ public:
     User(const QString &name = "");
     ~User() = default;
     // Serialization
-    QByteArray serialize() const;
+    QJsonObject serialize() const;
     static QVariant deserialize(const QVariantMap &map);
     // Setters
     void incClicks();

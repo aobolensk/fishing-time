@@ -54,7 +54,7 @@ public:
     QTimer autoSaveTimer;
     Game(QWidget *parent, const QString &config_file);
     ~Game();
-    friend QByteArray Config::serialize() const;
+    friend QJsonObject Config::serialize() const;
     friend void Config::deserialize(const QVariantMap &map);
 };
 
