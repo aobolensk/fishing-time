@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QComboBox>
+#include <QTimer>
 
 class Game;
 
@@ -18,9 +19,12 @@ private:
            netSlotLabel[SLOTS_COUNT];
     QComboBox netSlot[SLOTS_COUNT];
     QString nets[SLOTS_COUNT];
+    QTimer netsTimer;
     QGridLayout *grid;
 private:
     void updateNets();
+private slots:
+    void netsTimerTick();
 private slots:
     void backFunction();
 public:

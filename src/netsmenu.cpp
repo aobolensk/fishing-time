@@ -2,6 +2,8 @@
 #include "netsmenu.h"
 #include "game.h"
 
+static const int netsTimerInterval = 1 * 1000;
+
 NetsMenu::NetsMenu(Game *game, QGridLayout *grid) :
         game(game),
         grid(grid) {
@@ -21,6 +23,9 @@ NetsMenu::NetsMenu(Game *game, QGridLayout *grid) :
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
+
+    netsTimer.start(netsTimerInterval);
+    connect(&netsTimer, SIGNAL(timeout()), this, SLOT(netsTimerTick()));
 }
 
 void NetsMenu::updateNets() {
@@ -37,12 +42,29 @@ void NetsMenu::updateNets() {
         netSlot[i].addItem(game->str.empty);
     }
     while (it != inv.end()) {
-        if (QRegExp("fish.*").exactMatch(it.key())) {
+        if (QRegExp("net.*").exactMatch(it.key())) {
             for (int i = 0; i < SLOTS_COUNT; ++i) {
                 netSlot[i].addItem(it.key() + " (" + QString::number(it.value()) + ')');
             }
         }
         ++it;
+    }
+}
+
+void NetsMenu::netsTimerTick() {
+    for (int i = 0; i < SLOTS_COUNT; ++i) {
+        if (nets[i] != "") {
+            if (nets[i] == "net.basic") {
+                const int MOD = 100;
+                std::uniform_int_distribution<> dist(1, 99);
+                int rnd = dist(game->randomGenerator) % MOD;
+                qDebug() << "loc:" << game->activeLocation;
+                game->users[game->activeUser].inventory.
+                        changeItem(game->locations[game->activeLocation].getFish(
+                        qMin(rnd / (MOD / game->locations[game->activeLocation].getFishCount()),
+                        game->locations[game->activeLocation].getFishCount() - 1)), 1);
+            }
+        }
     }
 }
 
@@ -110,5 +132,5 @@ void NetsMenu::hide() {
 }
 
 NetsMenu::~NetsMenu() {
-
+    netsTimer.stop();
 }

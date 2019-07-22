@@ -57,6 +57,8 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     locationSelector.setCurrentIndex(0);
     connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
         [this](int index) {
+            if (index == -1)
+                return;
             this->game->activeLocation = index;
             updateInfo();
         });
