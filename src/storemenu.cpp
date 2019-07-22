@@ -54,7 +54,9 @@ void StoreMenu::display() {
 }
 
 void StoreMenu::updateTable() {
-    static auto addDeal = [this](int index, const QString &name, const QString &description, qint64 price) {
+    int index = 0;
+    static auto addDeal = [this, &index](const QString &name, const QString &description, qint64 price) {
+        storeTable.setRowCount(index + 1);
         QTableWidgetItem *cell = storeTable.item(index, 0);
         if (!cell) {
             cell = new QTableWidgetItem;
@@ -76,10 +78,10 @@ void StoreMenu::updateTable() {
         }
         cell->setText(QString::number(price));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
+        ++index;
     };
-    storeTable.setRowCount(2);
-    addDeal(0, "fish.pike", game->str.pike, 1000);
-    addDeal(1, "net.basic", game->str.basicNet, 1000);
+    addDeal("fish.pike", game->str.pike, 1000);
+    addDeal("net.basic", game->str.basicNet, 1000);
 }
 
 void StoreMenu::updateInfo() {
