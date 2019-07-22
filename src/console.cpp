@@ -5,7 +5,8 @@
 Console::Console(Game *game) :
     QWidget(),
     game(game),
-    grid(QGridLayout(this)) {
+    grid(QGridLayout(this)),
+    log(&console) {
     (void) this->game;
     this->setGeometry(QRect(QPoint(740, 100), QSize(360, 480)));
     this->setLayout(&grid);
@@ -26,16 +27,17 @@ Console::Console(Game *game) :
 void Console::commandParser() {
     if (input.text().count() == 0)
         return;
-    console.append("> " + input.text() + '\n');
+    log.info("> " + input.text());
     QStringList args = input.text().split(" ", QString::SplitBehavior::SkipEmptyParts);
     if (args[0] == "echo") {
         for (int i = 1; i < args.count(); ++i) {
-            console.insertHtml(args[i] + ' ');
+            log.info(args[i] + ' ', false);
         }
+        log.info("");
     } else if (args[0] == "exit") {
         QApplication::quit();
     } else {
-        console.insertHtml("Unknown command: " + args[0]);
+        log.error("[ERROR] Unknown command: " + args[0]);
     }
 }
 
@@ -45,4 +47,25 @@ void Console::display() {
 
 void Console::hide() {
     this->QWidget::hide();
+}
+
+Console::Log::Log(QTextEdit *field) :
+    console(field) {}
+
+void Console::Log::info(const QString &message, bool newLine) {
+    console->insertHtml(message);
+    if (newLine)
+        console->append("");
+}
+
+void Console::Log::warning(const QString &message, bool newLine) {
+    console->insertHtml("<font color=\"orange\">" + message + "</font>");
+    if (newLine)
+        console->append("");
+}
+
+void Console::Log::error(const QString &message, bool newLine) {
+    console->insertHtml("<font color=\"red\">" + message + "</font>");
+    if (newLine)
+        console->append("");
 }
