@@ -77,8 +77,9 @@ void StoreMenu::updateTable() {
         cell->setText(QString::number(price));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
     };
-    storeTable.setRowCount(1);
+    storeTable.setRowCount(2);
     addDeal(0, "fish.pike", game->str.pike, 1000);
+    addDeal(1, "net.basic", game->str.basicNet, 1000);
 }
 
 void StoreMenu::updateInfo() {

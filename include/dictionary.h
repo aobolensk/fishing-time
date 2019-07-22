@@ -17,6 +17,7 @@ public:
     const QString
             autoSavePeriod,
             back,
+            basicNet,
             bream,
             buy,
             carp,

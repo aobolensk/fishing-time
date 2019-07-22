@@ -8,27 +8,28 @@ Dictionary::Dictionary() :
             "Russian"
         }),
 
-        #define LIST_OF_FISH \
+        #define LIST_OF_ITEMS \
             X("fish.bream", &bream) \
             X("fish.carp", &carp) \
             X("fish.ide", &ide) \
             X("fish.perch", &perch) \
             X("fish.pike", &pike) \
             X("fish.roach", &roach) \
+            X("net.basic", &basicNet) \
 
         #define X(itemId, itemNamePtr) \
               itemId ,
         itemIds({
-            LIST_OF_FISH
-            "fish.undefined"
+            LIST_OF_ITEMS
+            "item.undefined"
         }),
         #undef X
 
         #define X(itemId, itemNamePtr) \
             { itemId, itemNamePtr } ,
         itemNames({
-            LIST_OF_FISH
-            {"fish.undefined", nullptr}
+            LIST_OF_ITEMS
+            {"item.undefined", nullptr}
         })
         #undef X
 
@@ -51,6 +52,7 @@ void Dictionary::setLanguage(Language l) {
         constexpr int ENGLISH_START = __LINE__;
         SET(autoSavePeriod) = "Autosave period:";
         SET(back) = "Back";
+        SET(basicNet) = "Basic net";
         SET(bream) = "Bream";
         SET(buy) = "Buy";
         SET(carp) = "Carp";
@@ -101,6 +103,7 @@ void Dictionary::setLanguage(Language l) {
         constexpr int RUSSIAN_START = __LINE__;
         SET(autoSavePeriod) = "Период автосохранения:";
         SET(back) = "Назад";
+        SET(basicNet) = "Базовая сеть";
         SET(bream) = "Лещ";
         SET(buy) = "Купить";
         SET(carp) = "Карп";
