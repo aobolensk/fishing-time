@@ -1,11 +1,7 @@
-#include <random>
 #include <QStringList>
 #include <QStringList>
 #include "gamemenu.h"
 #include "game.h"
-
-static std::random_device rd;
-static std::mt19937 generator(rd());
 
 GameMenu::GameMenu(Game *game, QGridLayout *grid) :
         game(game),
@@ -113,7 +109,7 @@ void GameMenu::display() {
 void GameMenu::clickFunction() {
     const int MOD = 100;
     std::uniform_int_distribution<> dist(1, 99);
-    int rnd = dist(generator) % MOD;
+    int rnd = dist(game->randomGenerator) % MOD;
     game->users[game->activeUser].inventory.
             changeItem(game->locations[game->activeLocation].getFish(
             qMin(rnd / (MOD / game->locations[game->activeLocation].getFishCount()),

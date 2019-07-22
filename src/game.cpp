@@ -7,6 +7,7 @@ Game::Game(QWidget *parent, const QString &file) :
         QWidget(parent),
         grid(QGridLayout(this)),
         config_file(file),
+        randomGenerator(rd()),
         cfg(Config(this)),
         locations(Location::initializeLocations(this)),
         mainMenu(MainMenu(this, &grid)),
