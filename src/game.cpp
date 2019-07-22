@@ -54,12 +54,8 @@ void Game::deserialize() {
         QString jsons = config.readAll();
         config.close();
         QJsonArray arr = QJsonDocument::fromJson(jsons.toUtf8()).array();
-        QJsonParseError jsonParseError;
         for (int i = 0; i < arr.count(); ++i) {
             QVariantMap map = arr[i].toObject().toVariantMap();
-            if (jsonParseError.error != QJsonParseError::NoError) {
-                qDebug() << jsonParseError.errorString();
-            }
             if (map["fishingtime_object"] == QString("user")) {
                 result = User::deserialize(map);
                 if (!result.isNull()) {
