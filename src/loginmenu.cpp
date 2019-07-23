@@ -9,6 +9,11 @@ LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
     loginText.setVisible(false);
     loginText.setEnabled(false);
 
+    grid->addWidget(&passwordText, 1, 0);
+    passwordText.setEchoMode(QLineEdit::Password);
+    passwordText.setVisible(false);
+    passwordText.setEnabled(false);
+
     grid->addWidget(&loginButton, 0, 1);
     loginButton.setVisible(false);
     loginButton.setEnabled(false);
@@ -20,7 +25,7 @@ LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
     signUpButton.setEnabled(false);
 
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
-    grid->addWidget(&backButton, 1, 1);
+    grid->addWidget(&backButton, 2, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
 }
@@ -29,6 +34,10 @@ void LoginMenu::display() {
     loginText.setText(game->str.enterYourLoginHereText);
     loginText.setVisible(true);
     loginText.setEnabled(true);
+
+    passwordText.setText("Password");
+    passwordText.setVisible(true);
+    passwordText.setEnabled(true);
 
     loginButton.setText(game->str.logIn);
     loginButton.setVisible(true);
@@ -51,11 +60,18 @@ void LoginMenu::backFunction() {
 void LoginMenu::loginFunction() {
     for (int i = 0; i < game->users.size(); ++i) {
         if (game->users[i].getUsername() == loginText.text()) {
-            qDebug() << "Logged in as " << loginText.text();
-            game->activeUser = i;
-            game->activeLocation = 0;
-            this->hide();
-            game->gameMenu.display();
+            qDebug() << QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5);
+            qDebug() << game->users[i].getPasswordHash();
+            if (QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5) ==
+                    game->users[i].getPasswordHash()) {
+                qDebug() << "Logged in as " << loginText.text();
+                game->activeUser = i;
+                game->activeLocation = 0;
+                this->hide();
+                game->gameMenu.display();
+            } else {
+                QMessageBox::warning(game, game->str.warning, game->str.incorrectPassword);
+            }
             return;
         }
     }
@@ -69,7 +85,7 @@ void LoginMenu::signUpFunction() {
             return;
         }
     }
-    game->users.push_back(User(loginText.text()));
+    game->users.push_back(User(loginText.text(), passwordText.text()));
     QMessageBox::information(game, game->str.information,
                              game->str.newUserCreatedText.arg(loginText.text()));
 }
@@ -77,6 +93,9 @@ void LoginMenu::signUpFunction() {
 void LoginMenu::hide() {
     loginText.setVisible(false);
     loginText.setEnabled(false);
+
+    passwordText.setVisible(false);
+    passwordText.setEnabled(false);
 
     loginButton.setVisible(false);
     loginButton.setEnabled(false);

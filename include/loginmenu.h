@@ -11,7 +11,8 @@ private:
     Q_OBJECT
 private:
     Game *game;
-    QLineEdit loginText;
+    QLineEdit loginText,
+              passwordText;
     QPushButton loginButton,
                 signUpButton,
                 backButton;
