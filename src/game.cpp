@@ -19,7 +19,8 @@ Game::Game(QWidget *parent, const QString &file) :
         marketMenu(MarketMenu(this, &grid)),
         storeMenu(StoreMenu(this, &grid)),
         settingsMenu(SettingsMenu(this, &grid)),
-        netsMenu(NetsMenu(this, &grid)) {
+        netsMenu(NetsMenu(this, &grid)),
+        statisticsMenu(StatisticsMenu(this, &grid)) {
     this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
     setLayout(&grid);
     grid.setColumnStretch(0, 1);

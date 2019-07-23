@@ -60,6 +60,7 @@ public:
             settings,
             signUp,
             start,
+            statistics,
             store,
             thisUserAlreadyExistsText,
             volga,
