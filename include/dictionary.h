@@ -30,6 +30,7 @@ public:
             exitConfirmation,
             fishLabelText,
             ide,
+            incorrectPassword,
             information,
             invalidLoginText,
             invalidValue,

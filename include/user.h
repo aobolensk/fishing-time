@@ -6,11 +6,13 @@
 #include <QJsonObject>
 #include <QDebug>
 #include <QCoreApplication>
+#include <QCryptographicHash>
 
 class User {
 private:
     // General information
     QString username;
+    QByteArray passwordHash;
     qint64 coins = 0ll;
     // Statistics
     qint64 clicks = 0ll;
@@ -25,7 +27,7 @@ public:
         QMap <QString, int> &set();
     } inventory;
     // Object creation & deletion
-    User(const QString &name = "");
+    User(const QString &name = "", const QString &password = "");
     ~User() = default;
     // Serialization
     QJsonObject serialize() const;
@@ -34,9 +36,11 @@ public:
     void incClicks();
     void changeCoins(qint64 quantity);
     // Getters
+
+    QString getUsername() const;
+    QByteArray getPasswordHash() const;
     qint64 getClicks() const;
     qint64 getCoins() const;
-    QString getUsername() const;
 };
 
 Q_DECLARE_METATYPE(User)

@@ -65,6 +65,7 @@ void Dictionary::setLanguage(Language l) {
         SET(exitConfirmation) = "Do you want to exit?";
         SET(fishLabelText) = "Fish that can be caught in location %1:\n%2";
         SET(ide) = "Ide";
+        SET(incorrectPassword) = "Incorrect password!";
         SET(information) = "Information";
         SET(invalidLoginText) = "Invalid login";
         SET(invalidValue) = "<INVALID>";
@@ -120,6 +121,7 @@ void Dictionary::setLanguage(Language l) {
         SET(exitConfirmation) = "Вы действительно хотите выйти из игры?";
         SET(fishLabelText) = "Рыба, которую можно поймать в локации %1:\n%2";
         SET(ide) = "Язь";
+        SET(incorrectPassword) = "Неверный пароль!";
         SET(information) = "Информация";
         SET(invalidLoginText) = "Неверный логин";
         SET(invalidValue) = "<INVALID>";
