@@ -80,7 +80,7 @@ void Dictionary::setLanguage(Language l) {
         SET(min) = "min";
         SET(name) = "Name";
         SET(nets) = "Nets";
-        SET(netsDescription) = "TODO: nets description";
+        SET(netsDescription) = "In this menu you can put nets in order to catch fish in background.\nYou can buy nets in the store.\nYou can add one net to each cell.";
         SET(netSlot) = "Net slot %1\nNet: %2";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
         SET(oka) = "Oka";
@@ -136,7 +136,7 @@ void Dictionary::setLanguage(Language l) {
         SET(min) = "мин";
         SET(name) = "Имя";
         SET(nets) = "Сети";
-        SET(netsDescription) = "TODO: nets description";
+        SET(netsDescription) = "В этом меню Вы можете поставить сети, чтобы ловить рыбу в пассивном режиме.\nВы можете приобрести сети в магазине.\nВы можете добавить одну сеть в каждую из ячеек.";
         SET(netSlot) = "Слот для сетей %1\nСеть: %2";
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
         SET(oka) = "Ока";
