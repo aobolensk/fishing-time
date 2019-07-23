@@ -6,16 +6,26 @@ StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
         game(game),
         storeTable(game),
         grid(grid) {
-    grid->addWidget(&infoLabel, 1, 2);
+    grid->addWidget(&selectedItemLabel, 1, 2);
+    selectedItemLabel.setWordWrap(true);
+    selectedItemLabel.setVisible(false);
+    selectedItemLabel.setEnabled(false);
+
+    grid->addWidget(&infoLabel, 2, 2);
     infoLabel.setWordWrap(true);
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
 
-    grid->addWidget(&storeTable, 1, 0, 1, 2);
+    grid->addWidget(&storeTable, 1, 0, 2, 2);
     storeTable.setRowCount(0);
     storeTable.setColumnCount(3);
     storeTable.setVisible(false);
     storeTable.setEnabled(false);
+    connect(&storeTable, &QTableWidget::cellClicked, [this](int row, int col) {
+        (void) col;
+        selectedItemLabel.setText(storeTable.item(row, 0)->text() + '\n' +
+                                  storeTable.item(row, 1)->text());
+    });
 
     grid->addWidget(&quantityText, 0, 0);
     quantityText.setText("0");
@@ -36,8 +46,13 @@ StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
 void StoreMenu::display() {
     updateTable();
     updateInfo();
+
+    selectedItemLabel.setVisible(true);
+    selectedItemLabel.setEnabled(true);
+
     infoLabel.setVisible(true);
     infoLabel.setEnabled(true);
+
     storeTable.setVisible(true);
     storeTable.setEnabled(true);
 
@@ -126,6 +141,9 @@ void StoreMenu::backFunction() {
 }
 
 void StoreMenu::hide() {
+    selectedItemLabel.setVisible(false);
+    selectedItemLabel.setEnabled(false);
+
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
 
