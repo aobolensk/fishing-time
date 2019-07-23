@@ -13,7 +13,8 @@ private:
     Q_OBJECT
 private:
     Game *game;
-    QLabel infoLabel;
+    QLabel selectedItemLabel,
+           infoLabel;
     QLineEdit quantityText;
     QPushButton buyButton,
                 backButton;
