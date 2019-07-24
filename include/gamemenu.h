@@ -24,8 +24,8 @@ private:
     QLabel infoLabel,
            fishLabel;
     QTableWidget table;
-    QTableWidgetItem nameWidget,
-                     quantityWidget;
+    QTableWidgetItem nameHeader,
+                     quantityHeader;
     QComboBox locationSelector;
     QGridLayout *grid;
 private slots:
