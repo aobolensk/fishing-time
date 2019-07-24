@@ -19,6 +19,9 @@ private:
     QPushButton buyButton,
                 backButton;
     QTableWidget storeTable;
+    QTableWidgetItem idHeader,
+                     nameHeader,
+                     priceHeader;
     QGridLayout *grid;
 private slots:
     void buyFunction();

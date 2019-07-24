@@ -65,6 +65,7 @@ void Dictionary::setLanguage(Language l) {
         SET(exit) = "Exit";
         SET(exitConfirmation) = "Do you want to exit?";
         SET(fishLabelText) = "Fish that can be caught in location %1:\n%2";
+        SET(id) = "Id";
         SET(ide) = "Ide";
         SET(incorrectPassword) = "Incorrect password!";
         SET(information) = "Information";
@@ -87,6 +88,7 @@ void Dictionary::setLanguage(Language l) {
         SET(oka) = "Oka";
         SET(perch) = "Perch";
         SET(pike) = "Pike";
+        SET(price) = "Price";
         SET(quantity) = "Quantity";
         SET(quantityShouldBeANumber) = "Quantity should be a number";
         SET(quantityShouldBeMoreThanZero) = "Quantity should be more than zero";
@@ -123,6 +125,7 @@ void Dictionary::setLanguage(Language l) {
         SET(exit) = "Выход";
         SET(exitConfirmation) = "Вы действительно хотите выйти из игры?";
         SET(fishLabelText) = "Рыба, которую можно поймать в локации %1:\n%2";
+        SET(id) = "Идентификатор";
         SET(ide) = "Язь";
         SET(incorrectPassword) = "Неверный пароль!";
         SET(information) = "Информация";
@@ -145,6 +148,7 @@ void Dictionary::setLanguage(Language l) {
         SET(oka) = "Ока";
         SET(perch) = "Окунь";
         SET(pike) = "Щука";
+        SET(price) = "Цена";
         SET(quantity) = "Количество";
         SET(quantityShouldBeANumber) = "Количество должно быть числом";
         SET(quantityShouldBeMoreThanZero) = "Количество должно быть больше нуля";
