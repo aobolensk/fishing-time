@@ -104,7 +104,19 @@ void LoginMenu::signUpFunction() {
 
 void LoginMenu::demoFunction() {
     std::uniform_int_distribution<> randomSuffix(0, INT_MAX);
-    game->users.push_back(User("demo_" + QString::number(randomSuffix(game->randomGenerator)), ""));
+    bool userExists = false;
+    QString demoUserName;
+    do {
+        userExists = false;
+        demoUserName = "demo_" + QString::number(randomSuffix(game->randomGenerator));
+        for (int i = 0; i < game->users.size(); ++i) {
+            if (game->users[i].getUsername() == demoUserName) {
+                userExists = true;
+                break;
+            }
+        }
+    } while (userExists);
+    game->users.push_back(User(demoUserName, ""));
     QMessageBox::warning(game, game->str.warning, game->str.demoModeWarning);
     game->activeUser = game->users.size() - 1;
     game->activeLocation = 0;
