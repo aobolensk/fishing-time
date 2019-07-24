@@ -8,11 +8,13 @@ LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
     grid->addWidget(&loginText, 0, 0);
     loginText.setVisible(false);
     loginText.setEnabled(false);
+    QObject::connect(&loginText, &QLineEdit::returnPressed, [this]() { loginFunction(); });
 
     grid->addWidget(&passwordText, 1, 0);
     passwordText.setEchoMode(QLineEdit::Password);
     passwordText.setVisible(false);
     passwordText.setEnabled(false);
+    QObject::connect(&passwordText, &QLineEdit::returnPressed, [this]() { loginFunction(); });
 
     grid->addWidget(&loginButton, 0, 1);
     loginButton.setVisible(false);
