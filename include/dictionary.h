@@ -22,6 +22,7 @@ public:
             buy,
             carp,
             click,
+            clicksCount,
             console,
             dialog,
             empty,

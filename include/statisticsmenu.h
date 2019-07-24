@@ -2,6 +2,7 @@
 #define INCLUDE_STATISTICSMENU_H_
 #include <QPushButton>
 #include <QGridLayout>
+#include <QLabel>
 
 class Game;
 
@@ -10,6 +11,7 @@ private:
     Q_OBJECT
 private:
     Game *game;
+    QLabel statisticsText;
     QPushButton backButton;
     QGridLayout *grid;
 private slots:
