@@ -46,6 +46,7 @@ public:
             logOut,
             logWarning,
             mainLabelText,
+            mainMenuText,
             market,
             min,
             name,

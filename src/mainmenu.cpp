@@ -4,7 +4,10 @@
 MainMenu::MainMenu(Game *game, QGridLayout *grid) :
         game(game),
         grid(grid) {
-    grid->addWidget(&consoleButton, 0, 2);
+    grid->addWidget(&infoLabel, 0, 2);
+    infoLabel.setVisible(false);
+
+    grid->addWidget(&consoleButton, 1, 2);
     consoleButton.setVisible(false);
     consoleButton.setEnabled(false);
     connect(&consoleButton, SIGNAL(released()), this, SLOT(consoleFunction()));
@@ -23,10 +26,14 @@ MainMenu::MainMenu(Game *game, QGridLayout *grid) :
     exitButton.setVisible(false);
     exitButton.setEnabled(false);
     connect(&exitButton, SIGNAL(released()), this, SLOT(exitFunction()));
-
 }
 
 void MainMenu::display() {
+    infoLabel.setText(game->str.mainMenuText.arg(
+        game->activeUser == -1 ? "" : game->users[game->activeUser].getUsername()
+    ));
+    infoLabel.setVisible(true);
+
     consoleButton.setText(game->str.console);
     consoleButton.setVisible(true);
     consoleButton.setEnabled(true);
@@ -49,8 +56,13 @@ void MainMenu::consoleFunction() {
 }
 
 void MainMenu::startFunction() {
-    this->hide();
-    game->loginMenu.display();
+    if (game->activeUser == -1) {
+        this->hide();
+        game->loginMenu.display();
+    } else {
+        this->hide();
+        game->gameMenu.display();
+    }
 }
 
 void MainMenu::settingsFunction() {
