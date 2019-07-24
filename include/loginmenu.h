@@ -15,11 +15,13 @@ private:
               passwordText;
     QPushButton loginButton,
                 signUpButton,
+                demoButton,
                 backButton;
     QGridLayout *grid;
 private slots:
     void loginFunction();
     void signUpFunction();
+    void demoFunction();
     void backFunction();
 public:
     LoginMenu(Game *game, QGridLayout *grid);

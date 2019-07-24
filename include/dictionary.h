@@ -24,6 +24,8 @@ public:
             click,
             clicksCount,
             console,
+            demoMode,
+            demoModeWarning,
             dialog,
             empty,
             enterYourLoginHereText,

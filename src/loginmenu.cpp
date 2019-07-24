@@ -1,3 +1,4 @@
+#include <random>
 #include <QMessageBox>
 #include "loginmenu.h"
 #include "game.h"
@@ -26,6 +27,11 @@ LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
     signUpButton.setVisible(false);
     signUpButton.setEnabled(false);
 
+    connect(&demoButton, SIGNAL(released()), this, SLOT(demoFunction()));
+    grid->addWidget(&demoButton, 1, 2);
+    demoButton.setVisible(false);
+    demoButton.setEnabled(false);
+
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
     grid->addWidget(&backButton, 2, 1);
     backButton.setVisible(false);
@@ -48,6 +54,10 @@ void LoginMenu::display() {
     signUpButton.setText(game->str.signUp);
     signUpButton.setVisible(true);
     signUpButton.setEnabled(true);
+
+    demoButton.setText(game->str.demoMode);
+    demoButton.setVisible(true);
+    demoButton.setEnabled(true);
 
     backButton.setText(game->str.back);
     backButton.setVisible(true);
@@ -92,6 +102,16 @@ void LoginMenu::signUpFunction() {
                              game->str.newUserCreatedText.arg(loginText.text()));
 }
 
+void LoginMenu::demoFunction() {
+    std::uniform_int_distribution<> randomSuffix(0, INT_MAX);
+    game->users.push_back(User("demo_" + QString::number(randomSuffix(game->randomGenerator)), ""));
+    QMessageBox::warning(game, game->str.warning, game->str.demoModeWarning);
+    game->activeUser = game->users.size() - 1;
+    game->activeLocation = 0;
+    this->hide();
+    game->gameMenu.display();
+}
+
 void LoginMenu::hide() {
     loginText.setVisible(false);
     loginText.setEnabled(false);
@@ -104,6 +124,9 @@ void LoginMenu::hide() {
 
     signUpButton.setVisible(false);
     signUpButton.setEnabled(false);
+
+    demoButton.setVisible(false);
+    demoButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
