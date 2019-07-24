@@ -3,6 +3,7 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QApplication>
+#include <QLabel>
 
 class Game;
 
@@ -11,6 +12,7 @@ private:
     Q_OBJECT
 private:
     Game *game;
+    QLabel infoLabel;
     QPushButton consoleButton,
                 startButton,
                 settingsButton,

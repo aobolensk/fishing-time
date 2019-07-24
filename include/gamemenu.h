@@ -15,6 +15,7 @@ private:
 private:
     Game *game;
     QPushButton clickButton,
+                logOutButton,
                 backButton,
                 inventoryButton,
                 netsButton,
@@ -30,6 +31,7 @@ private:
     QGridLayout *grid;
 private slots:
     void clickFunction();
+    void logOutFunction();
     void backFunction();
     void inventoryFunction();
     void marketFunction();

@@ -13,52 +13,57 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     table.setVisible(false);
     table.setEnabled(false);
 
-    grid->addWidget(&infoLabel, 0, 0);
+    grid->addWidget(&infoLabel, 1, 0);
     infoLabel.setWordWrap(true);
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
 
-    grid->addWidget(&fishLabel, 0, 2);
+    grid->addWidget(&fishLabel, 1, 2);
     fishLabel.setWordWrap(true);
     fishLabel.setVisible(false);
     fishLabel.setEnabled(false);
 
-    grid->addWidget(&clickButton, 2, 1);
+    grid->addWidget(&clickButton, 3, 1);
     clickButton.setVisible(false);
     clickButton.setEnabled(false);
     connect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
 
-    grid->addWidget(&backButton, 3, 2);
+    grid->addWidget(&logOutButton, 0, 2);
+    logOutButton.setVisible(false);
+    logOutButton.setEnabled(false);
+    connect(&logOutButton, SIGNAL(released()), this, SLOT(logOutFunction()));
+
+    grid->addWidget(&backButton, 4, 2);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 
-    grid->addWidget(&inventoryButton, 3, 0);
+    grid->addWidget(&inventoryButton, 4, 0);
     inventoryButton.setVisible(false);
     inventoryButton.setEnabled(false);
     connect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
 
-    grid->addWidget(&marketButton, 3, 1);
+    grid->addWidget(&marketButton, 4, 1);
     marketButton.setVisible(false);
     marketButton.setEnabled(false);
     connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
 
-    grid->addWidget(&storeButton, 2, 0);
+    grid->addWidget(&storeButton, 3, 0);
     storeButton.setVisible(false);
     storeButton.setEnabled(false);
     connect(&storeButton, SIGNAL(released()), this, SLOT(storeFunction()));
 
-    grid->addWidget(&netsButton, 1, 2);
+    grid->addWidget(&netsButton, 2, 2);
     netsButton.setVisible(false);
     netsButton.setEnabled(false);
     connect(&netsButton, SIGNAL(released()), this, SLOT(netsFunction()));
 
-    grid->addWidget(&statisticsButton, 1, 1);
+    grid->addWidget(&statisticsButton, 2, 1);
     statisticsButton.setVisible(false);
     statisticsButton.setEnabled(false);
     connect(&statisticsButton, SIGNAL(released()), this, SLOT(statisticsFunction()));
 
-    grid->addWidget(&locationSelector, 2, 2);
+    grid->addWidget(&locationSelector, 3, 2);
     locationSelector.setCurrentIndex(0);
     connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
         [this](int index) {
@@ -85,6 +90,10 @@ void GameMenu::display() {
     clickButton.setText(game->str.click);
     clickButton.setVisible(true);
     clickButton.setEnabled(true);
+
+    logOutButton.setText(game->str.logOut);
+    logOutButton.setVisible(true);
+    logOutButton.setEnabled(true);
 
     backButton.setText(game->str.back);
     backButton.setVisible(true);
@@ -129,10 +138,14 @@ void GameMenu::clickFunction() {
     updateInfo();
 }
 
-void GameMenu::backFunction() {
+void GameMenu::logOutFunction() {
     game->netsMenu.foldNets();
     game->activeUser = -1;
     game->activeLocation = -1;
+    backFunction();
+}
+
+void GameMenu::backFunction() {
     this->hide();
     game->mainMenu.display();
 }
@@ -217,6 +230,9 @@ void GameMenu::hide() {
 
     clickButton.setVisible(false);
     clickButton.setEnabled(false);
+
+    logOutButton.setVisible(false);
+    logOutButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

@@ -59,6 +59,8 @@ void Dictionary::setLanguage(Language l) {
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
         SET(console) = "Console";
+        SET(demoMode) = "Demo mode";
+        SET(demoModeWarning) = "You run the game in demo mode. Some functions may be not available.";
         SET(dialog) = "Dialog";
         SET(empty) = "<EMPTY>";
         SET(enterYourLoginHereText) = "Enter your login here";
@@ -76,8 +78,10 @@ void Dictionary::setLanguage(Language l) {
         SET(logError) = "[ERROR]";
         SET(logIn) = "Log in";
         SET(logInfo) = "[INFO]";
+        SET(logOut) = "Log out";
         SET(logWarning) = "[WARNING]";
         SET(mainLabelText) = "Welcome, %1\nCoins: %2\nTotal clicks: %3\n";
+        SET(mainMenuText) = "%1";
         SET(market) = "Market";
         SET(min) = "min";
         SET(name) = "Name";
@@ -119,6 +123,8 @@ void Dictionary::setLanguage(Language l) {
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
         SET(console) = "Консоль";
+        SET(demoMode) = "Демо-режим";
+        SET(demoModeWarning) = "Вы запускаете игру в демо-режиме. Некоторые функции могут быть недоступны.";
         SET(dialog) = "Диалог";
         SET(empty) = "<ПУСТО>";
         SET(enterYourLoginHereText) = "Введите ваш логин";
@@ -136,8 +142,10 @@ void Dictionary::setLanguage(Language l) {
         SET(logError) = "[ОШИБКА]";
         SET(logIn) = "Войти";
         SET(logInfo) = "[ИНФО]";
+        SET(logOut) = "Выйти";
         SET(logWarning) = "[ПРЕДУПРЕЖДЕНИЕ]";
         SET(mainLabelText) = "Добро пожаловать, %1\nМонет: %2\nВсего кликов: %3\n";
+        SET(mainMenuText) = "%1";
         SET(market) = "Рынок";
         SET(min) = "мин";
         SET(name) = "Имя";
