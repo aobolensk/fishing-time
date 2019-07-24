@@ -19,7 +19,8 @@ private:
                 inventoryButton,
                 netsButton,
                 marketButton,
-                storeButton;
+                storeButton,
+                statisticsButton;
     QLabel infoLabel,
            fishLabel;
     QTableWidget table;
@@ -34,6 +35,7 @@ private slots:
     void marketFunction();
     void storeFunction();
     void netsFunction();
+    void statisticsFunction();
 private:
     void updateInfo();
 public:

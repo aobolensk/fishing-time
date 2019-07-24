@@ -57,6 +57,7 @@ void Dictionary::setLanguage(Language l) {
         SET(buy) = "Buy";
         SET(carp) = "Carp";
         SET(click) = "Click";
+        SET(clicksCount) = "Clicks count";
         SET(console) = "Console";
         SET(dialog) = "Dialog";
         SET(empty) = "<EMPTY>";
@@ -95,6 +96,7 @@ void Dictionary::setLanguage(Language l) {
         SET(settings) = "Settings";
         SET(signUp) = "Sign up";
         SET(start) = "Start";
+        SET(statistics) = "Statistics";
         SET(store) = "Store";
         SET(thisUserAlreadyExistsText) = "This user already exists";
         SET(volga) = "Volga";
@@ -113,6 +115,7 @@ void Dictionary::setLanguage(Language l) {
         SET(buy) = "Купить";
         SET(carp) = "Карп";
         SET(click) = "Нажимай!";
+        SET(clicksCount) = "Количество кликов";
         SET(console) = "Консоль";
         SET(dialog) = "Диалог";
         SET(empty) = "<ПУСТО>";
@@ -151,6 +154,7 @@ void Dictionary::setLanguage(Language l) {
         SET(settings) = "Настройки";
         SET(signUp) = "Зарегистрироваться";
         SET(start) = "Начать";
+        SET(statistics) = "Статистика";
         SET(store) = "Магазин";
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";
         SET(volga) = "Волга";
