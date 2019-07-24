@@ -78,6 +78,7 @@ void Dictionary::setLanguage(Language l) {
         SET(logError) = "[ERROR]";
         SET(logIn) = "Log in";
         SET(logInfo) = "[INFO]";
+        SET(logOut) = "Log out";
         SET(logWarning) = "[WARNING]";
         SET(mainLabelText) = "Welcome, %1\nCoins: %2\nTotal clicks: %3\n";
         SET(market) = "Market";
@@ -140,6 +141,7 @@ void Dictionary::setLanguage(Language l) {
         SET(logError) = "[ОШИБКА]";
         SET(logIn) = "Войти";
         SET(logInfo) = "[ИНФО]";
+        SET(logOut) = "Выйти";
         SET(logWarning) = "[ПРЕДУПРЕЖДЕНИЕ]";
         SET(mainLabelText) = "Добро пожаловать, %1\nМонет: %2\nВсего кликов: %3\n";
         SET(market) = "Рынок";

@@ -43,6 +43,7 @@ public:
             logError,
             logIn,
             logInfo,
+            logOut,
             logWarning,
             mainLabelText,
             market,
