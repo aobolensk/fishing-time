@@ -60,7 +60,7 @@ void Dictionary::setLanguage(Language l) {
         SET(clicksCount) = "Clicks count";
         SET(console) = "Console";
         SET(demoMode) = "Demo mode";
-        SET(demoModeWarning) = "You run the game in demo mode. Some functions may be not available. After exiting you can choose between saving and discarding your progress.";
+        SET(demoModeWarning) = "You run the game in demo mode. Some functions may be not available.";
         SET(dialog) = "Dialog";
         SET(empty) = "<EMPTY>";
         SET(enterYourLoginHereText) = "Enter your login here";
@@ -124,7 +124,7 @@ void Dictionary::setLanguage(Language l) {
         SET(clicksCount) = "Количество кликов";
         SET(console) = "Консоль";
         SET(demoMode) = "Демо-режим";
-        SET(demoModeWarning) = "Вы запускаете игру в демо-режиме. Некоторые функции могут быть недоступны. При выходе из игры Вы можете выбрать: сохранять прогресс или нет.";
+        SET(demoModeWarning) = "Вы запускаете игру в демо-режиме. Некоторые функции могут быть недоступны.";
         SET(dialog) = "Диалог";
         SET(empty) = "<ПУСТО>";
         SET(enterYourLoginHereText) = "Введите ваш логин";
