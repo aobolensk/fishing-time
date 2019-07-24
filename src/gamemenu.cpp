@@ -8,8 +8,8 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
         grid(grid) {
     table.setRowCount(0);
     table.setColumnCount(2);
-    table.setHorizontalHeaderItem(0, &nameWidget);
-    table.setHorizontalHeaderItem(1, &quantityWidget);
+    table.setHorizontalHeaderItem(0, &nameHeader);
+    table.setHorizontalHeaderItem(1, &quantityHeader);
     table.setVisible(false);
     table.setEnabled(false);
 
@@ -79,8 +79,8 @@ void GameMenu::display() {
     fishLabel.setVisible(true);
     fishLabel.setEnabled(true);
 
-    nameWidget.setText(game->str.name);
-    quantityWidget.setText(game->str.quantity);
+    nameHeader.setText(game->str.name);
+    quantityHeader.setText(game->str.quantity);
 
     clickButton.setText(game->str.click);
     clickButton.setVisible(true);

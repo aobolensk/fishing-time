@@ -19,6 +19,9 @@ StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
     grid->addWidget(&storeTable, 1, 0, 2, 2);
     storeTable.setRowCount(0);
     storeTable.setColumnCount(3);
+    storeTable.setHorizontalHeaderItem(0, &idHeader);
+    storeTable.setHorizontalHeaderItem(1, &nameHeader);
+    storeTable.setHorizontalHeaderItem(2, &priceHeader);
     storeTable.setVisible(false);
     storeTable.setEnabled(false);
     connect(&storeTable, &QTableWidget::cellClicked, [this](int row, int col) {
@@ -46,6 +49,10 @@ StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
 void StoreMenu::display() {
     updateTable();
     updateInfo();
+
+    idHeader.setText(game->str.id);
+    nameHeader.setText(game->str.name);
+    priceHeader.setText(game->str.price);
 
     selectedItemLabel.setVisible(true);
     selectedItemLabel.setEnabled(true);
