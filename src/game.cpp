@@ -9,7 +9,11 @@ Game::Game(QWidget *parent, const QString &file) :
         QWidget(parent),
         grid(QGridLayout(this)),
         config_file(file),
-        randomGenerator(rd()),
+        #ifndef __MINGW32__
+            randomGenerator(rd()),
+        #else
+            randomGenerator(time(nullptr)),
+        #endif  // __MINGW32__
         cfg(Config(this)),
         console(Console(this)),
         locations(Location::initializeLocations(this)),
