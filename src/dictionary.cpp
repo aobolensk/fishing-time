@@ -37,8 +37,8 @@ Dictionary::Dictionary() :
 
 }
 
-const QString &Dictionary::getItemName(const QString &id) const {
-    auto it = itemNames.find(id);
+const QString &Dictionary::getItemName(const QString &itemId) const {
+    auto it = itemNames.find(itemId);
     if (it == itemNames.end())
         return invalidValue;
     return *(it.value());
