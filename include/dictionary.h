@@ -28,6 +28,7 @@ public:
             demoModeWarning,
             dialog,
             empty,
+            emptyLoginWarning,
             enterYourLoginHereText,
             exit,
             exitConfirmation,
