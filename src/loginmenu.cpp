@@ -70,6 +70,10 @@ void LoginMenu::backFunction() {
 }
 
 void LoginMenu::loginFunction() {
+    if (loginText.text() == "") {
+        QMessageBox::warning(game, game->str.warning, game->str.emptyLoginWarning);
+        return;
+    }
     for (int i = 0; i < game->users.size(); ++i) {
         if (game->users[i].getUsername() == loginText.text()) {
             qDebug() << QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5);
@@ -91,6 +95,10 @@ void LoginMenu::loginFunction() {
 }
 
 void LoginMenu::signUpFunction() {
+    if (loginText.text() == "") {
+        QMessageBox::warning(game, game->str.warning, game->str.emptyLoginWarning);
+        return;
+    }
     for (int i = 0; i < game->users.size(); ++i) {
         if (game->users[i].getUsername() == loginText.text()) {
             QMessageBox::warning(game, game->str.warning, game->str.thisUserAlreadyExistsText);

@@ -63,6 +63,7 @@ void Dictionary::setLanguage(Language l) {
         SET(demoModeWarning) = "You run the game in demo mode. Some functions may be not available.";
         SET(dialog) = "Dialog";
         SET(empty) = "<EMPTY>";
+        SET(emptyLoginWarning) = "Login is empty!";
         SET(enterYourLoginHereText) = "Enter your login here";
         SET(exit) = "Exit";
         SET(exitConfirmation) = "Do you want to exit?";
@@ -127,6 +128,7 @@ void Dictionary::setLanguage(Language l) {
         SET(demoModeWarning) = "Вы запускаете игру в демо-режиме. Некоторые функции могут быть недоступны.";
         SET(dialog) = "Диалог";
         SET(empty) = "<ПУСТО>";
+        SET(emptyLoginWarning) = "Логин пуст!";
         SET(enterYourLoginHereText) = "Введите ваш логин";
         SET(exit) = "Выход";
         SET(exitConfirmation) = "Вы действительно хотите выйти из игры?";
