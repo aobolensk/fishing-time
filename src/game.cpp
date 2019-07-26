@@ -12,7 +12,7 @@ Game::Game(QWidget *parent, const QString &file) :
         #ifndef __MINGW32__
             randomGenerator(rd()),
         #else
-            randomGenerator(time(nullptr)),
+            randomGenerator(static_cast<unsigned>(time(nullptr))),
         #endif  // __MINGW32__
         cfg(Config(this)),
         console(Console(this)),
@@ -33,7 +33,6 @@ Game::Game(QWidget *parent, const QString &file) :
     grid.setColumnStretch(2, 1);
     deserialize();
     str.setLanguage(activeLanguage);
-    qDebug() << "lang:" << (int)activeLanguage;
     for (const User &user : users) {
         qDebug() << user.getUsername();
     }
