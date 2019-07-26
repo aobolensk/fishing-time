@@ -67,6 +67,7 @@ public:
             sellerText,
             settings,
             signUp,
+            signupMenuText,
             start,
             statistics,
             store,

@@ -95,19 +95,8 @@ void LoginMenu::loginFunction() {
 }
 
 void LoginMenu::signUpFunction() {
-    if (loginText.text() == "") {
-        QMessageBox::warning(game, game->str.warning, game->str.emptyLoginWarning);
-        return;
-    }
-    for (int i = 0; i < game->users.size(); ++i) {
-        if (game->users[i].getUsername() == loginText.text()) {
-            QMessageBox::warning(game, game->str.warning, game->str.thisUserAlreadyExistsText);
-            return;
-        }
-    }
-    game->users.push_back(User(loginText.text(), passwordText.text()));
-    QMessageBox::information(game, game->str.information,
-                             game->str.newUserCreatedText.arg(loginText.text()));
+    this->hide();
+    game->signupMenu.display();
 }
 
 void LoginMenu::demoFunction() {
