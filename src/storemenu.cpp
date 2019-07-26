@@ -24,7 +24,7 @@ StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
     storeTable.setHorizontalHeaderItem(2, &priceHeader);
     storeTable.setVisible(false);
     storeTable.setEnabled(false);
-    connect(&storeTable, &QTableWidget::cellClicked, [this](int row, int col) {
+    connect(&storeTable, &QTableWidget::cellActivated, [this](int row, int col) {
         (void) col;
         selectedItemLabel.setText(storeTable.item(row, 0)->text() + '\n' +
                                   storeTable.item(row, 1)->text());
