@@ -12,8 +12,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_BINARY_DIR}/bin")
 
 set(CMAKE_CXX_STANDARD 17)
 if (MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /O2 /W4 /WX /wd4702")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /O2 /W4 /WX /wd4702 /wd4127")
     # disabled warning C4702: unreachable code
+    # disabled warning C4127: conditional expression is constant
 else(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -O3 -pedantic")
 endif(MSVC)

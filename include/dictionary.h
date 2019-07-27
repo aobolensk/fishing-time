@@ -24,6 +24,8 @@ public:
             click,
             clicksCount,
             console,
+            deleteAccount,
+            deleteAccountConfirmation,
             demoMode,
             demoModeWarning,
             dialog,

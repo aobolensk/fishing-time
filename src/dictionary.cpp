@@ -59,6 +59,8 @@ void Dictionary::setLanguage(Language l) {
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
         SET(console) = "Console";
+        SET(deleteAccount) = "Delete account";
+        SET(deleteAccountConfirmation) = "Do you really want to delete your account?\nThis action can not be cancelled.";
         SET(demoMode) = "Demo mode";
         SET(demoModeWarning) = "You run the game in demo mode. Some functions may be not available.";
         SET(dialog) = "Dialog";
@@ -127,6 +129,8 @@ void Dictionary::setLanguage(Language l) {
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
         SET(console) = "Консоль";
+        SET(deleteAccount) = "Удалить аккаунт";
+        SET(deleteAccountConfirmation) = "Вы действительно хотите удалить аккаунт?\nЭто действие необратимо.";
         SET(demoMode) = "Демо-режим";
         SET(demoModeWarning) = "Вы запускаете игру в демо-режиме. Некоторые функции могут быть недоступны.";
         SET(dialog) = "Диалог";
