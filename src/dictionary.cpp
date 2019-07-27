@@ -58,6 +58,7 @@ void Dictionary::setLanguage(Language l) {
         SET(carp) = "Carp";
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
+        SET(confirmPassword) = "Confirm password:";
         SET(confirmPasswordWarning) = "Password are not equal";
         SET(console) = "Console";
         SET(deleteAccount) = "Delete account";
@@ -94,6 +95,7 @@ void Dictionary::setLanguage(Language l) {
         SET(netSlot) = "Net slot %1\nNet: %2";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
         SET(oka) = "Oka";
+        SET(password) = "Password:";
         SET(perch) = "Perch";
         SET(pike) = "Pike";
         SET(price) = "Price";
@@ -111,6 +113,7 @@ void Dictionary::setLanguage(Language l) {
         SET(store) = "Store";
         SET(thisUserAlreadyExistsText) = "This user already exists";
         SET(volga) = "Volga";
+        SET(username) = "Username:";
         SET(userSettings) = "User settings";
         SET(userSettingsText) = "User: %1";
         SET(warning) = "Warning";
@@ -129,6 +132,7 @@ void Dictionary::setLanguage(Language l) {
         SET(carp) = "Карп";
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
+        SET(confirmPassword) = "Подтвердите пароль:";
         SET(confirmPasswordWarning) = "Пароли не совпадают";
         SET(console) = "Консоль";
         SET(deleteAccount) = "Удалить аккаунт";
@@ -165,6 +169,7 @@ void Dictionary::setLanguage(Language l) {
         SET(netSlot) = "Слот для сетей %1\nСеть: %2";
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
         SET(oka) = "Ока";
+        SET(password) = "Пароль:";
         SET(perch) = "Окунь";
         SET(pike) = "Щука";
         SET(price) = "Цена";
@@ -181,6 +186,7 @@ void Dictionary::setLanguage(Language l) {
         SET(statistics) = "Статистика";
         SET(store) = "Магазин";
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";
+        SET(username) = "Логин:";
         SET(userSettings) = "Настройки пользователя";
         SET(userSettingsText) = "Пользователь: %1";
         SET(volga) = "Волга";

@@ -10,25 +10,34 @@ SignupMenu::SignupMenu(Game *game, QGridLayout *grid) :
     signupLabel.setVisible(false);
     signupLabel.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
 
-    grid->addWidget(&loginText, 1, 0);
+    grid->addWidget(&loginLabel, 1, 0);
+    loginLabel.setVisible(false);
+
+    grid->addWidget(&passwordLabel, 2, 0);
+    passwordLabel.setVisible(false);
+
+    grid->addWidget(&passwordConfirmationLabel, 3, 0);
+    passwordConfirmationLabel.setVisible(false);
+
+    grid->addWidget(&loginText, 1, 1);
     loginText.setVisible(false);
     loginText.setEnabled(false);
     QObject::connect(&loginText, &QLineEdit::returnPressed, [this]() { signUpFunction(); });
 
-    grid->addWidget(&passwordText, 2, 0);
+    grid->addWidget(&passwordText, 2, 1);
     passwordText.setEchoMode(QLineEdit::Password);
     passwordText.setVisible(false);
     passwordText.setEnabled(false);
     QObject::connect(&passwordText, &QLineEdit::returnPressed, [this]() { signUpFunction(); });
 
-    grid->addWidget(&passwordConfirmationText, 3, 0);
+    grid->addWidget(&passwordConfirmationText, 3, 1);
     passwordConfirmationText.setEchoMode(QLineEdit::Password);
     passwordConfirmationText.setVisible(false);
     passwordConfirmationText.setEnabled(false);
     QObject::connect(&passwordConfirmationText, &QLineEdit::returnPressed, [this]() { signUpFunction(); });
 
     connect(&signUpButton, SIGNAL(released()), this, SLOT(signUpFunction()));
-    grid->addWidget(&signUpButton, 1, 1);
+    grid->addWidget(&signUpButton, 1, 2);
     signUpButton.setVisible(false);
     signUpButton.setEnabled(false);
 
@@ -41,6 +50,15 @@ SignupMenu::SignupMenu(Game *game, QGridLayout *grid) :
 void SignupMenu::display() {
     signupLabel.setText(game->str.signupMenuText);
     signupLabel.setVisible(true);
+
+    loginLabel.setText(game->str.username);
+    loginLabel.setVisible(true);
+
+    passwordLabel.setText(game->str.password);
+    passwordLabel.setVisible(true);
+
+    passwordConfirmationLabel.setText(game->str.confirmPassword);
+    passwordConfirmationLabel.setVisible(true);
 
     loginText.setText(game->str.enterYourLoginHereText);
     loginText.setVisible(true);
@@ -92,6 +110,12 @@ void SignupMenu::signUpFunction() {
 
 void SignupMenu::hide() {
     signupLabel.setVisible(false);
+
+    loginLabel.setVisible(false);
+
+    passwordLabel.setVisible(false);
+
+    passwordConfirmationLabel.setVisible(false);
 
     loginText.setVisible(false);
     loginText.setEnabled(false);
