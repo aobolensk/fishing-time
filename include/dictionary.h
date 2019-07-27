@@ -72,6 +72,7 @@ public:
             statistics,
             store,
             thisUserAlreadyExistsText,
+            userSettings,
             volga,
             warning,
             youDontHaveEnoughCoins,

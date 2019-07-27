@@ -21,7 +21,8 @@ private:
                 netsButton,
                 marketButton,
                 storeButton,
-                statisticsButton;
+                statisticsButton,
+                usersettingsButton;
     QLabel infoLabel,
            fishLabel;
     QTableWidget table;
@@ -38,6 +39,7 @@ private slots:
     void storeFunction();
     void netsFunction();
     void statisticsFunction();
+    void usersettingsFunction();
 private:
     void updateInfo();
 public:

@@ -63,6 +63,11 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     statisticsButton.setEnabled(false);
     connect(&statisticsButton, SIGNAL(released()), this, SLOT(statisticsFunction()));
 
+    grid->addWidget(&usersettingsButton, 2, 1);
+    usersettingsButton.setVisible(false);
+    usersettingsButton.setEnabled(false);
+    connect(&usersettingsButton, SIGNAL(released()), this, SLOT(usersettingsFunction()));
+
     grid->addWidget(&locationSelector, 3, 2);
     locationSelector.setCurrentIndex(0);
     connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
@@ -119,6 +124,10 @@ void GameMenu::display() {
     statisticsButton.setVisible(true);
     statisticsButton.setEnabled(true);
 
+    usersettingsButton.setText(game->str.userSettings);
+    usersettingsButton.setVisible(true);
+    usersettingsButton.setEnabled(true);
+
     for (int i = 0; i < game->locations.size(); ++i) {
         locationSelector.addItem(game->locations[i].getName());
     }
@@ -174,6 +183,11 @@ void GameMenu::netsFunction() {
 void GameMenu::statisticsFunction() {
     this->hide();
     game->statisticsMenu.display();
+}
+
+void GameMenu::usersettingsFunction() {
+    this->hide();
+    game->usersettingsMenu.display();
 }
 
 void GameMenu::updateInventoryTable() {
@@ -251,6 +265,9 @@ void GameMenu::hide() {
 
     statisticsButton.setVisible(false);
     statisticsButton.setEnabled(false);
+
+    usersettingsButton.setVisible(false);
+    usersettingsButton.setEnabled(false);
 
     locationSelector.clear();
     locationSelector.setVisible(false);
