@@ -21,13 +21,19 @@ SignupMenu::SignupMenu(Game *game, QGridLayout *grid) :
     passwordText.setEnabled(false);
     QObject::connect(&passwordText, &QLineEdit::returnPressed, [this]() { signUpFunction(); });
 
+    grid->addWidget(&passwordConfirmationText, 3, 0);
+    passwordConfirmationText.setEchoMode(QLineEdit::Password);
+    passwordConfirmationText.setVisible(false);
+    passwordConfirmationText.setEnabled(false);
+    QObject::connect(&passwordConfirmationText, &QLineEdit::returnPressed, [this]() { signUpFunction(); });
+
     connect(&signUpButton, SIGNAL(released()), this, SLOT(signUpFunction()));
     grid->addWidget(&signUpButton, 1, 1);
     signUpButton.setVisible(false);
     signUpButton.setEnabled(false);
 
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
-    grid->addWidget(&backButton, 3, 1);
+    grid->addWidget(&backButton, 4, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
 }
@@ -43,6 +49,10 @@ void SignupMenu::display() {
     passwordText.setText("Password");
     passwordText.setVisible(true);
     passwordText.setEnabled(true);
+
+    passwordConfirmationText.setText("password");
+    passwordConfirmationText.setVisible(true);
+    passwordConfirmationText.setEnabled(true);
 
     signUpButton.setText(game->str.signUp);
     signUpButton.setVisible(true);
@@ -61,6 +71,10 @@ void SignupMenu::backFunction() {
 void SignupMenu::signUpFunction() {
     if (loginText.text() == "") {
         QMessageBox::warning(game, game->str.warning, game->str.emptyLoginWarning);
+        return;
+    }
+    if (passwordText.text() != passwordConfirmationText.text()) {
+        QMessageBox::warning(game, game->str.warning, game->str.confirmPasswordWarning);
         return;
     }
     for (int i = 0; i < game->users.size(); ++i) {
@@ -84,6 +98,9 @@ void SignupMenu::hide() {
 
     passwordText.setVisible(false);
     passwordText.setEnabled(false);
+
+    passwordConfirmationText.setVisible(false);
+    passwordConfirmationText.setEnabled(false);
 
     signUpButton.setVisible(false);
     signUpButton.setEnabled(false);

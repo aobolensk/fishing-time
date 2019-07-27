@@ -58,6 +58,7 @@ void Dictionary::setLanguage(Language l) {
         SET(carp) = "Carp";
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
+        SET(confirmPasswordWarning) = "Password are not equal";
         SET(console) = "Console";
         SET(deleteAccount) = "Delete account";
         SET(deleteAccountConfirmation) = "Do you really want to delete your account?\nThis action can not be cancelled.";
@@ -128,6 +129,7 @@ void Dictionary::setLanguage(Language l) {
         SET(carp) = "Карп";
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
+        SET(confirmPasswordWarning) = "Пароли не совпадают";
         SET(console) = "Консоль";
         SET(deleteAccount) = "Удалить аккаунт";
         SET(deleteAccountConfirmation) = "Вы действительно хотите удалить аккаунт?\nЭто действие необратимо.";

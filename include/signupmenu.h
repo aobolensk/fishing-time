@@ -14,7 +14,8 @@ private:
     Game *game;
     QLabel signupLabel;
     QLineEdit loginText,
-              passwordText;
+              passwordText,
+              passwordConfirmationText;
     QPushButton signUpButton,
                 backButton;
     QGridLayout *grid;

@@ -23,6 +23,7 @@ public:
             carp,
             click,
             clicksCount,
+            confirmPasswordWarning,
             console,
             deleteAccount,
             deleteAccountConfirmation,
