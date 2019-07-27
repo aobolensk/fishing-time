@@ -3,6 +3,7 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QLabel>
+#include <QLineEdit>
 
 class Game;
 
@@ -12,9 +13,11 @@ private:
 private:
     Game *game;
     QLabel usersettingsText;
-    QPushButton backButton;
+    QPushButton deleteAccountButton,
+                backButton;
     QGridLayout *grid;
 private slots:
+    void deleteAccountFunction();
     void backFunction();
 public:
     UsersettingsMenu(Game *game, QGridLayout *grid);
