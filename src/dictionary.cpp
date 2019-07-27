@@ -107,7 +107,7 @@ void Dictionary::setLanguage(Language l) {
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
         SET(settings) = "Settings";
         SET(signUp) = "Sign up";
-        SET(signupMenuText) = "Create new user";
+        SET(signupMenuText) = "Create new user.\nEnter your login and password to get registered.";
         SET(start) = "Start";
         SET(statistics) = "Statistics";
         SET(store) = "Store";
@@ -181,7 +181,7 @@ void Dictionary::setLanguage(Language l) {
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
         SET(settings) = "Настройки";
         SET(signUp) = "Зарегистрироваться";
-        SET(signupMenuText) = "Создание нового пользователя";
+        SET(signupMenuText) = "Создание нового пользователя\nВведите логин и пароль, чтобы зарегистрироваться.";
         SET(start) = "Начать";
         SET(statistics) = "Статистика";
         SET(store) = "Магазин";

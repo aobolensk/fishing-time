@@ -104,8 +104,7 @@ void SignupMenu::signUpFunction() {
     game->users.push_back(User(loginText.text(), passwordText.text()));
     QMessageBox::information(game, game->str.information,
                              game->str.newUserCreatedText.arg(loginText.text()));
-    this->hide();
-    game->loginMenu.display();
+    backFunction();
 }
 
 void SignupMenu::hide() {
