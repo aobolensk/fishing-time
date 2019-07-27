@@ -58,6 +58,8 @@ void Dictionary::setLanguage(Language l) {
         SET(carp) = "Carp";
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
+        SET(confirmPassword) = "Confirm password:";
+        SET(confirmPasswordWarning) = "Password are not equal";
         SET(console) = "Console";
         SET(deleteAccount) = "Delete account";
         SET(deleteAccountConfirmation) = "Do you really want to delete your account?\nThis action can not be cancelled.";
@@ -93,6 +95,7 @@ void Dictionary::setLanguage(Language l) {
         SET(netSlot) = "Net slot %1\nNet: %2";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
         SET(oka) = "Oka";
+        SET(password) = "Password:";
         SET(perch) = "Perch";
         SET(pike) = "Pike";
         SET(price) = "Price";
@@ -104,12 +107,13 @@ void Dictionary::setLanguage(Language l) {
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
         SET(settings) = "Settings";
         SET(signUp) = "Sign up";
-        SET(signupMenuText) = "Create new user";
+        SET(signupMenuText) = "Create new user.\nEnter your login and password to get registered.";
         SET(start) = "Start";
         SET(statistics) = "Statistics";
         SET(store) = "Store";
         SET(thisUserAlreadyExistsText) = "This user already exists";
         SET(volga) = "Volga";
+        SET(username) = "Username:";
         SET(userSettings) = "User settings";
         SET(userSettingsText) = "User: %1";
         SET(warning) = "Warning";
@@ -128,6 +132,8 @@ void Dictionary::setLanguage(Language l) {
         SET(carp) = "Карп";
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
+        SET(confirmPassword) = "Подтвердите пароль:";
+        SET(confirmPasswordWarning) = "Пароли не совпадают";
         SET(console) = "Консоль";
         SET(deleteAccount) = "Удалить аккаунт";
         SET(deleteAccountConfirmation) = "Вы действительно хотите удалить аккаунт?\nЭто действие необратимо.";
@@ -163,6 +169,7 @@ void Dictionary::setLanguage(Language l) {
         SET(netSlot) = "Слот для сетей %1\nСеть: %2";
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
         SET(oka) = "Ока";
+        SET(password) = "Пароль:";
         SET(perch) = "Окунь";
         SET(pike) = "Щука";
         SET(price) = "Цена";
@@ -174,11 +181,12 @@ void Dictionary::setLanguage(Language l) {
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
         SET(settings) = "Настройки";
         SET(signUp) = "Зарегистрироваться";
-        SET(signupMenuText) = "Создание нового пользователя";
+        SET(signupMenuText) = "Создание нового пользователя\nВведите логин и пароль, чтобы зарегистрироваться.";
         SET(start) = "Начать";
         SET(statistics) = "Статистика";
         SET(store) = "Магазин";
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";
+        SET(username) = "Логин:";
         SET(userSettings) = "Настройки пользователя";
         SET(userSettingsText) = "Пользователь: %1";
         SET(volga) = "Волга";

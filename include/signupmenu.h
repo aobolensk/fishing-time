@@ -12,9 +12,13 @@ private:
     Q_OBJECT
 private:
     Game *game;
-    QLabel signupLabel;
+    QLabel signupLabel,
+           loginLabel,
+           passwordLabel,
+           passwordConfirmationLabel;
     QLineEdit loginText,
-              passwordText;
+              passwordText,
+              passwordConfirmationText;
     QPushButton signUpButton,
                 backButton;
     QGridLayout *grid;
