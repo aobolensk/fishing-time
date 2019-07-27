@@ -14,6 +14,7 @@
 #include "settingsmenu.h"
 #include "netsmenu.h"
 #include "statisticsmenu.h"
+#include "usersettingsmenu.h"
 #include "signupmenu.h"
 #include "user.h"
 #include "location.h"
@@ -53,6 +54,7 @@ public:
     NetsMenu netsMenu;
     StatisticsMenu statisticsMenu;
     SignupMenu signupMenu;
+    UsersettingsMenu usersettingsMenu;
     int activeUser = -1;
     int activeLocation = -1;
     void setAutoSavePeriod(int periodInMinutes);
