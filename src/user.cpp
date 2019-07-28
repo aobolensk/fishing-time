@@ -102,6 +102,10 @@ void User::changeCoins(qint64 quantity) {
     }
 }
 
+void User::setPasswordHash(const QByteArray &hashedPassword) {
+    passwordHash = hashedPassword;
+}
+
 qint64 User::getClicks() const {
     return clicks;
 }
