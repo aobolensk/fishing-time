@@ -1,10 +1,12 @@
 #include <QTemporaryFile>
 #include <QDataStream>
+#include <QDateTime>
 #include "user.h"
 
 User::User(const QString &name, const QString &password) :
     username(name),
-    passwordHash(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5)) {
+    passwordHash(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5)),
+    signUpTime(QDateTime::currentDateTime().toString(Qt::ISODate)) {
     
 }
 
@@ -43,6 +45,7 @@ QJsonObject User::serialize() const {
     jsonObj["clicks"] = clicks;
     jsonObj["coins"] = coins;
     jsonObj["passwordHash"] = toString(passwordHash);
+    jsonObj["signUpTime"] = signUpTime;
     jsonObj["inventory"] = toString(inventory.get());
     return jsonObj;
 }
@@ -52,6 +55,7 @@ QVariant User::deserialize(const QVariantMap &map) {
     user.clicks = map["clicks"].toLongLong();
     user.coins = map["coins"].toLongLong();
     fromString(user.passwordHash, map["passwordHash"].toString());
+    user.signUpTime = map["signUpTime"].toString();
     fromString(user.inventory.set(), map["inventory"].toString());
     return QVariant::fromValue(user);
 }
