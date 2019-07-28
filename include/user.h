@@ -15,6 +15,7 @@ private:
     QByteArray passwordHash;
     qint64 coins = 0ll;
     // Statistics
+    QString signUpTime;
     qint64 clicks = 0ll;
 public:
     class Inventory {
