@@ -77,8 +77,8 @@ void Dictionary::setLanguage(Language l) {
         SET(ide) = "Ide";
         SET(incorrectPassword) = "Incorrect password!";
         SET(information) = "Information";
-        SET(invalidValue) = "<INVALID>";
         SET(invalidOldPasswordWarning) = "Incorrect old password";
+        SET(invalidValue) = "<INVALID>";
         SET(inventory) = "Inventory";
         SET(language) = "Language";
         SET(logError) = "[ERROR]";
@@ -91,9 +91,9 @@ void Dictionary::setLanguage(Language l) {
         SET(market) = "Market";
         SET(min) = "min";
         SET(name) = "Name";
+        SET(netSlot) = "Net slot %1\nNet: %2";
         SET(nets) = "Nets";
         SET(netsDescription) = "In this menu you can put nets in order to catch fish in background.\nYou can buy nets in the store.\nYou can add one net to each cell.";
-        SET(netSlot) = "Net slot %1\nNet: %2";
         SET(newPassword) = "New password";
         SET(newPasswordConfirmation) = "Confirm new password";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
@@ -117,10 +117,10 @@ void Dictionary::setLanguage(Language l) {
         SET(statistics) = "Statistics";
         SET(store) = "Store";
         SET(thisUserAlreadyExistsText) = "This user already exists";
-        SET(volga) = "Volga";
-        SET(username) = "Username:";
         SET(userSettings) = "User settings";
         SET(userSettingsText) = "User: %1";
+        SET(username) = "Username:";
+        SET(volga) = "Volga";
         SET(warning) = "Warning";
         SET(youDontHaveEnoughCoins) = "You don't have enough coins";
         SET(youDontHaveEnoughItems) = "You don't have enough items";
@@ -170,9 +170,9 @@ void Dictionary::setLanguage(Language l) {
         SET(market) = "Рынок";
         SET(min) = "мин";
         SET(name) = "Имя";
+        SET(netSlot) = "Слот для сетей %1\nСеть: %2";
         SET(nets) = "Сети";
         SET(netsDescription) = "В этом меню Вы можете поставить сети, чтобы ловить рыбу в пассивном режиме.\nВы можете приобрести сети в магазине.\nВы можете добавить одну сеть в каждую из ячеек.";
-        SET(netSlot) = "Слот для сетей %1\nСеть: %2";
         SET(newPassword) = "Новый пароль";
         SET(newPasswordConfirmation) = "Подтверждение нового пароля";
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
@@ -196,9 +196,9 @@ void Dictionary::setLanguage(Language l) {
         SET(statistics) = "Статистика";
         SET(store) = "Магазин";
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";
-        SET(username) = "Логин:";
         SET(userSettings) = "Настройки пользователя";
         SET(userSettingsText) = "Пользователь: %1";
+        SET(username) = "Логин:";
         SET(volga) = "Волга";
         SET(warning) = "Внимание";
         SET(youDontHaveEnoughCoins) = "Недостаточно монет";
