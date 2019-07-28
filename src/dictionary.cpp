@@ -77,7 +77,6 @@ void Dictionary::setLanguage(Language l) {
         SET(ide) = "Ide";
         SET(incorrectPassword) = "Incorrect password!";
         SET(information) = "Information";
-        SET(invalidLoginText) = "Invalid login";
         SET(invalidValue) = "<INVALID>";
         SET(invalidOldPasswordWarning) = "Incorrect old password";
         SET(inventory) = "Inventory";
@@ -157,7 +156,6 @@ void Dictionary::setLanguage(Language l) {
         SET(ide) = "Язь";
         SET(incorrectPassword) = "Неверный пароль!";
         SET(information) = "Информация";
-        SET(invalidLoginText) = "Неверный логин";
         SET(invalidOldPasswordWarning) = "Неверно введен старый пароль";
         SET(invalidValue) = "<INVALID>";
         SET(inventory) = "Инвентарь";

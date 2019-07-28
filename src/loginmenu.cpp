@@ -6,10 +6,9 @@
 LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
         game(game),
         grid(grid) {
-    grid->addWidget(&loginText, 0, 0);
-    loginText.setVisible(false);
-    loginText.setEnabled(false);
-    QObject::connect(&loginText, &QLineEdit::returnPressed, [this]() { loginFunction(); });
+    grid->addWidget(&loginSelector, 0, 0);
+    loginSelector.setVisible(false);
+    loginSelector.setEnabled(false);
 
     grid->addWidget(&passwordText, 1, 0);
     passwordText.setEchoMode(QLineEdit::Password);
@@ -39,9 +38,11 @@ LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
 }
 
 void LoginMenu::display() {
-    loginText.setText(game->str.enterYourLoginHereText);
-    loginText.setVisible(true);
-    loginText.setEnabled(true);
+    for (int i = 0; i < game->users.count(); ++i) {
+        loginSelector.addItem(game->users[i].getUsername());
+    }
+    loginSelector.setVisible(true);
+    loginSelector.setEnabled(true);
 
     passwordText.setText("Password");
     passwordText.setVisible(true);
@@ -70,28 +71,20 @@ void LoginMenu::backFunction() {
 }
 
 void LoginMenu::loginFunction() {
-    if (loginText.text() == "") {
-        QMessageBox::warning(game, game->str.warning, game->str.emptyLoginWarning);
-        return;
+    const int userIndex = loginSelector.currentIndex();
+    qDebug() << QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5);
+    qDebug() << game->users[userIndex].getPasswordHash();
+    if (QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5) ==
+            game->users[userIndex].getPasswordHash()) {
+        qDebug() << "Logged in as " << game->users[userIndex].getUsername();
+        game->activeUser = userIndex;
+        game->activeLocation = 0;
+        this->hide();
+        game->gameMenu.display();
+    } else {
+        QMessageBox::warning(game, game->str.warning, game->str.incorrectPassword);
     }
-    for (int i = 0; i < game->users.size(); ++i) {
-        if (game->users[i].getUsername() == loginText.text()) {
-            qDebug() << QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5);
-            qDebug() << game->users[i].getPasswordHash();
-            if (QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5) ==
-                    game->users[i].getPasswordHash()) {
-                qDebug() << "Logged in as " << loginText.text();
-                game->activeUser = i;
-                game->activeLocation = 0;
-                this->hide();
-                game->gameMenu.display();
-            } else {
-                QMessageBox::warning(game, game->str.warning, game->str.incorrectPassword);
-            }
-            return;
-        }
-    }
-    QMessageBox::warning(game, game->str.warning, game->str.invalidLoginText);
+    return;
 }
 
 void LoginMenu::signUpFunction() {
@@ -122,8 +115,9 @@ void LoginMenu::demoFunction() {
 }
 
 void LoginMenu::hide() {
-    loginText.setVisible(false);
-    loginText.setEnabled(false);
+    loginSelector.clear();
+    loginSelector.setVisible(false);
+    loginSelector.setEnabled(false);
 
     passwordText.setVisible(false);
     passwordText.setEnabled(false);

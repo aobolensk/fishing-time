@@ -42,7 +42,6 @@ public:
             ide,
             incorrectPassword,
             information,
-            invalidLoginText,
             invalidOldPasswordWarning,
             invalidValue,
             inventory,
