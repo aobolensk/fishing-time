@@ -56,6 +56,7 @@ void Dictionary::setLanguage(Language l) {
         SET(bream) = "Bream";
         SET(buy) = "Buy";
         SET(carp) = "Carp";
+        SET(changePassword) = "Change password";
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
         SET(confirmPassword) = "Confirm password:";
@@ -78,6 +79,7 @@ void Dictionary::setLanguage(Language l) {
         SET(information) = "Information";
         SET(invalidLoginText) = "Invalid login";
         SET(invalidValue) = "<INVALID>";
+        SET(invalidOldPasswordWarning) = "Incorrect old password";
         SET(inventory) = "Inventory";
         SET(language) = "Language";
         SET(logError) = "[ERROR]";
@@ -93,9 +95,13 @@ void Dictionary::setLanguage(Language l) {
         SET(nets) = "Nets";
         SET(netsDescription) = "In this menu you can put nets in order to catch fish in background.\nYou can buy nets in the store.\nYou can add one net to each cell.";
         SET(netSlot) = "Net slot %1\nNet: %2";
+        SET(newPassword) = "New password";
+        SET(newPasswordConfirmation) = "Confirm new password";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
         SET(oka) = "Oka";
+        SET(oldPassword) = "Old password";
         SET(password) = "Password:";
+        SET(passwordIsChanged) = "Password is successfully changed";
         SET(perch) = "Perch";
         SET(pike) = "Pike";
         SET(price) = "Price";
@@ -130,6 +136,7 @@ void Dictionary::setLanguage(Language l) {
         SET(bream) = "Лещ";
         SET(buy) = "Купить";
         SET(carp) = "Карп";
+        SET(changePassword) = "Сменить пароль";
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
         SET(confirmPassword) = "Подтвердите пароль:";
@@ -151,6 +158,7 @@ void Dictionary::setLanguage(Language l) {
         SET(incorrectPassword) = "Неверный пароль!";
         SET(information) = "Информация";
         SET(invalidLoginText) = "Неверный логин";
+        SET(invalidOldPasswordWarning) = "Неверно введен старый пароль";
         SET(invalidValue) = "<INVALID>";
         SET(inventory) = "Инвентарь";
         SET(language) = "Язык";
@@ -167,9 +175,13 @@ void Dictionary::setLanguage(Language l) {
         SET(nets) = "Сети";
         SET(netsDescription) = "В этом меню Вы можете поставить сети, чтобы ловить рыбу в пассивном режиме.\nВы можете приобрести сети в магазине.\nВы можете добавить одну сеть в каждую из ячеек.";
         SET(netSlot) = "Слот для сетей %1\nСеть: %2";
+        SET(newPassword) = "Новый пароль";
+        SET(newPasswordConfirmation) = "Подтверждение нового пароля";
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
         SET(oka) = "Ока";
+        SET(oldPassword) = "Старый пароль";
         SET(password) = "Пароль:";
+        SET(passwordIsChanged) = "Пароль успешно изменен";
         SET(perch) = "Окунь";
         SET(pike) = "Щука";
         SET(price) = "Цена";

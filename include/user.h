@@ -35,8 +35,8 @@ public:
     // Setters
     void incClicks();
     void changeCoins(qint64 quantity);
+    void setPasswordHash(const QByteArray &hashedPassword);
     // Getters
-
     QString getUsername() const;
     QByteArray getPasswordHash() const;
     qint64 getClicks() const;

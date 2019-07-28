@@ -12,11 +12,20 @@ private:
     Q_OBJECT
 private:
     Game *game;
-    QLabel usersettingsText;
+    QLabel usersettingsLabel,
+           oldPasswordLabel,
+           newPasswordLabel,
+           newPasswordConfirmationLabel,
+           changePasswordLabel;
+    QLineEdit oldPasswordText,
+              newPasswordText,
+              newPasswordConfirmationText;
     QPushButton deleteAccountButton,
+                changePasswordButton,
                 backButton;
     QGridLayout *grid;
 private slots:
+    void changePasswordFunction();
     void deleteAccountFunction();
     void backFunction();
 public:
