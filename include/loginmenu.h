@@ -3,6 +3,7 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QLineEdit>
+#include <QComboBox>
 
 class Game;
 
@@ -11,8 +12,8 @@ private:
     Q_OBJECT
 private:
     Game *game;
-    QLineEdit loginText,
-              passwordText;
+    QComboBox loginSelector;
+    QLineEdit passwordText;
     QPushButton loginButton,
                 signUpButton,
                 demoButton,
