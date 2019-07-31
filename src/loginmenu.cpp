@@ -73,7 +73,7 @@ void LoginMenu::backFunction() {
 void LoginMenu::loginFunction() {
     const int userIndex = loginSelector.currentIndex();
     qDebug() << QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5);
-    qDebug() << game->users[userIndex].getPasswordHash();
+    qDebug() << game->users[userIndex].getPasswordHash().toLatin1();
     if (QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5) ==
             game->users[userIndex].getPasswordHash()) {
         qDebug() << "Logged in as " << game->users[userIndex].getUsername();
