@@ -44,7 +44,7 @@ QJsonObject User::serialize() const {
     jsonObj["username"] = username;
     jsonObj["clicks"] = clicks;
     jsonObj["coins"] = coins;
-    jsonObj["passwordHash"] = toString(passwordHash);
+    jsonObj["passwordHash"] = passwordHash;
     jsonObj["signUpTime"] = signUpTime;
     jsonObj["inventory"] = toString(inventory.get());
     return jsonObj;
@@ -54,7 +54,7 @@ QVariant User::deserialize(const QVariantMap &map) {
     User user = User(map["username"].toString());
     user.clicks = map["clicks"].toLongLong();
     user.coins = map["coins"].toLongLong();
-    fromString(user.passwordHash, map["passwordHash"].toString());
+    user.passwordHash = map["passwordHash"].toString();
     user.signUpTime = map["signUpTime"].toString();
     fromString(user.inventory.set(), map["inventory"].toString());
     return QVariant::fromValue(user);
@@ -92,7 +92,7 @@ QString User::getUsername() const {
     return username;
 }
 
-QByteArray User::getPasswordHash() const {
+QString User::getPasswordHash() const {
     return passwordHash;
 }
 
@@ -106,7 +106,7 @@ void User::changeCoins(qint64 quantity) {
     }
 }
 
-void User::setPasswordHash(const QByteArray &hashedPassword) {
+void User::setPasswordHash(const QString &hashedPassword) {
     passwordHash = hashedPassword;
 }
 

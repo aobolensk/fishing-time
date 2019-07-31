@@ -1,7 +1,6 @@
 #ifndef INCLUDE_USER_H_
 #define INCLUDE_USER_H_
 #include <QString>
-#include <QByteArray>
 #include <QVariant>
 #include <QJsonObject>
 #include <QDebug>
@@ -12,7 +11,7 @@ class User {
 private:
     // General information
     QString username;
-    QByteArray passwordHash;
+    QString passwordHash;
     qint64 coins = 0ll;
     // Statistics
     QString signUpTime;
@@ -36,10 +35,10 @@ public:
     // Setters
     void incClicks();
     void changeCoins(qint64 quantity);
-    void setPasswordHash(const QByteArray &hashedPassword);
+    void setPasswordHash(const QString &hashedPassword);
     // Getters
     QString getUsername() const;
-    QByteArray getPasswordHash() const;
+    QString getPasswordHash() const;
     qint64 getClicks() const;
     qint64 getCoins() const;
 };
