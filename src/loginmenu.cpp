@@ -44,6 +44,7 @@ void LoginMenu::display() {
     loginSelector.setVisible(true);
     loginSelector.setEnabled(true);
 
+    passwordText.setText("");
     passwordText.setVisible(true);
     passwordText.setEnabled(true);
 
