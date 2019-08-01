@@ -60,12 +60,15 @@ void SignupMenu::display() {
     passwordConfirmationLabel.setText(game->str.confirmPassword);
     passwordConfirmationLabel.setVisible(true);
 
+    loginText.setText("");
     loginText.setVisible(true);
     loginText.setEnabled(true);
 
+    passwordText.setText("");
     passwordText.setVisible(true);
     passwordText.setEnabled(true);
 
+    passwordConfirmationText.setText("");
     passwordConfirmationText.setVisible(true);
     passwordConfirmationText.setEnabled(true);
 
