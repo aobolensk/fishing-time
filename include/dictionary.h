@@ -34,7 +34,7 @@ public:
             dialog,
             empty,
             emptyLoginWarning,
-            enterYourLoginHereText,
+            emptyPasswordWarning,
             exit,
             exitConfirmation,
             fishLabelText,

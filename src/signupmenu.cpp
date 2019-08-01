@@ -60,15 +60,12 @@ void SignupMenu::display() {
     passwordConfirmationLabel.setText(game->str.confirmPassword);
     passwordConfirmationLabel.setVisible(true);
 
-    loginText.setText(game->str.enterYourLoginHereText);
     loginText.setVisible(true);
     loginText.setEnabled(true);
 
-    passwordText.setText("Password");
     passwordText.setVisible(true);
     passwordText.setEnabled(true);
 
-    passwordConfirmationText.setText("password");
     passwordConfirmationText.setVisible(true);
     passwordConfirmationText.setEnabled(true);
 
@@ -90,6 +87,14 @@ void SignupMenu::signUpFunction() {
     if (loginText.text() == "") {
         QMessageBox::warning(game, game->str.warning, game->str.emptyLoginWarning);
         return;
+    }
+    if (passwordText.text() == "") {
+        QMessageBox::StandardButton emptyPasswordResult = 
+            QMessageBox::question(game, "fishing-time", game->str.emptyPasswordWarning,
+            QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+        if (emptyPasswordResult != QMessageBox::Yes) {
+            return;
+        }
     }
     if (passwordText.text() != passwordConfirmationText.text()) {
         QMessageBox::warning(game, game->str.warning, game->str.confirmPasswordWarning);
