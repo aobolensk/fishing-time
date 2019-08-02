@@ -117,23 +117,23 @@ void StoreMenu::updateInfo() {
 
 void StoreMenu::buyFunction() {
     if (storeTable.currentRow() == -1) {
-        QMessageBox::warning(game, game->str.warning, game->str.selectItemFromList);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.selectItemFromList);
         return;
     }
     bool ok;
     int quantity = quantityText.text().toInt(&ok, 10);
     if (!ok) {
-        QMessageBox::warning(game, game->str.warning, game->str.quantityShouldBeANumber);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.quantityShouldBeANumber);
         return;
     }
     qint64 price = storeTable.item(storeTable.currentRow(), 2)->text().toLongLong();
     qint64 sum = quantity * price;
     if (sum > game->users[game->activeUser].getCoins()) {
-        QMessageBox::warning(game, game->str.warning, game->str.youDontHaveEnoughCoins);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.youDontHaveEnoughCoins);
         return;
     }
     if (quantity < 0) {
-        QMessageBox::warning(game, game->str.warning, game->str.quantityShouldBeMoreThanZero);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.quantityShouldBeMoreThanZero);
         return;
     }
     game->users[game->activeUser].inventory.changeItem(storeTable.item(storeTable.currentRow(), 0)->text(), quantity);

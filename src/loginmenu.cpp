@@ -82,7 +82,7 @@ void LoginMenu::loginFunction() {
         this->hide();
         game->gameMenu.display();
     } else {
-        QMessageBox::warning(game, game->str.warning, game->str.incorrectPassword);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.incorrectPassword);
     }
     return;
 }
@@ -107,7 +107,7 @@ void LoginMenu::demoFunction() {
         }
     } while (userExists);
     game->users.push_back(User(demoUserName, ""));
-    QMessageBox::warning(game, game->str.warning, game->str.demoModeWarning);
+    QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.demoModeWarning);
     game->activeUser = game->users.size() - 1;
     game->activeLocation = 0;
     this->hide();

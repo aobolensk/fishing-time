@@ -28,7 +28,8 @@ Game::Game(QWidget *parent, const QString &file) :
         signupMenu(SignupMenu(this, &grid)),
         usersettingsMenu(UsersettingsMenu(this, &grid)) {
     this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
-    setLayout(&grid);
+    this->setLayout(&grid);
+    this->setWindowTitle(str.fishingTime);
     grid.setColumnStretch(0, 1);
     grid.setColumnStretch(1, 1);
     grid.setColumnStretch(2, 1);
@@ -99,7 +100,7 @@ void Game::serialize() {
 
 void Game::closeEvent(QCloseEvent *event) {
     QMessageBox::StandardButton closeResult =
-        QMessageBox::question(this, "fishing-time", str.exitConfirmation,
+        QMessageBox::question(this, str.fishingTime, str.exitConfirmation,
         QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
     if (closeResult != QMessageBox::Yes) {
         event->ignore();
