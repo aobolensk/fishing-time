@@ -94,20 +94,20 @@ void UsersettingsMenu::display() {
 void UsersettingsMenu::changePasswordFunction() {
     if (QCryptographicHash::hash(oldPasswordText.text().toLatin1(), QCryptographicHash::Md5) !=
             game->users[game->activeUser].getPasswordHash()) {
-        QMessageBox::warning(game, game->str.warning, game->str.invalidOldPasswordWarning);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.invalidOldPasswordWarning);
         return;
     }
     if (newPasswordText.text().toLatin1() != newPasswordConfirmationText.text().toLatin1()) {
-        QMessageBox::warning(game, game->str.warning, game->str.confirmPasswordWarning);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.confirmPasswordWarning);
         return;
     }
     game->users[game->activeUser].setPasswordHash(QCryptographicHash::hash(newPasswordText.text().toLatin1(), QCryptographicHash::Md5));
-    QMessageBox::information(game, game->str.information, game->str.passwordIsChanged);
+    QMessageBox::information(game, game->str.fishingTime + ": " + game->str.information, game->str.passwordIsChanged);
 }
 
 void UsersettingsMenu::deleteAccountFunction() {
     QMessageBox::StandardButton deleteConfiramtionResult =
-        QMessageBox::question(game, "fishing-time", game->str.deleteAccountConfirmation,
+        QMessageBox::question(game, game->str.fishingTime, game->str.deleteAccountConfirmation,
         QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
     if (deleteConfiramtionResult == QMessageBox::Yes) {
         game->netsMenu.foldNets();

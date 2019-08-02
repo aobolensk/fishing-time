@@ -161,6 +161,7 @@ void GameMenu::backFunction() {
 
 void GameMenu::inventoryFunction() {
     updateInfo();
+    table.setWindowTitle(game->str.fishingTime + ": " + game->str.inventory);
     table.setVisible(true);
     table.setEnabled(true);
 }

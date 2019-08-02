@@ -67,15 +67,15 @@ void MarketMenu::processDialog(int seller) {
     bool ok;
     int quantity = quantityText[seller].text().toInt(&ok, 10);
     if (!ok) {
-        QMessageBox::warning(game, game->str.warning, game->str.quantityShouldBeANumber);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.quantityShouldBeANumber);
         return;
     }
     if (quantity > game->users[game->activeUser].inventory.getItem(goodId[seller])) {
-        QMessageBox::warning(game, game->str.warning, game->str.youDontHaveEnoughItems);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.youDontHaveEnoughItems);
         return;
     }
     if (quantity < 0) {
-        QMessageBox::warning(game, game->str.warning, game->str.quantityShouldBeMoreThanZero);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.quantityShouldBeMoreThanZero);
         return;
     }
     game->users[game->activeUser].inventory.changeItem(goodId[seller], -quantity);

@@ -88,29 +88,29 @@ void SignupMenu::backFunction() {
 
 void SignupMenu::signUpFunction() {
     if (loginText.text() == "") {
-        QMessageBox::warning(game, game->str.warning, game->str.emptyLoginWarning);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.emptyLoginWarning);
         return;
     }
     if (passwordText.text() == "") {
         QMessageBox::StandardButton emptyPasswordResult = 
-            QMessageBox::question(game, "fishing-time", game->str.emptyPasswordWarning,
+            QMessageBox::question(game, game->str.fishingTime, game->str.emptyPasswordWarning,
             QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
         if (emptyPasswordResult != QMessageBox::Yes) {
             return;
         }
     }
     if (passwordText.text() != passwordConfirmationText.text()) {
-        QMessageBox::warning(game, game->str.warning, game->str.confirmPasswordWarning);
+        QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.confirmPasswordWarning);
         return;
     }
     for (int i = 0; i < game->users.size(); ++i) {
         if (game->users[i].getUsername() == loginText.text()) {
-            QMessageBox::warning(game, game->str.warning, game->str.thisUserAlreadyExistsText);
+            QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.thisUserAlreadyExistsText);
             return;
         }
     }
     game->users.push_back(User(loginText.text(), passwordText.text()));
-    QMessageBox::information(game, game->str.information,
+    QMessageBox::information(game, game->str.fishingTime + ": " + game->str.information,
                              game->str.newUserCreatedText.arg(loginText.text()));
     backFunction();
 }
