@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QJsonArray>
 #include <QJsonParseError>
+#include <QSettings>
 
 Game::Game(QWidget *parent, const QString &file) :
         QWidget(parent),
@@ -28,7 +29,11 @@ Game::Game(QWidget *parent, const QString &file) :
         signupMenu(SignupMenu(this, &grid)),
         usersettingsMenu(UsersettingsMenu(this, &grid)),
         ratingMenu(RatingMenu(this, &grid)) {
-    this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
+    QSettings settings;
+    if (!this->restoreGeometry(settings.value("mainWindowGeometry").toByteArray())) {
+        qDebug() << "Unable to restore game window geometry. Loading defaults...";
+        this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
+    }
     this->setLayout(&grid);
     this->setWindowTitle(str.fishingTime);
     grid.setColumnStretch(0, 1);
@@ -82,6 +87,9 @@ void Game::deserialize() {
 }
 
 void Game::serialize() {
+    QSettings settings;
+    settings.setValue("mainWindowGeometry", this->saveGeometry());
+    settings.setValue("consoleGeometry", console.saveGeometry());
     if (activeUser != -1 && activeLocation != -1)
         netsMenu.foldNets();
     QFile config(config_file);
