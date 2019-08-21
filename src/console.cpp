@@ -1,4 +1,5 @@
 #include <QScrollBar>
+#include <QSettings>
 #include "console.h"
 #include "game.h"
 
@@ -8,7 +9,11 @@ Console::Console(Game *game) :
     grid(QGridLayout(this)),
     log(game, &console) {
     (void) this->game;
-    this->setGeometry(QRect(QPoint(740, 100), QSize(360, 480)));
+    QSettings settings;
+    if (!this->restoreGeometry(settings.value("consoleGeometry").toByteArray())) {
+        qDebug() << "Unable to restore console window geometry. Loading defaults...";
+        this->setGeometry(QRect(QPoint(740, 100), QSize(360, 480)));
+    }    
     this->setLayout(&grid);
 
     grid.addWidget(&console, 0, 0);
