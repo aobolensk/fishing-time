@@ -58,7 +58,7 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     netsButton.setEnabled(false);
     connect(&netsButton, SIGNAL(released()), this, SLOT(netsFunction()));
 
-    grid->addWidget(&statisticsButton, 2, 1);
+    grid->addWidget(&statisticsButton, 2, 0);
     statisticsButton.setVisible(false);
     statisticsButton.setEnabled(false);
     connect(&statisticsButton, SIGNAL(released()), this, SLOT(statisticsFunction()));
