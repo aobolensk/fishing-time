@@ -90,6 +90,8 @@ void MainMenu::exitFunction() {
 }
 
 void MainMenu::hide() {
+    infoLabel.setVisible(false);
+
     consoleButton.setVisible(false);
     consoleButton.setEnabled(false);
 
