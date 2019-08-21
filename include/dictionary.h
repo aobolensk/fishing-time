@@ -73,6 +73,7 @@ public:
             quantity,
             quantityShouldBeANumber,
             quantityShouldBeMoreThanZero,
+            rating,
             roach,
             selectItemFromList,
             sellerText,

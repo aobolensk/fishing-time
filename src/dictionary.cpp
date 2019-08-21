@@ -107,6 +107,7 @@ void Dictionary::setLanguage(Language l) {
         SET(quantity) = "Quantity";
         SET(quantityShouldBeANumber) = "Quantity should be a number";
         SET(quantityShouldBeMoreThanZero) = "Quantity should be more than zero";
+        SET(rating) = "Rating";
         SET(roach) = "Roach";
         SET(selectItemFromList) = "Select item from list";
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
@@ -186,6 +187,7 @@ void Dictionary::setLanguage(Language l) {
         SET(quantity) = "Количество";
         SET(quantityShouldBeANumber) = "Количество должно быть числом";
         SET(quantityShouldBeMoreThanZero) = "Количество должно быть больше нуля";
+        SET(rating) = "Рейтинг";
         SET(roach) = "Плотва";
         SET(selectItemFromList) = "Выберите предмет из списка";
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";

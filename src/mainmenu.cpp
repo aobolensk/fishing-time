@@ -22,7 +22,12 @@ MainMenu::MainMenu(Game *game, QGridLayout *grid) :
     settingsButton.setEnabled(false);
     connect(&settingsButton, SIGNAL(released()), this, SLOT(settingsFunction()));
 
-    grid->addWidget(&exitButton, 2, 1);
+    grid->addWidget(&ratingButton, 2, 1);
+    ratingButton.setVisible(false);
+    ratingButton.setEnabled(false);
+    connect(&ratingButton, SIGNAL(released()), this, SLOT(ratingFunction()));
+
+    grid->addWidget(&exitButton, 3, 1);
     exitButton.setVisible(false);
     exitButton.setEnabled(false);
     connect(&exitButton, SIGNAL(released()), this, SLOT(exitFunction()));
@@ -45,6 +50,10 @@ void MainMenu::display() {
     settingsButton.setText(game->str.settings);
     settingsButton.setVisible(true);
     settingsButton.setEnabled(true);
+
+    ratingButton.setText(game->str.rating);
+    ratingButton.setVisible(true);
+    ratingButton.setEnabled(true);
 
     exitButton.setText(game->str.exit);
     exitButton.setVisible(true);
@@ -70,6 +79,11 @@ void MainMenu::settingsFunction() {
     game->settingsMenu.display();
 }
 
+void MainMenu::ratingFunction() {
+    this->hide();
+    game->ratingMenu.display();
+}
+
 void MainMenu::exitFunction() {
     this->hide();
     QApplication::quit();
@@ -84,6 +98,9 @@ void MainMenu::hide() {
 
     settingsButton.setVisible(false);
     settingsButton.setEnabled(false);
+
+    ratingButton.setVisible(false);
+    ratingButton.setEnabled(false);
 
     exitButton.setVisible(false);
     exitButton.setEnabled(false);
