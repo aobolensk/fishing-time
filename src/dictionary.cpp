@@ -50,7 +50,7 @@ void Dictionary::setLanguage(Language l) {
     switch (l) {
     case Language::English: {
         constexpr int ENGLISH_START = __LINE__;
-        SET(autoSavePeriod) = "Autosave period:";
+        SET(autoSavePeriod) = "Autosave period";
         SET(back) = "Back";
         SET(basicNet) = "Basic net";
         SET(bream) = "Bream";
@@ -59,7 +59,8 @@ void Dictionary::setLanguage(Language l) {
         SET(changePassword) = "Change password";
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
-        SET(confirmPassword) = "Confirm password:";
+        SET(coins) = "Coins";
+        SET(confirmPassword) = "Confirm password";
         SET(confirmPasswordWarning) = "Password are not equal";
         SET(console) = "Console";
         SET(deleteAccount) = "Delete account";
@@ -99,7 +100,7 @@ void Dictionary::setLanguage(Language l) {
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
         SET(oka) = "Oka";
         SET(oldPassword) = "Old password";
-        SET(password) = "Password:";
+        SET(password) = "Password";
         SET(passwordIsChanged) = "Password is successfully changed";
         SET(perch) = "Perch";
         SET(pike) = "Pike";
@@ -120,7 +121,7 @@ void Dictionary::setLanguage(Language l) {
         SET(thisUserAlreadyExistsText) = "This user already exists";
         SET(userSettings) = "User settings";
         SET(userSettingsText) = "User: %1";
-        SET(username) = "Username:";
+        SET(username) = "Username";
         SET(volga) = "Volga";
         SET(warning) = "Warning";
         SET(youDontHaveEnoughCoins) = "You don't have enough coins";
@@ -130,7 +131,7 @@ void Dictionary::setLanguage(Language l) {
         static_assert((DICTIONARY_END - DICTIONARY_START) == (ENGLISH_END - ENGLISH_START));
     } case Language::Russian: {
         constexpr int RUSSIAN_START = __LINE__;
-        SET(autoSavePeriod) = "Период автосохранения:";
+        SET(autoSavePeriod) = "Период автосохранения";
         SET(back) = "Назад";
         SET(basicNet) = "Базовая сеть";
         SET(bream) = "Лещ";
@@ -139,7 +140,8 @@ void Dictionary::setLanguage(Language l) {
         SET(changePassword) = "Сменить пароль";
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
-        SET(confirmPassword) = "Подтвердите пароль:";
+        SET(coins) = "Монет";
+        SET(confirmPassword) = "Подтвердите пароль";
         SET(confirmPasswordWarning) = "Пароли не совпадают";
         SET(console) = "Консоль";
         SET(deleteAccount) = "Удалить аккаунт";
@@ -179,7 +181,7 @@ void Dictionary::setLanguage(Language l) {
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
         SET(oka) = "Ока";
         SET(oldPassword) = "Старый пароль";
-        SET(password) = "Пароль:";
+        SET(password) = "Пароль";
         SET(passwordIsChanged) = "Пароль успешно изменен";
         SET(perch) = "Окунь";
         SET(pike) = "Щука";
@@ -200,7 +202,7 @@ void Dictionary::setLanguage(Language l) {
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";
         SET(userSettings) = "Настройки пользователя";
         SET(userSettingsText) = "Пользователь: %1";
-        SET(username) = "Логин:";
+        SET(username) = "Логин";
         SET(volga) = "Волга";
         SET(warning) = "Внимание";
         SET(youDontHaveEnoughCoins) = "Недостаточно монет";

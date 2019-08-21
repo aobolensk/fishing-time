@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QComboBox>
+#include <QTableWidget>
 
 class Game;
 
@@ -12,8 +13,13 @@ private:
     Q_OBJECT
 private:
     Game *game;
+    QTableWidget ratingTable;
+    QTableWidgetItem usernameHeader,
+                     coinsHeader;
     QPushButton backButton;
     QGridLayout *grid;
+private:
+    void updateTable();
 private slots:
     void backFunction();
 public:

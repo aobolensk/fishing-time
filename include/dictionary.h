@@ -25,6 +25,7 @@ public:
             changePassword,
             click,
             clicksCount,
+            coins,
             confirmPassword,
             confirmPasswordWarning,
             console,
