@@ -26,7 +26,8 @@ Game::Game(QWidget *parent, const QString &file) :
         netsMenu(NetsMenu(this, &grid)),
         statisticsMenu(StatisticsMenu(this, &grid)),
         signupMenu(SignupMenu(this, &grid)),
-        usersettingsMenu(UsersettingsMenu(this, &grid)) {
+        usersettingsMenu(UsersettingsMenu(this, &grid)),
+        ratingMenu(RatingMenu(this, &grid)) {
     this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
     this->setLayout(&grid);
     this->setWindowTitle(str.fishingTime);

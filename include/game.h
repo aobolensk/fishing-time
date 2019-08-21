@@ -16,6 +16,7 @@
 #include "statisticsmenu.h"
 #include "usersettingsmenu.h"
 #include "signupmenu.h"
+#include "ratingmenu.h"
 #include "user.h"
 #include "location.h"
 #include "dictionary.h"
@@ -55,6 +56,7 @@ public:
     StatisticsMenu statisticsMenu;
     SignupMenu signupMenu;
     UsersettingsMenu usersettingsMenu;
+    RatingMenu ratingMenu;
     int activeUser = -1;
     int activeLocation = -1;
     void setAutoSavePeriod(int periodInMinutes);
