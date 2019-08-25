@@ -7,9 +7,15 @@
 MarketMenu::MarketMenu(Game *game, QGridLayout *grid) :
         game(game),
         grid(grid) {
-    grid->addWidget(&infoLabel, 0, 0);
+    grid->addWidget(&descriptionLabel, 0, 0, 1, 2);
+    descriptionLabel.setVisible(false);
+    descriptionLabel.setEnabled(false);
+    descriptionLabel.setWordWrap(true);
+
+    grid->addWidget(&infoLabel, 0, 2);
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
+
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         grid->addWidget(&dialogButton[i], 3, i);
         dialogButton[i].setVisible(false);
@@ -50,6 +56,7 @@ void MarketMenu::updateInfo() {
         QString::number(game->users[game->activeUser].getCoins()),
         QString::number(game->users[game->activeUser].getClicks())
     ));
+
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         dialogLabel[i].setText(
             game->str.sellerText.arg(
@@ -88,17 +95,26 @@ void MarketMenu::processDialog(int seller) {
 void MarketMenu::display() {
     updateDeals();
     updateInfo();
+
+    descriptionLabel.setText(game->str.marketDescription);
+    descriptionLabel.setVisible(true);
+    descriptionLabel.setEnabled(true);
+
     infoLabel.setVisible(true);
     infoLabel.setEnabled(true);
+
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         dialogButton[i].setText(game->str.dialog);
         dialogButton[i].setVisible(true);
         dialogButton[i].setEnabled(true);
+
         dialogLabel[i].setVisible(true);
         dialogLabel[i].setEnabled(true);
+
         quantityText[i].setVisible(true);
         quantityText[i].setEnabled(true);
     }
+
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
@@ -112,14 +128,21 @@ void MarketMenu::backFunction() {
 void MarketMenu::hide() {
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
+
+    descriptionLabel.setVisible(false);
+    descriptionLabel.setEnabled(false);
+
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         dialogButton[i].setVisible(false);
         dialogButton[i].setEnabled(false);
+
         dialogLabel[i].setVisible(false);
         dialogLabel[i].setEnabled(false);
+
         quantityText[i].setVisible(false);
         quantityText[i].setEnabled(false);
     }
+
     backButton.setVisible(false);
     backButton.setEnabled(false);
 }

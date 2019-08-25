@@ -56,6 +56,7 @@ public:
             mainLabelText,
             mainMenuText,
             market,
+            marketDescription,
             min,
             name,
             netSlot,

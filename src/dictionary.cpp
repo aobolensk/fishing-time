@@ -90,6 +90,7 @@ void Dictionary::setLanguage(Language l) {
         SET(mainLabelText) = "Welcome, %1\nCoins: %2\nTotal clicks: %3\n";
         SET(mainMenuText) = "%1";
         SET(market) = "Market";
+        SET(marketDescription) = "You can sell fish that you caught here. Just choose quantity and press button. All these deals update once a day.";
         SET(min) = "min";
         SET(name) = "Name";
         SET(netSlot) = "Net slot %1\nNet: %2";
@@ -171,6 +172,7 @@ void Dictionary::setLanguage(Language l) {
         SET(mainLabelText) = "Добро пожаловать, %1\nМонет: %2\nВсего кликов: %3\n";
         SET(mainMenuText) = "%1";
         SET(market) = "Рынок";
+        SET(marketDescription) = "Вы можете продать пойманную рыбу здесь. Просто выберите количество и нажмите на кнопку. Все эти сделки обновляются раз в день.";
         SET(min) = "мин";
         SET(name) = "Имя";
         SET(netSlot) = "Слот для сетей %1\nСеть: %2";

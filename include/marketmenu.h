@@ -15,7 +15,8 @@ private:
     Game *game;
     QPushButton backButton,
                 dialogButton[SELLERS_COUNT];
-    QLabel infoLabel,
+    QLabel descriptionLabel,
+           infoLabel,
            dialogLabel[SELLERS_COUNT];
     QLineEdit quantityText[SELLERS_COUNT];
     QString goodId[SELLERS_COUNT];
