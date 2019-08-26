@@ -50,6 +50,8 @@ void Dictionary::setLanguage(Language l) {
     switch (l) {
     case Language::English: {
         constexpr int ENGLISH_START = __LINE__;
+        SET(about) = "About";
+        SET(aboutDescription) = "Fishing Time<br>Official repo: <a href=\"%1\">%1</a>\n";
         SET(autoSavePeriod) = "Autosave period";
         SET(back) = "Back";
         SET(basicNet) = "Basic net";
@@ -136,6 +138,8 @@ void Dictionary::setLanguage(Language l) {
         static_assert((DICTIONARY_END - DICTIONARY_START) == (ENGLISH_END - ENGLISH_START));
     } case Language::Russian: {
         constexpr int RUSSIAN_START = __LINE__;
+        SET(about) = "О программе";
+        SET(aboutDescription) = "Fishing Time<br>Официальный репозиторий: <a href=\"%1\">%1</a>\n";
         SET(autoSavePeriod) = "Период автосохранения";
         SET(back) = "Назад";
         SET(basicNet) = "Базовая сеть";

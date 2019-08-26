@@ -29,7 +29,8 @@ Game::Game(QWidget *parent, const QString &file) :
         signupMenu(SignupMenu(this, &grid)),
         usersettingsMenu(UsersettingsMenu(this, &grid)),
         ratingMenu(RatingMenu(this, &grid)),
-        inventoryMenu(InventoryMenu(this, &grid)) {
+        inventoryMenu(InventoryMenu(this, &grid)),
+        aboutMenu(AboutMenu(this)) {
     QSettings settings;
     if (!this->restoreGeometry(settings.value("mainWindowGeometry").toByteArray())) {
         qDebug() << "Unable to restore game window geometry. Loading defaults...";
@@ -91,6 +92,7 @@ void Game::serialize() {
     QSettings settings;
     settings.setValue("mainWindowGeometry", this->saveGeometry());
     settings.setValue("consoleGeometry", console.saveGeometry());
+    settings.setValue("aboutWindowGeometry", aboutMenu.saveGeometry());
     if (activeUser != -1 && activeLocation != -1)
         netsMenu.foldNets();
     QFile config(config_file);
