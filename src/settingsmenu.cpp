@@ -7,10 +7,10 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     grid->addWidget(&autoSavePeriodLabel, 0, 0);
     autoSavePeriodLabel.setVisible(false);
 
-    grid->addWidget(&autoSaveSelector, 0, 1);
-    autoSaveSelector.setCurrentIndex(-1);
-    autoSaveSelector.setVisible(false);
-    autoSaveSelector.setEnabled(false);
+    grid->addWidget(&autoSavePeriodSelector, 0, 1);
+    autoSavePeriodSelector.setCurrentIndex(-1);
+    autoSavePeriodSelector.setVisible(false);
+    autoSavePeriodSelector.setEnabled(false);
 
     grid->addWidget(&languageLabel, 1, 0);
     languageLabel.setVisible(false);
@@ -29,7 +29,15 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     languageSelector.setVisible(false);
     languageSelector.setEnabled(false);
 
-    grid->addWidget(&backButton, 2, 1);
+    grid->addWidget(&inventoryTypeLabel, 2, 0);
+    inventoryTypeLabel.setVisible(false);
+
+    grid->addWidget(&inventoryTypeSelector, 2, 1);
+    inventoryTypeSelector.setCurrentIndex(-1);
+    inventoryTypeSelector.setVisible(false);
+    inventoryTypeSelector.setEnabled(false);
+
+    grid->addWidget(&backButton, 3, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -40,19 +48,19 @@ void SettingsMenu::display() {
     autoSavePeriodLabel.setVisible(true);
 
     for (int i = 0; i < 6; ++i) {
-        autoSaveSelector.addItem(QString::number(autoSaveOptions[i]) + ' ' + game->str.min);
+        autoSavePeriodSelector.addItem(QString::number(autoSaveOptions[i]) + ' ' + game->str.min);
     }
-    autoSaveSelector.setVisible(true);
-    autoSaveSelector.setEnabled(true);
-    autoSaveSelector.setCurrentIndex(-1);
+    autoSavePeriodSelector.setVisible(true);
+    autoSavePeriodSelector.setEnabled(true);
+    autoSavePeriodSelector.setCurrentIndex(-1);
     int currentPeriod = game->autoSaveTimer.interval() / (60 * 1000);
     for (int i = 0; i < 6; ++i) {
         if (currentPeriod == autoSaveOptions[i]) {
-            autoSaveSelector.setCurrentIndex(i);
+            autoSavePeriodSelector.setCurrentIndex(i);
             break;
         }
     }
-    autoSaveUpdater = connect(&autoSaveSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    autoSaveUpdater = connect(&autoSavePeriodSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
        [this](int index){ game->setAutoSavePeriod(autoSaveOptions[index]); });
 
     languageLabel.setText(game->str.language);
@@ -61,6 +69,18 @@ void SettingsMenu::display() {
     languageSelector.setCurrentIndex((int)game->activeLanguage);
     languageSelector.setVisible(true);
     languageSelector.setEnabled(true);
+
+
+    inventoryTypeLabel.setText(game->str.inventoryType);
+    inventoryTypeLabel.setVisible(true);
+
+    inventoryTypeSelector.addItem(game->str.popUp);
+    inventoryTypeSelector.addItem(game->str.builtIn);
+    inventoryTypeSelector.setCurrentIndex((int)game->inventoryType);
+    inventoryTypeSelector.setVisible(true);
+    inventoryTypeSelector.setEnabled(true);
+    inventoryTypeUpdater = connect(&inventoryTypeSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+       [this](int index){ this->game->inventoryType = (InventoryType)index; });
 
     backButton.setText(game->str.back);
     backButton.setVisible(true);
@@ -75,16 +95,22 @@ void SettingsMenu::backFunction() {
 void SettingsMenu::hide() {
     autoSavePeriodLabel.setVisible(false);
 
-    autoSaveSelector.setVisible(false);
-    autoSaveSelector.setEnabled(false);
+    autoSavePeriodSelector.setVisible(false);
+    autoSavePeriodSelector.setEnabled(false);
     disconnect(autoSaveUpdater);
-    autoSaveSelector.setCurrentIndex(-1);
-    autoSaveSelector.clear();
+    autoSavePeriodSelector.clear();
 
     languageLabel.setVisible(false);
 
     languageSelector.setVisible(false);
     languageSelector.setEnabled(false);
+
+    inventoryTypeLabel.setVisible(false);
+
+    inventoryTypeSelector.setVisible(false);
+    inventoryTypeSelector.setEnabled(false);
+    disconnect(inventoryTypeUpdater);
+    inventoryTypeSelector.clear();
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

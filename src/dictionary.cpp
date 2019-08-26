@@ -54,6 +54,7 @@ void Dictionary::setLanguage(Language l) {
         SET(back) = "Back";
         SET(basicNet) = "Basic net";
         SET(bream) = "Bream";
+        SET(builtIn) = "Built-in";
         SET(buy) = "Buy";
         SET(carp) = "Carp";
         SET(changePassword) = "Change password";
@@ -77,6 +78,8 @@ void Dictionary::setLanguage(Language l) {
         SET(id) = "Id";
         SET(ide) = "Ide";
         SET(incorrectPassword) = "Incorrect password!";
+        SET(inventoryDescription) = "Inventory of player %1";
+        SET(inventoryType) = "Inventory type";
         SET(information) = "Information";
         SET(invalidOldPasswordWarning) = "Incorrect old password";
         SET(invalidValue) = "<INVALID>";
@@ -105,6 +108,7 @@ void Dictionary::setLanguage(Language l) {
         SET(passwordIsChanged) = "Password is successfully changed";
         SET(perch) = "Perch";
         SET(pike) = "Pike";
+        SET(popUp) = "Pop-up";
         SET(price) = "Price";
         SET(quantity) = "Quantity";
         SET(quantityShouldBeANumber) = "Quantity should be a number";
@@ -137,6 +141,7 @@ void Dictionary::setLanguage(Language l) {
         SET(basicNet) = "Базовая сеть";
         SET(bream) = "Лещ";
         SET(buy) = "Купить";
+        SET(builtIn) = "Встроенный";
         SET(carp) = "Карп";
         SET(changePassword) = "Сменить пароль";
         SET(click) = "Нажимай!";
@@ -159,6 +164,8 @@ void Dictionary::setLanguage(Language l) {
         SET(id) = "Идентификатор";
         SET(ide) = "Язь";
         SET(incorrectPassword) = "Неверный пароль!";
+        SET(inventoryDescription) = "Инвентарь игрока %1";
+        SET(inventoryType) = "Тип инвентаря";
         SET(information) = "Информация";
         SET(invalidOldPasswordWarning) = "Неверно введен старый пароль";
         SET(invalidValue) = "<INVALID>";
@@ -187,6 +194,7 @@ void Dictionary::setLanguage(Language l) {
         SET(passwordIsChanged) = "Пароль успешно изменен";
         SET(perch) = "Окунь";
         SET(pike) = "Щука";
+        SET(popUp) = "Выпадающий";
         SET(price) = "Цена";
         SET(quantity) = "Количество";
         SET(quantityShouldBeANumber) = "Количество должно быть числом";

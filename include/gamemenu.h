@@ -25,7 +25,7 @@ private:
                 usersettingsButton;
     QLabel infoLabel,
            fishLabel;
-    QTableWidget table;
+    QTableWidget popUpInventoryTable;
     QTableWidgetItem nameHeader,
                      quantityHeader;
     QComboBox locationSelector;

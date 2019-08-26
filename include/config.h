@@ -5,6 +5,10 @@
 
 class Game;
 
+enum class InventoryType {
+    POPUP, BUILTIN
+};
+
 class Config {
 private:
     Game *game;

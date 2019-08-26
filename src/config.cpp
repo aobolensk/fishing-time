@@ -12,6 +12,7 @@ void Config::deserialize(const QVariantMap &map) {
         return;
     game->activeLanguage = (Language)map["language"].toInt();
     game->autoSavePeriod = map["autoSavePeriod"].toInt();
+    game->inventoryType = (InventoryType)map["inventoryType"].toInt();
     isReady = true;
 }
 
@@ -20,5 +21,6 @@ QJsonObject Config::serialize() const {
     jsonObj["fishingtime_object"] = "config";
     jsonObj["language"] = (int)game->activeLanguage;
     jsonObj["autoSavePeriod"] = game->autoSavePeriod;
+    jsonObj["inventoryType"] = (int)game->inventoryType;
     return jsonObj;
 }
