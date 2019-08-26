@@ -14,9 +14,11 @@ private:
     Game *game;
     QPushButton backButton;
     QLabel autoSavePeriodLabel,
-           languageLabel;
+           languageLabel,
+           inventoryTypeLabel;
     QComboBox autoSaveSelector,
-              languageSelector;
+              languageSelector,
+              inventoryTypeSelector;
     QMetaObject::Connection autoSaveUpdater;
     int autoSaveOptions[6] = {
         1, 3, 5, 10, 30, 60

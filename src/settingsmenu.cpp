@@ -29,7 +29,15 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     languageSelector.setVisible(false);
     languageSelector.setEnabled(false);
 
-    grid->addWidget(&backButton, 2, 1);
+    grid->addWidget(&inventoryTypeLabel, 2, 0);
+    inventoryTypeLabel.setVisible(false);
+
+    grid->addWidget(&inventoryTypeSelector, 2, 1);
+    inventoryTypeSelector.setCurrentIndex(-1);
+    inventoryTypeSelector.setVisible(false);
+    inventoryTypeSelector.setEnabled(false);
+
+    grid->addWidget(&backButton, 3, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -62,6 +70,16 @@ void SettingsMenu::display() {
     languageSelector.setVisible(true);
     languageSelector.setEnabled(true);
 
+
+    inventoryTypeLabel.setText(game->str.inventoryType);
+    inventoryTypeLabel.setVisible(true);
+
+    inventoryTypeSelector.setCurrentIndex(-1);
+    inventoryTypeSelector.addItem(game->str.popUp);
+    inventoryTypeSelector.addItem(game->str.builtIn);
+    inventoryTypeSelector.setVisible(true);
+    inventoryTypeSelector.setEnabled(true);
+
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
@@ -85,6 +103,12 @@ void SettingsMenu::hide() {
 
     languageSelector.setVisible(false);
     languageSelector.setEnabled(false);
+
+    inventoryTypeLabel.setVisible(false);
+
+    inventoryTypeSelector.clear();
+    inventoryTypeSelector.setVisible(false);
+    inventoryTypeSelector.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
