@@ -6,12 +6,12 @@
 GameMenu::GameMenu(Game *game, QGridLayout *grid) :
         game(game),
         grid(grid) {
-    table.setRowCount(0);
-    table.setColumnCount(2);
-    table.setHorizontalHeaderItem(0, &nameHeader);
-    table.setHorizontalHeaderItem(1, &quantityHeader);
-    table.setVisible(false);
-    table.setEnabled(false);
+    popUpInventoryTable.setRowCount(0);
+    popUpInventoryTable.setColumnCount(2);
+    popUpInventoryTable.setHorizontalHeaderItem(0, &nameHeader);
+    popUpInventoryTable.setHorizontalHeaderItem(1, &quantityHeader);
+    popUpInventoryTable.setVisible(false);
+    popUpInventoryTable.setEnabled(false);
 
     grid->addWidget(&infoLabel, 1, 0);
     infoLabel.setWordWrap(true);
@@ -161,9 +161,17 @@ void GameMenu::backFunction() {
 
 void GameMenu::inventoryFunction() {
     updateInfo();
-    table.setWindowTitle(game->str.fishingTime + ": " + game->str.inventory);
-    table.setVisible(true);
-    table.setEnabled(true);
+    switch (game->inventoryType) {
+    case InventoryType::POPUP:
+        popUpInventoryTable.setWindowTitle(game->str.fishingTime + ": " + game->str.inventory);
+        popUpInventoryTable.setVisible(true);
+        popUpInventoryTable.setEnabled(true);
+        break;
+    case InventoryType::BUILTIN:
+        this->hide();
+        game->inventoryMenu.display();
+        break;
+    }
 }
 
 void GameMenu::marketFunction() {
@@ -193,21 +201,21 @@ void GameMenu::usersettingsFunction() {
 
 void GameMenu::updateInventoryTable() {
     auto inv = game->users[game->activeUser].inventory.get();
-    table.setRowCount(inv.size());
+    popUpInventoryTable.setRowCount(inv.size());
     QMap<QString, int>::const_iterator it = inv.constBegin();
     int i = 0;
     while (it != inv.constEnd()) {
-        QTableWidgetItem *cell = table.item(i, 0);
+        QTableWidgetItem *cell = popUpInventoryTable.item(i, 0);
         if (!cell) {
             cell = new QTableWidgetItem;
-            table.setItem(i, 0, cell);
+            popUpInventoryTable.setItem(i, 0, cell);
         }
         cell->setText(game->str.getItemName(it.key()));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
-        cell = table.item(i, 1);
+        cell = popUpInventoryTable.item(i, 1);
         if (!cell) {
             cell = new QTableWidgetItem;
-            table.setItem(i, 1, cell);
+            popUpInventoryTable.setItem(i, 1, cell);
         }
         cell->setText(QString::number(it.value()));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
@@ -279,9 +287,9 @@ GameMenu::~GameMenu() {
     for (int i = 0; ; ++i) {
         int cnt = 0;
         for (int j = 0; j < 2; ++j) {
-            if (table.item(i, j)) {
+            if (popUpInventoryTable.item(i, j)) {
                 ++cnt;
-                delete table.item(i, j);
+                delete popUpInventoryTable.item(i, j);
             }
         }
         if (!cnt) {

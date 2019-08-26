@@ -17,6 +17,7 @@
 #include "usersettingsmenu.h"
 #include "signupmenu.h"
 #include "ratingmenu.h"
+#include "inventorymenu.h"
 #include "user.h"
 #include "location.h"
 #include "dictionary.h"
@@ -57,6 +58,7 @@ public:
     SignupMenu signupMenu;
     UsersettingsMenu usersettingsMenu;
     RatingMenu ratingMenu;
+    InventoryMenu inventoryMenu;
     int activeUser = -1;
     int activeLocation = -1;
     InventoryType inventoryType = InventoryType::POPUP;
