@@ -1,9 +1,16 @@
+#include <QSettings>
 #include "aboutmenu.h"
 #include "game.h"
 
 AboutMenu::AboutMenu(Game *game) :
         game(game) {
     this->setLayout(&grid);
+
+    QSettings settings;
+    if (!this->restoreGeometry(settings.value("aboutWindowGeometry").toByteArray())) {
+        qDebug() << "Unable to restore about window geometry. Loading defaults...";
+        this->setGeometry(QRect(QPoint(200, 200), QSize(320, 240)));
+    }
 
     grid.addWidget(&descriptionLabel, 0, 0, 1, 3);
     descriptionLabel.setVisible(false);

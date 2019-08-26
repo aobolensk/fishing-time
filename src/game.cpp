@@ -92,6 +92,7 @@ void Game::serialize() {
     QSettings settings;
     settings.setValue("mainWindowGeometry", this->saveGeometry());
     settings.setValue("consoleGeometry", console.saveGeometry());
+    settings.setValue("aboutWindowGeometry", aboutMenu.saveGeometry());
     if (activeUser != -1 && activeLocation != -1)
         netsMenu.foldNets();
     QFile config(config_file);
