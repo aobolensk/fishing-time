@@ -26,6 +26,7 @@ AboutMenu::AboutMenu(Game *game) :
 }
 
 void AboutMenu::display() {
+    this->setWindowTitle(game->str.fishingTime + ": " + game->str.about);
     this->setVisible(true);
 
     descriptionLabel.setText(game->str.aboutDescription.arg(
