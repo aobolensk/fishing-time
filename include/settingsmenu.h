@@ -19,7 +19,8 @@ private:
     QComboBox autoSavePeriodSelector,
               languageSelector,
               inventoryTypeSelector;
-    QMetaObject::Connection autoSaveUpdater;
+    QMetaObject::Connection autoSaveUpdater,
+                            inventoryTypeUpdater;
     int autoSaveOptions[6] = {
         1, 3, 5, 10, 30, 60
     };

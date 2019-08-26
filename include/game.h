@@ -59,6 +59,7 @@ public:
     RatingMenu ratingMenu;
     int activeUser = -1;
     int activeLocation = -1;
+    InventoryType inventoryType = InventoryType::POPUP;
     void setAutoSavePeriod(int periodInMinutes);
     Language activeLanguage = Language::English;
     QTimer autoSaveTimer;

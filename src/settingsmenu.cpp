@@ -74,11 +74,13 @@ void SettingsMenu::display() {
     inventoryTypeLabel.setText(game->str.inventoryType);
     inventoryTypeLabel.setVisible(true);
 
-    inventoryTypeSelector.setCurrentIndex(-1);
     inventoryTypeSelector.addItem(game->str.popUp);
     inventoryTypeSelector.addItem(game->str.builtIn);
+    inventoryTypeSelector.setCurrentIndex((int)game->inventoryType);
     inventoryTypeSelector.setVisible(true);
     inventoryTypeSelector.setEnabled(true);
+    inventoryTypeUpdater = connect(&inventoryTypeSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+       [this](int index){ this->game->inventoryType = (InventoryType)index; });
 
     backButton.setText(game->str.back);
     backButton.setVisible(true);
@@ -96,7 +98,6 @@ void SettingsMenu::hide() {
     autoSavePeriodSelector.setVisible(false);
     autoSavePeriodSelector.setEnabled(false);
     disconnect(autoSaveUpdater);
-    autoSavePeriodSelector.setCurrentIndex(-1);
     autoSavePeriodSelector.clear();
 
     languageLabel.setVisible(false);
@@ -106,9 +107,10 @@ void SettingsMenu::hide() {
 
     inventoryTypeLabel.setVisible(false);
 
-    inventoryTypeSelector.clear();
     inventoryTypeSelector.setVisible(false);
     inventoryTypeSelector.setEnabled(false);
+    disconnect(inventoryTypeUpdater);
+    inventoryTypeSelector.clear();
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
