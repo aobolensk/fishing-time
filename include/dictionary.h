@@ -16,6 +16,8 @@ public:
     const QString fishingTime = "Fishing time";
     static constexpr int DICTIONARY_START = __LINE__;
     const QString
+            about,
+            aboutDescription,
             autoSavePeriod,
             back,
             basicNet,

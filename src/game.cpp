@@ -29,7 +29,8 @@ Game::Game(QWidget *parent, const QString &file) :
         signupMenu(SignupMenu(this, &grid)),
         usersettingsMenu(UsersettingsMenu(this, &grid)),
         ratingMenu(RatingMenu(this, &grid)),
-        inventoryMenu(InventoryMenu(this, &grid)) {
+        inventoryMenu(InventoryMenu(this, &grid)),
+        aboutMenu(AboutMenu(this)) {
     QSettings settings;
     if (!this->restoreGeometry(settings.value("mainWindowGeometry").toByteArray())) {
         qDebug() << "Unable to restore game window geometry. Loading defaults...";
