@@ -6,7 +6,10 @@ InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid) :
         game(game),
         inventoryTable(game),
         grid(grid) {
-    grid->addWidget(&inventoryTable, 0, 0, 1, 3);
+    grid->addWidget(&descriptionLabel, 0, 1);
+    descriptionLabel.setVisible(false);
+
+    grid->addWidget(&inventoryTable, 1, 0, 1, 3);
     inventoryTable.setRowCount(0);
     inventoryTable.setColumnCount(2);
     inventoryTable.setHorizontalHeaderItem(0, &nameHeader);
@@ -15,7 +18,7 @@ InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid) :
     inventoryTable.setEnabled(false);
     inventoryTable.horizontalHeader()->setStretchLastSection(true);
 
-    grid->addWidget(&backButton, 1, 1);
+    grid->addWidget(&backButton, 2, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -49,6 +52,11 @@ void InventoryMenu::updateInventoryTable() {
 void InventoryMenu::display() {
     updateInventoryTable();
 
+    descriptionLabel.setVisible(true);
+    descriptionLabel.setText(game->str.inventoryDescription.arg(
+        game->users[game->activeUser].getUsername()
+    ));
+
     inventoryTable.setVisible(true);
     inventoryTable.setEnabled(true);
 
@@ -66,6 +74,8 @@ void InventoryMenu::backFunction() {
 }
 
 void InventoryMenu::hide() {
+    descriptionLabel.setVisible(false);
+
     inventoryTable.setVisible(false);
     inventoryTable.setEnabled(false);
 

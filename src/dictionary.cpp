@@ -78,6 +78,7 @@ void Dictionary::setLanguage(Language l) {
         SET(id) = "Id";
         SET(ide) = "Ide";
         SET(incorrectPassword) = "Incorrect password!";
+        SET(inventoryDescription) = "Inventory of player %1";
         SET(inventoryType) = "Inventory type";
         SET(information) = "Information";
         SET(invalidOldPasswordWarning) = "Incorrect old password";
@@ -163,6 +164,7 @@ void Dictionary::setLanguage(Language l) {
         SET(id) = "Идентификатор";
         SET(ide) = "Язь";
         SET(incorrectPassword) = "Неверный пароль!";
+        SET(inventoryDescription) = "Инвентарь игрока %1";
         SET(inventoryType) = "Тип инвентаря";
         SET(information) = "Информация";
         SET(invalidOldPasswordWarning) = "Неверно введен старый пароль";

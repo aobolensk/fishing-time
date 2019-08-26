@@ -12,6 +12,7 @@ private:
     Q_OBJECT
 private:
     Game *game;
+    QLabel descriptionLabel;
     QTableWidget inventoryTable;
     QTableWidgetItem nameHeader,
                      quantityHeader;

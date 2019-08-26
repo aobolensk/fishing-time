@@ -44,6 +44,7 @@ public:
             id,
             ide,
             incorrectPassword,
+            inventoryDescription,
             inventoryType,
             information,
             invalidOldPasswordWarning,
