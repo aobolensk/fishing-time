@@ -16,7 +16,7 @@ private:
     QLabel autoSavePeriodLabel,
            languageLabel,
            inventoryTypeLabel;
-    QComboBox autoSaveSelector,
+    QComboBox autoSavePeriodSelector,
               languageSelector,
               inventoryTypeSelector;
     QMetaObject::Connection autoSaveUpdater;

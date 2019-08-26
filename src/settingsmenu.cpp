@@ -7,10 +7,10 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     grid->addWidget(&autoSavePeriodLabel, 0, 0);
     autoSavePeriodLabel.setVisible(false);
 
-    grid->addWidget(&autoSaveSelector, 0, 1);
-    autoSaveSelector.setCurrentIndex(-1);
-    autoSaveSelector.setVisible(false);
-    autoSaveSelector.setEnabled(false);
+    grid->addWidget(&autoSavePeriodSelector, 0, 1);
+    autoSavePeriodSelector.setCurrentIndex(-1);
+    autoSavePeriodSelector.setVisible(false);
+    autoSavePeriodSelector.setEnabled(false);
 
     grid->addWidget(&languageLabel, 1, 0);
     languageLabel.setVisible(false);
@@ -48,19 +48,19 @@ void SettingsMenu::display() {
     autoSavePeriodLabel.setVisible(true);
 
     for (int i = 0; i < 6; ++i) {
-        autoSaveSelector.addItem(QString::number(autoSaveOptions[i]) + ' ' + game->str.min);
+        autoSavePeriodSelector.addItem(QString::number(autoSaveOptions[i]) + ' ' + game->str.min);
     }
-    autoSaveSelector.setVisible(true);
-    autoSaveSelector.setEnabled(true);
-    autoSaveSelector.setCurrentIndex(-1);
+    autoSavePeriodSelector.setVisible(true);
+    autoSavePeriodSelector.setEnabled(true);
+    autoSavePeriodSelector.setCurrentIndex(-1);
     int currentPeriod = game->autoSaveTimer.interval() / (60 * 1000);
     for (int i = 0; i < 6; ++i) {
         if (currentPeriod == autoSaveOptions[i]) {
-            autoSaveSelector.setCurrentIndex(i);
+            autoSavePeriodSelector.setCurrentIndex(i);
             break;
         }
     }
-    autoSaveUpdater = connect(&autoSaveSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    autoSaveUpdater = connect(&autoSavePeriodSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
        [this](int index){ game->setAutoSavePeriod(autoSaveOptions[index]); });
 
     languageLabel.setText(game->str.language);
@@ -93,11 +93,11 @@ void SettingsMenu::backFunction() {
 void SettingsMenu::hide() {
     autoSavePeriodLabel.setVisible(false);
 
-    autoSaveSelector.setVisible(false);
-    autoSaveSelector.setEnabled(false);
+    autoSavePeriodSelector.setVisible(false);
+    autoSavePeriodSelector.setEnabled(false);
     disconnect(autoSaveUpdater);
-    autoSaveSelector.setCurrentIndex(-1);
-    autoSaveSelector.clear();
+    autoSavePeriodSelector.setCurrentIndex(-1);
+    autoSavePeriodSelector.clear();
 
     languageLabel.setVisible(false);
 
