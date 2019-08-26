@@ -15,6 +15,9 @@ AboutMenu::AboutMenu(Game *game) :
     grid.addWidget(&descriptionLabel, 0, 0, 1, 3);
     descriptionLabel.setVisible(false);
     descriptionLabel.setWordWrap(true);
+    descriptionLabel.setTextFormat(Qt::RichText);
+    descriptionLabel.setTextInteractionFlags(Qt::TextBrowserInteraction);
+    descriptionLabel.setOpenExternalLinks(true);
 
     grid.addWidget(&backButton, 1, 1);
     backButton.setVisible(false);
@@ -25,7 +28,9 @@ AboutMenu::AboutMenu(Game *game) :
 void AboutMenu::display() {
     this->setVisible(true);
 
-    descriptionLabel.setText(game->str.aboutDescription);
+    descriptionLabel.setText(game->str.aboutDescription.arg(
+        "https://github.com/gooddoog/fishing-time/"
+    ));
     descriptionLabel.setVisible(true);
 
     backButton.setText(game->str.back);
