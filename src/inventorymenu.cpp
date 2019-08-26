@@ -1,3 +1,4 @@
+#include <QHeaderView>
 #include "inventorymenu.h"
 #include "game.h"
 
@@ -12,6 +13,7 @@ InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid) :
     inventoryTable.setHorizontalHeaderItem(1, &quantityHeader);
     inventoryTable.setVisible(false);
     inventoryTable.setEnabled(false);
+    inventoryTable.horizontalHeader()->setStretchLastSection(true);
 
     grid->addWidget(&backButton, 1, 1);
     backButton.setVisible(false);
