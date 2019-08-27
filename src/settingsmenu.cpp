@@ -1,3 +1,4 @@
+#include <QFontDialog>
 #include "settingsmenu.h"
 #include "game.h"
 
@@ -37,7 +38,15 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     inventoryTypeSelector.setVisible(false);
     inventoryTypeSelector.setEnabled(false);
 
-    grid->addWidget(&backButton, 3, 1);
+    grid->addWidget(&fontLabel, 3, 0);
+    fontLabel.setVisible(false);
+
+    grid->addWidget(&fontSetupButton, 3, 1);
+    fontSetupButton.setVisible(false);
+    fontSetupButton.setEnabled(false);
+    connect(&fontSetupButton, SIGNAL(released()), this, SLOT(fontSetupFunction()));
+
+    grid->addWidget(&backButton, 4, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -70,7 +79,6 @@ void SettingsMenu::display() {
     languageSelector.setVisible(true);
     languageSelector.setEnabled(true);
 
-
     inventoryTypeLabel.setText(game->str.inventoryType);
     inventoryTypeLabel.setVisible(true);
 
@@ -82,9 +90,22 @@ void SettingsMenu::display() {
     inventoryTypeUpdater = connect(&inventoryTypeSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
        [this](int index){ this->game->inventoryType = (InventoryType)index; });
 
+    fontLabel.setText(game->str.font);
+    fontLabel.setVisible(true);
+
+    fontSetupButton.setText(game->str.setup);
+    fontSetupButton.setVisible(true);
+    fontSetupButton.setEnabled(true);
+
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+}
+
+void SettingsMenu::fontSetupFunction() {
+    game->setFont(QFontDialog::getFont(nullptr, QFont("Noto Sans", 11, QFont::Normal, false), nullptr));
+    game->console.setFont(QFontDialog::getFont(nullptr, QFont("Noto Sans", 11, QFont::Normal, false), nullptr));
+    game->aboutMenu.setFont(QFontDialog::getFont(nullptr, QFont("Noto Sans", 11, QFont::Normal, false), nullptr));
 }
 
 void SettingsMenu::backFunction() {
@@ -111,6 +132,11 @@ void SettingsMenu::hide() {
     inventoryTypeSelector.setEnabled(false);
     disconnect(inventoryTypeUpdater);
     inventoryTypeSelector.clear();
+
+    fontLabel.setVisible(false);
+
+    fontSetupButton.setVisible(false);
+    fontSetupButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QComboBox>
+#include <QPushButton>
 
 class Game;
 
@@ -12,13 +13,15 @@ private:
     Q_OBJECT
 private:
     Game *game;
-    QPushButton backButton;
     QLabel autoSavePeriodLabel,
            languageLabel,
-           inventoryTypeLabel;
+           inventoryTypeLabel,
+           fontLabel;
     QComboBox autoSavePeriodSelector,
               languageSelector,
               inventoryTypeSelector;
+    QPushButton fontSetupButton,
+                backButton;
     QMetaObject::Connection autoSaveUpdater,
                             inventoryTypeUpdater;
     int autoSaveOptions[6] = {
@@ -26,6 +29,7 @@ private:
     };
     QGridLayout *grid;
 private slots:
+    void fontSetupFunction();
     void backFunction();
 public:
     SettingsMenu(Game *game, QGridLayout *grid);

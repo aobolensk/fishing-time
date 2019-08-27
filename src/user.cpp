@@ -2,40 +2,13 @@
 #include <QDataStream>
 #include <QDateTime>
 #include "user.h"
+#include "serialization.h"
 
 User::User(const QString &name, const QString &password) :
     username(name),
     passwordHash(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5)),
     signUpTime(QDateTime::currentDateTime().toString(Qt::ISODate)) {
     
-}
-
-template <typename T>
-static QString toString(const T &data) {
-    QTemporaryFile f;
-    f.open();
-    QDataStream out(&f);
-    out << data;
-    f.flush();
-    f.close();
-    f.open();
-    QTextStream in(&f);
-    QString result = in.readAll();
-    f.close();
-    return result;
-}
-
-template <typename T>
-static void fromString(T &data, const QString &str) {
-    QTemporaryFile f;
-    f.open();
-    QTextStream out(&f);
-    out << str;
-    f.close();
-    f.open();
-    QDataStream in(&f);
-    in >> data;
-    f.close();
 }
 
 QJsonObject User::serialize() const {
