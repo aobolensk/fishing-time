@@ -104,6 +104,8 @@ void SettingsMenu::display() {
 
 void SettingsMenu::fontSetupFunction() {
     game->setFont(QFontDialog::getFont(nullptr, QFont("Noto Sans", 11, QFont::Normal, false), nullptr));
+    game->console.setFont(QFontDialog::getFont(nullptr, QFont("Noto Sans", 11, QFont::Normal, false), nullptr));
+    game->aboutMenu.setFont(QFontDialog::getFont(nullptr, QFont("Noto Sans", 11, QFont::Normal, false), nullptr));
 }
 
 void SettingsMenu::backFunction() {
