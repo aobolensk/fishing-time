@@ -7,6 +7,7 @@ StatisticsMenu::StatisticsMenu(Game *game, QGridLayout *grid) :
     grid->addWidget(&statisticsText, 0, 0, 1, 3);
     statisticsText.setTextFormat(Qt::RichText);
     statisticsText.setVisible(false);
+    statisticsText.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&backButton, 1, 1);
     backButton.setVisible(false);

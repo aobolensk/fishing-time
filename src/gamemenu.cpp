@@ -17,11 +17,13 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     infoLabel.setWordWrap(true);
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
+    infoLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&fishLabel, 1, 2);
     fishLabel.setWordWrap(true);
     fishLabel.setVisible(false);
     fishLabel.setEnabled(false);
+    fishLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&clickButton, 3, 1);
     clickButton.setVisible(false);

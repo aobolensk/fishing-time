@@ -15,6 +15,7 @@ AboutMenu::AboutMenu(Game *game) :
     grid.addWidget(&descriptionLabel, 0, 0, 1, 3);
     descriptionLabel.setVisible(false);
     descriptionLabel.setWordWrap(true);
+    descriptionLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     descriptionLabel.setTextFormat(Qt::RichText);
     descriptionLabel.setTextInteractionFlags(Qt::TextBrowserInteraction);
     descriptionLabel.setOpenExternalLinks(true);

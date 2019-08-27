@@ -9,15 +9,19 @@ SignupMenu::SignupMenu(Game *game, QGridLayout *grid) :
     signupLabel.setWordWrap(true);
     signupLabel.setVisible(false);
     signupLabel.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+    signupLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&loginLabel, 1, 0);
     loginLabel.setVisible(false);
+    loginLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&passwordLabel, 2, 0);
     passwordLabel.setVisible(false);
+    passwordLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&passwordConfirmationLabel, 3, 0);
     passwordConfirmationLabel.setVisible(false);
+    passwordConfirmationLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&loginText, 1, 1);
     loginText.setVisible(false);

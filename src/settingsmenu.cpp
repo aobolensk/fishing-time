@@ -7,6 +7,7 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
         grid(grid) {
     grid->addWidget(&autoSavePeriodLabel, 0, 0);
     autoSavePeriodLabel.setVisible(false);
+    autoSavePeriodLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&autoSavePeriodSelector, 0, 1);
     autoSavePeriodSelector.setCurrentIndex(-1);
@@ -15,6 +16,7 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
 
     grid->addWidget(&languageLabel, 1, 0);
     languageLabel.setVisible(false);
+    languageLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&languageSelector, 1, 1);
     for (int i = 0; i < game->str.languages.size(); ++i) {
@@ -32,6 +34,7 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
 
     grid->addWidget(&inventoryTypeLabel, 2, 0);
     inventoryTypeLabel.setVisible(false);
+    inventoryTypeLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&inventoryTypeSelector, 2, 1);
     inventoryTypeSelector.setCurrentIndex(-1);
@@ -40,6 +43,7 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
 
     grid->addWidget(&fontLabel, 3, 0);
     fontLabel.setVisible(false);
+    fontLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&fontSetupButton, 3, 1);
     fontSetupButton.setVisible(false);
