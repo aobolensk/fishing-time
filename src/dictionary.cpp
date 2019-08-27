@@ -77,6 +77,7 @@ void Dictionary::setLanguage(Language l) {
         SET(exit) = "Exit";
         SET(exitConfirmation) = "Do you want to exit?";
         SET(fishLabelText) = "Fish that can be caught in location %1:\n%2";
+        SET(font) = "Font";
         SET(id) = "Id";
         SET(ide) = "Ide";
         SET(incorrectPassword) = "Incorrect password!";
@@ -120,6 +121,7 @@ void Dictionary::setLanguage(Language l) {
         SET(selectItemFromList) = "Select item from list";
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
         SET(settings) = "Settings";
+        SET(setup) = "Setup";
         SET(signUp) = "Sign up";
         SET(signupMenuText) = "Create new user.\nEnter your login and password to get registered.";
         SET(start) = "Start";
@@ -165,6 +167,7 @@ void Dictionary::setLanguage(Language l) {
         SET(exit) = "Выход";
         SET(exitConfirmation) = "Вы действительно хотите выйти из игры?";
         SET(fishLabelText) = "Рыба, которую можно поймать в локации %1:\n%2";
+        SET(font) = "Шрифт";
         SET(id) = "Идентификатор";
         SET(ide) = "Язь";
         SET(incorrectPassword) = "Неверный пароль!";
@@ -208,6 +211,7 @@ void Dictionary::setLanguage(Language l) {
         SET(selectItemFromList) = "Выберите предмет из списка";
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
         SET(settings) = "Настройки";
+        SET(setup) = "Настроить";
         SET(signUp) = "Зарегистрироваться";
         SET(signupMenuText) = "Создание нового пользователя\nВведите логин и пароль, чтобы зарегистрироваться.";
         SET(start) = "Начать";
