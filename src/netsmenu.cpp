@@ -13,6 +13,7 @@ NetsMenu::NetsMenu(Game *game, QGridLayout *grid) :
     for (int i = 0; i < SLOTS_COUNT; ++i) {
         grid->addWidget(&netSlotLabel[i], 1 + (i / 3) * 2, i % 3);
         netSlotLabel[i].setVisible(false);
+        netSlotLabel[i].setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
         grid->addWidget(&netSlot[i], 2 + (i / 3) * 2, i % 3);
         netSlot[i].setVisible(false);

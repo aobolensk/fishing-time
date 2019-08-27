@@ -15,6 +15,7 @@ MarketMenu::MarketMenu(Game *game, QGridLayout *grid) :
     grid->addWidget(&infoLabel, 0, 2);
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
+    infoLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         grid->addWidget(&dialogButton[i], 3, i);
@@ -24,6 +25,7 @@ MarketMenu::MarketMenu(Game *game, QGridLayout *grid) :
         dialogLabel[i].setWordWrap(true);
         dialogLabel[i].setVisible(false);
         dialogLabel[i].setEnabled(false);
+        dialogLabel[i].setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         grid->addWidget(&quantityText[i], 2, i);
         quantityText[i].setText("0");
         quantityText[i].setVisible(false);

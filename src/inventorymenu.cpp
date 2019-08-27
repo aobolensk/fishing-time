@@ -8,6 +8,7 @@ InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid) :
         grid(grid) {
     grid->addWidget(&descriptionLabel, 0, 1);
     descriptionLabel.setVisible(false);
+    descriptionLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&inventoryTable, 1, 0, 1, 3);
     inventoryTable.setRowCount(0);

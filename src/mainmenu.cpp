@@ -6,6 +6,7 @@ MainMenu::MainMenu(Game *game, QGridLayout *grid) :
         grid(grid) {
     grid->addWidget(&infoLabel, 0, 2);
     infoLabel.setVisible(false);
+    infoLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&consoleButton, 1, 2);
     consoleButton.setVisible(false);

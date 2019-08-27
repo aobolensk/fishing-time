@@ -10,11 +10,13 @@ StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
     selectedItemLabel.setWordWrap(true);
     selectedItemLabel.setVisible(false);
     selectedItemLabel.setEnabled(false);
+    selectedItemLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&infoLabel, 2, 2);
     infoLabel.setWordWrap(true);
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
+    infoLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&storeTable, 1, 0, 2, 2);
     storeTable.setRowCount(0);
@@ -28,6 +30,7 @@ StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
         (void) col;
         selectedItemLabel.setText(storeTable.item(row, 0)->text() + '\n' +
                                   storeTable.item(row, 1)->text());
+        selectedItemLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     });
 
     grid->addWidget(&quantityText, 0, 0);
