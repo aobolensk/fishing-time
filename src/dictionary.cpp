@@ -2,10 +2,12 @@
 #include <QDebug>
 #include "dictionary.h"
 
+static int updatesCount = 0;
+
 Dictionary::Dictionary() :
         languages({
-            "English",
-            "Russian"
+            {Language::English, {"English", 0}},
+            {Language::Russian, {"Russian", 0}}
         }),
 
         #define LIST_OF_ITEMS \
@@ -34,7 +36,9 @@ Dictionary::Dictionary() :
         #undef X
 
         {
-
+    for (int i = languages.count() - 1; i >= 0; --i)
+        this->setLanguage((Language)i);
+    numberOfStrings = updatesCount;
 }
 
 const QString &Dictionary::getItemName(const QString &itemId) const {
@@ -44,12 +48,17 @@ const QString &Dictionary::getItemName(const QString &itemId) const {
     return *(it.value());
 }
 
-#define SET(string) (*(const_cast<QString*>(&string)))
+
+double Dictionary::getReadiness(Language l) {
+    return (double)languages[l].second / (DICTIONARY_END - DICTIONARY_START - 2) * 100.;
+}
+
+#define SET(string) (++updatesCount); (*(const_cast<QString*>(&string)))
 
 void Dictionary::setLanguage(Language l) {
+    updatesCount = 0;
     switch (l) {
     case Language::English: {
-        constexpr int ENGLISH_START = __LINE__;
         SET(about) = "About";
         SET(aboutDescription) = "Fishing Time<br>Official repo: <a href=\"%1\">%1</a>\n";
         SET(autoSavePeriod) = "Autosave period";
@@ -135,11 +144,9 @@ void Dictionary::setLanguage(Language l) {
         SET(warning) = "Warning";
         SET(youDontHaveEnoughCoins) = "You don't have enough coins";
         SET(youDontHaveEnoughItems) = "You don't have enough items";
+        languages[Language::English].second = updatesCount;
         break;
-        constexpr int ENGLISH_END = __LINE__;
-        static_assert((DICTIONARY_END - DICTIONARY_START) == (ENGLISH_END - ENGLISH_START));
     } case Language::Russian: {
-        constexpr int RUSSIAN_START = __LINE__;
         SET(about) = "О программе";
         SET(aboutDescription) = "Fishing Time<br>Официальный репозиторий: <a href=\"%1\">%1</a>\n";
         SET(autoSavePeriod) = "Период автосохранения";
@@ -225,9 +232,8 @@ void Dictionary::setLanguage(Language l) {
         SET(warning) = "Внимание";
         SET(youDontHaveEnoughCoins) = "Недостаточно монет";
         SET(youDontHaveEnoughItems) = "Недостаточно предметов";
+        languages[Language::Russian].second = updatesCount;
         break;
-        constexpr int RUSSIAN_END = __LINE__;
-        static_assert((DICTIONARY_END - DICTIONARY_START) == (RUSSIAN_END - RUSSIAN_START));
     } default: {
         qDebug() << "Unknown language";
         break;
