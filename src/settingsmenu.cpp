@@ -20,7 +20,8 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
 
     grid->addWidget(&languageSelector, 1, 1);
     for (int i = 0; i < game->str.languages.size(); ++i) {
-        languageSelector.addItem(game->str.languages[i]);
+        languageSelector.addItem(game->str.languages[(Language)i].first +
+                                 " (" + QString::number(game->str.getReadiness((Language)i)) + "%) ready");
     }
     qDebug() << (int)game->activeLanguage;
     connect(&languageSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),

@@ -10,12 +10,12 @@ enum class Language {
 
 class Dictionary {
 public:
-    const QVector <QString> languages;
+    QMap <Language, QPair <QString, int>> languages;
     const QVector <QString> itemIds;
     const QMap <QString, const QString*> itemNames;
     const QString fishingTime = "Fishing time";
     static constexpr int DICTIONARY_START = __LINE__;
-    const QString
+        const QString
             about,
             aboutDescription,
             autoSavePeriod,
@@ -102,7 +102,11 @@ public:
             youDontHaveEnoughCoins,
             youDontHaveEnoughItems;
     static constexpr int DICTIONARY_END = __LINE__;
+private:
+    int numberOfStrings = 0;
+public:
     Dictionary();
+    double getReadiness(Language l);
     void setLanguage(Language l);
     const QString &getItemName(const QString &id) const;
 };
