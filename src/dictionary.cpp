@@ -39,6 +39,9 @@ Dictionary::Dictionary() :
     for (int i = languages.count() - 1; i >= 0; --i)
         this->setLanguage((Language)i);
     numberOfStrings = updatesCount;
+    if (getReadiness(Language::English) != 100.)
+        throw std::logic_error("Default language (English) does not contain all necessary translations. "
+                                 "Fix it by adding all translations to Dictionary::setLanguage -> case Language::English");
 }
 
 const QString &Dictionary::getItemName(const QString &itemId) const {
