@@ -51,6 +51,7 @@ void Console::registerCommands() {
 
     commands["quit"] =
     [&](QStringList &args) -> int {
+        (void) args;
         QApplication::quit();
         return 0;
     };
