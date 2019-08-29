@@ -1,5 +1,6 @@
 #ifndef INCLUDE_CONSOLE_H_
 #define INCLUDE_CONSOLE_H_
+#include <functional>
 #include <QWidget>
 #include <QGridLayout>
 #include <QLineEdit>
@@ -16,7 +17,7 @@ private:
     QTextEdit console;
     QLineEdit input;
     Log log;
-    QMap <QString, std::function <int(QStringList &args)>> commands;
+    QMap <QString, std::function <int(QStringList &)>> commands;
 private:
     void parse(QStringList &args);
     void registerCommands();
