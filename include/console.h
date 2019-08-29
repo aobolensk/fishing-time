@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QLineEdit>
 #include <QTextEdit>
+#include <QMap>
 #include "log.h"
 
 class Game;
@@ -15,6 +16,10 @@ private:
     QTextEdit console;
     QLineEdit input;
     Log log;
+    QMap <QString, std::function <int(QStringList &args)>> commands;
+private:
+    void parse(QStringList &args);
+    void registerCommands();
 private slots:
     void commandParser();
 public:

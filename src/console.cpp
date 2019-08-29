@@ -25,6 +25,48 @@ Console::Console(Game *game) :
         input.clear();
         console.verticalScrollBar()->setValue(console.verticalScrollBar()->maximum());
     });
+
+    registerCommands();
+}
+
+void Console::registerCommands() {
+    /* Register commands only in this function.
+     * Function is defined as mapping from QString
+     * to std::function <int(QStringList &args)>
+     * Arguments:
+     *  args[0] - name of the command
+     *  args[1], ... - args for that command
+     * Return value:
+     *  int - exit code of this command (0 if success)
+     */
+
+    commands["echo"] =
+    [&](QStringList &args) -> int {
+        for (int i = 1; i < args.count(); ++i) {
+            log.write(args[i]);
+        }
+        log.writeln("");
+        return 0;
+    };
+
+    commands["quit"] =
+    [&](QStringList &args) -> int {
+        QApplication::quit();
+        return 0;
+    };
+}
+
+void Console::parse(QStringList &args) {
+    auto commandIterator = commands.find(args[0]);
+    if (commandIterator != commands.end()) {
+        int retCode = (*commandIterator)(args);
+        if (retCode != 0) {
+            log.error("Command " + args[0] +
+                      " returned " + QString::number(retCode));
+        }
+    } else {
+        log.error("Unknown command: " + args[0]);
+    }
 }
 
 void Console::commandParser() {
@@ -32,16 +74,7 @@ void Console::commandParser() {
         return;
     log.writeln("> " + input.text());
     QStringList args = input.text().split(" ", QString::SplitBehavior::SkipEmptyParts);
-    if (args[0] == "echo") {
-        for (int i = 1; i < args.count(); ++i) {
-            log.write(args[i]);
-        }
-        log.writeln("");
-    } else if (args[0] == "exit") {
-        QApplication::quit();
-    } else {
-        log.error("Unknown command: " + args[0]);
-    }
+    parse(args);
 }
 
 void Console::display() {
