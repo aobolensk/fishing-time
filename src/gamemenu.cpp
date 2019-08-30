@@ -166,7 +166,7 @@ void GameMenu::inventoryFunction() {
     switch (game->inventoryType) {
     case InventoryType::POPUP:
         popUpInventoryTable.setWindowTitle(game->str.fishingTime + ": " + game->str.inventory);
-        popUpInventoryTable.setFont(QFont("Noto Sans", 11, QFont::Normal, false));
+        popUpInventoryTable.setFont(game->textFont);
         popUpInventoryTable.setVisible(true);
         popUpInventoryTable.setEnabled(true);
         break;
