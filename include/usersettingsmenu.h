@@ -11,6 +11,7 @@ class UsersettingsMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     Game *game;
     QLabel usersettingsLabel,
            oldPasswordLabel,
@@ -33,6 +34,7 @@ public:
     ~UsersettingsMenu();
     void display();
     void hide();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_USERSETTINGSMENU_H_

@@ -12,6 +12,7 @@ class SettingsMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     Game *game;
     QLabel autoSavePeriodLabel,
            languageLabel,
@@ -36,6 +37,7 @@ public:
     ~SettingsMenu();
     void display();
     void hide();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_SETTINGSMENU_H_

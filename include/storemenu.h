@@ -12,6 +12,7 @@ class StoreMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     Game *game;
     QLabel selectedItemLabel,
            infoLabel;
@@ -34,6 +35,7 @@ public:
     ~StoreMenu();
     void display();
     void hide();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_STOREMENU_H_

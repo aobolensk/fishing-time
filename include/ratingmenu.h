@@ -12,6 +12,7 @@ class RatingMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     Game *game;
     QTableWidget ratingTable;
     QTableWidgetItem usernameHeader,
@@ -27,6 +28,7 @@ public:
     ~RatingMenu();
     void display();
     void hide();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_RATINGMENU_H_

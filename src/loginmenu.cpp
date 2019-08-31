@@ -37,6 +37,10 @@ LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
     backButton.setEnabled(false);
 }
 
+bool LoginMenu::isDisplayed() const {
+    return displayed;
+}
+
 void LoginMenu::display() {
     for (int i = 0; i < game->users.count(); ++i) {
         loginSelector.addItem(game->users[i].getUsername());
@@ -63,6 +67,8 @@ void LoginMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void LoginMenu::backFunction() {
@@ -133,6 +139,8 @@ void LoginMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 LoginMenu::~LoginMenu() {

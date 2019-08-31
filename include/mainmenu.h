@@ -11,6 +11,7 @@ class MainMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     Game *game;
     QLabel infoLabel;
     QPushButton consoleButton,
@@ -33,6 +34,7 @@ public:
     ~MainMenu();
     void display();
     void hide();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_MAINMENU_H_

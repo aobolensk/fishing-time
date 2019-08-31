@@ -79,6 +79,10 @@ void NetsMenu::netsTimerTick() {
     }
 }
 
+bool NetsMenu::isDisplayed() const {
+    return displayed;
+}
+
 void NetsMenu::display() {
     updateNets();
 
@@ -120,6 +124,8 @@ void NetsMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void NetsMenu::backFunction() {
@@ -140,6 +146,8 @@ void NetsMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 NetsMenu::~NetsMenu() {

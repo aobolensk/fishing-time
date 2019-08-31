@@ -39,6 +39,10 @@ MainMenu::MainMenu(Game *game, QGridLayout *grid) :
     connect(&exitButton, SIGNAL(released()), this, SLOT(exitFunction()));
 }
 
+bool MainMenu::isDisplayed() const {
+    return displayed;
+}
+
 void MainMenu::display() {
     infoLabel.setText(game->str.mainMenuText.arg(
         game->activeUser == -1 ? "" : game->users[game->activeUser].getUsername()
@@ -68,6 +72,8 @@ void MainMenu::display() {
     exitButton.setText(game->str.exit);
     exitButton.setVisible(true);
     exitButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void MainMenu::consoleFunction() {
@@ -123,6 +129,8 @@ void MainMenu::hide() {
 
     exitButton.setVisible(false);
     exitButton.setEnabled(false);
+
+    displayed = false;
 }
 
 MainMenu::~MainMenu() {

@@ -51,6 +51,10 @@ SignupMenu::SignupMenu(Game *game, QGridLayout *grid) :
     backButton.setEnabled(false);
 }
 
+bool SignupMenu::isDisplayed() const {
+    return displayed;
+}
+
 void SignupMenu::display() {
     signupLabel.setText(game->str.signupMenuText);
     signupLabel.setVisible(true);
@@ -83,6 +87,8 @@ void SignupMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void SignupMenu::backFunction() {
@@ -142,6 +148,8 @@ void SignupMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 SignupMenu::~SignupMenu() {

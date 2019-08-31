@@ -38,6 +38,10 @@ void RatingMenu::updateTable() {
     }
 }
 
+bool RatingMenu::isDisplayed() const {
+    return displayed;
+}
+
 void RatingMenu::display() {
     updateTable();
 
@@ -50,6 +54,8 @@ void RatingMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void RatingMenu::backFunction() {
@@ -63,6 +69,8 @@ void RatingMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 RatingMenu::~RatingMenu() {

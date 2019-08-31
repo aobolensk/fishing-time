@@ -50,6 +50,10 @@ void InventoryMenu::updateInventoryTable() {
     }
 }
 
+bool InventoryMenu::isDisplayed() const {
+    return displayed;
+}
+
 void InventoryMenu::display() {
     updateInventoryTable();
 
@@ -67,6 +71,8 @@ void InventoryMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void InventoryMenu::backFunction() {
@@ -82,6 +88,8 @@ void InventoryMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 InventoryMenu::~InventoryMenu() {

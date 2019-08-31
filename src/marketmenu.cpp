@@ -94,6 +94,10 @@ void MarketMenu::processDialog(int seller) {
     updateInfo();
 }
 
+bool MarketMenu::isDisplayed() const {
+    return displayed;
+}
+
 void MarketMenu::display() {
     updateDeals();
     updateInfo();
@@ -120,6 +124,8 @@ void MarketMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void MarketMenu::backFunction() {
@@ -147,6 +153,8 @@ void MarketMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 MarketMenu::~MarketMenu() {

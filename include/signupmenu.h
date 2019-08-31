@@ -11,6 +11,7 @@ class SignupMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     Game *game;
     QLabel signupLabel,
            loginLabel,
@@ -30,6 +31,7 @@ public:
     ~SignupMenu();
     void display();
     void hide();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_SIGNUPMENU_H_

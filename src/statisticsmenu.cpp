@@ -15,6 +15,10 @@ StatisticsMenu::StatisticsMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
+bool StatisticsMenu::isDisplayed() const {
+    return displayed;
+}
+
 void StatisticsMenu::display() {
     statisticsText.setText(
         QString("<table border=\"1\" width=\"100%\">"
@@ -32,6 +36,8 @@ void StatisticsMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void StatisticsMenu::backFunction() {
@@ -44,6 +50,8 @@ void StatisticsMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 StatisticsMenu::~StatisticsMenu() {

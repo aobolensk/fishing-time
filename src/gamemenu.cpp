@@ -83,6 +83,10 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     locationSelector.setEnabled(false);
 }
 
+bool GameMenu::isDisplayed() const {
+    return displayed;
+}
+
 void GameMenu::display() {
     updateInfo();
     infoLabel.setVisible(true);
@@ -135,6 +139,8 @@ void GameMenu::display() {
     }
     locationSelector.setVisible(true);
     locationSelector.setEnabled(true);
+
+    displayed = true;
 }
 
 void GameMenu::clickFunction() {
@@ -284,6 +290,8 @@ void GameMenu::hide() {
     locationSelector.clear();
     locationSelector.setVisible(false);
     locationSelector.setEnabled(false);
+
+    displayed = false;
 }
 
 GameMenu::~GameMenu() {

@@ -49,6 +49,10 @@ StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
+bool StoreMenu::isDisplayed() const {
+    return displayed;
+}
+
 void StoreMenu::display() {
     updateTable();
     updateInfo();
@@ -76,6 +80,8 @@ void StoreMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void StoreMenu::updateTable() {
@@ -168,6 +174,8 @@ void StoreMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 StoreMenu::~StoreMenu() {
