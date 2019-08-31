@@ -83,6 +83,10 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     locationSelector.setEnabled(false);
 }
 
+bool GameMenu::isDisplayed() const {
+    return displayed;
+}
+
 void GameMenu::display() {
     updateInfo();
     infoLabel.setVisible(true);

@@ -57,6 +57,10 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
+bool SettingsMenu::isDisplayed() const {
+    return displayed;
+}
+
 void SettingsMenu::display() {
     autoSavePeriodLabel.setText(game->str.autoSavePeriod);
     autoSavePeriodLabel.setVisible(true);

@@ -11,6 +11,7 @@ class LoginMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     Game *game;
     QComboBox loginSelector;
     QLineEdit passwordText;
@@ -29,6 +30,7 @@ public:
     ~LoginMenu();
     void display();
     void hide();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_LOGINMENU_H_

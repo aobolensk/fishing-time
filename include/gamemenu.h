@@ -13,6 +13,7 @@ class GameMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     Game *game;
     QPushButton clickButton,
                 logOutButton,
@@ -49,6 +50,7 @@ public:
     ~GameMenu();
     void display();
     void hide();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_GAMEMENU_H_

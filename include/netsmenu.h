@@ -12,6 +12,7 @@ class NetsMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     static const int SLOTS_COUNT = 9;
     Game *game;
     QPushButton backButton;
@@ -33,6 +34,7 @@ public:
     void display();
     void hide();
     void foldNets();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_NETSMENU_H_

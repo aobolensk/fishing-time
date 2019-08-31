@@ -79,6 +79,10 @@ void NetsMenu::netsTimerTick() {
     }
 }
 
+bool NetsMenu::isDisplayed() const {
+    return displayed;
+}
+
 void NetsMenu::display() {
     updateNets();
 

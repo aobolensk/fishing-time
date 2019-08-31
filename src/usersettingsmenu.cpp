@@ -51,6 +51,10 @@ UsersettingsMenu::UsersettingsMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
+bool UsersettingsMenu::isDisplayed() const {
+    return displayed;
+}
+
 void UsersettingsMenu::display() {
     usersettingsLabel.setText(game->str.userSettingsText.arg(
         game->users[game->activeUser].getUsername()

@@ -10,6 +10,7 @@ class StatisticsMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     Game *game;
     QLabel statisticsText;
     QPushButton backButton;
@@ -21,6 +22,7 @@ public:
     ~StatisticsMenu();
     void display();
     void hide();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_STATISTICSMENU_H_

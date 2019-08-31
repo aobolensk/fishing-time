@@ -11,6 +11,7 @@ class MarketMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     static const int SELLERS_COUNT = 3;
     Game *game;
     QPushButton backButton,
@@ -33,6 +34,7 @@ public:
     ~MarketMenu();
     void display();
     void hide();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_MARKETMENU_H_

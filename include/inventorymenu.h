@@ -11,6 +11,7 @@ class InventoryMenu : public QObject {
 private:
     Q_OBJECT
 private:
+    bool displayed = false;
     Game *game;
     QLabel descriptionLabel;
     QTableWidget inventoryTable;
@@ -27,6 +28,7 @@ public:
     ~InventoryMenu();
     void display();
     void hide();
+    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_INVENTORYMENU_H_

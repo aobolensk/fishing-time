@@ -15,6 +15,10 @@ StatisticsMenu::StatisticsMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
+bool StatisticsMenu::isDisplayed() const {
+    return displayed;
+}
+
 void StatisticsMenu::display() {
     statisticsText.setText(
         QString("<table border=\"1\" width=\"100%\">"
