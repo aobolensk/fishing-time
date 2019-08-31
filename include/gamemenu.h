@@ -31,9 +31,10 @@ private:
                      quantityHeader;
     QComboBox locationSelector;
     QGridLayout *grid;
+public slots:
+    void logOutFunction();
 private slots:
     void clickFunction();
-    void logOutFunction();
     void backFunction();
     void inventoryFunction();
     void marketFunction();

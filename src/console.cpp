@@ -49,7 +49,50 @@ void Console::registerCommands() {
         return 0;
     };
 
+    commands["login"] =
+    [&](QStringList &args) -> int {
+        (void) args;
+        game->hideCurrentMenu();
+        game->loginMenu.display();
+        log.info("Moved to login menu");
+        return 0;
+    };
+
+    commands["signup"] =
+    [&](QStringList &args) -> int {
+        (void) args;
+        game->hideCurrentMenu();
+        game->signupMenu.display();
+        log.info("Moved to signup menu");
+        return 0;
+    };
+
+    commands["logout"] =
+    [&](QStringList &args) -> int {
+        (void) args;
+        if (game->activeUser == -1) {
+            log.error("You're already logged out");
+        } else {
+            game->hideCurrentMenu();
+            game->gameMenu.logOutFunction();
+            game->mainMenu.display();
+            log.info("Successfully logged out");
+        }
+        return 0;
+    };
+
+    commands["save"] =
+    [&](QStringList &args) -> int {
+        (void) args;
+        log.info("Saving...");
+        game->manualSave();
+        log.info("Saving is complete");
+        return 0;
+    };
+
     commands["quit"] =
+    commands["exit"] =
+    commands["q"] =
     [&](QStringList &args) -> int {
         (void) args;
         QApplication::quit();

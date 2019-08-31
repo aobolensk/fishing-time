@@ -159,6 +159,10 @@ void Game::autoSaveFunction() {
     qDebug() << "Autosave is complete";
 }
 
+void Game::manualSave() {
+    serialize();
+}
+
 Game::~Game() {
     serialize();
 }

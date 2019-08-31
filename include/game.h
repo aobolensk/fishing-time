@@ -74,6 +74,7 @@ public:
     friend QJsonObject Config::serialize() const;
     friend void Config::deserialize(const QVariantMap &map);
     void hideCurrentMenu();
+    void manualSave();
 };
 
 #endif  // INCLUDE_GAME_H_
