@@ -51,6 +51,7 @@ void Console::registerCommands() {
 
     commands["logout"] =
     [&](QStringList &args) -> int {
+        (void) args;
         if (game->activeUser == -1) {
             log.error("You're already logged out");
         } else {
