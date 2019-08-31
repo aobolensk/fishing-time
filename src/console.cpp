@@ -49,6 +49,24 @@ void Console::registerCommands() {
         return 0;
     };
 
+    commands["login"] =
+    [&](QStringList &args) -> int {
+        (void) args;
+        game->hideCurrentMenu();
+        game->loginMenu.display();
+        log.info("Moved to login menu");
+        return 0;
+    };
+
+    commands["signup"] =
+    [&](QStringList &args) -> int {
+        (void) args;
+        game->hideCurrentMenu();
+        game->signupMenu.display();
+        log.info("Moved to signup menu");
+        return 0;
+    };
+
     commands["logout"] =
     [&](QStringList &args) -> int {
         (void) args;
