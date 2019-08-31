@@ -80,6 +80,8 @@ void StoreMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void StoreMenu::updateTable() {
@@ -172,6 +174,8 @@ void StoreMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 StoreMenu::~StoreMenu() {

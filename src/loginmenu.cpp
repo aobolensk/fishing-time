@@ -67,6 +67,8 @@ void LoginMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void LoginMenu::backFunction() {
@@ -137,6 +139,8 @@ void LoginMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 LoginMenu::~LoginMenu() {

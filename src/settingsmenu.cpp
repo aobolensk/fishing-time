@@ -109,6 +109,8 @@ void SettingsMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void SettingsMenu::fontSetupFunction() {
@@ -149,6 +151,8 @@ void SettingsMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 SettingsMenu::~SettingsMenu() {

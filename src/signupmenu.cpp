@@ -87,6 +87,8 @@ void SignupMenu::display() {
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void SignupMenu::backFunction() {
@@ -146,6 +148,8 @@ void SignupMenu::hide() {
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
+
+    displayed = false;
 }
 
 SignupMenu::~SignupMenu() {

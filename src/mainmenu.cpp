@@ -72,6 +72,8 @@ void MainMenu::display() {
     exitButton.setText(game->str.exit);
     exitButton.setVisible(true);
     exitButton.setEnabled(true);
+
+    displayed = true;
 }
 
 void MainMenu::consoleFunction() {
@@ -127,6 +129,8 @@ void MainMenu::hide() {
 
     exitButton.setVisible(false);
     exitButton.setEnabled(false);
+
+    displayed = false;
 }
 
 MainMenu::~MainMenu() {
