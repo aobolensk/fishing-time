@@ -49,6 +49,14 @@ void Console::registerCommands() {
         return 0;
     };
 
+    commands["save"] =
+    [&](QStringList &args) -> int {
+        log.info("Saving...");
+        game->manualSave();
+        log.info("Saving is complete");
+        return 0;
+    };
+
     commands["quit"] =
     [&](QStringList &args) -> int {
         (void) args;
