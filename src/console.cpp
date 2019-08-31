@@ -51,9 +51,14 @@ void Console::registerCommands() {
 
     commands["logout"] =
     [&](QStringList &args) -> int {
-        game->hideCurrentMenu();
-        game->gameMenu.logOutFunction();
-        game->mainMenu.display();
+        if (game->activeUser == -1) {
+            log.error("You're already logged out");
+        } else {
+            game->hideCurrentMenu();
+            game->gameMenu.logOutFunction();
+            game->mainMenu.display();
+            log.info("Successfully logged out");
+        }
         return 0;
     };
 
