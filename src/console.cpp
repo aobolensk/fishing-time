@@ -49,6 +49,14 @@ void Console::registerCommands() {
         return 0;
     };
 
+    commands["logout"] =
+    [&](QStringList &args) -> int {
+        game->hideCurrentMenu();
+        game->gameMenu.logOutFunction();
+        game->mainMenu.display();
+        return 0;
+    };
+
     commands["save"] =
     [&](QStringList &args) -> int {
         (void) args;
