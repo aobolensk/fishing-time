@@ -68,10 +68,12 @@ public:
     void setAutoSavePeriod(int periodInMinutes);
     Language activeLanguage = Language::English;
     QTimer autoSaveTimer;
+public:
     Game(QWidget *parent, const QString &config_file);
     ~Game();
     friend QJsonObject Config::serialize() const;
     friend void Config::deserialize(const QVariantMap &map);
+    void hideCurrentMenu();
 };
 
 #endif  // INCLUDE_GAME_H_

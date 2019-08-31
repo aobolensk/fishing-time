@@ -125,6 +125,34 @@ void Game::closeEvent(QCloseEvent *event) {
     }
 }
 
+void Game::hideCurrentMenu() {
+    if (mainMenu.isDisplayed()) {
+        mainMenu.hide();
+    } else if (loginMenu.isDisplayed()) {
+        loginMenu.hide();
+    } else if (gameMenu.isDisplayed()) {
+        gameMenu.hide();
+    } else if (marketMenu.isDisplayed()) {
+        marketMenu.hide();
+    } else if (storeMenu.isDisplayed()) {
+        storeMenu.hide();
+    } else if (settingsMenu.isDisplayed()) {
+        settingsMenu.hide();
+    } else if (netsMenu.isDisplayed()) {
+        netsMenu.hide();
+    } else if (statisticsMenu.isDisplayed()) {
+        statisticsMenu.hide();
+    } else if (signupMenu.isDisplayed()) {
+        signupMenu.hide();
+    } else if (usersettingsMenu.isDisplayed()) {
+        usersettingsMenu.hide();
+    } else if (ratingMenu.isDisplayed()) {
+        ratingMenu.hide();
+    } else if (inventoryMenu.isDisplayed()) {
+        inventoryMenu.hide();
+    }
+}
+
 void Game::autoSaveFunction() {
     qDebug() << "Performing autosave";
     serialize();
