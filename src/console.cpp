@@ -33,6 +33,8 @@ void Console::registerCommands() {
     /* Register commands only in this function.
      * Function is defined as mapping from QString
      * to std::function <int(QStringList &args)>
+     * It is necessary to add manual string for
+     * every added function.
      * Arguments:
      *  args[0] - name of the command
      *  args[1], ... - args for that command
