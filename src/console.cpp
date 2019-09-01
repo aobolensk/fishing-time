@@ -13,7 +13,7 @@ Console::Console(Game *game) :
     if (!this->restoreGeometry(settings.value("consoleGeometry").toByteArray())) {
         qDebug() << "Unable to restore console window geometry. Loading defaults...";
         this->setGeometry(QRect(QPoint(740, 100), QSize(360, 480)));
-    }    
+    }
     this->setLayout(&grid);
 
     grid.addWidget(&console, 0, 0);
@@ -93,6 +93,7 @@ void Console::registerCommands() {
             log.writeln("");
             return 0;
         },
+        PrivilegeLevel::Common,
         "Print arguments<br>"
         "Usage: echo &lt;argument1&gt; &lt;argument2&gt; ..."
     };
@@ -105,6 +106,7 @@ void Console::registerCommands() {
             log.info("Moved to login menu");
             return 0;
         },
+        PrivilegeLevel::Common,
         "Go to login menu"
     };
 
@@ -116,6 +118,7 @@ void Console::registerCommands() {
             log.info("Moved to signup menu");
             return 0;
         },
+        PrivilegeLevel::Common,
         "Go to sign up menu"
     };
 
@@ -132,6 +135,7 @@ void Console::registerCommands() {
             }
             return 0;
         },
+        PrivilegeLevel::Common,
         "Log out and go to main menu"
     };
 
@@ -143,6 +147,7 @@ void Console::registerCommands() {
             log.info("Saving is complete");
             return 0;
         },
+        PrivilegeLevel::Common,
         "Save"
     };
 
@@ -154,7 +159,30 @@ void Console::registerCommands() {
             ));
             return 0;
         },
+        PrivilegeLevel::Common,
         "Print information about this game"
+    };
+
+    commands["privilege"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            if (game->activeUser == -1) {
+                log.writeln("You are guest. Your privilege level: Common (0)");
+            } else {
+                log.write("Your privilege level: ");
+                switch((PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel()) {
+                case PrivilegeLevel::Common:
+                    log.writeln("Common (0)");
+                    break;
+                case PrivilegeLevel::Super:
+                    log.writeln("Super (1)");
+                    break;
+                }
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        "Print privilege level of current user"
     };
 
     commands["quit"] =
@@ -165,6 +193,7 @@ void Console::registerCommands() {
             QApplication::quit();
             return 0;
         },
+        PrivilegeLevel::Common,
         "Exit from the game"
     };
 
@@ -181,6 +210,7 @@ void Console::registerCommands() {
             }
             return 0;
         },
+        PrivilegeLevel::Common,
         "Print manual for commands<br>"
         "Usage: man &lt;command1&gt; &lt;command2&gt; ..."
     };
@@ -189,10 +219,15 @@ void Console::registerCommands() {
 void Console::parse(QStringList &args) {
     auto commandIterator = commands.find(args[0]);
     if (commandIterator != commands.end()) {
-        int retCode = commandIterator->function(args);
-        if (retCode != 0) {
-            log.error("Command " + args[0] +
-                      " returned " + QString::number(retCode));
+        if ((game->activeUser == -1 && commandIterator->privilege <= PrivilegeLevel::Common) ||
+            (game->activeUser != -1 && commandIterator->privilege <= (PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel())) {
+            int retCode = commandIterator->function(args);
+            if (retCode != 0) {
+                log.error("Command " + args[0] +
+                        " returned " + QString::number(retCode));
+            }
+        } else {
+            log.error("You do not have permission to perform command " + args[0]);
         }
     } else {
         log.error("Unknown command: " + args[0]);

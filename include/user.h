@@ -13,6 +13,7 @@ private:
     QString username;
     QString passwordHash;
     qint64 coins = 0ll;
+    int privilegeLevel = 0;
     // Statistics
     QString signUpTime;
     qint64 clicks = 0ll;
@@ -36,11 +37,13 @@ public:
     void incClicks();
     void changeCoins(qint64 quantity);
     void setPasswordHash(const QString &hashedPassword);
+    void setPrivilegeLevel(int level);
     // Getters
     QString getUsername() const;
     QString getPasswordHash() const;
     qint64 getClicks() const;
     qint64 getCoins() const;
+    qint64 getPrivilegeLevel() const;
 };
 
 Q_DECLARE_METATYPE(User)

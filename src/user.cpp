@@ -17,6 +17,7 @@ QJsonObject User::serialize() const {
     jsonObj["username"] = username;
     jsonObj["clicks"] = clicks;
     jsonObj["coins"] = coins;
+    jsonObj["privilegeLevel"] = privilegeLevel;
     jsonObj["passwordHash"] = passwordHash;
     jsonObj["signUpTime"] = signUpTime;
     jsonObj["inventory"] = toString(inventory.get());
@@ -27,6 +28,7 @@ QVariant User::deserialize(const QVariantMap &map) {
     User user = User(map["username"].toString());
     user.clicks = map["clicks"].toLongLong();
     user.coins = map["coins"].toLongLong();
+    user.coins = map["privilegeLevel"].toInt();
     user.passwordHash = map["passwordHash"].toString();
     user.signUpTime = map["signUpTime"].toString();
     fromString(user.inventory.set(), map["inventory"].toString());
@@ -83,10 +85,18 @@ void User::setPasswordHash(const QString &hashedPassword) {
     passwordHash = hashedPassword;
 }
 
+void User::setPrivilegeLevel(int level) {
+    privilegeLevel = level;
+}
+
 qint64 User::getClicks() const {
     return clicks;
 }
 
 qint64 User::getCoins() const {
     return coins;
+}
+
+qint64 User::getPrivilegeLevel() const {
+    return privilegeLevel;
 }
