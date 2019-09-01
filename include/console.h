@@ -12,6 +12,13 @@ class Game;
 
 class Console : public QWidget {
 private:
+    struct Command {
+        std::function <int(QStringList &)> function;
+        QString description;
+        Command() = delete;
+        ~Command() = default;
+    };
+private:
     Game *game;
     QGridLayout grid;
     QTextEdit console;
