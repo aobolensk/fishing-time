@@ -40,6 +40,8 @@ public:
             empty,
             emptyLoginWarning,
             emptyPasswordWarning,
+            eraseAllData,
+            eraseAllDataConfirmation,
             exit,
             exitConfirmation,
             fishLabelText,

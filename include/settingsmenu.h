@@ -22,6 +22,7 @@ private:
               languageSelector,
               inventoryTypeSelector;
     QPushButton fontSetupButton,
+                eraseAllDataButton,
                 backButton;
     QMetaObject::Connection autoSaveUpdater,
                             inventoryTypeUpdater;
@@ -31,6 +32,7 @@ private:
     QGridLayout *grid;
 private slots:
     void fontSetupFunction();
+    void eraseAllDataFunction();
     void backFunction();
 public:
     SettingsMenu(Game *game, QGridLayout *grid);
