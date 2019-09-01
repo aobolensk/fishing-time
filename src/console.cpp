@@ -197,7 +197,8 @@ void Console::registerCommands() {
 void Console::parse(QStringList &args) {
     auto commandIterator = commands.find(args[0]);
     if (commandIterator != commands.end()) {
-        if (commandIterator->privilege <= PrivilegeLevel::Common) {
+        if ((game->activeUser == -1 && commandIterator->privilege <= PrivilegeLevel::Common) ||
+            (game->activeUser != -1 && commandIterator->privilege <= (PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel())) {
             int retCode = commandIterator->function(args);
             if (retCode != 0) {
                 log.error("Command " + args[0] +
