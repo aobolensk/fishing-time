@@ -40,70 +40,82 @@ void Console::registerCommands() {
      *  int - exit code of this command (0 if success)
      */
 
-    commands["echo"] =
-    [&](QStringList &args) -> int {
-        for (int i = 1; i < args.count(); ++i) {
-            log.write(args[i]);
-        }
-        log.writeln("");
-        return 0;
+    commands["echo"] = {
+        [&](QStringList &args) -> int {
+            for (int i = 1; i < args.count(); ++i) {
+                log.write(args[i]);
+            }
+            log.writeln("");
+            return 0;
+        },
+        "Print something"
     };
 
-    commands["login"] =
-    [&](QStringList &args) -> int {
-        (void) args;
-        game->hideCurrentMenu();
-        game->loginMenu.display();
-        log.info("Moved to login menu");
-        return 0;
-    };
-
-    commands["signup"] =
-    [&](QStringList &args) -> int {
-        (void) args;
-        game->hideCurrentMenu();
-        game->signupMenu.display();
-        log.info("Moved to signup menu");
-        return 0;
-    };
-
-    commands["logout"] =
-    [&](QStringList &args) -> int {
-        (void) args;
-        if (game->activeUser == -1) {
-            log.error("You're already logged out");
-        } else {
+    commands["login"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
             game->hideCurrentMenu();
-            game->gameMenu.logOutFunction();
-            game->mainMenu.display();
-            log.info("Successfully logged out");
-        }
-        return 0;
+            game->loginMenu.display();
+            log.info("Moved to login menu");
+            return 0;
+        },
+        "Go to login menu"
     };
 
-    commands["save"] =
-    [&](QStringList &args) -> int {
-        (void) args;
-        log.info("Saving...");
-        game->manualSave();
-        log.info("Saving is complete");
-        return 0;
+    commands["signup"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            game->hideCurrentMenu();
+            game->signupMenu.display();
+            log.info("Moved to signup menu");
+            return 0;
+        },
+        "Go to sign up menu"
+    };
+
+    commands["logout"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            if (game->activeUser == -1) {
+                log.error("You're already logged out");
+            } else {
+                game->hideCurrentMenu();
+                game->gameMenu.logOutFunction();
+                game->mainMenu.display();
+                log.info("Successfully logged out");
+            }
+            return 0;
+        },
+        "Log out and go to main menu"
+    };
+
+    commands["save"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            log.info("Saving...");
+            game->manualSave();
+            log.info("Saving is complete");
+            return 0;
+        },
+        "Save"
     };
 
     commands["quit"] =
     commands["exit"] =
-    commands["q"] =
-    [&](QStringList &args) -> int {
-        (void) args;
-        QApplication::quit();
-        return 0;
+    commands["q"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            QApplication::quit();
+            return 0;
+        },
+        "Exit from the game"
     };
 }
 
 void Console::parse(QStringList &args) {
     auto commandIterator = commands.find(args[0]);
     if (commandIterator != commands.end()) {
-        int retCode = (*commandIterator)(args);
+        int retCode = (*commandIterator).function(args);
         if (retCode != 0) {
             log.error("Command " + args[0] +
                       " returned " + QString::number(retCode));

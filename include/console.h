@@ -15,7 +15,6 @@ private:
     struct Command {
         std::function <int(QStringList &)> function;
         QString description;
-        Command() = delete;
         ~Command() = default;
     };
 private:
@@ -24,7 +23,7 @@ private:
     QTextEdit console;
     QLineEdit input;
     Log log;
-    QMap <QString, std::function <int(QStringList &)>> commands;
+    QMap <QString, Command> commands;
 private:
     void parse(QStringList &args);
     void registerCommands();
