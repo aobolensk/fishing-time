@@ -48,7 +48,8 @@ void Console::registerCommands() {
             log.writeln("");
             return 0;
         },
-        "Print something"
+        "Print arguments<br>"
+        "Usage: echo &lt;argument1&gt; &lt;argument2&gt; ..."
     };
 
     commands["login"] = {
@@ -124,15 +125,15 @@ void Console::registerCommands() {
             }
             return 0;
         },
-        "Print manual for commands.\n"
-        "Usage: man <command1> <command2> ..."
+        "Print manual for commands<br>"
+        "Usage: man &lt;command1&gt; &lt;command2&gt; ..."
     };
 }
 
 void Console::parse(QStringList &args) {
     auto commandIterator = commands.find(args[0]);
     if (commandIterator != commands.end()) {
-        int retCode = (*commandIterator).function(args);
+        int retCode = commandIterator->function(args);
         if (retCode != 0) {
             log.error("Command " + args[0] +
                       " returned " + QString::number(retCode));
