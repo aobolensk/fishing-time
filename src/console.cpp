@@ -163,6 +163,28 @@ void Console::registerCommands() {
         "Print information about this game"
     };
 
+    commands["privilege"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            if (game->activeUser == -1) {
+                log.writeln("You are guest. Your privilege level: Common (0)");
+            } else {
+                log.write("Your privilege level: ");
+                switch((PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel()) {
+                case PrivilegeLevel::Common:
+                    log.writeln("Common (0)");
+                    break;
+                case PrivilegeLevel::Super:
+                    log.writeln("Super (1)");
+                    break;
+                }
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        "Print privilege level of current user"
+    };
+
     commands["quit"] =
     commands["exit"] =
     commands["q"] = {
