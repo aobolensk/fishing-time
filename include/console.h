@@ -15,6 +15,7 @@ private:
     struct Command {
         std::function <int(QStringList &)> function;
         QString description;
+        Command() = default;
         ~Command() = default;
     };
 private:
