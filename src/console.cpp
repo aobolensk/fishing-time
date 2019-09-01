@@ -103,6 +103,17 @@ void Console::registerCommands() {
         "Save"
     };
 
+    commands["about"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            log.writeln(game->str.aboutDescription.arg(
+                "https://github.com/gooddoog/fishing-time/"
+            ));
+            return 0;
+        },
+        "Print information about this game"
+    };
+
     commands["quit"] =
     commands["exit"] =
     commands["q"] = {
