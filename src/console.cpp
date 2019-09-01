@@ -110,6 +110,23 @@ void Console::registerCommands() {
         },
         "Exit from the game"
     };
+
+    commands["man"] = {
+        [&](QStringList &args) -> int {
+            for (int i = 1; i < args.count(); ++i) {
+                auto commandIterator = commands.find(args[i]);
+                if (commandIterator == commands.end()) {
+                    log.error("Command " + args[i] + " does not exist");
+                    return 1;
+                }
+                log.writeln(args[i] + ":");
+                log.writeln(commandIterator->description);
+            }
+            return 0;
+        },
+        "Print manual for commands.\n"
+        "Usage: man <command1> <command2> ..."
+    };
 }
 
 void Console::parse(QStringList &args) {
