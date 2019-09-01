@@ -31,17 +31,43 @@ Console::Console(Game *game) :
     registerCommands();
 }
 
+void Console::InputHistory::push(const QString &str) {
+    while (index != buffer.size() - 1)
+        buffer.pop_back();
+    buffer.push_back(str);
+    ++index;
+    afterPush = true;
+    qDebug() << "push index:" << index;
+}
+
+QString Console::InputHistory::getUpper() {
+    if (afterPush) {
+        afterPush = false;
+    } else if (index > 0) {
+        --index;
+    }
+    qDebug() << "getUpper index:" << index;
+    return buffer[index];
+}
+
+QString Console::InputHistory::getLower() {
+    if (index < buffer.size() - 1)
+        ++index;
+    if (index == buffer.size())
+        return "";
+    qDebug() << "getLower index:" << index;
+    return buffer[index];
+}
+
 bool Console::eventFilter(QObject *obj, QEvent *event) {
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent *key = static_cast<QKeyEvent *>(event);
         if (key->key() == 16777235) { // arrow up
-            if (inputHistory.size() > 0) {
-                qDebug() << inputHistory.size();
-                input.setText(inputHistory.back());
-                inputHistory.pop_back();
-                qDebug() << inputHistory.size();
-            }
+            input.setText(inputHistory.getUpper());
+        } else if (key->key() == 16777237) { // arrow down
+            input.setText(inputHistory.getLower());
         }
+        qDebug() << key->key();
     }
     return QObject::eventFilter(obj, event);
 }
@@ -176,7 +202,7 @@ void Console::parse(QStringList &args) {
 void Console::commandParser() {
     if (input.text().count() == 0)
         return;
-    inputHistory.push_back(input.text());
+    inputHistory.push(input.text());
     log.writeln("> " + input.text());
     QStringList args = input.text().split(" ", QString::SplitBehavior::SkipEmptyParts);
     parse(args);

@@ -19,7 +19,16 @@ private:
         Command() = default;
         ~Command() = default;
     };
-    std::deque <QString> inputHistory;
+    class InputHistory {
+    private:
+        std::deque <QString> buffer = {""};
+        size_t index = 0;
+        bool afterPush = false;
+    public:
+        void push(const QString &str);
+        QString getUpper();
+        QString getLower();
+    } inputHistory;
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 private:
