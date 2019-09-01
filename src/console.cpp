@@ -1,5 +1,6 @@
 #include <QScrollBar>
 #include <QSettings>
+#include <QDialog>
 #include "console.h"
 #include "game.h"
 
@@ -25,7 +26,24 @@ Console::Console(Game *game) :
         console.verticalScrollBar()->setValue(console.verticalScrollBar()->maximum());
     });
 
+    input.installEventFilter(this);
+
     registerCommands();
+}
+
+bool Console::eventFilter(QObject *obj, QEvent *event) {
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *key = static_cast<QKeyEvent *>(event);
+        if (key->key() == 16777235) { // arrow up
+            if (inputHistory.size() > 0) {
+                qDebug() << inputHistory.size();
+                input.setText(inputHistory.back());
+                inputHistory.pop_back();
+                qDebug() << inputHistory.size();
+            }
+        }
+    }
+    return QObject::eventFilter(obj, event);
 }
 
 void Console::registerCommands() {
@@ -158,6 +176,7 @@ void Console::parse(QStringList &args) {
 void Console::commandParser() {
     if (input.text().count() == 0)
         return;
+    inputHistory.push_back(input.text());
     log.writeln("> " + input.text());
     QStringList args = input.text().split(" ", QString::SplitBehavior::SkipEmptyParts);
     parse(args);

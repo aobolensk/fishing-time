@@ -1,5 +1,6 @@
 #ifndef INCLUDE_CONSOLE_H_
 #define INCLUDE_CONSOLE_H_
+#include <deque>
 #include <functional>
 #include <QWidget>
 #include <QGridLayout>
@@ -18,6 +19,9 @@ private:
         Command() = default;
         ~Command() = default;
     };
+    std::deque <QString> inputHistory;
+protected:
+    bool eventFilter(QObject *obj, QEvent *event);
 private:
     Game *game;
     QGridLayout grid;
