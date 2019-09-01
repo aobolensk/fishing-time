@@ -13,8 +13,13 @@ class Game;
 
 class Console : public QWidget {
 private:
+    enum class PrivilegeLevel {
+        Common = 0,
+        Super
+    };
     struct Command {
         std::function <int(QStringList &)> function;
+        PrivilegeLevel privilege;
         QString description;
         Command() = default;
         ~Command() = default;
