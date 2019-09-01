@@ -8,7 +8,6 @@ Console::Console(Game *game) :
     game(game),
     grid(QGridLayout(this)),
     log(game, &console) {
-    (void) this->game;
     QSettings settings;
     if (!this->restoreGeometry(settings.value("consoleGeometry").toByteArray())) {
         qDebug() << "Unable to restore console window geometry. Loading defaults...";
@@ -103,6 +102,17 @@ void Console::registerCommands() {
         "Save"
     };
 
+    commands["about"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            log.writeln(game->str.aboutDescription.arg(
+                "https://github.com/gooddoog/fishing-time/"
+            ));
+            return 0;
+        },
+        "Print information about this game"
+    };
+
     commands["quit"] =
     commands["exit"] =
     commands["q"] = {
@@ -154,6 +164,7 @@ void Console::commandParser() {
 }
 
 void Console::display() {
+    this->setWindowTitle(game->str.fishingTime + ": " + game->str.console);
     this->show();
 }
 
