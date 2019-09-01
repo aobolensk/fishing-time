@@ -159,6 +159,10 @@ void Game::autoSaveFunction() {
     qDebug() << "Autosave is complete";
 }
 
+QString Game::getConfigFileName() {
+    return config_file;
+}
+
 void Game::manualSave() {
     serialize();
 }

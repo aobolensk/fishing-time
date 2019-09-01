@@ -1,4 +1,5 @@
 #include <QFontDialog>
+#include <QMessageBox>
 #include "settingsmenu.h"
 #include "game.h"
 
@@ -51,7 +52,12 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     fontSetupButton.setEnabled(false);
     connect(&fontSetupButton, SIGNAL(released()), this, SLOT(fontSetupFunction()));
 
-    grid->addWidget(&backButton, 4, 1);
+    grid->addWidget(&eraseAllDataButton, 4, 1);
+    eraseAllDataButton.setVisible(false);
+    eraseAllDataButton.setEnabled(false);
+    connect(&eraseAllDataButton, SIGNAL(released()), this, SLOT(eraseAllDataFunction()));
+
+    grid->addWidget(&backButton, 5, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -106,6 +112,10 @@ void SettingsMenu::display() {
     fontSetupButton.setVisible(true);
     fontSetupButton.setEnabled(true);
 
+    eraseAllDataButton.setText(game->str.eraseAllData);
+    eraseAllDataButton.setVisible(true);
+    eraseAllDataButton.setEnabled(true);
+
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
@@ -117,6 +127,20 @@ void SettingsMenu::fontSetupFunction() {
     game->setFont(QFontDialog::getFont(nullptr, game->textFont, nullptr));
     game->console.setFont(QFontDialog::getFont(nullptr, game->textFont, nullptr));
     game->aboutMenu.setFont(QFontDialog::getFont(nullptr, game->textFont, nullptr));
+}
+
+void SettingsMenu::eraseAllDataFunction() {
+    game->gameMenu.logOutFunction();
+    QMessageBox::StandardButton eraseResult =
+        QMessageBox::question(nullptr, game->str.fishingTime, game->str.eraseAllDataConfirmation,
+        QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::No);
+    if (eraseResult == QMessageBox::Yes) {
+        if (remove(game->getConfigFileName().toStdString().c_str())) {
+            qDebug() << "Error while deleting config file";
+        } else {
+            qDebug() << "Config file is successfully removed";
+        }
+    }
 }
 
 void SettingsMenu::backFunction() {
@@ -148,6 +172,9 @@ void SettingsMenu::hide() {
 
     fontSetupButton.setVisible(false);
     fontSetupButton.setEnabled(false);
+
+    eraseAllDataButton.setVisible(false);
+    eraseAllDataButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

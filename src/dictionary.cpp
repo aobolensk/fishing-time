@@ -86,6 +86,8 @@ void Dictionary::setLanguage(Language l) {
         SET(empty) = "<EMPTY>";
         SET(emptyLoginWarning) = "Login is empty!";
         SET(emptyPasswordWarning) = "Do you really want to leave your password empty?";
+        SET(eraseAllData) = "Erase all data";
+        SET(eraseAllDataConfirmation) = "Do you really want to erase all your data?";
         SET(exit) = "Exit";
         SET(exitConfirmation) = "Do you want to exit?";
         SET(fishLabelText) = "Fish that can be caught in location %1:\n%2";
@@ -174,6 +176,8 @@ void Dictionary::setLanguage(Language l) {
         SET(empty) = "<ПУСТО>";
         SET(emptyLoginWarning) = "Логин пуст!";
         SET(emptyPasswordWarning) = "Вы действительно хотите оставить пароль пустым?";
+        SET(eraseAllData) = "Удалить все данные";
+        SET(eraseAllDataConfirmation) = "Вы действительно хотите удалить все данные?";
         SET(exit) = "Выход";
         SET(exitConfirmation) = "Вы действительно хотите выйти из игры?";
         SET(fishLabelText) = "Рыба, которую можно поймать в локации %1:\n%2";
