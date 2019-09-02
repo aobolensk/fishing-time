@@ -122,6 +122,21 @@ void Console::registerCommands() {
         "Go to sign up menu"
     };
 
+    commands["click"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            if (game->activeUser == -1) {
+                log.error("You are not logged in");
+            } else {
+                log.info("Click performed");
+                game->gameMenu.clickFunction();
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        "Perform click"
+    };
+
     commands["logout"] = {
         [&](QStringList &args) -> int {
             (void) args;

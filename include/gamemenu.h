@@ -33,8 +33,8 @@ private:
     QGridLayout *grid;
 public slots:
     void logOutFunction();
-private slots:
     void clickFunction();
+private slots:
     void backFunction();
     void inventoryFunction();
     void marketFunction();
