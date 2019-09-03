@@ -26,6 +26,7 @@ private:
                 backButton;
     QMetaObject::Connection autoSaveUpdater,
                             inventoryTypeUpdater;
+private:
     int autoSaveOptions[6] = {
         1, 3, 5, 10, 30, 60
     };
@@ -40,6 +41,7 @@ public:
     void display();
     void hide();
     bool isDisplayed() const;
+    QString getSetting(const QString &settingName);
 };
 
 #endif  // INCLUDE_SETTINGSMENU_H_

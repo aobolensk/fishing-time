@@ -184,6 +184,33 @@ void Console::registerCommands() {
         "Usage: about"
     };
 
+    commands["settings"] = {
+        [&](QStringList &args) -> int {
+            if (args.size() < 2) {
+                log.error("\"settings\" command requires more args");
+                return 1;
+            }
+            
+            if (args[1] == "get") {
+                if (args.size() < 3) {
+                    log.error("\"settings get\" requires more args");
+                    return 1;
+                }
+                log.writeln(args[2] + " : " + game->settingsMenu.getSetting(args[2]));
+            } else {
+                log.error("Invalid argument: \"" + args[1] + "\" "
+                          "for settings command");
+                return 1;
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        "Get information about the settings or edit the settings<br>"
+        "Usage: settings get &lt;setting_name&gt;<br>"
+        "List of supported settings:<br>"
+        "\tautosave - auto save period"
+    };
+
     commands["privilege"] = {
         [&](QStringList &args) -> int {
             (void) args;
