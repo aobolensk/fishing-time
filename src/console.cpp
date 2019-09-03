@@ -248,6 +248,21 @@ void Console::registerCommands() {
         "Usage: exit"
     };
 
+    commands["help"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            log.writeln("List of all existing commands:");
+            for (auto command : commands.keys())  {
+                log.writeln(command);
+            }
+            log.writeln("Use 'man &lt;command&gt;' to get description");
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        "Print all existing commands<br>"
+        "Usage: help"
+    };
+
     commands["man"] = {
         [&](QStringList &args) -> int {
             for (int i = 1; i < args.count(); ++i) {
