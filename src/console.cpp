@@ -235,6 +235,17 @@ void Console::registerCommands() {
         "Usage: privilege"
     };
 
+    commands["clear"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            console.clear();
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        "Clear console output<br>"
+        "Usage: clear"
+    };
+
     commands["quit"] =
     commands["exit"] =
     commands["q"] = {
