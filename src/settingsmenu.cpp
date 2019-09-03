@@ -123,6 +123,16 @@ void SettingsMenu::display() {
     displayed = true;
 }
 
+QString SettingsMenu::getSetting(const QString &settingName) {
+    if (settingName == "autosave") {
+        return QString::number(game->getAutoSavePeriod()) + " minutes";
+    } else if (settingName == "language") {
+        return game->str.languages[game->activeLanguage].first;
+    } else {
+        return "";
+    }
+}
+
 void SettingsMenu::fontSetupFunction() {
     game->setFont(QFontDialog::getFont(nullptr, game->textFont, nullptr));
     game->console.setFont(QFontDialog::getFont(nullptr, game->textFont, nullptr));

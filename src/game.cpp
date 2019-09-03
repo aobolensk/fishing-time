@@ -62,6 +62,10 @@ void Game::setAutoSavePeriod(int periodInMinutes) {
     qDebug() << "Autosave period is set to " << autoSavePeriod << " mins";
 }
 
+int Game::getAutoSavePeriod() {
+    return autoSavePeriod;
+}
+
 void Game::deserialize() {
     QFile config(config_file);
     if (!config.exists()) {
