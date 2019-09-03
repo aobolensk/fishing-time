@@ -208,7 +208,8 @@ void Console::registerCommands() {
         "Get information about the settings or edit the settings<br>"
         "Usage: settings get &lt;setting_name&gt;<br>"
         "List of supported settings:<br>"
-        "\tautosave - auto save period"
+        "\tautosave - auto save period<br>"
+        "\tlanguage - current language"
     };
 
     commands["privilege"] = {

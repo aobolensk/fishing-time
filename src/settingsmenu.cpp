@@ -126,6 +126,8 @@ void SettingsMenu::display() {
 QString SettingsMenu::getSetting(const QString &settingName) {
     if (settingName == "autosave") {
         return QString::number(game->getAutoSavePeriod()) + " minutes";
+    } else if (settingName == "language") {
+        return game->str.languages[game->activeLanguage].first;
     } else {
         return "";
     }
