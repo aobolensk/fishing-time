@@ -1,6 +1,7 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QDialog>
+#include <QMutex>
 #include "console.h"
 #include "game.h"
 
@@ -21,9 +22,12 @@ Console::Console(Game *game) :
 
     grid.addWidget(&input, 1, 0);
     QObject::connect(&input, &QLineEdit::returnPressed, [this]() {
+        QMutex mutex;
+        mutex.lock();
         commandParser();
         input.clear();
         console.verticalScrollBar()->setValue(console.verticalScrollBar()->maximum());
+        mutex.unlock();
     });
 
     input.installEventFilter(this);
