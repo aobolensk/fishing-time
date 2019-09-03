@@ -107,7 +107,8 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Go to login menu"
+        "Go to login menu<br>"
+        "Usage: login"
     };
 
     commands["signup"] = {
@@ -119,7 +120,8 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Go to sign up menu"
+        "Go to sign up menu<br>"
+        "Usage: signup"
     };
 
     commands["click"] = {
@@ -134,7 +136,8 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Perform click"
+        "Perform click<br>"
+        "Usage: click"
     };
 
     commands["logout"] = {
@@ -151,7 +154,8 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Log out and go to main menu"
+        "Log out and go to main menu<br>"
+        "Usage: logout"
     };
 
     commands["save"] = {
@@ -163,7 +167,8 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Save"
+        "Save<br>"
+        "Usage: save"
     };
 
     commands["about"] = {
@@ -175,7 +180,8 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Print information about this game"
+        "Print information about this game<br>"
+        "Usage: about"
     };
 
     commands["privilege"] = {
@@ -197,7 +203,8 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Print privilege level of current user"
+        "Print privilege level of current user<br>"
+        "Usage: privilege"
     };
 
     commands["quit"] =
@@ -209,7 +216,8 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Exit from the game"
+        "Exit from the game<br>"
+        "Usage: exit"
     };
 
     commands["man"] = {
