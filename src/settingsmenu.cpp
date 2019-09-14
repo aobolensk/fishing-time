@@ -134,9 +134,10 @@ QString SettingsMenu::getSetting(const QString &settingName) {
 }
 
 void SettingsMenu::fontSetupFunction() {
-    game->setFont(QFontDialog::getFont(nullptr, game->textFont, nullptr));
-    game->console.setFont(QFontDialog::getFont(nullptr, game->textFont, nullptr));
-    game->aboutMenu.setFont(QFontDialog::getFont(nullptr, game->textFont, nullptr));
+    QFont newFont = QFontDialog::getFont(nullptr, game->textFont, nullptr);
+    game->setFont(newFont);
+    game->console.setFont(newFont);
+    game->aboutMenu.setFont(newFont);
 }
 
 void SettingsMenu::eraseAllDataFunction() {
