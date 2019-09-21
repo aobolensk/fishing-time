@@ -321,7 +321,15 @@ int Console::parseCommand(QStringList &args) {
 void Console::parse(QStringList &args) {
     QStringList command;
     for (int i = 0; i < args.count(); ++i) {
-        if (args[i] == "&&") {
+        if (args[i][args[i].count() - 1] == ';') {
+            QString word = args[i];
+            word.chop(1);
+            if (word.count()) {
+                command.append(word);
+            }
+            parseCommand(command);
+            command.clear();
+        } else if (args[i] == "&&") {
             int retCode = parseCommand(command);
             command.clear();
             if (retCode != 0) {
