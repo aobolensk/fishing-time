@@ -297,12 +297,13 @@ void Console::registerCommands() {
     };
 }
 
-void Console::parse(QStringList &args) {
+int Console::parseCommand(QStringList &args) {
     auto commandIterator = commands.find(args[0]);
+    int retCode = 0;
     if (commandIterator != commands.end()) {
         if ((game->activeUser == -1 && commandIterator->privilege <= PrivilegeLevel::Common) ||
             (game->activeUser != -1 && commandIterator->privilege <= (PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel())) {
-            int retCode = commandIterator->function(args);
+            retCode = commandIterator->function(args);
             if (retCode != 0) {
                 log.error("Command " + args[0] +
                         " returned " + QString::number(retCode));
@@ -311,7 +312,27 @@ void Console::parse(QStringList &args) {
             log.error("You do not have permission to perform command " + args[0]);
         }
     } else {
+        retCode = -1;
         log.error("Unknown command: " + args[0]);
+    }
+    return retCode;
+}
+
+void Console::parse(QStringList &args) {
+    QStringList command;
+    for (int i = 0; i < args.count(); ++i) {
+        if (args[i] == "&&") {
+            int retCode = parseCommand(command);
+            command.clear();
+            if (retCode != 0) {
+                break;
+            }
+        } else {
+            command.append(args[i]);
+        }
+    }
+    if (command.count() > 0) {
+        parseCommand(command);
     }
 }
 

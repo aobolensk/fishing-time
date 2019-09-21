@@ -45,6 +45,7 @@ private:
     QMap <QString, Command> commands;
 private:
     void parse(QStringList &args);
+    int parseCommand(QStringList &args);
     void registerCommands();
 private slots:
     void commandParser();
