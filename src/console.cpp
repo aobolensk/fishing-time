@@ -124,13 +124,13 @@ void Console::parse(QStringList &args) {
 }
 
 void Console::commandParser() {
-    inputHistory.push(input.text());
     QStringList args = input.text().split(" ", QString::SplitBehavior::SkipEmptyParts);
     if (args.size() == 0) {
         input.clear();
         return;
     }
     log.writeln("> " + input.text());
+    inputHistory.push(input.text());
     parse(args);
 }
 
