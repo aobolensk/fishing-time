@@ -53,7 +53,7 @@ const QString &Dictionary::getItemName(const QString &itemId) const {
 
 
 double Dictionary::getReadiness(Language l) {
-    return (double)languages[l].second / (DICTIONARY_END - DICTIONARY_START - 2) * 100.;
+    return (double)languages[l].second / (DICTIONARY_END - DICTIONARY_START - 5) * 100.;
 }
 
 #define SET(string) (++updatesCount); (*(const_cast<QString*>(&string)))
@@ -149,6 +149,50 @@ void Dictionary::setLanguage(Language l) {
         SET(warning) = "Warning";
         SET(youDontHaveEnoughCoins) = "You don't have enough coins";
         SET(youDontHaveEnoughItems) = "You don't have enough items";
+
+        SET(commands.echo) =
+            "Print arguments<br>"
+            "Usage: echo &lt;argument1&gt; &lt;argument2&gt; ...";
+        SET(commands.login) =
+            "Go to login menu<br>"
+            "Usage: login";
+        SET(commands.signup) =
+            "Go to sign up menu<br>"
+            "Usage: signup";
+        SET(commands.click) =
+            "Perform click<br>"
+            "Usage: click";
+        SET(commands.logout) =
+            "Log out and go to main menu<br>"
+            "Usage: logout";
+        SET(commands.save) =
+            "Save<br>"
+            "Usage: save";
+        SET(commands.about) =
+            "Print information about this game<br>"
+            "Usage: about";
+        SET(commands.settings) =
+            "Get information about the settings or edit the settings<br>"
+            "Usage: settings get &lt;setting_name&gt;<br>"
+            "List of supported settings:<br>"
+            "\tautosave - auto save period<br>"
+            "\tlanguage - current language";
+        SET(commands.privilege) =
+            "Print privilege level of current user<br>"
+            "Usage: privilege";
+        SET(commands.clear) =
+            "Clear console output<br>"
+            "Usage: clear";
+        SET(commands.exit) =
+            "Exit from the game<br>"
+            "Usage: exit";
+        SET(commands.help) =
+            "Print list of all existing commands<br>"
+            "Usage: help";
+        SET(commands.man) =
+            "Print manual for commands<br>"
+            "Usage: man &lt;command1&gt; &lt;command2&gt; ...";
+
         languages[Language::English].second = updatesCount;
         break;
     } case Language::Russian: {
@@ -239,6 +283,50 @@ void Dictionary::setLanguage(Language l) {
         SET(warning) = "Внимание";
         SET(youDontHaveEnoughCoins) = "Недостаточно монет";
         SET(youDontHaveEnoughItems) = "Недостаточно предметов";
+
+        SET(commands.echo) =
+            "Вывести аргументы<br>"
+            "Использование: echo &lt;аргумент1&gt; &lt;аргумент2&gt; ...";
+        SET(commands.login) =
+            "Перейти в меню входа<br>"
+            "Использование: login";
+        SET(commands.signup) =
+            "Перейти в меню регистрации<br>"
+            "Использование: signup";
+        SET(commands.click) =
+            "Сделать клик<br>"
+            "Использование: click";
+        SET(commands.logout) =
+            "Выйти из аккаунта и перейти в главное меню<br>"
+            "Использование: logout";
+        SET(commands.save) =
+            "Сохранить<br>"
+            "Использование: save";
+        SET(commands.about) =
+            "Вывести информацию об игре<br>"
+            "Использование: about";
+        SET(commands.settings) =
+            "Получить информацию о настройках или отредактировать настройки<br>"
+            "Использование: settings get &lt;setting_name&gt;<br>"
+            "Список поддерживаемых настроек:<br>"
+            "\tautosave - период автосохранения<br>"
+            "\tlanguage - текущий язык";
+        SET(commands.privilege) =
+            "Вывести уровень привилегий текущего пользователя<br>"
+            "Использование: privilege";
+        SET(commands.clear) =
+            "Очистить окно консоли<br>"
+            "Использование: clear";
+        SET(commands.exit) =
+            "Выйти из игры<br>"
+            "Использование: exit";
+        SET(commands.help) =
+            "Вывести список всех команд<br>"
+            "Использование: help";
+        SET(commands.man) =
+            "Вывести мануал для команды<br>"
+            "Использование: man &lt;команда1&gt; &lt;команда2&gt; ...";
+
         languages[Language::Russian].second = updatesCount;
         break;
     } default: {

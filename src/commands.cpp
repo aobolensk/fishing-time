@@ -23,8 +23,7 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Print arguments<br>"
-        "Usage: echo &lt;argument1&gt; &lt;argument2&gt; ..."
+        &game->str.commands.echo
     };
 
     commands["login"] = {
@@ -36,8 +35,7 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Go to login menu<br>"
-        "Usage: login"
+        &game->str.commands.login
     };
 
     commands["signup"] = {
@@ -49,8 +47,7 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Go to sign up menu<br>"
-        "Usage: signup"
+        &game->str.commands.signup
     };
 
     commands["click"] = {
@@ -65,8 +62,7 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Perform click<br>"
-        "Usage: click"
+        &game->str.commands.click
     };
 
     commands["logout"] = {
@@ -83,8 +79,7 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Log out and go to main menu<br>"
-        "Usage: logout"
+        &game->str.commands.logout
     };
 
     commands["save"] = {
@@ -96,8 +91,7 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Save<br>"
-        "Usage: save"
+        &game->str.commands.save
     };
 
     commands["about"] = {
@@ -109,8 +103,7 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Print information about this game<br>"
-        "Usage: about"
+        &game->str.commands.about
     };
 
     commands["settings"] = {
@@ -134,11 +127,7 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Get information about the settings or edit the settings<br>"
-        "Usage: settings get &lt;setting_name&gt;<br>"
-        "List of supported settings:<br>"
-        "\tautosave - auto save period<br>"
-        "\tlanguage - current language"
+        &game->str.commands.settings
     };
 
     commands["privilege"] = {
@@ -160,8 +149,7 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Print privilege level of current user<br>"
-        "Usage: privilege"
+        &game->str.commands.privilege
     };
 
     commands["clear"] = {
@@ -171,8 +159,7 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Clear console output<br>"
-        "Usage: clear"
+        &game->str.commands.clear
     };
 
     commands["quit"] =
@@ -184,23 +171,29 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        "Exit from the game<br>"
-        "Usage: exit"
+        &game->str.commands.exit
     };
 
     commands["help"] = {
         [&](QStringList &args) -> int {
             (void) args;
             log.writeln("List of all existing commands:");
+            log.write("[ ");
+            bool needSpace = false;
             for (auto command : commands.keys())  {
-                log.writeln(command);
+                if (!needSpace) {
+                    needSpace = true;
+                } else {
+                    log.write(", ");
+                }
+                log.write(command + ' ');
             }
+            log.writeln("]");
             log.writeln("Use 'man &lt;command&gt;' to get description");
             return 0;
         },
         PrivilegeLevel::Common,
-        "Print all existing commands<br>"
-        "Usage: help"
+        &game->str.commands.help
     };
 
     commands["man"] = {
@@ -212,12 +205,11 @@ void Console::registerCommands() {
                     return 1;
                 }
                 log.writeln(args[i] + ":");
-                log.writeln(commandIterator->description);
+                log.writeln(*(commandIterator->description));
             }
             return 0;
         },
         PrivilegeLevel::Common,
-        "Print manual for commands<br>"
-        "Usage: man &lt;command1&gt; &lt;command2&gt; ..."
+        &game->str.commands.man
     };
 }

@@ -20,7 +20,7 @@ private:
     struct Command {
         std::function <int(QStringList &)> function;
         PrivilegeLevel privilege;
-        QString description;
+        const QString *description;
         Command() = default;
         ~Command() = default;
     };
