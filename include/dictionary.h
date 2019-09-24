@@ -103,6 +103,10 @@ public:
             warning,
             youDontHaveEnoughCoins,
             youDontHaveEnoughItems;
+    struct Commands {
+        const QString
+            echo;
+    } commands;
     static constexpr int DICTIONARY_END = __LINE__;
 private:
     int numberOfStrings = 0;

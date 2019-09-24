@@ -53,7 +53,7 @@ const QString &Dictionary::getItemName(const QString &itemId) const {
 
 
 double Dictionary::getReadiness(Language l) {
-    return (double)languages[l].second / (DICTIONARY_END - DICTIONARY_START - 2) * 100.;
+    return (double)languages[l].second / (DICTIONARY_END - DICTIONARY_START - 5) * 100.;
 }
 
 #define SET(string) (++updatesCount); (*(const_cast<QString*>(&string)))
@@ -149,6 +149,10 @@ void Dictionary::setLanguage(Language l) {
         SET(warning) = "Warning";
         SET(youDontHaveEnoughCoins) = "You don't have enough coins";
         SET(youDontHaveEnoughItems) = "You don't have enough items";
+
+        SET(commands.echo) =
+            "Print arguments<br>"
+            "Usage: echo &lt;argument1&gt; &lt;argument2&gt; ...";
         languages[Language::English].second = updatesCount;
         break;
     } case Language::Russian: {
