@@ -24,7 +24,8 @@ private:
     QPushButton fontSetupButton,
                 eraseAllDataButton,
                 backButton;
-    QMetaObject::Connection autoSaveUpdater,
+    QMetaObject::Connection languageUpdater,
+                            autoSaveUpdater,
                             inventoryTypeUpdater;
 private:
     int autoSaveOptions[6] = {

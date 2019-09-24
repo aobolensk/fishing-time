@@ -25,12 +25,7 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
                                  " (" + QString::number(game->str.getReadiness((Language)i)) + "%) ready");
     }
     qDebug() << (int)game->activeLanguage;
-    connect(&languageSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-        [this](int index) {
-            this->hide();
-            this->game->str.setLanguage(this->game->activeLanguage = (Language)index);
-            this->display();
-        });
+
     languageSelector.setVisible(false);
     languageSelector.setEnabled(false);
 
@@ -93,6 +88,12 @@ void SettingsMenu::display() {
     languageSelector.setCurrentIndex((int)game->activeLanguage);
     languageSelector.setVisible(true);
     languageSelector.setEnabled(true);
+    languageUpdater = connect(&languageSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+        [this](int index) {
+            this->hide();
+            this->game->str.setLanguage(this->game->activeLanguage = (Language)index);
+            this->display();
+        });
 
     inventoryTypeLabel.setText(game->str.inventoryType);
     inventoryTypeLabel.setVisible(true);
@@ -103,7 +104,11 @@ void SettingsMenu::display() {
     inventoryTypeSelector.setVisible(true);
     inventoryTypeSelector.setEnabled(true);
     inventoryTypeUpdater = connect(&inventoryTypeSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-       [this](int index){ this->game->inventoryType = (InventoryType)index; });
+    [this](int index) {
+        if (index != -1) {
+            this->game->inventoryType = (InventoryType)index; 
+        }
+    });
 
     fontLabel.setText(game->str.font);
     fontLabel.setVisible(true);
@@ -171,6 +176,7 @@ void SettingsMenu::hide() {
 
     languageSelector.setVisible(false);
     languageSelector.setEnabled(false);
+    disconnect(languageUpdater);
 
     inventoryTypeLabel.setVisible(false);
 
