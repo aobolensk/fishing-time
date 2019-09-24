@@ -178,9 +178,17 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             (void) args;
             log.writeln("List of all existing commands:");
+            log.write("[ ");
+            bool needSpace = false;
             for (auto command : commands.keys())  {
-                log.writeln(command);
+                if (!needSpace) {
+                    needSpace = true;
+                } else {
+                    log.write(", ");
+                }
+                log.write(command + ' ');
             }
+            log.writeln("]");
             log.writeln("Use 'man &lt;command&gt;' to get description");
             return 0;
         },
