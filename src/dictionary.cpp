@@ -153,6 +153,46 @@ void Dictionary::setLanguage(Language l) {
         SET(commands.echo) =
             "Print arguments<br>"
             "Usage: echo &lt;argument1&gt; &lt;argument2&gt; ...";
+        SET(commands.login) =
+            "Go to login menu<br>"
+            "Usage: login";
+        SET(commands.signup) =
+            "Go to sign up menu<br>"
+            "Usage: signup";
+        SET(commands.click) =
+            "Perform click<br>"
+            "Usage: click";
+        SET(commands.logout) =
+            "Log out and go to main menu<br>"
+            "Usage: logout";
+        SET(commands.save) =
+            "Save<br>"
+            "Usage: save";
+        SET(commands.about) =
+            "Print information about this game<br>"
+            "Usage: about";
+        SET(commands.settings) =
+            "Get information about the settings or edit the settings<br>"
+            "Usage: settings get &lt;setting_name&gt;<br>"
+            "List of supported settings:<br>"
+            "\tautosave - auto save period<br>"
+            "\tlanguage - current language";
+        SET(commands.privilege) =
+            "Print privilege level of current user<br>"
+            "Usage: privilege";
+        SET(commands.clear) =
+            "Clear console output<br>"
+            "Usage: clear";
+        SET(commands.exit) =
+            "Exit from the game<br>"
+            "Usage: exit";
+        SET(commands.help) =
+            "Print list of all existing commands<br>"
+            "Usage: help";
+        SET(commands.man) =
+            "Print manual for commands<br>"
+            "Usage: man &lt;command1&gt; &lt;command2&gt; ...";
+
         languages[Language::English].second = updatesCount;
         break;
     } case Language::Russian: {
