@@ -283,6 +283,50 @@ void Dictionary::setLanguage(Language l) {
         SET(warning) = "Внимание";
         SET(youDontHaveEnoughCoins) = "Недостаточно монет";
         SET(youDontHaveEnoughItems) = "Недостаточно предметов";
+
+        SET(commands.echo) =
+            "Вывести аргументы<br>"
+            "Использование: echo &lt;аргумент1&gt; &lt;аргумент2&gt; ...";
+        SET(commands.login) =
+            "Перейти в меню входа<br>"
+            "Использование: login";
+        SET(commands.signup) =
+            "Перейти в меню регистрации<br>"
+            "Использование: signup";
+        SET(commands.click) =
+            "Сделать клик<br>"
+            "Использование: click";
+        SET(commands.logout) =
+            "Выйти из аккаунта и перейти в главное меню<br>"
+            "Использование: logout";
+        SET(commands.save) =
+            "Сохранить<br>"
+            "Использование: save";
+        SET(commands.about) =
+            "Вывести информацию об игре<br>"
+            "Использование: about";
+        SET(commands.settings) =
+            "Получить информацию о настройках или отредактировать настройки<br>"
+            "Использование: settings get &lt;setting_name&gt;<br>"
+            "Список поддерживаемых настроек:<br>"
+            "\tautosave - период автосохранения<br>"
+            "\tlanguage - текущий язык";
+        SET(commands.privilege) =
+            "Вывести уровень привилегий текущего пользователя<br>"
+            "Использование: privilege";
+        SET(commands.clear) =
+            "Очистить окно консоли<br>"
+            "Использование: clear";
+        SET(commands.exit) =
+            "Выйти из игры<br>"
+            "Использование: exit";
+        SET(commands.help) =
+            "Вывести список всех команд<br>"
+            "Использование: help";
+        SET(commands.man) =
+            "Вывести мануал для команды<br>"
+            "Использование: man &lt;команда1&gt; &lt;команда2&gt; ...";
+
         languages[Language::Russian].second = updatesCount;
         break;
     } default: {
