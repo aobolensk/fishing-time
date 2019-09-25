@@ -189,6 +189,9 @@ void Dictionary::setLanguage(Language l) {
         SET(commands.clear) =
             "Clear console output<br>"
             "Usage: clear";
+        SET(commands.inventory) =
+            "Show player's inventory<br>"
+            "Usage: inventory";
         SET(commands.exit) =
             "Exit from the game<br>"
             "Usage: exit";
@@ -329,6 +332,9 @@ void Dictionary::setLanguage(Language l) {
         SET(commands.clear) =
             "Очистить окно консоли<br>"
             "Использование: clear";
+        SET(commands.inventory) =
+            "Показать инвентарь игрока<br>"
+            "Использование: inventory";
         SET(commands.exit) =
             "Выйти из игры<br>"
             "Использование: exit";

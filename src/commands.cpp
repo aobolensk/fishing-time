@@ -178,6 +178,30 @@ void Console::registerCommands() {
         &game->str.commands.clear
     };
 
+    commands["inventory"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            if (game->activeUser == -1) {
+                log.error("You're not logged in");
+                return 1;
+            }
+            QMap<QString, int>::const_iterator it =
+                game->users[game->activeUser].inventory.get().constBegin();
+            QMap<QString, int>::const_iterator invEnd =
+                game->users[game->activeUser].inventory.get().constEnd();
+            log.writeln("Inventory of player " +
+                game->users[game->activeUser].getUsername() + ':');
+            while (it != invEnd) {
+                log.writeln(game->str.getItemName(it.key()) + ": " +
+                    QString::number(it.value()));
+                ++it;
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.inventory
+    };
+
     commands["quit"] =
     commands["exit"] =
     commands["q"] = {
