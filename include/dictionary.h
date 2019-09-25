@@ -119,6 +119,7 @@ public:
             settings,
             privilege,
             clear,
+            inventory,
             exit,
             help,
             man;
