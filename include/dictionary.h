@@ -112,6 +112,7 @@ public:
             logout,
             save,
             about,
+            aboutme,
             settings,
             privilege,
             clear,

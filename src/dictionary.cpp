@@ -171,6 +171,9 @@ void Dictionary::setLanguage(Language l) {
         SET(commands.about) =
             "Print information about this game<br>"
             "Usage: about";
+        SET(commands.aboutme) =
+            "Print information about current user<br>"
+            "Usage: aboutme";
         SET(commands.settings) =
             "Get information about the settings or edit the settings<br>"
             "Usage: settings get &lt;setting_name&gt;<br>"
@@ -305,6 +308,9 @@ void Dictionary::setLanguage(Language l) {
         SET(commands.about) =
             "Вывести информацию об игре<br>"
             "Использование: about";
+        SET(commands.aboutme) =
+            "Вывести информацию о текущем пользователе<br>"
+            "Использование: aboutme";
         SET(commands.settings) =
             "Получить информацию о настройках или отредактировать настройки<br>"
             "Использование: settings get &lt;setting_name&gt;<br>"

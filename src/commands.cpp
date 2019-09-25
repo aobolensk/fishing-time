@@ -106,6 +106,22 @@ void Console::registerCommands() {
         &game->str.commands.about
     };
 
+    commands["aboutme"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            if (game->activeUser == -1) {
+                log.error("You're not logged in");
+                return 1;
+            }
+            log.writeln("Username: " + game->users[game->activeUser].getUsername());
+            log.writeln("Coins: " + QString::number(game->users[game->activeUser].getCoins()));
+            log.writeln("Clicks: " + QString::number(game->users[game->activeUser].getClicks()));
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.aboutme
+    };
+
     commands["settings"] = {
         [&](QStringList &args) -> int {
             if (args.size() < 2) {
