@@ -75,6 +75,7 @@ void Dictionary::setLanguage(Language l) {
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
         SET(coins) = "Coins";
+        SET(commandReturned) = "Command %1 returned %2";
         SET(confirmPassword) = "Confirm password";
         SET(confirmPasswordWarning) = "Password are not equal";
         SET(console) = "Console";
@@ -124,6 +125,7 @@ void Dictionary::setLanguage(Language l) {
         SET(password) = "Password";
         SET(passwordIsChanged) = "Password is successfully changed";
         SET(perch) = "Perch";
+        SET(permissionError) = "You do not have permission to perform command %1";
         SET(pike) = "Pike";
         SET(popUp) = "Pop-up";
         SET(price) = "Price";
@@ -142,6 +144,7 @@ void Dictionary::setLanguage(Language l) {
         SET(statistics) = "Statistics";
         SET(store) = "Store";
         SET(thisUserAlreadyExistsText) = "This user already exists";
+        SET(unknownCommand) = "Unknown command: %1";
         SET(userSettings) = "User settings";
         SET(userSettingsText) = "User: %1";
         SET(username) = "Username";
@@ -171,6 +174,9 @@ void Dictionary::setLanguage(Language l) {
         SET(commands.about) =
             "Print information about this game<br>"
             "Usage: about";
+        SET(commands.aboutme) =
+            "Print information about current user<br>"
+            "Usage: aboutme";
         SET(commands.settings) =
             "Get information about the settings or edit the settings<br>"
             "Usage: settings get &lt;setting_name&gt;<br>"
@@ -209,6 +215,7 @@ void Dictionary::setLanguage(Language l) {
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
         SET(coins) = "Монет";
+        SET(commandReturned) = "Команда %1 завершилась с кодом %2";
         SET(confirmPassword) = "Подтвердите пароль";
         SET(confirmPasswordWarning) = "Пароли не совпадают";
         SET(console) = "Консоль";
@@ -258,6 +265,7 @@ void Dictionary::setLanguage(Language l) {
         SET(password) = "Пароль";
         SET(passwordIsChanged) = "Пароль успешно изменен";
         SET(perch) = "Окунь";
+        SET(permissionError) = "У вас недостаточно привилегий для выполнения команды %1";
         SET(pike) = "Щука";
         SET(popUp) = "Выпадающий";
         SET(price) = "Цена";
@@ -276,6 +284,7 @@ void Dictionary::setLanguage(Language l) {
         SET(statistics) = "Статистика";
         SET(store) = "Магазин";
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";
+        SET(unknownCommand) = "Неизвестная команда: %1";
         SET(userSettings) = "Настройки пользователя";
         SET(userSettingsText) = "Пользователь: %1";
         SET(username) = "Логин";
@@ -305,6 +314,9 @@ void Dictionary::setLanguage(Language l) {
         SET(commands.about) =
             "Вывести информацию об игре<br>"
             "Использование: about";
+        SET(commands.aboutme) =
+            "Вывести информацию о текущем пользователе<br>"
+            "Использование: aboutme";
         SET(commands.settings) =
             "Получить информацию о настройках или отредактировать настройки<br>"
             "Использование: settings get &lt;setting_name&gt;<br>"

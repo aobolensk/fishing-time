@@ -84,15 +84,17 @@ int Console::parseCommand(QStringList &args) {
             (game->activeUser != -1 && commandIterator->privilege <= (PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel())) {
             retCode = commandIterator->function(args);
             if (retCode != 0) {
-                log.error("Command " + args[0] +
-                        " returned " + QString::number(retCode));
+                log.error(game->str.commandReturned.arg(
+                    args[0],
+                    QString::number(retCode)
+                ));
             }
         } else {
-            log.error("You do not have permission to perform command " + args[0]);
+            log.error(game->str.permissionError.arg(args[0]));
         }
     } else {
         retCode = -1;
-        log.error("Unknown command: " + args[0]);
+        log.error(game->str.unknownCommand.arg(args[0]));
     }
     return retCode;
 }
