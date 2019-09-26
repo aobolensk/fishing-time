@@ -28,11 +28,35 @@ void Console::registerCommands() {
 
     commands["login"] = {
         [&](QStringList &args) -> int {
-            (void) args;
-            game->hideCurrentMenu();
-            game->loginMenu.display();
-            log.info("Moved to login menu");
-            return 0;
+            // args[1] -> login
+            // args[2] -> password
+            if (game->activeUser != -1) {
+                log.error("You are already logged in");
+                return 1;
+            }
+            int userIndex = -1;
+            for (int i = 0; i < game->users.size(); ++i) {
+                if (game->users[i].getUsername() == args[1]) {
+                    userIndex = i;
+                    break;
+                }
+            }
+            if (userIndex == -1) {
+                log.error(game->str.unknownUser.arg(args[1]));
+                return 1;
+            }
+            if (QCryptographicHash::hash(args[2].toLatin1(), QCryptographicHash::Md5) ==
+                    game->users[userIndex].getPasswordHash()) {
+                game->activeUser = userIndex;
+                game->activeLocation = 0;
+                game->hideCurrentMenu();
+                game->gameMenu.display();
+                log.info(game->str.successfullyLoggedIn.arg(args[1]));
+                return 0;
+            } else {
+                log.error(game->str.incorrectPassword);
+                return 1;
+            }
         },
         PrivilegeLevel::Common,
         &game->str.commands.login
