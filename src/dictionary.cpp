@@ -143,8 +143,10 @@ void Dictionary::setLanguage(Language l) {
         SET(start) = "Start";
         SET(statistics) = "Statistics";
         SET(store) = "Store";
+        SET(successfullyLoggedIn) = "Successfully logged in as \"%1\"";
         SET(thisUserAlreadyExistsText) = "This user already exists";
         SET(unknownCommand) = "Unknown command: %1";
+        SET(unknownUser) = "User \"%1\" is not found";
         SET(userSettings) = "User settings";
         SET(userSettingsText) = "User: %1";
         SET(username) = "Username";
@@ -157,8 +159,8 @@ void Dictionary::setLanguage(Language l) {
             "Print arguments<br>"
             "Usage: echo &lt;argument1&gt; &lt;argument2&gt; ...";
         SET(commands.login) =
-            "Go to login menu<br>"
-            "Usage: login";
+            "Log in to account<br>"
+            "Usage: login &lt;login&gt; &lt;password&gt;";
         SET(commands.signup) =
             "Go to sign up menu<br>"
             "Usage: signup";
@@ -286,8 +288,10 @@ void Dictionary::setLanguage(Language l) {
         SET(start) = "Начать";
         SET(statistics) = "Статистика";
         SET(store) = "Магазин";
+        SET(successfullyLoggedIn) = "Добро пожаловать, %1";
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";
         SET(unknownCommand) = "Неизвестная команда: %1";
+        SET(unknownUser) = "Пользователь \"%1\" не найден";
         SET(userSettings) = "Настройки пользователя";
         SET(userSettingsText) = "Пользователь: %1";
         SET(username) = "Логин";
@@ -300,8 +304,8 @@ void Dictionary::setLanguage(Language l) {
             "Вывести аргументы<br>"
             "Использование: echo &lt;аргумент1&gt; &lt;аргумент2&gt; ...";
         SET(commands.login) =
-            "Перейти в меню входа<br>"
-            "Использование: login";
+            "Войти в аккаунт<br>"
+            "Использование: login &lt;логин&gt; &lt;пароль&gt;";
         SET(commands.signup) =
             "Перейти в меню регистрации<br>"
             "Использование: signup";
