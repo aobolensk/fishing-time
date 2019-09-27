@@ -36,15 +36,15 @@ Game::Game(QWidget *parent, const QString &file) :
         qDebug() << "Unable to restore game window geometry. Loading defaults...";
         this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
     }
-    this->setFont(this->textFont);
-    this->console.setFont(this->textFont);
-    this->aboutMenu.setFont(this->textFont);
     this->setLayout(&grid);
     this->setWindowTitle(str.fishingTime);
     grid.setColumnStretch(0, 1);
     grid.setColumnStretch(1, 1);
     grid.setColumnStretch(2, 1);
     deserialize();
+    this->setFont(this->textFont);
+    this->console.setFont(this->textFont);
+    this->aboutMenu.setFont(this->textFont);
     str.setLanguage(activeLanguage);
     for (const User &user : users) {
         qDebug() << user.getUsername();
