@@ -64,7 +64,7 @@ public:
     int activeUser = -1;
     int activeLocation = -1;
     InventoryType inventoryType = InventoryType::POPUP;
-    const QFont textFont = QFont("Noto Sans", 11, QFont::Normal, false);
+    QFont textFont = QFont("Noto Sans", 11, QFont::Normal, false);
     void setAutoSavePeriod(int periodInMinutes);
     int getAutoSavePeriod();
     QString getConfigFileName();

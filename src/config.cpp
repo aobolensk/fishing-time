@@ -13,6 +13,7 @@ void Config::deserialize(const QVariantMap &map) {
     game->activeLanguage = (Language)map["language"].toInt();
     game->autoSavePeriod = map["autoSavePeriod"].toInt();
     game->inventoryType = (InventoryType)map["inventoryType"].toInt();
+    game->textFont.fromString(map["textFont"].toString());
     isReady = true;
 }
 
@@ -22,5 +23,6 @@ QJsonObject Config::serialize() const {
     jsonObj["language"] = (int)game->activeLanguage;
     jsonObj["autoSavePeriod"] = game->autoSavePeriod;
     jsonObj["inventoryType"] = (int)game->inventoryType;
+    jsonObj["textFont"] = game->font().toString();
     return jsonObj;
 }
