@@ -63,7 +63,10 @@ void Dictionary::setLanguage(Language l) {
     switch (l) {
     case Language::English: {
         SET(about) = "About";
-        SET(aboutDescription) = "Fishing Time<br>Official repo: <a href=\"%1\">%1</a>\n";
+        SET(aboutDescription) = "Fishing Time<br>"
+                                "Official repo: <a href=\"%1\">%1</a><br>"
+                                "Version: " COMMIT_HASH "<br>"
+                                "Qt version: " QT_VERSION_STR "<br>";
         SET(autoSavePeriod) = "Autosave period";
         SET(back) = "Back";
         SET(basicNet) = "Basic net";
@@ -208,7 +211,10 @@ void Dictionary::setLanguage(Language l) {
         break;
     } case Language::Russian: {
         SET(about) = "О программе";
-        SET(aboutDescription) = "Fishing Time<br>Официальный репозиторий: <a href=\"%1\">%1</a>\n";
+        SET(aboutDescription) = "Fishing Time<br>"
+                                "Официальный репозиторий: <a href=\"%1\">%1</a><br>"
+                                "Версия: " COMMIT_HASH "<br>"
+                                "Версия Qt: " QT_VERSION_STR "<br>";
         SET(autoSavePeriod) = "Период автосохранения";
         SET(back) = "Назад";
         SET(basicNet) = "Базовая сеть";
