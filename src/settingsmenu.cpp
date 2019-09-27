@@ -146,11 +146,11 @@ void SettingsMenu::fontSetupFunction() {
 }
 
 void SettingsMenu::eraseAllDataFunction() {
-    game->gameMenu.logOutFunction();
     QMessageBox::StandardButton eraseResult =
         QMessageBox::question(nullptr, game->str.fishingTime, game->str.eraseAllDataConfirmation,
         QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::No);
     if (eraseResult == QMessageBox::Yes) {
+        game->gameMenu.logOutFunction();
         if (remove(game->getConfigFileName().toStdString().c_str())) {
             qDebug() << "Error while deleting config file";
         } else {
