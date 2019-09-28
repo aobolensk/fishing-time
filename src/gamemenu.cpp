@@ -25,40 +25,10 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     fishLabel.setEnabled(false);
     fishLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    grid->addWidget(&clickButton, 3, 1);
-    clickButton.setVisible(false);
-    clickButton.setEnabled(false);
-    connect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
-
     grid->addWidget(&logOutButton, 0, 2);
     logOutButton.setVisible(false);
     logOutButton.setEnabled(false);
     connect(&logOutButton, SIGNAL(released()), this, SLOT(logOutFunction()));
-
-    grid->addWidget(&backButton, 4, 2);
-    backButton.setVisible(false);
-    backButton.setEnabled(false);
-    connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
-
-    grid->addWidget(&inventoryButton, 4, 0);
-    inventoryButton.setVisible(false);
-    inventoryButton.setEnabled(false);
-    connect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
-
-    grid->addWidget(&marketButton, 4, 1);
-    marketButton.setVisible(false);
-    marketButton.setEnabled(false);
-    connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
-
-    grid->addWidget(&storeButton, 3, 0);
-    storeButton.setVisible(false);
-    storeButton.setEnabled(false);
-    connect(&storeButton, SIGNAL(released()), this, SLOT(storeFunction()));
-
-    grid->addWidget(&netsButton, 2, 2);
-    netsButton.setVisible(false);
-    netsButton.setEnabled(false);
-    connect(&netsButton, SIGNAL(released()), this, SLOT(netsFunction()));
 
     grid->addWidget(&statisticsButton, 2, 0);
     statisticsButton.setVisible(false);
@@ -70,10 +40,40 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     usersettingsButton.setEnabled(false);
     connect(&usersettingsButton, SIGNAL(released()), this, SLOT(usersettingsFunction()));
 
+    grid->addWidget(&netsButton, 2, 2);
+    netsButton.setVisible(false);
+    netsButton.setEnabled(false);
+    connect(&netsButton, SIGNAL(released()), this, SLOT(netsFunction()));
+
+    grid->addWidget(&storeButton, 3, 0);
+    storeButton.setVisible(false);
+    storeButton.setEnabled(false);
+    connect(&storeButton, SIGNAL(released()), this, SLOT(storeFunction()));
+
+    grid->addWidget(&clickButton, 3, 1);
+    clickButton.setVisible(false);
+    clickButton.setEnabled(false);
+    connect(&clickButton, SIGNAL(released()), this, SLOT(clickFunction()));
+
     grid->addWidget(&locationButton, 3, 2);
     locationButton.setVisible(false);
     locationButton.setEnabled(false);
     connect(&locationButton, SIGNAL(released()), this, SLOT(locationFunction()));
+
+    grid->addWidget(&inventoryButton, 4, 0);
+    inventoryButton.setVisible(false);
+    inventoryButton.setEnabled(false);
+    connect(&inventoryButton, SIGNAL(released()), this, SLOT(inventoryFunction()));
+
+    grid->addWidget(&marketButton, 4, 1);
+    marketButton.setVisible(false);
+    marketButton.setEnabled(false);
+    connect(&marketButton, SIGNAL(released()), this, SLOT(marketFunction()));
+
+    grid->addWidget(&backButton, 4, 2);
+    backButton.setVisible(false);
+    backButton.setEnabled(false);
+    connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
 bool GameMenu::isDisplayed() const {
