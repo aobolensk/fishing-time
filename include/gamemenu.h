@@ -23,13 +23,13 @@ private:
                 marketButton,
                 storeButton,
                 statisticsButton,
-                usersettingsButton;
+                usersettingsButton,
+                locationButton;
     QLabel infoLabel,
            fishLabel;
     QTableWidget popUpInventoryTable;
     QTableWidgetItem nameHeader,
                      quantityHeader;
-    QComboBox locationSelector;
     QGridLayout *grid;
 public slots:
     void logOutFunction();
@@ -42,6 +42,7 @@ private slots:
     void netsFunction();
     void statisticsFunction();
     void usersettingsFunction();
+    void locationFunction();
 private:
     void updateInfo();
 public:
