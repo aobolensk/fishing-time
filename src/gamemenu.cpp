@@ -70,17 +70,10 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     usersettingsButton.setEnabled(false);
     connect(&usersettingsButton, SIGNAL(released()), this, SLOT(usersettingsFunction()));
 
-    grid->addWidget(&locationSelector, 3, 2);
-    locationSelector.setCurrentIndex(0);
-    connect(&locationSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-        [this](int index) {
-            if (index == -1)
-                return;
-            this->game->activeLocation = index;
-            updateInfo();
-        });
-    locationSelector.setVisible(false);
-    locationSelector.setEnabled(false);
+    grid->addWidget(&locationButton, 3, 2);
+    locationButton.setVisible(false);
+    locationButton.setEnabled(false);
+    connect(&locationButton, SIGNAL(released()), this, SLOT(locationFunction()));
 }
 
 bool GameMenu::isDisplayed() const {
@@ -134,11 +127,9 @@ void GameMenu::display() {
     usersettingsButton.setVisible(true);
     usersettingsButton.setEnabled(true);
 
-    for (int i = 0; i < game->locations.size(); ++i) {
-        locationSelector.addItem(game->locations[i].getName());
-    }
-    locationSelector.setVisible(true);
-    locationSelector.setEnabled(true);
+    locationButton.setText(game->str.location);
+    locationButton.setVisible(true);
+    locationButton.setEnabled(true);
 
     displayed = true;
 }
@@ -206,6 +197,11 @@ void GameMenu::statisticsFunction() {
 void GameMenu::usersettingsFunction() {
     this->hide();
     game->usersettingsMenu.display();
+}
+
+void GameMenu::locationFunction() {
+    this->hide();
+    game->locationMenu.display();
 }
 
 void GameMenu::updateInventoryTable() {
@@ -287,9 +283,8 @@ void GameMenu::hide() {
     usersettingsButton.setVisible(false);
     usersettingsButton.setEnabled(false);
 
-    locationSelector.clear();
-    locationSelector.setVisible(false);
-    locationSelector.setEnabled(false);
+    locationButton.setVisible(false);
+    locationButton.setEnabled(false);
 
     displayed = false;
 }

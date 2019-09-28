@@ -106,6 +106,7 @@ void Dictionary::setLanguage(Language l) {
         SET(inventoryDescription) = "Inventory of player %1";
         SET(inventoryType) = "Inventory type";
         SET(language) = "Language";
+        SET(location) = "Location";
         SET(logError) = "[ERROR]";
         SET(logIn) = "Log in";
         SET(logInfo) = "[INFO]";
@@ -254,6 +255,7 @@ void Dictionary::setLanguage(Language l) {
         SET(inventoryDescription) = "Инвентарь игрока %1";
         SET(inventoryType) = "Тип инвентаря";
         SET(language) = "Язык";
+        SET(location) = "Локация";
         SET(logError) = "[ОШИБКА]";
         SET(logIn) = "Войти";
         SET(logInfo) = "[ИНФО]";

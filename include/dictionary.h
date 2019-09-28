@@ -57,6 +57,7 @@ public:
             inventoryDescription,
             inventoryType,
             language,
+            location,
             logError,
             logIn,
             logInfo,
