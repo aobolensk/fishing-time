@@ -192,6 +192,29 @@ void Console::registerCommands() {
         &game->str.commands.privilege
     };
 
+    commands["su"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            if (game->activeUser == -1) {
+                log.error("You're not logged in");
+                return 1;
+            }
+            switch ((PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel()) {
+            case PrivilegeLevel::Common:
+                game->users[game->activeUser].setPrivilegeLevel((int)PrivilegeLevel::Super);
+                log.writeln("You became super user");
+                break;
+            case PrivilegeLevel::Super:
+                game->users[game->activeUser].setPrivilegeLevel((int)PrivilegeLevel::Common);
+                log.writeln("You became common user");
+                break;
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.clear
+    };
+
     commands["clear"] = {
         [&](QStringList &args) -> int {
             (void) args;
