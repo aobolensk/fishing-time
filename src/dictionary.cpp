@@ -66,7 +66,8 @@ void Dictionary::setLanguage(Language l) {
         SET(aboutDescription) = "Fishing Time<br>"
                                 "Official repo: <a href=\"%1\">%1</a><br>"
                                 "Version: " COMMIT_HASH "<br>"
-                                "Qt version: " QT_VERSION_STR "<br>";
+                                "Qt version: " QT_VERSION_STR "<br>"
+                                "OS: %2<br>";
         SET(autoSavePeriod) = "Autosave period";
         SET(back) = "Back";
         SET(basicNet) = "Basic net";
@@ -215,7 +216,8 @@ void Dictionary::setLanguage(Language l) {
         SET(aboutDescription) = "Fishing Time<br>"
                                 "Официальный репозиторий: <a href=\"%1\">%1</a><br>"
                                 "Версия: " COMMIT_HASH "<br>"
-                                "Версия Qt: " QT_VERSION_STR "<br>";
+                                "Версия Qt: " QT_VERSION_STR "<br>"
+                                "ОС: %2<br>";
         SET(autoSavePeriod) = "Период автосохранения";
         SET(back) = "Назад";
         SET(basicNet) = "Базовая сеть";
