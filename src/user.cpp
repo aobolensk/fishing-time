@@ -89,6 +89,10 @@ void User::setPrivilegeLevel(int level) {
     privilegeLevel = level;
 }
 
+void User::incInGameTime(qint64 time) {
+    inGameTime += time;
+}
+
 qint64 User::getClicks() const {
     return clicks;
 }
@@ -99,4 +103,8 @@ qint64 User::getCoins() const {
 
 qint64 User::getPrivilegeLevel() const {
     return privilegeLevel;
+}
+
+qint64 User::getInGameTime() const {
+    return inGameTime;
 }

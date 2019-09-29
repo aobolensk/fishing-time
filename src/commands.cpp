@@ -1,4 +1,3 @@
-#include <QDateTime>
 #include "console.h"
 #include "game.h"
 
@@ -139,6 +138,7 @@ void Console::registerCommands() {
             log.writeln("Username: " + game->users[game->activeUser].getUsername());
             log.writeln("Coins: " + QString::number(game->users[game->activeUser].getCoins()));
             log.writeln("Clicks: " + QString::number(game->users[game->activeUser].getClicks()));
+            log.writeln("Time played: " + QString::number(game->users[game->activeUser].getInGameTime()));
             return 0;
         },
         PrivilegeLevel::Common,

@@ -87,6 +87,7 @@ void LoginMenu::loginFunction() {
         game->activeLocation = 0;
         this->hide();
         game->gameMenu.display();
+        game->userTimestamp = QDateTime::currentDateTime();
     } else {
         QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.incorrectPassword);
     }

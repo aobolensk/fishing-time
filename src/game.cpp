@@ -101,6 +101,13 @@ void Game::serialize() {
     settings.setValue("mainWindowGeometry", this->saveGeometry());
     settings.setValue("consoleGeometry", console.saveGeometry());
     settings.setValue("aboutWindowGeometry", aboutMenu.saveGeometry());
+    if (activeUser != -1 && userTimestamp.isValid()) {
+        this->users[this->activeUser].incInGameTime(
+            QDateTime::currentDateTime().toSecsSinceEpoch() -
+            userTimestamp.toSecsSinceEpoch()
+        );
+        userTimestamp = QDateTime::currentDateTime();
+    }
     if (activeUser != -1 && activeLocation != -1)
         netsMenu.foldNets();
     QFile config(config_file);

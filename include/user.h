@@ -17,6 +17,7 @@ private:
     // Statistics
     QString signUpTime;
     qint64 clicks = 0ll;
+    qint64 inGameTime = 0ll;
 public:
     class Inventory {
     private:
@@ -38,12 +39,14 @@ public:
     void changeCoins(qint64 quantity);
     void setPasswordHash(const QString &hashedPassword);
     void setPrivilegeLevel(int level);
+    void incInGameTime(qint64 time);
     // Getters
     QString getUsername() const;
     QString getPasswordHash() const;
     qint64 getClicks() const;
     qint64 getCoins() const;
     qint64 getPrivilegeLevel() const;
+    qint64 getInGameTime() const;
 };
 
 Q_DECLARE_METATYPE(User)
