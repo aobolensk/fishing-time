@@ -51,6 +51,7 @@ void Console::registerCommands() {
                 game->activeLocation = 0;
                 game->hideCurrentMenu();
                 game->gameMenu.display();
+                game->userTimestamp = QDateTime::currentDateTime();
                 log.info(game->str.successfullyLoggedIn.arg(args[1]));
                 return 0;
             } else {
