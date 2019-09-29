@@ -46,7 +46,7 @@ public:
     qint64 getClicks() const;
     qint64 getCoins() const;
     qint64 getPrivilegeLevel() const;
-    qint64 getInGameTime() const;
+    QString getInGameTime() const;
 };
 
 Q_DECLARE_METATYPE(User)

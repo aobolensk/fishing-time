@@ -139,7 +139,7 @@ void Console::registerCommands() {
             log.writeln("Coins: " + QString::number(game->users[game->activeUser].getCoins()));
             log.writeln("Clicks: " + QString::number(game->users[game->activeUser].getClicks()));
             game->updateTimePlayed();
-            log.writeln("Time played: " + QString::number(game->users[game->activeUser].getInGameTime()));
+            log.writeln("Time played: " + game->users[game->activeUser].getInGameTime());
             return 0;
         },
         PrivilegeLevel::Common,

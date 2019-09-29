@@ -107,6 +107,6 @@ qint64 User::getPrivilegeLevel() const {
     return privilegeLevel;
 }
 
-qint64 User::getInGameTime() const {
-    return inGameTime;
+QString User::getInGameTime() const {
+    return QDateTime::fromTime_t(inGameTime).toUTC().toString("hh:mm:ss");
 }
