@@ -81,6 +81,7 @@ public:
     friend void Config::deserialize(const QVariantMap &map);
     void hideCurrentMenu();
     void manualSave();
+    void updateTimePlayed();
 };
 
 #endif  // INCLUDE_GAME_H_
