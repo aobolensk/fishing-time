@@ -1,3 +1,4 @@
+#include <QDateTime>
 #include "console.h"
 #include "game.h"
 
@@ -257,6 +258,16 @@ void Console::registerCommands() {
         },
         PrivilegeLevel::Common,
         &game->str.commands.exit
+    };
+
+    commands["time"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            log.writeln(QDateTime::currentDateTime().toString(Qt::ISODate));
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.time
     };
 
     commands["help"] = {

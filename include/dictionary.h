@@ -124,6 +124,7 @@ public:
             clear,
             inventory,
             exit,
+            time,
             help,
             man;
     } commands;
