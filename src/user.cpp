@@ -20,6 +20,7 @@ QJsonObject User::serialize() const {
     jsonObj["privilegeLevel"] = privilegeLevel;
     jsonObj["passwordHash"] = passwordHash;
     jsonObj["signUpTime"] = signUpTime;
+    jsonObj["inGameTime"] = inGameTime;
     jsonObj["inventory"] = toString(inventory.get());
     return jsonObj;
 }
@@ -31,6 +32,7 @@ QVariant User::deserialize(const QVariantMap &map) {
     user.coins = map["privilegeLevel"].toInt();
     user.passwordHash = map["passwordHash"].toString();
     user.signUpTime = map["signUpTime"].toString();
+    user.inGameTime = map["inGameTime"].toLongLong();
     fromString(user.inventory.set(), map["inventory"].toString());
     return QVariant::fromValue(user);
 }
