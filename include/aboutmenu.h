@@ -21,6 +21,7 @@ public:
     ~AboutMenu();
     void display();
     void hide();
+    QString getAboutInfo();
 };
 
 #endif  // INCLUDE_ABOUTMENU_H_

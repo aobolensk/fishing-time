@@ -121,9 +121,7 @@ void Console::registerCommands() {
     commands["about"] = {
         [&](QStringList &args) -> int {
             (void) args;
-            log.writeln(game->str.aboutDescription.arg(
-                "https://github.com/gooddoog/fishing-time/"
-            ));
+            log.writeln(game->aboutMenu.getAboutInfo());
             return 0;
         },
         PrivilegeLevel::Common,

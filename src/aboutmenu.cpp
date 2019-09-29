@@ -26,13 +26,21 @@ AboutMenu::AboutMenu(Game *game) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
+QString AboutMenu::getAboutInfo() {
+    return game->str.aboutDescription.arg(
+        "https://github.com/gooddoog/fishing-time/",
+        QSysInfo::prettyProductName() + " " +
+        QSysInfo::kernelType() + " " +
+        QSysInfo::kernelVersion() + " " +
+        QSysInfo::currentCpuArchitecture()
+    );
+}
+
 void AboutMenu::display() {
     this->setWindowTitle(game->str.fishingTime + ": " + game->str.about);
     this->setVisible(true);
 
-    descriptionLabel.setText(game->str.aboutDescription.arg(
-        "https://github.com/gooddoog/fishing-time/"
-    ));
+    descriptionLabel.setText(getAboutInfo());
     descriptionLabel.setVisible(true);
 
     backButton.setText(game->str.back);
