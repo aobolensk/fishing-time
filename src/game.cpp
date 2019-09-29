@@ -99,8 +99,8 @@ void Game::deserialize() {
 void Game::updateTimePlayed() {
     if (activeUser != -1 && userTimestamp.isValid()) {
         this->users[this->activeUser].incInGameTime(
-            QDateTime::currentDateTime().toSecsSinceEpoch() -
-            userTimestamp.toSecsSinceEpoch()
+            QDateTime::currentDateTime().toMSecsSinceEpoch() / 1000 -
+            userTimestamp.toMSecsSinceEpoch() / 1000
         );
         userTimestamp = QDateTime::currentDateTime();
     }
