@@ -202,6 +202,9 @@ void Dictionary::setLanguage(Language l) {
         SET(commands.exit) =
             "Exit from the game<br>"
             "Usage: exit";
+        SET(commands.time) =
+            "Get current time<br>"
+            "Usage: time";
         SET(commands.help) =
             "Print list of all existing commands<br>"
             "Usage: help";
@@ -352,6 +355,9 @@ void Dictionary::setLanguage(Language l) {
         SET(commands.exit) =
             "Выйти из игры<br>"
             "Использование: exit";
+        SET(commands.time) =
+            "Вывести текущее время<br>"
+            "Использование: time";
         SET(commands.help) =
             "Вывести список всех команд<br>"
             "Использование: help";

@@ -96,11 +96,22 @@ void Game::deserialize() {
     }
 }
 
+void Game::updateTimePlayed() {
+    if (activeUser != -1 && userTimestamp.isValid()) {
+        this->users[this->activeUser].incInGameTime(
+            QDateTime::currentDateTime().toMSecsSinceEpoch() / 1000 -
+            userTimestamp.toMSecsSinceEpoch() / 1000
+        );
+        userTimestamp = QDateTime::currentDateTime();
+    }
+}
+
 void Game::serialize() {
     QSettings settings;
     settings.setValue("mainWindowGeometry", this->saveGeometry());
     settings.setValue("consoleGeometry", console.saveGeometry());
     settings.setValue("aboutWindowGeometry", aboutMenu.saveGeometry());
+    updateTimePlayed();
     if (activeUser != -1 && activeLocation != -1)
         netsMenu.foldNets();
     QFile config(config_file);

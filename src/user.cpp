@@ -20,6 +20,7 @@ QJsonObject User::serialize() const {
     jsonObj["privilegeLevel"] = privilegeLevel;
     jsonObj["passwordHash"] = passwordHash;
     jsonObj["signUpTime"] = signUpTime;
+    jsonObj["inGameTime"] = inGameTime;
     jsonObj["inventory"] = toString(inventory.get());
     return jsonObj;
 }
@@ -31,6 +32,7 @@ QVariant User::deserialize(const QVariantMap &map) {
     user.coins = map["privilegeLevel"].toInt();
     user.passwordHash = map["passwordHash"].toString();
     user.signUpTime = map["signUpTime"].toString();
+    user.inGameTime = map["inGameTime"].toLongLong();
     fromString(user.inventory.set(), map["inventory"].toString());
     return QVariant::fromValue(user);
 }
@@ -89,6 +91,10 @@ void User::setPrivilegeLevel(int level) {
     privilegeLevel = level;
 }
 
+void User::incInGameTime(qint64 time) {
+    inGameTime += time;
+}
+
 qint64 User::getClicks() const {
     return clicks;
 }
@@ -99,4 +105,8 @@ qint64 User::getCoins() const {
 
 qint64 User::getPrivilegeLevel() const {
     return privilegeLevel;
+}
+
+QString User::getInGameTime() const {
+    return QDateTime::fromTime_t(inGameTime).toUTC().toString("hh:mm:ss");
 }

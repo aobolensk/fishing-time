@@ -51,6 +51,7 @@ void Console::registerCommands() {
                 game->activeLocation = 0;
                 game->hideCurrentMenu();
                 game->gameMenu.display();
+                game->userTimestamp = QDateTime::currentDateTime();
                 log.info(game->str.successfullyLoggedIn.arg(args[1]));
                 return 0;
             } else {
@@ -138,6 +139,8 @@ void Console::registerCommands() {
             log.writeln("Username: " + game->users[game->activeUser].getUsername());
             log.writeln("Coins: " + QString::number(game->users[game->activeUser].getCoins()));
             log.writeln("Clicks: " + QString::number(game->users[game->activeUser].getClicks()));
+            game->updateTimePlayed();
+            log.writeln("Time played: " + game->users[game->activeUser].getInGameTime());
             return 0;
         },
         PrivilegeLevel::Common,
@@ -257,6 +260,16 @@ void Console::registerCommands() {
         },
         PrivilegeLevel::Common,
         &game->str.commands.exit
+    };
+
+    commands["time"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            log.writeln(QDateTime::currentDateTime().toString(Qt::ISODate));
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.time
     };
 
     commands["help"] = {

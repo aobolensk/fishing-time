@@ -148,6 +148,8 @@ void GameMenu::clickFunction() {
 
 void GameMenu::logOutFunction() {
     game->netsMenu.foldNets();
+    game->updateTimePlayed();
+    game->userTimestamp = QDateTime();
     game->activeUser = -1;
     game->activeLocation = -1;
     backFunction();

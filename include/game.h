@@ -6,6 +6,7 @@
 #include <QString>
 #include <QTimer>
 #include <QCloseEvent>
+#include <QDateTime>
 #include "mainmenu.h"
 #include "loginmenu.h"
 #include "gamemenu.h"
@@ -65,6 +66,7 @@ public:
     AboutMenu aboutMenu;
     int activeUser = -1;
     int activeLocation = -1;
+    QDateTime userTimestamp;
     InventoryType inventoryType = InventoryType::POPUP;
     QFont textFont = QFont("Noto Sans", 11, QFont::Normal, false);
     void setAutoSavePeriod(int periodInMinutes);
@@ -79,6 +81,7 @@ public:
     friend void Config::deserialize(const QVariantMap &map);
     void hideCurrentMenu();
     void manualSave();
+    void updateTimePlayed();
 };
 
 #endif  // INCLUDE_GAME_H_
