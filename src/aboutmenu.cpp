@@ -32,7 +32,20 @@ QString AboutMenu::getAboutInfo() {
         QSysInfo::prettyProductName() + " " +
         QSysInfo::kernelType() + " " +
         QSysInfo::kernelVersion() + " " +
-        QSysInfo::currentCpuArchitecture()
+        QSysInfo::currentCpuArchitecture(),
+        #define STRINGIFY(x) #x
+        #define TOSTRING(x) STRINGIFY(x)
+        #ifdef __clang__
+        "clang++ " TOSTRING(__clang_major__) "." TOSTRING(__clang_minor__) "." TOSTRING(__clang_patchlevel__)
+        #elif _MSC_FULL_VER
+        "MSVC " TOSTRING(_MSC_FULL_VER)
+        #elif __GNUC__
+        "g++ " TOSTRING(__GNUC__) "." TOSTRING(__GNUC_MINOR__) "." TOSTRING(__GNUC_PATCHLEVEL__)
+        #else
+        "unknown"
+        #endif
+        #undef STRINGIFY
+        #undef TOSTRING
     );
 }
 
