@@ -231,6 +231,10 @@ void GameMenu::updateInventoryTable() {
     }
 }
 
+QTableWidget &GameMenu::getPopUpInventoryTable() {
+    return popUpInventoryTable;
+}
+
 void GameMenu::updateInfo() {
     if (game->activeUser != -1) {
         updateInventoryTable();

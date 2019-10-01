@@ -1,10 +1,11 @@
 #include <stdexcept>
 #include <QDebug>
 #include "dictionary.h"
+#include "game.h"
 
 static int updatesCount = 0;
 
-Dictionary::Dictionary() :
+Dictionary::Dictionary(Game *game) :
         languages({
             {Language::English, {"English", 0}},
             {Language::Russian, {"Russian", 0}}
@@ -34,10 +35,12 @@ Dictionary::Dictionary() :
             {"item.undefined", nullptr}
         })
         #undef X
+        ,
+        game(game)
 
         {
     for (int i = languages.count() - 1; i >= 0; --i)
-        this->setLanguage((Language)i);
+        this->setLanguage((Language)i, true);
     numberOfStrings = updatesCount;
     if (getReadiness(Language::English) != 100.)
         throw std::logic_error("Default language (English) does not contain all necessary translations. "
@@ -58,7 +61,7 @@ double Dictionary::getReadiness(Language l) {
 
 #define SET(string) (++updatesCount); (*(const_cast<QString*>(&string)))
 
-void Dictionary::setLanguage(Language l) {
+void Dictionary::setLanguage(Language l, bool initialSetup) {
     updatesCount = 0;
     switch (l) {
     case Language::English: {
@@ -373,5 +376,12 @@ void Dictionary::setLanguage(Language l) {
         qDebug() << "Unknown language";
         break;
     }
+    }
+
+    if (!initialSetup) {
+        game->aboutMenu.setWindowTitle(fishingTime + ": " + about);
+        game->console.setWindowTitle(fishingTime + ": " + console);
+        game->setWindowTitle(fishingTime);
+        game->gameMenu.getPopUpInventoryTable().setWindowTitle(fishingTime + ": " + inventory);
     }
 }
