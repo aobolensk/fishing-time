@@ -17,6 +17,7 @@ Game::Game(QWidget *parent, const QString &file) :
         #endif  // __MINGW32__
         cfg(Config(this)),
         console(Console(this)),
+        str(Dictionary(this)),
         locations(Location::initializeLocations(this)),
         mainMenu(MainMenu(this, &grid)),
         loginMenu(LoginMenu(this, &grid)),

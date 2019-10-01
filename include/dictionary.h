@@ -3,6 +3,8 @@
 #include <QVector>
 #include <QMap>
 
+class Game;
+
 enum class Language {
     English,
     Russian
@@ -131,10 +133,11 @@ public:
     static constexpr int DICTIONARY_END = __LINE__;
 private:
     int numberOfStrings = 0;
+    Game *game;
 public:
-    Dictionary();
+    Dictionary(Game *game);
     double getReadiness(Language l);
-    void setLanguage(Language l);
+    void setLanguage(Language l, bool initialSetup = false);
     const QString &getItemName(const QString &id) const;
 };
 #endif  // INCLUDE_DICTIONARY_H_

@@ -47,6 +47,7 @@ private:
     void updateInfo();
 public:
     void updateInventoryTable();
+    QTableWidget &getPopUpInventoryTable();
 public:
     GameMenu(Game *game, QGridLayout *grid);
     ~GameMenu();
