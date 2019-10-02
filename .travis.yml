@@ -3,12 +3,12 @@ language: cpp
 matrix:
   include:
     - os: linux
-      dist: xenial
+      dist: bionic
       compiler: gcc
       addons:
         apt:
           sources:
-            - ubuntu-toolchain-r-test
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
           packages:
             - g++-9
             - qt5-default
@@ -20,12 +20,12 @@ matrix:
         - cmake ..
         - cmake --build . -- -j
     - os: linux
-      dist: xenial
+      dist: bionic
       compiler: clang
       addons:
         apt:
           sources:
-            - ubuntu-toolchain-r-test
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
           packages:
             - qt5-default
       script:
