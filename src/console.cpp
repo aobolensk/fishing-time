@@ -35,27 +35,26 @@ Console::Console(Game *game) :
     registerCommands();
 }
 
+void Console::InputHistory::reset() {
+    index = buffer.size();
+    qDebug() << "reset:" << index;
+}
+
 void Console::InputHistory::push(const QString &str) {
-    while (index != buffer.size() - 1)
-        buffer.pop_back();
     buffer.push_back(str);
-    ++index;
-    afterPush = true;
+    index = buffer.size();
     qDebug() << "push index:" << index;
 }
 
 QString Console::InputHistory::getUpper() {
-    if (afterPush) {
-        afterPush = false;
-    } else if (index > 0) {
+    if (index > 0)
         --index;
-    }
     qDebug() << "getUpper index:" << index;
     return buffer[index];
 }
 
 QString Console::InputHistory::getLower() {
-    if (index < buffer.size() - 1)
+    if (index <= buffer.size() - 1)
         ++index;
     if (index == buffer.size())
         return "";
@@ -128,6 +127,7 @@ void Console::parse(QStringList &args) {
 void Console::commandParser() {
     QStringList args = input.text().split(" ", QString::SplitBehavior::SkipEmptyParts);
     if (args.size() == 0) {
+        inputHistory.reset();
         input.clear();
         return;
     }
