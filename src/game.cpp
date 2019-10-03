@@ -53,6 +53,7 @@ Game::Game(QWidget *parent, const QString &file) :
     }
     mainMenu.display();
     setAutoSavePeriod(autoSavePeriod);
+    this->cfg.applyColorTheme(colorTheme);
 }
 
 void Game::setAutoSavePeriod(int periodInMinutes) {

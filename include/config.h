@@ -9,6 +9,10 @@ enum class InventoryType {
     POPUP, BUILTIN
 };
 
+enum class ColorTheme {
+    LIGHT, DARK
+};
+
 class Config {
 private:
     Game *game;
@@ -18,6 +22,7 @@ public:
     ~Config() = default;
     void deserialize(const QVariantMap &map);
     QJsonObject serialize() const;
+    void applyColorTheme(ColorTheme theme);
 };
 
 #endif  // INCLUDE_CONFIG_H_

@@ -83,10 +83,12 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
         SET(coins) = "Coins";
+        SET(colorTheme) = "Color theme";
         SET(commandReturned) = "Command %1 returned %2";
         SET(confirmPassword) = "Confirm password";
         SET(confirmPasswordWarning) = "Password are not equal";
         SET(console) = "Console";
+        SET(darkTheme) = "Dark theme";
         SET(deleteAccount) = "Delete account";
         SET(deleteAccountConfirmation) = "Do you really want to delete your account?\nThis action can not be cancelled.";
         SET(demoMode) = "Demo mode";
@@ -111,6 +113,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(inventoryDescription) = "Inventory of player %1";
         SET(inventoryType) = "Inventory type";
         SET(language) = "Language";
+        SET(lightTheme) = "Light theme";
         SET(location) = "Location";
         SET(logError) = "[ERROR]";
         SET(logIn) = "Log in";
@@ -237,10 +240,12 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
         SET(coins) = "Монет";
+        SET(colorTheme) = "Цветовая тема";
         SET(commandReturned) = "Команда %1 завершилась с кодом %2";
         SET(confirmPassword) = "Подтвердите пароль";
         SET(confirmPasswordWarning) = "Пароли не совпадают";
         SET(console) = "Консоль";
+        SET(darkTheme) = "Темная тема";
         SET(deleteAccount) = "Удалить аккаунт";
         SET(deleteAccountConfirmation) = "Вы действительно хотите удалить аккаунт?\nЭто действие необратимо.";
         SET(demoMode) = "Демо-режим";
@@ -265,6 +270,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(inventoryDescription) = "Инвентарь игрока %1";
         SET(inventoryType) = "Тип инвентаря";
         SET(language) = "Язык";
+        SET(lightTheme) = "Светлая тема";
         SET(location) = "Локация";
         SET(logError) = "[ОШИБКА]";
         SET(logIn) = "Войти";
