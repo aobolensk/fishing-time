@@ -35,6 +35,11 @@ Console::Console(Game *game) :
     registerCommands();
 }
 
+void Console::InputHistory::reset() {
+    index = buffer.size();
+    qDebug() << "reset:" << index;
+}
+
 void Console::InputHistory::push(const QString &str) {
     buffer.push_back(str);
     index = buffer.size();
@@ -122,6 +127,7 @@ void Console::parse(QStringList &args) {
 void Console::commandParser() {
     QStringList args = input.text().split(" ", QString::SplitBehavior::SkipEmptyParts);
     if (args.size() == 0) {
+        inputHistory.reset();
         input.clear();
         return;
     }

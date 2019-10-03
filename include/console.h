@@ -28,8 +28,8 @@ private:
     private:
         std::deque <QString> buffer = {""};
         size_t index = 0;
-        bool afterPush = false;
     public:
+        void reset();
         void push(const QString &str);
         QString getUpper();
         QString getLower();
