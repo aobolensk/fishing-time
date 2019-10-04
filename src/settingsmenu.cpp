@@ -168,6 +168,7 @@ void SettingsMenu::fontSetupFunction() {
     game->setFont(newFont);
     game->console.setFont(newFont);
     game->aboutMenu.setFont(newFont);
+    game->gameMenu.getPopUpInventoryTable().setFont(newFont);
 }
 
 void SettingsMenu::eraseAllDataFunction() {

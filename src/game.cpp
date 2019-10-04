@@ -47,6 +47,7 @@ Game::Game(QWidget *parent, const QString &file) :
     this->setFont(this->textFont);
     this->console.setFont(this->textFont);
     this->aboutMenu.setFont(this->textFont);
+    this->gameMenu.getPopUpInventoryTable().setFont(this->textFont);
     str.setLanguage(activeLanguage);
     for (const User &user : users) {
         qDebug() << user.getUsername();
