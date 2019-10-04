@@ -17,16 +17,19 @@ private:
     QLabel autoSavePeriodLabel,
            languageLabel,
            inventoryTypeLabel,
-           fontLabel;
+           fontLabel,
+           colorThemeLabel;
     QComboBox autoSavePeriodSelector,
               languageSelector,
-              inventoryTypeSelector;
+              inventoryTypeSelector,
+              colorThemeSelector;
     QPushButton fontSetupButton,
                 eraseAllDataButton,
                 backButton;
     QMetaObject::Connection languageUpdater,
                             autoSaveUpdater,
-                            inventoryTypeUpdater;
+                            inventoryTypeUpdater,
+                            colorThemeUpdater;
 private:
     int autoSaveOptions[6] = {
         1, 3, 5, 10, 30, 60

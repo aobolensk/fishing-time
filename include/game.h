@@ -68,6 +68,7 @@ public:
     int activeLocation = -1;
     QDateTime userTimestamp;
     InventoryType inventoryType = InventoryType::POPUP;
+    ColorTheme colorTheme = ColorTheme::LIGHT;
     QFont textFont = QFont("Noto Sans", 11, QFont::Normal, false);
     void setAutoSavePeriod(int periodInMinutes);
     int getAutoSavePeriod();

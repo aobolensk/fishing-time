@@ -47,12 +47,21 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     fontSetupButton.setEnabled(false);
     connect(&fontSetupButton, SIGNAL(released()), this, SLOT(fontSetupFunction()));
 
-    grid->addWidget(&eraseAllDataButton, 4, 1);
+    grid->addWidget(&colorThemeLabel, 4, 0);
+    colorThemeLabel.setVisible(false);
+    colorThemeLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+    grid->addWidget(&colorThemeSelector, 4, 1);
+    colorThemeSelector.setCurrentIndex(-1);
+    colorThemeSelector.setVisible(false);
+    colorThemeSelector.setEnabled(false);
+
+    grid->addWidget(&eraseAllDataButton, 5, 1);
     eraseAllDataButton.setVisible(false);
     eraseAllDataButton.setEnabled(false);
     connect(&eraseAllDataButton, SIGNAL(released()), this, SLOT(eraseAllDataFunction()));
 
-    grid->addWidget(&backButton, 5, 1);
+    grid->addWidget(&backButton, 6, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -116,6 +125,22 @@ void SettingsMenu::display() {
     fontSetupButton.setText(game->str.setup);
     fontSetupButton.setVisible(true);
     fontSetupButton.setEnabled(true);
+
+    colorThemeLabel.setText(game->str.colorTheme);
+    colorThemeLabel.setVisible(true);
+
+    colorThemeSelector.addItem(game->str.lightTheme);
+    colorThemeSelector.addItem(game->str.darkTheme);
+    colorThemeSelector.setCurrentIndex((int)game->colorTheme);
+    colorThemeSelector.setVisible(true);
+    colorThemeSelector.setEnabled(true);
+    colorThemeUpdater = connect(&colorThemeSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    [this](int index) {
+        if (index != -1) {
+            this->game->colorTheme = (ColorTheme)index;
+            this->game->cfg.applyColorTheme(this->game->colorTheme);
+        }
+    });
 
     eraseAllDataButton.setText(game->str.eraseAllData);
     eraseAllDataButton.setVisible(true);
@@ -189,6 +214,13 @@ void SettingsMenu::hide() {
 
     fontSetupButton.setVisible(false);
     fontSetupButton.setEnabled(false);
+
+    colorThemeLabel.setVisible(false);
+
+    colorThemeSelector.setVisible(false);
+    colorThemeSelector.setEnabled(false);
+    disconnect(colorThemeUpdater);
+    colorThemeSelector.clear();
 
     eraseAllDataButton.setVisible(false);
     eraseAllDataButton.setEnabled(false);

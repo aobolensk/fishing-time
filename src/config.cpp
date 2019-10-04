@@ -13,6 +13,7 @@ void Config::deserialize(const QVariantMap &map) {
     game->activeLanguage = (Language)map["language"].toInt();
     game->autoSavePeriod = map["autoSavePeriod"].toInt();
     game->inventoryType = (InventoryType)map["inventoryType"].toInt();
+    game->colorTheme = (ColorTheme)map["colorTheme"].toInt();
     game->textFont.fromString(map["textFont"].toString());
     isReady = true;
 }
@@ -23,6 +24,32 @@ QJsonObject Config::serialize() const {
     jsonObj["language"] = (int)game->activeLanguage;
     jsonObj["autoSavePeriod"] = game->autoSavePeriod;
     jsonObj["inventoryType"] = (int)game->inventoryType;
+    jsonObj["colorTheme"] = (int)game->colorTheme;
     jsonObj["textFont"] = game->font().toString();
     return jsonObj;
+}
+
+void Config::applyColorTheme(ColorTheme theme) {
+    QPalette p(game->palette());
+    switch (theme) {
+    case ColorTheme::LIGHT:
+        p.setColor(QPalette::Window, QColor(250, 250, 250));
+        p.setColor(QPalette::Button, QColor(250, 250, 250));
+        p.setColor(QPalette::Base, QColor(250, 250, 250));
+        p.setColor(QPalette::ButtonText, QColor(20, 20, 20));
+        p.setColor(QPalette::WindowText, QColor(20, 20, 20));
+        p.setColor(QPalette::Text, QColor(20, 20, 20));
+        break;
+    case ColorTheme::DARK:
+        p.setColor(QPalette::Window, QColor(64, 64, 64));
+        p.setColor(QPalette::Button, QColor(64, 64, 64));
+        p.setColor(QPalette::Base, QColor(64, 64, 64));
+        p.setColor(QPalette::ButtonText, QColor(240, 240, 240));
+        p.setColor(QPalette::WindowText, QColor(240, 240, 240));
+        p.setColor(QPalette::Text, QColor(240, 240, 240));
+        break;
+    }
+    game->setAutoFillBackground(true);
+    game->setPalette(p);
+    qDebug() << "Applied theme:" << (int)theme;
 }
