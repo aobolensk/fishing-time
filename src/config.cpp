@@ -30,5 +30,26 @@ QJsonObject Config::serialize() const {
 }
 
 void Config::applyColorTheme(ColorTheme theme) {
+    QPalette p(game->palette());
+    switch (theme) {
+    case ColorTheme::LIGHT:
+        p.setColor(QPalette::Window, QColor(250, 250, 250));
+        p.setColor(QPalette::Button, QColor(250, 250, 250));
+        p.setColor(QPalette::Base, QColor(250, 250, 250));
+        p.setColor(QPalette::ButtonText, QColor(20, 20, 20));
+        p.setColor(QPalette::WindowText, QColor(20, 20, 20));
+        p.setColor(QPalette::Text, QColor(20, 20, 20));
+        break;
+    case ColorTheme::DARK:
+        p.setColor(QPalette::Window, QColor(64, 64, 64));
+        p.setColor(QPalette::Button, QColor(64, 64, 64));
+        p.setColor(QPalette::Base, QColor(64, 64, 64));
+        p.setColor(QPalette::ButtonText, QColor(240, 240, 240));
+        p.setColor(QPalette::WindowText, QColor(240, 240, 240));
+        p.setColor(QPalette::Text, QColor(240, 240, 240));
+        break;
+    }
+    game->setAutoFillBackground(true);
+    game->setPalette(p);
     qDebug() << "Applied theme:" << (int)theme;
 }
