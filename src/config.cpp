@@ -51,5 +51,8 @@ void Config::applyColorTheme(ColorTheme theme) {
     }
     game->setAutoFillBackground(true);
     game->setPalette(p);
+    game->aboutMenu.setPalette(p);
+    game->console.setPalette(p);
+    game->gameMenu.getPopUpInventoryTable().setPalette(p);
     qDebug() << "Applied theme:" << (int)theme;
 }
