@@ -77,6 +77,10 @@ bool Console::eventFilter(QObject *obj, QEvent *event) {
 
 int Console::parseCommand(QStringList &args) {
     auto commandIterator = commands.find(args[0]);
+    if (args[0] == "login" ||
+        args[0] == "signup") {
+        inputHistory.needToPush = false;
+    }
     int retCode = 0;
     if (commandIterator != commands.end()) {
         if ((game->activeUser == -1 && commandIterator->privilege <= PrivilegeLevel::Common) ||
@@ -99,6 +103,7 @@ int Console::parseCommand(QStringList &args) {
 }
 
 void Console::parse(QStringList &args) {
+    inputHistory.needToPush = true;
     QStringList command;
     for (int i = 0; i < args.count(); ++i) {
         if (args[i][args[i].count() - 1] == ';') {
@@ -132,8 +137,10 @@ void Console::commandParser() {
         return;
     }
     log.writeln("> " + input.text());
-    inputHistory.push(input.text());
     parse(args);
+    if (inputHistory.needToPush) {
+        inputHistory.push(input.text());
+    }
 }
 
 void Console::display() {
