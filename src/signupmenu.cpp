@@ -101,11 +101,26 @@ void SignupMenu::signUpFunction() {
         QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.emptyLoginWarning);
         return;
     }
+    QString forbiddenSymbols = " ";
+    for (int i = 0; i < loginText.text().count(); ++i) {
+        if (forbiddenSymbols.indexOf(loginText.text()[i]) != -1) {
+            QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning,
+                game->str.forbiddenSymbol.arg(loginText.text()[i]));
+            return;
+        }
+    }
     if (passwordText.text() == "") {
         QMessageBox::StandardButton emptyPasswordResult = 
             QMessageBox::question(game, game->str.fishingTime, game->str.emptyPasswordWarning,
             QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
         if (emptyPasswordResult != QMessageBox::Yes) {
+            return;
+        }
+    }
+    for (int i = 0; i < passwordText.text().count(); ++i) {
+        if (forbiddenSymbols.indexOf(passwordText.text()[i]) != -1) {
+            QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning,
+                game->str.forbiddenSymbol.arg(passwordText.text()[i]));
             return;
         }
     }

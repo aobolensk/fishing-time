@@ -29,6 +29,7 @@ private:
         std::deque <QString> buffer = {""};
         size_t index = 0;
     public:
+        bool needToPush = true;
         void reset();
         void push(const QString &str);
         QString getUpper();

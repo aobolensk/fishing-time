@@ -65,10 +65,25 @@ void Console::registerCommands() {
 
     commands["signup"] = {
         [&](QStringList &args) -> int {
-            (void) args;
-            game->hideCurrentMenu();
-            game->signupMenu.display();
-            log.info("Moved to signup menu");
+            // args[1] -> login
+            // args[2] -> password
+            // args[3] -> password confirmation
+            if (args.count() != 4) {
+                log.error("Incorrect format for signup command. Use 'help signup'");
+                return 1;
+            }
+            for (int i = 0; i < game->users.size(); ++i) {
+                if (game->users[i].getUsername() == args[1]) {
+                    log.error(game->str.thisUserAlreadyExistsText);
+                    return 1;
+                }
+            }
+            if (args[2] != args[3]) {
+                log.error(game->str.confirmPasswordWarning);
+                return 1;
+            }
+            game->users.push_back(User(args[1], args[2]));
+            log.info(game->str.newUserCreatedText.arg(args[1]));
             return 0;
         },
         PrivilegeLevel::Common,
