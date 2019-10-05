@@ -108,6 +108,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(ide) = "Ide";
         SET(incorrectPassword) = "Incorrect password!";
         SET(information) = "Information";
+        SET(invalidArgumentsFormat) = "Invalid arguments format for command %1. Check out 'man %1'";
         SET(invalidOldPasswordWarning) = "Incorrect old password";
         SET(invalidValue) = "<INVALID>";
         SET(inventory) = "Inventory";
@@ -115,6 +116,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(inventoryType) = "Inventory type";
         SET(language) = "Language";
         SET(lightTheme) = "Light theme";
+        SET(listOfAllCommands) = "List of all commands";
         SET(location) = "Location";
         SET(logError) = "[ERROR]";
         SET(logIn) = "Log in";
@@ -142,11 +144,15 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(pike) = "Pike";
         SET(popUp) = "Pop-up";
         SET(price) = "Price";
+        SET(privilegeLevelCommon) = "Common";
+        SET(privilegeLevelSuper) = "Super";
         SET(quantity) = "Quantity";
         SET(quantityShouldBeANumber) = "Quantity should be a number";
         SET(quantityShouldBeMoreThanZero) = "Quantity should be more than zero";
         SET(rating) = "Rating";
         SET(roach) = "Roach";
+        SET(saving) = "Saving...";
+        SET(savingIsComplete) = "Saving is complete";
         SET(selectItemFromList) = "Select item from list";
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
         SET(settings) = "Settings";
@@ -157,16 +163,22 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(statistics) = "Statistics";
         SET(store) = "Store";
         SET(successfullyLoggedIn) = "Successfully logged in as \"%1\"";
+        SET(successfullyLoggedOut) = "Successfully logged out";
         SET(thisUserAlreadyExistsText) = "This user already exists";
+        SET(timePlayed) = "Time played";
         SET(unknownCommand) = "Unknown command: %1";
         SET(unknownUser) = "User \"%1\" is not found";
+        SET(useManToGetDescription) = "Use 'man &lt;command&gt;' to get description";
         SET(userSettings) = "User settings";
         SET(userSettingsText) = "User: %1";
         SET(username) = "Username";
         SET(volga) = "Volga";
         SET(warning) = "Warning";
+        SET(youAreAlreadyLoggedIn) = "You are already logged in";
+        SET(youAreNotLoggedIn) = "You are not logged in";
         SET(youDontHaveEnoughCoins) = "You don't have enough coins";
         SET(youDontHaveEnoughItems) = "You don't have enough items";
+        SET(yourPrivilegeLevel) = "Your privilege level";
 
         SET(commands.echo) =
             "Print arguments<br>"
@@ -266,6 +278,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(ide) = "Язь";
         SET(incorrectPassword) = "Неверный пароль!";
         SET(information) = "Информация";
+        SET(invalidArgumentsFormat) = "Неверные аргументы для команды %1. Помощь: 'man %1'";
         SET(invalidOldPasswordWarning) = "Неверно введен старый пароль";
         SET(invalidValue) = "<INVALID>";
         SET(inventory) = "Инвентарь";
@@ -273,6 +286,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(inventoryType) = "Тип инвентаря";
         SET(language) = "Язык";
         SET(lightTheme) = "Светлая тема";
+        SET(listOfAllCommands) = "Список всех команд";
         SET(location) = "Локация";
         SET(logError) = "[ОШИБКА]";
         SET(logIn) = "Войти";
@@ -300,11 +314,15 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(pike) = "Щука";
         SET(popUp) = "Выпадающий";
         SET(price) = "Цена";
+        SET(privilegeLevelCommon) = "Общий";
+        SET(privilegeLevelSuper) = "Супер";
         SET(quantity) = "Количество";
         SET(quantityShouldBeANumber) = "Количество должно быть числом";
         SET(quantityShouldBeMoreThanZero) = "Количество должно быть больше нуля";
         SET(rating) = "Рейтинг";
         SET(roach) = "Плотва";
+        SET(saving) = "Сохранение...";
+        SET(savingIsComplete) = "Сохранение завершено";
         SET(selectItemFromList) = "Выберите предмет из списка";
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
         SET(settings) = "Настройки";
@@ -315,16 +333,22 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(statistics) = "Статистика";
         SET(store) = "Магазин";
         SET(successfullyLoggedIn) = "Добро пожаловать, %1";
+        SET(successfullyLoggedOut) = "Вы успешно вышли из аккаунта";
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";
+        SET(timePlayed) = "Проведено времени в игре";
         SET(unknownCommand) = "Неизвестная команда: %1";
         SET(unknownUser) = "Пользователь \"%1\" не найден";
+        SET(useManToGetDescription) = "Используйте 'man &lt;команда&gt;' чтобы получить описание";
         SET(userSettings) = "Настройки пользователя";
         SET(userSettingsText) = "Пользователь: %1";
         SET(username) = "Логин";
         SET(volga) = "Волга";
         SET(warning) = "Внимание";
+        SET(youAreAlreadyLoggedIn) = "Вы уже вошли в систему";
+        SET(youAreNotLoggedIn) = "Вы не вошли в систему";
         SET(youDontHaveEnoughCoins) = "Недостаточно монет";
         SET(youDontHaveEnoughItems) = "Недостаточно предметов";
+        SET(yourPrivilegeLevel) = "Ваш уровень привилегий";
 
         SET(commands.echo) =
             "Вывести аргументы<br>"

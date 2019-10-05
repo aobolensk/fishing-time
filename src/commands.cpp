@@ -30,8 +30,12 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             // args[1] -> login
             // args[2] -> password
+            if (args.count() != 3) {
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                return 1;
+            }
             if (game->activeUser != -1) {
-                log.error("You are already logged in");
+                log.error(game->str.youAreAlreadyLoggedIn);
                 return 1;
             }
             int userIndex = -1;
@@ -69,7 +73,7 @@ void Console::registerCommands() {
             // args[2] -> password
             // args[3] -> password confirmation
             if (args.count() != 4) {
-                log.error("Incorrect format for signup command. Use 'help signup'");
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
                 return 1;
             }
             for (int i = 0; i < game->users.size(); ++i) {
@@ -94,9 +98,9 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             (void) args;
             if (game->activeUser == -1) {
-                log.error("You are not logged in");
+                log.error(game->str.youAreNotLoggedIn);
             } else {
-                log.info("Click performed");
+                log.info(game->str.click);
                 game->gameMenu.clickFunction();
             }
             return 0;
@@ -109,12 +113,12 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             (void) args;
             if (game->activeUser == -1) {
-                log.error("You're already logged out");
+                log.error(game->str.youAreNotLoggedIn);
             } else {
                 game->hideCurrentMenu();
                 game->gameMenu.logOutFunction();
                 game->mainMenu.display();
-                log.info("Successfully logged out");
+                log.info(game->str.successfullyLoggedOut);
             }
             return 0;
         },
@@ -125,9 +129,9 @@ void Console::registerCommands() {
     commands["save"] = {
         [&](QStringList &args) -> int {
             (void) args;
-            log.info("Saving...");
+            log.info(game->str.saving);
             game->manualSave();
-            log.info("Saving is complete");
+            log.info(game->str.savingIsComplete);
             return 0;
         },
         PrivilegeLevel::Common,
@@ -148,14 +152,18 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             (void) args;
             if (game->activeUser == -1) {
-                log.error("You're not logged in");
+                log.error(game->str.youAreNotLoggedIn);
                 return 1;
             }
-            log.writeln("Username: " + game->users[game->activeUser].getUsername());
-            log.writeln("Coins: " + QString::number(game->users[game->activeUser].getCoins()));
-            log.writeln("Clicks: " + QString::number(game->users[game->activeUser].getClicks()));
+            log.writeln(game->str.username + ": " +
+                game->users[game->activeUser].getUsername());
+            log.writeln(game->str.coins + ": " +
+                QString::number(game->users[game->activeUser].getCoins()));
+            log.writeln(game->str.clicksCount + ": " +
+                QString::number(game->users[game->activeUser].getClicks()));
             game->updateTimePlayed();
-            log.writeln("Time played: " + game->users[game->activeUser].getInGameTime());
+            log.writeln(game->str.timePlayed + ": " +
+                game->users[game->activeUser].getInGameTime());
             return 0;
         },
         PrivilegeLevel::Common,
@@ -165,19 +173,19 @@ void Console::registerCommands() {
     commands["settings"] = {
         [&](QStringList &args) -> int {
             if (args.size() < 2) {
-                log.error("\"settings\" command requires more args");
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
                 return 1;
             }
             
             if (args[1] == "get") {
                 if (args.size() < 3) {
-                    log.error("\"settings get\" requires more args");
+                    log.error(game->str.invalidArgumentsFormat.arg(args[0]));
                     return 1;
                 }
-                log.writeln(args[2] + " : " + game->settingsMenu.getSetting(args[2]));
+                log.writeln(args[2] + " : " +
+                    game->settingsMenu.getSetting(args[2]));
             } else {
-                log.error("Invalid argument: \"" + args[1] + "\" "
-                          "for settings command");
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
                 return 1;
             }
             return 0;
@@ -190,15 +198,17 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             (void) args;
             if (game->activeUser == -1) {
-                log.writeln("You are guest. Your privilege level: Common (0)");
+                log.writeln(game->str.youAreNotLoggedIn + ". " + 
+                    game->str.yourPrivilegeLevel + ": " +
+                    game->str.privilegeLevelCommon);
             } else {
-                log.write("Your privilege level: ");
+                log.write(game->str.yourPrivilegeLevel + ": ");
                 switch((PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel()) {
                 case PrivilegeLevel::Common:
-                    log.writeln("Common (0)");
+                    log.writeln(game->str.privilegeLevelCommon);
                     break;
                 case PrivilegeLevel::Super:
-                    log.writeln("Super (1)");
+                    log.writeln(game->str.privilegeLevelSuper);
                     break;
                 }
             }
@@ -212,17 +222,19 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             (void) args;
             if (game->activeUser == -1) {
-                log.error("You're not logged in");
+                log.error(game->str.youAreNotLoggedIn);
                 return 1;
             }
             switch ((PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel()) {
             case PrivilegeLevel::Common:
                 game->users[game->activeUser].setPrivilegeLevel((int)PrivilegeLevel::Super);
-                log.writeln("You became super user");
+                log.writeln(game->str.yourPrivilegeLevel + ": " +
+                    game->str.privilegeLevelSuper);
                 break;
             case PrivilegeLevel::Super:
                 game->users[game->activeUser].setPrivilegeLevel((int)PrivilegeLevel::Common);
-                log.writeln("You became common user");
+                log.writeln(game->str.yourPrivilegeLevel + ": " +
+                    game->str.privilegeLevelCommon);
                 break;
             }
             return 0;
@@ -245,15 +257,14 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             (void) args;
             if (game->activeUser == -1) {
-                log.error("You're not logged in");
+                log.error(game->str.youAreNotLoggedIn);
                 return 1;
             }
             QMap<QString, int>::const_iterator it =
                 game->users[game->activeUser].inventory.get().constBegin();
             QMap<QString, int>::const_iterator invEnd =
                 game->users[game->activeUser].inventory.get().constEnd();
-            log.writeln("Inventory of player " +
-                game->users[game->activeUser].getUsername() + ':');
+            log.writeln(game->str.inventory + ':');
             while (it != invEnd) {
                 log.writeln(game->str.getItemName(it.key()) + ": " +
                     QString::number(it.value()));
@@ -290,7 +301,7 @@ void Console::registerCommands() {
     commands["help"] = {
         [&](QStringList &args) -> int {
             (void) args;
-            log.writeln("List of all existing commands:");
+            log.writeln(game->str.listOfAllCommands + ":");
             log.write("[ ");
             bool needSpace = false;
             for (auto command : commands.keys())  {
@@ -302,7 +313,7 @@ void Console::registerCommands() {
                 log.write(command + ' ');
             }
             log.writeln("]");
-            log.writeln("Use 'man &lt;command&gt;' to get description");
+            log.writeln(game->str.useManToGetDescription);
             return 0;
         },
         PrivilegeLevel::Common,
@@ -314,7 +325,7 @@ void Console::registerCommands() {
             for (int i = 1; i < args.count(); ++i) {
                 auto commandIterator = commands.find(args[i]);
                 if (commandIterator == commands.end()) {
-                    log.error("Command " + args[i] + " does not exist");
+                    log.error(game->str.unknownCommand.arg(args[i]));
                     return 1;
                 }
                 log.writeln(args[i] + ":");
