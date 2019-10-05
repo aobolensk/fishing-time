@@ -175,8 +175,8 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "Log in to account<br>"
             "Usage: login &lt;login&gt; &lt;password&gt;";
         SET(commands.signup) =
-            "Go to sign up menu<br>"
-            "Usage: signup";
+            "Sign up new user<br>"
+            "Использование: signup &lt;login&gt; &lt;password&gt; &lt;password confirmation&gt;";
         SET(commands.click) =
             "Perform click<br>"
             "Usage: click";
@@ -333,8 +333,8 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "Войти в аккаунт<br>"
             "Использование: login &lt;логин&gt; &lt;пароль&gt;";
         SET(commands.signup) =
-            "Перейти в меню регистрации<br>"
-            "Использование: signup";
+            "Зарегистрировать нового пользователя<br>"
+            "Использование: signup &lt;логин&gt; &lt;пароль&gt; &lt;подтверждение пароля&gt;";
         SET(commands.click) =
             "Сделать клик<br>"
             "Использование: click";
