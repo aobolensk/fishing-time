@@ -12,6 +12,7 @@ private:
 private:
     Game *game;
     bool displayed = false;
+    QLabel descriptionLabel;
     QPushButton backButton;
     QComboBox locationSelector;
     QMetaObject::Connection locationUpdater;
