@@ -103,6 +103,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(exitConfirmation) = "Do you want to exit?";
         SET(fishLabelText) = "Fish that can be caught in location %1:\n%2";
         SET(font) = "Font";
+        SET(forbiddenSymbol) = "Forbidden symbol: %1";
         SET(id) = "Id";
         SET(ide) = "Ide";
         SET(incorrectPassword) = "Incorrect password!";
@@ -260,6 +261,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(exitConfirmation) = "Вы действительно хотите выйти из игры?";
         SET(fishLabelText) = "Рыба, которую можно поймать в локации %1:\n%2";
         SET(font) = "Шрифт";
+        SET(forbiddenSymbol) = "Недопустимый символ: %1";
         SET(id) = "Идентификатор";
         SET(ide) = "Язь";
         SET(incorrectPassword) = "Неверный пароль!";

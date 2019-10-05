@@ -51,6 +51,7 @@ public:
             exitConfirmation,
             fishLabelText,
             font,
+            forbiddenSymbol,
             id,
             ide,
             incorrectPassword,
