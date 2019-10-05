@@ -176,7 +176,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "Usage: login &lt;login&gt; &lt;password&gt;";
         SET(commands.signup) =
             "Sign up new user<br>"
-            "Использование: signup &lt;login&gt; &lt;password&gt; &lt;password confirmation&gt;";
+            "Usage: signup &lt;login&gt; &lt;password&gt; &lt;password confirmation&gt;";
         SET(commands.click) =
             "Perform click<br>"
             "Usage: click";
