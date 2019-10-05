@@ -118,6 +118,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(lightTheme) = "Light theme";
         SET(listOfAllCommands) = "List of all commands";
         SET(location) = "Location";
+        SET(locationDescription) = "You can travel between locations to get different fish.\nChoose location:";
         SET(logError) = "[ERROR]";
         SET(logIn) = "Log in";
         SET(logInfo) = "[INFO]";
@@ -288,6 +289,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(lightTheme) = "Светлая тема";
         SET(listOfAllCommands) = "Список всех команд";
         SET(location) = "Локация";
+        SET(locationDescription) = "Вы можете перемещаться между локациями, чтобы получать разную рыбу.\nВыберите локацию:";
         SET(logError) = "[ОШИБКА]";
         SET(logIn) = "Войти";
         SET(logInfo) = "[ИНФО]";

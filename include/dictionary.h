@@ -66,6 +66,7 @@ public:
             lightTheme,
             listOfAllCommands,
             location,
+            locationDescription,
             logError,
             logIn,
             logInfo,

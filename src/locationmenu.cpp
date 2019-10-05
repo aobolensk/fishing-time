@@ -7,6 +7,9 @@
 LocationMenu::LocationMenu(Game *game, QGridLayout *grid) :
         game(game),
         grid(grid) {
+    grid->addWidget(&descriptionLabel, 0, 0, 1, 3);
+    descriptionLabel.setVisible(false);
+
     grid->addWidget(&locationSelector, 1, 1);
     locationSelector.setCurrentIndex(0);
     locationSelector.setVisible(false);
@@ -23,6 +26,10 @@ bool LocationMenu::isDisplayed() const {
 }
 
 void LocationMenu::display() {
+    descriptionLabel.setText(game->str.locationDescription);
+    descriptionLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    descriptionLabel.setVisible(true);
+
     for (int i = 0; i < game->locations.size(); ++i) {
         locationSelector.addItem(game->locations[i].getName());
     }
@@ -51,6 +58,8 @@ void LocationMenu::backFunction() {
 }
 
 void LocationMenu::hide() {
+    descriptionLabel.setVisible(false);
+
     disconnect(locationUpdater);
     locationSelector.clear();
     locationSelector.setVisible(false);
