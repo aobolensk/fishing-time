@@ -10,10 +10,11 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     autoSavePeriodLabel.setVisible(false);
     autoSavePeriodLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    grid->addWidget(&autoSavePeriodSelector, 0, 1);
-    autoSavePeriodSelector.setCurrentIndex(-1);
-    autoSavePeriodSelector.setVisible(false);
-    autoSavePeriodSelector.setEnabled(false);
+    grid->addWidget(&autoSavePeriodSlider, 0, 1);
+    autoSavePeriodSlider.setOrientation(Qt::Horizontal);
+    autoSavePeriodSlider.setRange(1, 120);
+    autoSavePeriodSlider.setVisible(false);
+    autoSavePeriodSlider.setEnabled(false);
 
     grid->addWidget(&languageLabel, 1, 0);
     languageLabel.setVisible(false);
@@ -75,21 +76,10 @@ void SettingsMenu::display() {
     autoSavePeriodLabel.setText(game->str.autoSavePeriod);
     autoSavePeriodLabel.setVisible(true);
 
-    for (int i = 0; i < 6; ++i) {
-        autoSavePeriodSelector.addItem(QString::number(autoSaveOptions[i]) + ' ' + game->str.min);
-    }
-    autoSavePeriodSelector.setVisible(true);
-    autoSavePeriodSelector.setEnabled(true);
-    autoSavePeriodSelector.setCurrentIndex(-1);
-    int currentPeriod = game->autoSaveTimer.interval() / (60 * 1000);
-    for (int i = 0; i < 6; ++i) {
-        if (currentPeriod == autoSaveOptions[i]) {
-            autoSavePeriodSelector.setCurrentIndex(i);
-            break;
-        }
-    }
-    autoSaveUpdater = connect(&autoSavePeriodSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-       [this](int index){ game->setAutoSavePeriod(autoSaveOptions[index]); });
+    autoSavePeriodSlider.setValue(game->getAutoSavePeriod());
+    autoSavePeriodSlider.setVisible(true);
+    autoSavePeriodSlider.setEnabled(true);
+    autoSaveUpdater = connect(&autoSavePeriodSlider, SIGNAL(valueChanged(int)), this, SLOT(autoSavePeriodSliderFunction(int)));
 
     languageLabel.setText(game->str.language);
     languageLabel.setVisible(true);
@@ -185,6 +175,10 @@ void SettingsMenu::eraseAllDataFunction() {
     }
 }
 
+void SettingsMenu::autoSavePeriodSliderFunction(int value) {
+    game->setAutoSavePeriod(value);
+}
+
 void SettingsMenu::backFunction() {
     this->hide();
     game->mainMenu.display();
@@ -193,10 +187,9 @@ void SettingsMenu::backFunction() {
 void SettingsMenu::hide() {
     autoSavePeriodLabel.setVisible(false);
 
-    autoSavePeriodSelector.setVisible(false);
-    autoSavePeriodSelector.setEnabled(false);
     disconnect(autoSaveUpdater);
-    autoSavePeriodSelector.clear();
+    autoSavePeriodSlider.setVisible(false);
+    autoSavePeriodSlider.setEnabled(false);
 
     languageLabel.setVisible(false);
 
