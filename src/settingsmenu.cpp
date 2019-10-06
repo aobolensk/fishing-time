@@ -16,6 +16,9 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     autoSavePeriodSlider.setVisible(false);
     autoSavePeriodSlider.setEnabled(false);
 
+    grid->addWidget(&autoSavePeriodValueLabel, 0, 2);
+    autoSavePeriodValueLabel.setVisible(false);
+
     grid->addWidget(&languageLabel, 1, 0);
     languageLabel.setVisible(false);
     languageLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -80,6 +83,9 @@ void SettingsMenu::display() {
     autoSavePeriodSlider.setVisible(true);
     autoSavePeriodSlider.setEnabled(true);
     autoSaveUpdater = connect(&autoSavePeriodSlider, SIGNAL(valueChanged(int)), this, SLOT(autoSavePeriodSliderFunction(int)));
+
+    autoSavePeriodValueLabel.setText(QString::number(game->getAutoSavePeriod()));
+    autoSavePeriodValueLabel.setVisible(true);
 
     languageLabel.setText(game->str.language);
     languageLabel.setVisible(true);
@@ -177,6 +183,7 @@ void SettingsMenu::eraseAllDataFunction() {
 
 void SettingsMenu::autoSavePeriodSliderFunction(int value) {
     game->setAutoSavePeriod(value);
+    autoSavePeriodValueLabel.setText(QString::number(value));
 }
 
 void SettingsMenu::backFunction() {
@@ -190,6 +197,8 @@ void SettingsMenu::hide() {
     disconnect(autoSaveUpdater);
     autoSavePeriodSlider.setVisible(false);
     autoSavePeriodSlider.setEnabled(false);
+
+    autoSavePeriodValueLabel.setVisible(false);
 
     languageLabel.setVisible(false);
 

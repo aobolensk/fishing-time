@@ -16,6 +16,7 @@ private:
     bool displayed = false;
     Game *game;
     QLabel autoSavePeriodLabel,
+           autoSavePeriodValueLabel,
            languageLabel,
            inventoryTypeLabel,
            fontLabel,
