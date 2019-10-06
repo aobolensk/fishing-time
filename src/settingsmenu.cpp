@@ -12,7 +12,7 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
 
     grid->addWidget(&autoSavePeriodSlider, 0, 1);
     autoSavePeriodSlider.setOrientation(Qt::Horizontal);
-    autoSavePeriodSlider.setRange(1, 120);
+    autoSavePeriodSlider.setRange(MIN_AUTO_SAVE_PERIOD, MAX_AUTO_SAVE_PERIOD);
     autoSavePeriodSlider.setVisible(false);
     autoSavePeriodSlider.setEnabled(false);
 

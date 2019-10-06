@@ -13,6 +13,9 @@ enum class ColorTheme {
     LIGHT, DARK
 };
 
+const int MIN_AUTO_SAVE_PERIOD = 1;
+const int MAX_AUTO_SAVE_PERIOD = 120;
+
 class Config {
 private:
     Game *game;
