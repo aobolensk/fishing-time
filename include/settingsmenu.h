@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QPushButton>
+#include <QSlider>
 
 class Game;
 
@@ -15,12 +16,13 @@ private:
     bool displayed = false;
     Game *game;
     QLabel autoSavePeriodLabel,
+           autoSavePeriodValueLabel,
            languageLabel,
            inventoryTypeLabel,
            fontLabel,
            colorThemeLabel;
-    QComboBox autoSavePeriodSelector,
-              languageSelector,
+    QSlider autoSavePeriodSlider;
+    QComboBox languageSelector,
               inventoryTypeSelector,
               colorThemeSelector;
     QPushButton fontSetupButton,
@@ -31,13 +33,11 @@ private:
                             inventoryTypeUpdater,
                             colorThemeUpdater;
 private:
-    int autoSaveOptions[6] = {
-        1, 3, 5, 10, 30, 60
-    };
     QGridLayout *grid;
 private slots:
     void fontSetupFunction();
     void eraseAllDataFunction();
+    void autoSavePeriodSliderFunction(int value);
     void backFunction();
 public:
     SettingsMenu(Game *game, QGridLayout *grid);
