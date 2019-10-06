@@ -45,7 +45,7 @@ void MarketMenu::updateDeals() {
     int seed = QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0)));
     std::mt19937 randGen(seed);
     qDebug() << "Random seed:" << seed;
-    std::uniform_int_distribution<> gen(0, game->str.itemIds.size() - 1); 
+    std::uniform_int_distribution<> gen(0, game->str.itemIds.size() - 2);
     for (int i = 0; i < SELLERS_COUNT; ++i) {
         goodId[i] = game->str.itemIds[gen(randGen)];
         goodPrice[i] = randGen() % 100;
