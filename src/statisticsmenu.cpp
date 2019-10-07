@@ -20,17 +20,23 @@ bool StatisticsMenu::isDisplayed() const {
 }
 
 void StatisticsMenu::display() {
-    statisticsText.setText(
-        QString("<table border=\"1\" width=\"100%\">"
+    QString statText;
+    auto stats = game->users[game->activeUser].getStatistsics(game);
+    auto it = stats.cbegin();
+    while (it != stats.cend()) {
+    statText += QString("<table border=\"1\" width=\"100%\">"
                     "<tr>"
-                        "<td>%1</td>"
-                        "<td>%2</td>"
+                        "<td width=\"50%\">%1</td>"
+                        "<td width=\"50%\">%2</td>"
                     "</tr>"
                 "</table>")
         .arg(
-            game->str.clicksCount,
-            QString::number(game->users[game->activeUser].getClicks())
-        ));
+            it->first,
+            it->second
+        );
+        ++it;
+    }
+    statisticsText.setText(statText);
     statisticsText.setVisible(true);
 
     backButton.setText(game->str.back);
