@@ -113,6 +113,7 @@ QString User::getInGameTime() const {
 }
 
 QVector <QPair<QString, QString>> User::getStatistsics(Game *game) const {
+    game->updateTimePlayed();
     QVector <QPair<QString, QString>> result;
     result.push_back({game->str.username, this->getUsername()});
     result.push_back({game->str.coins, QString::number(this->getCoins())});
