@@ -155,15 +155,12 @@ void Console::registerCommands() {
                 log.error(game->str.youAreNotLoggedIn);
                 return 1;
             }
-            log.writeln(game->str.username + ": " +
-                game->users[game->activeUser].getUsername());
-            log.writeln(game->str.coins + ": " +
-                QString::number(game->users[game->activeUser].getCoins()));
-            log.writeln(game->str.clicksCount + ": " +
-                QString::number(game->users[game->activeUser].getClicks()));
-            game->updateTimePlayed();
-            log.writeln(game->str.timePlayed + ": " +
-                game->users[game->activeUser].getInGameTime());
+            auto stats = game->users[game->activeUser].getStatistsics(game);
+            auto it = stats.cbegin();
+            while (it != stats.cend()) {
+                log.writeln(it->first + ": " + it->second);
+                ++it;
+            }
             return 0;
         },
         PrivilegeLevel::Common,
