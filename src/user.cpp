@@ -1,6 +1,7 @@
 #include <QTemporaryFile>
 #include <QDataStream>
 #include <QDateTime>
+#include "game.h"
 #include "user.h"
 #include "serialization.h"
 
@@ -109,4 +110,13 @@ qint64 User::getPrivilegeLevel() const {
 
 QString User::getInGameTime() const {
     return QDateTime::fromTime_t(inGameTime).toUTC().toString("hh:mm:ss");
+}
+
+QVector <QPair<QString, QString>> User::getStatistsics(Game *game) const {
+    QVector <QPair<QString, QString>> result;
+    result.push_back({game->str.username, this->getUsername()});
+    result.push_back({game->str.coins, QString::number(this->getCoins())});
+    result.push_back({game->str.clicksCount, QString::number(this->getClicks())});
+    result.push_back({game->str.timePlayed, this->getInGameTime()});
+    return result;
 }

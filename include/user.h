@@ -7,6 +7,8 @@
 #include <QCoreApplication>
 #include <QCryptographicHash>
 
+class Game;
+
 class User {
 private:
     // General information
@@ -47,6 +49,8 @@ public:
     qint64 getCoins() const;
     qint64 getPrivilegeLevel() const;
     QString getInGameTime() const;
+    // Get statistics
+    QVector <QPair<QString, QString>> getStatistsics(Game *game) const;
 };
 
 Q_DECLARE_METATYPE(User)
