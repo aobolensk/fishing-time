@@ -138,7 +138,26 @@ void Console::commandParser() {
         input.clear();
         return;
     }
-    log.writeln("> " + input.text());
+    QStringList argsCopy(args);
+    for (int i = 0; i < argsCopy.size();) {
+        if (argsCopy[i] == "login" ||
+            argsCopy[i] == "signup") {
+            ++i;
+            while (i < argsCopy.size() && argsCopy[i] != "&&" && argsCopy[i][argsCopy[i].size() - 1] != ';') {
+                for (int j = 0; j < argsCopy[i].size(); ++j) {
+                    argsCopy[i][j] = '*';
+                }
+                ++i;
+            }
+        } else {
+            ++i;
+        }
+    }
+    QString command;
+    for (int i = 0; i < argsCopy.size(); ++i) {
+        command += argsCopy[i] + ' ';
+    }
+    log.writeln("> " + command);
     parse(args);
     if (inputHistory.needToPush) {
         inputHistory.push(input.text());
