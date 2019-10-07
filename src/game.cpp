@@ -114,6 +114,7 @@ void Game::serialize() {
     settings.setValue("mainWindowGeometry", this->saveGeometry());
     settings.setValue("consoleGeometry", console.saveGeometry());
     settings.setValue("aboutWindowGeometry", aboutMenu.saveGeometry());
+    settings.setValue("inventoryWindowGeometry", gameMenu.getPopUpInventoryTable().saveGeometry());
     updateTimePlayed();
     if (activeUser != -1 && activeLocation != -1)
         netsMenu.foldNets();

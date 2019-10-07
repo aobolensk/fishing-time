@@ -1,11 +1,16 @@
 #include <QStringList>
-#include <QStringList>
+#include <QSettings>
 #include "gamemenu.h"
 #include "game.h"
 
 GameMenu::GameMenu(Game *game, QGridLayout *grid) :
         game(game),
         grid(grid) {
+    QSettings settings;
+    if (!popUpInventoryTable.restoreGeometry(settings.value("inventoryWindowGeometry").toByteArray())) {
+        qDebug() << "Unable to restore inventory window geometry. Loading defaults...";
+        popUpInventoryTable.setGeometry(QRect(QPoint(0, 0), QSize(300, 400)));
+    }
     popUpInventoryTable.setRowCount(0);
     popUpInventoryTable.setColumnCount(2);
     popUpInventoryTable.setHorizontalHeaderItem(0, &nameHeader);
