@@ -142,6 +142,7 @@ public:
             privilege,
             clear,
             inventory,
+            rating,
             exit,
             time,
             help,

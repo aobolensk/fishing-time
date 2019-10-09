@@ -273,6 +273,26 @@ void Console::registerCommands() {
         &game->str.commands.inventory
     };
 
+    commands["rating"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            for (int i = 0; i < game->users.size(); ++i) {
+                auto stats = game->users[i].getStatistsics(game);
+                auto it = stats.cbegin();
+                while (it != stats.cend()) {
+                    log.writeln(it->first + ": " + it->second);
+                    ++it;
+                }
+                if (i + 1 != game->users.size()) {
+                    log.writeln("");
+                }
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.rating
+    };
+
     commands["quit"] =
     commands["exit"] =
     commands["q"] = {
