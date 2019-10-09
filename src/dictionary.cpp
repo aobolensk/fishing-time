@@ -220,6 +220,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.inventory) =
             "Show player's inventory<br>"
             "Usage: inventory";
+        SET(commands.rating) =
+            "Show users rating<br>"
+            "Usage: rating";
         SET(commands.exit) =
             "Exit from the game<br>"
             "Usage: exit";
@@ -391,6 +394,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.inventory) =
             "Показать инвентарь игрока<br>"
             "Использование: inventory";
+        SET(commands.rating) =
+            "Показать рейтинг пользователей<br>"
+            "Использование: rating";
         SET(commands.exit) =
             "Выйти из игры<br>"
             "Использование: exit";
