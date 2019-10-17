@@ -202,6 +202,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.about) =
             "Print information about this game<br>"
             "Usage: about";
+        SET(commands.version) =
+            "Print verison of the game<br>"
+            "Usage: version";
         SET(commands.aboutme) =
             "Print information about current user<br>"
             "Usage: aboutme";
@@ -376,6 +379,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.about) =
             "Вывести информацию об игре<br>"
             "Использование: about";
+        SET(commands.version) =
+            "Вывести версию игры<br>"
+            "Использование: version";
         SET(commands.aboutme) =
             "Вывести информацию о текущем пользователе<br>"
             "Использование: aboutme";

@@ -148,6 +148,16 @@ void Console::registerCommands() {
         &game->str.commands.about
     };
 
+    commands["version"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            log.writeln(COMMIT_HASH);
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.version
+    };
+
     commands["aboutme"] = {
         [&](QStringList &args) -> int {
             (void) args;

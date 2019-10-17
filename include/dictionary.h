@@ -137,6 +137,7 @@ public:
             logout,
             save,
             about,
+            version,
             aboutme,
             settings,
             privilege,
