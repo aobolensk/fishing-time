@@ -1,3 +1,4 @@
+#include <QHeaderView>
 #include <QStringList>
 #include <QSettings>
 #include "gamemenu.h"
@@ -13,6 +14,7 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     }
     popUpInventoryTable.setRowCount(0);
     popUpInventoryTable.setColumnCount(2);
+    popUpInventoryTable.verticalHeader()->setVisible(false);
     popUpInventoryTable.setHorizontalHeaderItem(0, &nameHeader);
     popUpInventoryTable.setHorizontalHeaderItem(1, &quantityHeader);
     popUpInventoryTable.setVisible(false);
