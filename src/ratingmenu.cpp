@@ -7,6 +7,7 @@ RatingMenu::RatingMenu(Game *game, QGridLayout *grid) :
     grid->addWidget(&ratingTable, 0, 0, 2, 3);
     ratingTable.setRowCount(0);
     ratingTable.setColumnCount(2);
+    ratingTable.setSelectionMode(QAbstractItemView::NoSelection);
     ratingTable.setHorizontalHeaderItem(0, &usernameHeader);
     ratingTable.setHorizontalHeaderItem(1, &coinsHeader);
     ratingTable.setVisible(false);

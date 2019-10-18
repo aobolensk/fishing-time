@@ -13,6 +13,7 @@ InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid) :
     grid->addWidget(&inventoryTable, 1, 0, 1, 3);
     inventoryTable.setRowCount(0);
     inventoryTable.setColumnCount(2);
+    inventoryTable.setSelectionMode(QAbstractItemView::NoSelection);
     inventoryTable.verticalHeader()->setVisible(false);
     inventoryTable.setHorizontalHeaderItem(0, &nameHeader);
     inventoryTable.setHorizontalHeaderItem(1, &quantityHeader);
