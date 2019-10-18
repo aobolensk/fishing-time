@@ -18,6 +18,11 @@ private:
                      coinsHeader;
     QPushButton backButton;
     QGridLayout *grid;
+    struct RatingRow {
+        QString username;
+        qint64 coins;
+    };
+    QVector <RatingRow> rows;
 private:
     void updateTable();
 private slots:
