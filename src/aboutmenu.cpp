@@ -5,6 +5,7 @@
 AboutMenu::AboutMenu(Game *game) :
         game(game) {
     this->setLayout(&grid);
+    this->setFixedSize(this->width(), this->height());
 
     QSettings settings;
     if (!this->restoreGeometry(settings.value("aboutWindowGeometry").toByteArray())) {
