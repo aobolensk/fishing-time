@@ -6,8 +6,6 @@
 class Game;
 
 class Menu : public QWidget {
-private:
-    Q_OBJECT
 public:
     virtual void display() = 0;
     virtual void hide() = 0;
