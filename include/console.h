@@ -8,10 +8,9 @@
 #include <QTextEdit>
 #include <QMap>
 #include "log.h"
+#include "menu.h"
 
-class Game;
-
-class Console : public QWidget {
+class Console : public Menu {
 private:
     enum class PrivilegeLevel {
         Common = 0,
@@ -54,8 +53,8 @@ private slots:
 public:
     Console(Game *game = nullptr);
     ~Console() = default;
-    void display();
-    void hide();
+    void display() override;
+    void hide() override;
 };
 
 #endif  // INCLUDE_CONSOLE_H_

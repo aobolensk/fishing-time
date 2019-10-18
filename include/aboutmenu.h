@@ -3,10 +3,9 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QLabel>
+#include "menu.h"
 
-class Game;
-
-class AboutMenu : public QWidget {
+class AboutMenu : public Menu {
 private:
     Q_OBJECT
 private:
@@ -19,8 +18,8 @@ private slots:
 public:
     AboutMenu(Game *game);
     ~AboutMenu();
-    void display();
-    void hide();
+    void display() override;
+    void hide() override;
     QString getAboutInfo();
 };
 

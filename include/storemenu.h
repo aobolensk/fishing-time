@@ -5,10 +5,9 @@
 #include <QTableWidget>
 #include <QLineEdit>
 #include <QLabel>
+#include "menu.h"
 
-class Game;
-
-class StoreMenu : public QObject {
+class StoreMenu : public Menu {
 private:
     Q_OBJECT
 private:
@@ -33,8 +32,8 @@ private:
 public:
     StoreMenu(Game *game, QGridLayout *grid);
     ~StoreMenu();
-    void display();
-    void hide();
+    void display() override;
+    void hide() override;
     bool isDisplayed() const;
 };
 

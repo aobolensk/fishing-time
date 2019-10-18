@@ -4,10 +4,9 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QTableWidget>
+#include "menu.h"
 
-class Game;
-
-class InventoryMenu : public QObject {
+class InventoryMenu : public Menu {
 private:
     Q_OBJECT
 private:
@@ -26,8 +25,8 @@ private:
 public:
     InventoryMenu(Game *game, QGridLayout *grid);
     ~InventoryMenu();
-    void display();
-    void hide();
+    void display() override;
+    void hide() override;
     bool isDisplayed() const;
 };
 

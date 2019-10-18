@@ -4,10 +4,9 @@
 #include <QGridLayout>
 #include <QLineEdit>
 #include <QLabel>
+#include "menu.h"
 
-class Game;
-
-class MarketMenu : public QObject {
+class MarketMenu : public Menu {
 private:
     Q_OBJECT
 private:
@@ -32,8 +31,8 @@ private:
 public:
     MarketMenu(Game *game, QGridLayout *grid);
     ~MarketMenu();
-    void display();
-    void hide();
+    void display() override;
+    void hide() override;
     bool isDisplayed() const;
 };
 

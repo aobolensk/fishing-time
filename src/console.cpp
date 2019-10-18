@@ -6,7 +6,6 @@
 #include "game.h"
 
 Console::Console(Game *game) :
-    QWidget(),
     game(game),
     grid(QGridLayout(this)),
     log(game, &console) {
