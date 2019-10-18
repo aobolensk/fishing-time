@@ -14,6 +14,7 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     }
     popUpInventoryTable.setRowCount(0);
     popUpInventoryTable.setColumnCount(2);
+    popUpInventoryTable.setSelectionMode(QAbstractItemView::NoSelection);
     popUpInventoryTable.verticalHeader()->setVisible(false);
     popUpInventoryTable.setHorizontalHeaderItem(0, &nameHeader);
     popUpInventoryTable.setHorizontalHeaderItem(1, &quantityHeader);
