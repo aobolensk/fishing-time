@@ -6,10 +6,9 @@
 #include <QComboBox>
 #include <QPushButton>
 #include <QSlider>
+#include "menu.h"
 
-class Game;
-
-class SettingsMenu : public QObject {
+class SettingsMenu : public Menu {
 private:
     Q_OBJECT
 private:
@@ -42,8 +41,8 @@ private slots:
 public:
     SettingsMenu(Game *game, QGridLayout *grid);
     ~SettingsMenu();
-    void display();
-    void hide();
+    void display() override;
+    void hide() override;
     bool isDisplayed() const;
     QString getSetting(const QString &settingName);
 };

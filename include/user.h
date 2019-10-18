@@ -6,8 +6,7 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include <QCryptographicHash>
-
-class Game;
+#include "menu.h"
 
 class User {
 private:

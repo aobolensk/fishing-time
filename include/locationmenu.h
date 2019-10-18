@@ -3,10 +3,9 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QLabel>
+#include "menu.h"
 
-class Game;
-
-class LocationMenu : public QObject {
+class LocationMenu : public Menu {
 private:
     Q_OBJECT
 private:
@@ -22,8 +21,8 @@ private slots:
 public:
     LocationMenu(Game *game, QGridLayout *grid);
     ~LocationMenu();
-    void display();
-    void hide();
+    void display() override;
+    void hide() override;
     bool isDisplayed() const;
 };
 

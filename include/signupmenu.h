@@ -4,10 +4,9 @@
 #include <QGridLayout>
 #include <QLineEdit>
 #include <QLabel>
+#include "menu.h"
 
-class Game;
-
-class SignupMenu : public QObject {
+class SignupMenu : public Menu {
 private:
     Q_OBJECT
 private:
@@ -29,8 +28,8 @@ private slots:
 public:
     SignupMenu(Game *game, QGridLayout *grid);
     ~SignupMenu();
-    void display();
-    void hide();
+    void display() override;
+    void hide() override;
     bool isDisplayed() const;
 };
 

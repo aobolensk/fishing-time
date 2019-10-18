@@ -6,10 +6,9 @@
 #include <QLabel>
 #include <QTableWidget>
 #include <QComboBox>
+#include "menu.h"
 
-class Game;
-
-class GameMenu : public QObject {
+class GameMenu : public Menu {
 private:
     Q_OBJECT
 private:
@@ -51,8 +50,8 @@ public:
 public:
     GameMenu(Game *game, QGridLayout *grid);
     ~GameMenu();
-    void display();
-    void hide();
+    void display() override;
+    void hide() override;
     bool isDisplayed() const;
 };
 

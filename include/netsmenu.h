@@ -5,10 +5,9 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QTimer>
+#include "menu.h"
 
-class Game;
-
-class NetsMenu : public QObject {
+class NetsMenu : public Menu {
 private:
     Q_OBJECT
 private:
@@ -31,8 +30,8 @@ private slots:
 public:
     NetsMenu(Game *game, QGridLayout *grid);
     ~NetsMenu();
-    void display();
-    void hide();
+    void display() override;
+    void hide() override;
     void foldNets();
     bool isDisplayed() const;
 };

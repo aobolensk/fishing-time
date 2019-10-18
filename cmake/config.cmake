@@ -23,5 +23,5 @@ if (MSVC)
     # disabled warning C4702: unreachable code
     # disabled warning C4127: conditional expression is constant
 else(MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -O3 -pedantic")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-inconsistent-missing-override -Werror -O3 -pedantic")
 endif(MSVC)
