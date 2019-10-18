@@ -20,20 +20,30 @@ RatingMenu::RatingMenu(Game *game, QGridLayout *grid) :
 
 void RatingMenu::updateTable() {
     ratingTable.setRowCount(game->users.size());
+    rows.resize(game->users.size());
+    for (int i = 0; i < game->users.size(); ++i) {
+        rows[i] = {
+            game->users[i].getUsername(),
+            game->users[i].getCoins()
+        };
+    }
+    qSort(rows.begin(), rows.end(), [](const RatingRow &a, const RatingRow &b) {
+        return a.coins > b.coins;
+    });
     for (int i = 0; i < game->users.size(); ++i) {
         QTableWidgetItem *cell = ratingTable.item(i, 0);
         if (!cell) {
             cell = new QTableWidgetItem;
             ratingTable.setItem(i, 0, cell);
         }
-        cell->setText(game->users[i].getUsername());
+        cell->setText(rows[i].username);
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
         cell = ratingTable.item(i, 1);
         if (!cell) {
             cell = new QTableWidgetItem;
             ratingTable.setItem(i, 1, cell);
         }
-        cell->setText(QString::number(game->users[i].getCoins()));
+        cell->setText(QString::number(rows[i].coins));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
     }
 }
