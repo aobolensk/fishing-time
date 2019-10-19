@@ -101,8 +101,8 @@ void NetsMenu::display() {
             if (index == 1) { \
                 nets[i] = ""; \
             } else { \
-                nets[i] = netSlot[i].itemText(index).split(' ').first(); \
-                qDebug() << "after:" << netSlot[i].itemText(index).split(' ').first(); \
+                nets[i] = *game->str.itemNames[netSlot[i].itemText(index).split(' ').first()]; \
+                qDebug() << "after:" << *game->str.itemNames[netSlot[i].itemText(index).split(' ').first()]; \
                 this->game->users[this->game->activeUser].inventory.changeItem(nets[i], -1); \
             } \
             netSlot[i].setCurrentIndex(0); \
