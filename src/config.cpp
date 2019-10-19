@@ -1,4 +1,4 @@
-#include <QDebug>
+#include <QStyleFactory>
 #include "config.h"
 #include "game.h"
 
@@ -30,6 +30,7 @@ QJsonObject Config::serialize() const {
 }
 
 void Config::applyColorTheme(ColorTheme theme) {
+    QApplication::setStyle(QStyleFactory::create("Fusion"));
     QPalette p(game->palette());
     switch (theme) {
     case ColorTheme::LIGHT:
