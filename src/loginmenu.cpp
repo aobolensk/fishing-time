@@ -78,6 +78,9 @@ void LoginMenu::backFunction() {
 
 void LoginMenu::loginFunction() {
     const int userIndex = loginSelector.currentIndex();
+    if (userIndex == -1) {
+        return;
+    }
     qDebug() << QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5);
     qDebug() << game->users[userIndex].getPasswordHash().toLatin1();
     if (QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5) ==
