@@ -13,6 +13,7 @@ enum class Language {
 class Dictionary {
 public:
     QMap <Language, QPair <QString, int>> languages;
+    const QVector <QString> fishIds;
     const QVector <QString> itemIds;
     const QMap <QString, const QString*> itemNames;
     const QString fishingTime = "Fishing time";

@@ -11,19 +11,27 @@ Dictionary::Dictionary(Game *game) :
             {Language::Russian, {"Russian", 0}}
         }),
 
-        #define LIST_OF_ITEMS \
+        #define LIST_OF_FISH \
             X("fish.bream", &bream) \
             X("fish.carp", &carp) \
             X("fish.ide", &ide) \
             X("fish.perch", &perch) \
             X("fish.pike", &pike) \
             X("fish.roach", &roach) \
+
+        #define LIST_OF_NETS \
             X("net.basic", &basicNet) \
 
         #define X(itemId, itemNamePtr) \
               itemId ,
+        fishIds({
+            LIST_OF_FISH
+            "item.undefined"
+        }),
+
         itemIds({
-            LIST_OF_ITEMS
+            LIST_OF_FISH
+            LIST_OF_NETS
             "item.undefined"
         }),
         #undef X
@@ -31,7 +39,8 @@ Dictionary::Dictionary(Game *game) :
         #define X(itemId, itemNamePtr) \
             { itemId, itemNamePtr } ,
         itemNames({
-            LIST_OF_ITEMS
+            LIST_OF_FISH
+            LIST_OF_NETS
             {"item.undefined", nullptr}
         })
         #undef X
