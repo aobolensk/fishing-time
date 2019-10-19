@@ -55,5 +55,9 @@ void Config::applyColorTheme(ColorTheme theme) {
     game->aboutMenu.setPalette(p);
     game->console.setPalette(p);
     game->gameMenu.getPopUpInventoryTable().setPalette(p);
+    game->setFont(game->textFont);
+    game->console.setFont(game->textFont);
+    game->aboutMenu.setFont(game->textFont);
+    game->gameMenu.getPopUpInventoryTable().setFont(game->textFont);
     qDebug() << "Applied theme:" << (int)theme;
 }
