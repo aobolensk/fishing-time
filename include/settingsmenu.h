@@ -19,13 +19,15 @@ private:
            languageLabel,
            inventoryTypeLabel,
            fontLabel,
-           colorThemeLabel;
+           colorThemeLabel,
+           configFileLabel;
     QSlider autoSavePeriodSlider;
     QComboBox languageSelector,
               inventoryTypeSelector,
               colorThemeSelector;
     QPushButton fontSetupButton,
                 eraseAllDataButton,
+                configFileSetupButton,
                 backButton;
     QMetaObject::Connection languageUpdater,
                             autoSaveUpdater,
@@ -36,6 +38,7 @@ private:
 private slots:
     void fontSetupFunction();
     void eraseAllDataFunction();
+    void configFileSetupFunction();
     void autoSavePeriodSliderFunction(int value);
     void backFunction();
 public:

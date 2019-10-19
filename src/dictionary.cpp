@@ -85,6 +85,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(coins) = "Coins";
         SET(colorTheme) = "Color theme";
         SET(commandReturned) = "Command %1 returned %2";
+        SET(configFile) = "Configuration file";
         SET(confirmPassword) = "Confirm password";
         SET(confirmPasswordWarning) = "Password are not equal";
         SET(console) = "Console";
@@ -138,6 +139,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
         SET(oka) = "Oka";
         SET(oldPassword) = "Old password";
+        SET(open) = "Open";
         SET(password) = "Password";
         SET(passwordIsChanged) = "Password is successfully changed";
         SET(perch) = "Perch";
@@ -262,6 +264,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(coins) = "Монет";
         SET(colorTheme) = "Цветовая тема";
         SET(commandReturned) = "Команда %1 завершилась с кодом %2";
+        SET(configFile) = "Файл конфигурации";
         SET(confirmPassword) = "Подтвердите пароль";
         SET(confirmPasswordWarning) = "Пароли не совпадают";
         SET(console) = "Консоль";
@@ -315,6 +318,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
         SET(oka) = "Ока";
         SET(oldPassword) = "Старый пароль";
+        SET(open) = "Открыть";
         SET(password) = "Пароль";
         SET(passwordIsChanged) = "Пароль успешно изменен";
         SET(perch) = "Окунь";

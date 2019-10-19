@@ -71,6 +71,7 @@ public:
     ColorTheme colorTheme = ColorTheme::LIGHT;
     QFont textFont = QFont("Noto Sans", 11, QFont::Normal, false);
     void setAutoSavePeriod(int periodInMinutes);
+    void setConfigFile(const QString &new_config_file);
     int getAutoSavePeriod();
     QString getConfigFileName();
     Language activeLanguage = Language::English;
