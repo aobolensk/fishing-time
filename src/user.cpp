@@ -22,7 +22,11 @@ QJsonObject User::serialize() const {
     jsonObj["passwordHash"] = passwordHash;
     jsonObj["signUpTime"] = signUpTime;
     jsonObj["inGameTime"] = inGameTime;
-    jsonObj["inventory"] = toString(inventory.get());
+    QVariantMap inv;
+    for (auto i = inventory.get().begin(); i != inventory.get().end(); ++i) {
+        inv[i.key()] = i.value();
+    }
+    jsonObj["inventory"] = QJsonObject::fromVariantMap(inv);
     return jsonObj;
 }
 
