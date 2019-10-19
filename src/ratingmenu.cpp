@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "ratingmenu.h"
 #include "game.h"
 
@@ -28,7 +29,7 @@ void RatingMenu::updateTable() {
             game->users[i].getCoins()
         };
     }
-    qSort(rows.begin(), rows.end(), [](const RatingRow &a, const RatingRow &b) {
+    std::sort(rows.begin(), rows.end(), [](const RatingRow &a, const RatingRow &b) {
         return a.coins > b.coins;
     });
     for (int i = 0; i < game->users.size(); ++i) {
