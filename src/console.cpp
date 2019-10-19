@@ -30,6 +30,7 @@ Console::Console(Game *game) :
     });
 
     input.installEventFilter(this);
+    input.setFocus();
 
     registerCommands();
 }
