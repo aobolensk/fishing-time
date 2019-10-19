@@ -35,7 +35,7 @@ void NetsMenu::updateNets() {
     for (int i = 0; i < SLOTS_COUNT; ++i) {
         netSlotLabel[i].setText(game->str.netSlot.arg(
             QString::number(i),
-            nets[i] == "" ? game->str.empty : nets[i]
+            nets[i] == "" ? game->str.empty : *game->str.itemNames[nets[i]]
         ));
 
         netSlot[i].clear();
