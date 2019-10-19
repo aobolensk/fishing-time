@@ -38,7 +38,12 @@ QVariant User::deserialize(const QVariantMap &map) {
     user.passwordHash = map["passwordHash"].toString();
     user.signUpTime = map["signUpTime"].toString();
     user.inGameTime = map["inGameTime"].toLongLong();
-    fromString(user.inventory.set(), map["inventory"].toString());
+    QVariantMap inv = map["inventory"].toJsonObject().toVariantMap();
+    QMap <QString, int> inventory;
+    for (auto i = inv.begin(); i != inv.end(); ++i) {
+        inventory[i.key()] = i.value().toInt();
+    }
+    user.inventory.set() = inventory;
     return QVariant::fromValue(user);
 }
 
