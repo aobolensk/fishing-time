@@ -1,3 +1,4 @@
+#include <QFileDialog>
 #include <QFontDialog>
 #include <QMessageBox>
 #include "settingsmenu.h"
@@ -65,7 +66,16 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     eraseAllDataButton.setEnabled(false);
     connect(&eraseAllDataButton, SIGNAL(released()), this, SLOT(eraseAllDataFunction()));
 
-    grid->addWidget(&backButton, 6, 1);
+    grid->addWidget(&configFileLabel, 6, 0);
+    configFileLabel.setVisible(false);
+    configFileLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+    grid->addWidget(&configFileSetupButton, 6, 1);
+    configFileSetupButton.setVisible(false);
+    configFileSetupButton.setEnabled(false);
+    connect(&configFileSetupButton, SIGNAL(released()), this, SLOT(configFileSetupFunction()));
+
+    grid->addWidget(&backButton, 7, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -142,6 +152,13 @@ void SettingsMenu::display() {
     eraseAllDataButton.setVisible(true);
     eraseAllDataButton.setEnabled(true);
 
+    configFileLabel.setText(game->str.configFile);
+    configFileLabel.setVisible(true);
+
+    configFileSetupButton.setText(game->str.open);
+    configFileSetupButton.setVisible(true);
+    configFileSetupButton.setEnabled(true);
+
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
@@ -165,6 +182,14 @@ void SettingsMenu::fontSetupFunction() {
     game->console.setFont(newFont);
     game->aboutMenu.setFont(newFont);
     game->gameMenu.getPopUpInventoryTable().setFont(newFont);
+}
+
+void SettingsMenu::configFileSetupFunction() {
+    QString config_file = QFileDialog::getOpenFileName();
+    qDebug() << "New config file:" << config_file;
+    if (config_file.size() > 0) {
+        game->setConfigFile(config_file);
+    }
 }
 
 void SettingsMenu::eraseAllDataFunction() {
@@ -227,6 +252,11 @@ void SettingsMenu::hide() {
 
     eraseAllDataButton.setVisible(false);
     eraseAllDataButton.setEnabled(false);
+
+    configFileLabel.setVisible(false);
+
+    configFileSetupButton.setVisible(false);
+    configFileSetupButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

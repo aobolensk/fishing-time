@@ -44,6 +44,7 @@ Game::Game(QWidget *parent, const QString &file) :
     grid.setColumnStretch(1, 1);
     grid.setColumnStretch(2, 1);
     this->deserialize();
+    this->mainMenu.display();
 }
 
 void Game::setAutoSavePeriod(int periodInMinutes) {
@@ -55,11 +56,18 @@ void Game::setAutoSavePeriod(int periodInMinutes) {
     qDebug() << "Autosave period is set to " << autoSavePeriod << " mins";
 }
 
+void Game::setConfigFile(const QString &new_config_file) {
+    this->config_file = new_config_file;
+    this->deserialize();
+}
+
 int Game::getAutoSavePeriod() {
     return autoSavePeriod;
 }
 
 void Game::deserialize() {
+    this->users.clear();
+    this->activeUser = -1;
     QFile config(config_file);
     if (!config.exists()) {
         qDebug() << "File " << config_file << " does not exist";
@@ -94,7 +102,6 @@ void Game::deserialize() {
     for (const User &user : users) {
         qDebug() << user.getUsername();
     }
-    mainMenu.display();
     setAutoSavePeriod(autoSavePeriod);
     this->cfg.applyColorTheme(colorTheme);
 }
