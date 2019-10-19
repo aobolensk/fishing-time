@@ -35,7 +35,7 @@ void NetsMenu::updateNets() {
     for (int i = 0; i < SLOTS_COUNT; ++i) {
         netSlotLabel[i].setText(game->str.netSlot.arg(
             QString::number(i),
-            nets[i] == "" ? game->str.empty : nets[i]
+            nets[i] == "" ? game->str.empty : *game->str.itemNames[nets[i]]
         ));
 
         netSlot[i].clear();
@@ -101,8 +101,8 @@ void NetsMenu::display() {
             if (index == 1) { \
                 nets[i] = ""; \
             } else { \
-                nets[i] = *game->str.itemNames[netSlot[i].itemText(index).split(' ').first()]; \
-                qDebug() << "after:" << *game->str.itemNames[netSlot[i].itemText(index).split(' ').first()]; \
+                nets[i] = netSlot[i].itemText(index).split(' ').first(); \
+                qDebug() << "after:" << netSlot[i].itemText(index).split(' ').first(); \
                 this->game->users[this->game->activeUser].inventory.changeItem(nets[i], -1); \
             } \
             netSlot[i].setCurrentIndex(0); \
