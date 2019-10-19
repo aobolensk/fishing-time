@@ -19,24 +19,31 @@ bool StatisticsMenu::isDisplayed() const {
     return displayed;
 }
 
-void StatisticsMenu::display() {
+void StatisticsMenu::updateStatistics() {
+    qDebug() << "Statistics have been updated";
     QString statText;
     auto stats = game->users[game->activeUser].getStatistsics(game);
     auto it = stats.cbegin();
     while (it != stats.cend()) {
-    statText += QString("<table border=\"1\" width=\"100%\">"
-                    "<tr>"
-                        "<td width=\"50%\">%1</td>"
-                        "<td width=\"50%\">%2</td>"
-                    "</tr>"
-                "</table>")
-        .arg(
-            it->first,
-            it->second
-        );
-        ++it;
+        statText += QString("<table border=\"1\" width=\"100%\">"
+                        "<tr>"
+                            "<td width=\"50%\">%1</td>"
+                            "<td width=\"50%\">%2</td>"
+                        "</tr>"
+                    "</table>")
+            .arg(
+                it->first,
+                it->second
+            );
+            ++it;
     }
     statisticsText.setText(statText);
+}
+
+void StatisticsMenu::display() {
+    timerUpdater = connect(&timer, SIGNAL(timeout()), this, SLOT(updateStatistics()));
+    timer.start(1000);
+    updateStatistics();
     statisticsText.setVisible(true);
 
     backButton.setText(game->str.back);
@@ -47,6 +54,9 @@ void StatisticsMenu::display() {
 }
 
 void StatisticsMenu::backFunction() {
+    timer.stop();
+    disconnect(timerUpdater);
+
     this->hide();
     game->gameMenu.display();
 }
