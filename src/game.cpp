@@ -43,18 +43,7 @@ Game::Game(QWidget *parent, const QString &file) :
     grid.setColumnStretch(0, 1);
     grid.setColumnStretch(1, 1);
     grid.setColumnStretch(2, 1);
-    deserialize();
-    this->setFont(this->textFont);
-    this->console.setFont(this->textFont);
-    this->aboutMenu.setFont(this->textFont);
-    this->gameMenu.getPopUpInventoryTable().setFont(this->textFont);
-    str.setLanguage(activeLanguage);
-    for (const User &user : users) {
-        qDebug() << user.getUsername();
-    }
-    mainMenu.display();
-    setAutoSavePeriod(autoSavePeriod);
-    this->cfg.applyColorTheme(colorTheme);
+    this->deserialize();
 }
 
 void Game::setAutoSavePeriod(int periodInMinutes) {
@@ -97,6 +86,17 @@ void Game::deserialize() {
             }
         }
     }
+    this->setFont(this->textFont);
+    this->console.setFont(this->textFont);
+    this->aboutMenu.setFont(this->textFont);
+    this->gameMenu.getPopUpInventoryTable().setFont(this->textFont);
+    str.setLanguage(activeLanguage);
+    for (const User &user : users) {
+        qDebug() << user.getUsername();
+    }
+    mainMenu.display();
+    setAutoSavePeriod(autoSavePeriod);
+    this->cfg.applyColorTheme(colorTheme);
 }
 
 void Game::updateTimePlayed() {
