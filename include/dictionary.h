@@ -159,6 +159,8 @@ private:
 public:
     Dictionary(Game *game);
     double getReadiness(Language l);
+    int getNumberOfEntries(Language l);
+    int getTotalNumberOfEntries();
     void setLanguage(Language l, bool initialSetup = false);
     const QString &getItemName(const QString &id) const;
 };

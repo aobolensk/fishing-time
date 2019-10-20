@@ -65,7 +65,15 @@ const QString &Dictionary::getItemName(const QString &itemId) const {
 
 
 double Dictionary::getReadiness(Language l) {
-    return (double)languages[l].second / (DICTIONARY_END - DICTIONARY_START - 5) * 100.;
+    return (double)getNumberOfEntries(l) / getTotalNumberOfEntries() * 100.;
+}
+
+int Dictionary::getNumberOfEntries(Language l) {
+    return languages[l].second;
+}
+
+int Dictionary::getTotalNumberOfEntries() {
+    return (DICTIONARY_END - DICTIONARY_START - 5);
 }
 
 #define SET(string) (++updatesCount); (*(const_cast<QString*>(&string)))

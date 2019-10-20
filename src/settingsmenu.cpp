@@ -26,8 +26,10 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
 
     grid->addWidget(&languageSelector, 1, 1);
     for (int i = 0; i < game->str.languages.size(); ++i) {
-        languageSelector.addItem(game->str.languages[(Language)i].first +
-                                 " (" + QString::number(game->str.getReadiness((Language)i)) + "%) ready");
+        languageSelector.addItem(game->str.languages[(Language)i].first + " (" +
+            QString::number(game->str.getNumberOfEntries((Language)i)) + "/" +
+            QString::number(game->str.getTotalNumberOfEntries()) + " -> " +
+            QString::number(game->str.getReadiness((Language)i)) + "%) ready");
     }
     qDebug() << (int)game->activeLanguage;
 
