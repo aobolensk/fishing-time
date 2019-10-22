@@ -1,3 +1,4 @@
+#include <QHeaderView>
 #include <QMessageBox>
 #include "storemenu.h"
 #include "game.h"
@@ -67,6 +68,7 @@ void StoreMenu::display() {
     infoLabel.setVisible(true);
     infoLabel.setEnabled(true);
 
+    storeTable.horizontalHeader()->setFont(game->font());
     storeTable.setVisible(true);
     storeTable.setEnabled(true);
 

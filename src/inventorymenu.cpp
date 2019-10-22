@@ -64,11 +64,12 @@ void InventoryMenu::display() {
         game->users[game->activeUser].getUsername()
     ));
 
-    inventoryTable.setVisible(true);
-    inventoryTable.setEnabled(true);
-
     nameHeader.setText(game->str.name);
     quantityHeader.setText(game->str.quantity);
+
+    inventoryTable.horizontalHeader()->setFont(game->font());
+    inventoryTable.setVisible(true);
+    inventoryTable.setEnabled(true);
 
     backButton.setText(game->str.back);
     backButton.setVisible(true);

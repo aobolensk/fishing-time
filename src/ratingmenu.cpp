@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <QHeaderView>
 #include "ratingmenu.h"
 #include "game.h"
 
@@ -60,6 +61,7 @@ void RatingMenu::display() {
     usernameHeader.setText(game->str.username);
     coinsHeader.setText(game->str.coins);
 
+    ratingTable.horizontalHeader()->setFont(game->font());
     ratingTable.setVisible(true);
     ratingTable.setEnabled(true);
 

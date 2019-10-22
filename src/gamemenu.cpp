@@ -173,8 +173,9 @@ void GameMenu::inventoryFunction() {
     switch (game->inventoryType) {
     case InventoryType::POPUP:
         popUpInventoryTable.setWindowTitle(game->str.fishingTime + ": " + game->str.inventory);
-        popUpInventoryTable.setFont(game->textFont);
+        popUpInventoryTable.setFont(game->font());
         popUpInventoryTable.setVisible(true);
+        popUpInventoryTable.horizontalHeader()->setFont(game->font());
         popUpInventoryTable.setEnabled(true);
         break;
     case InventoryType::BUILTIN:
