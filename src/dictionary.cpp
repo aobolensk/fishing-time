@@ -122,6 +122,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(fishLabelText) = "Fish that can be caught in location %1:\n%2";
         SET(font) = "Font";
         SET(forbiddenSymbol) = "Forbidden symbol: %1";
+        SET(forgotPassword) = "Forgot password";
         SET(id) = "Id";
         SET(ide) = "Ide";
         SET(incorrectPassword) = "Incorrect password!";
@@ -158,6 +159,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(oldPassword) = "Old password";
         SET(open) = "Open";
         SET(password) = "Password";
+        SET(passwordHasBeenReseted) = "Your password has been reseted. You can login with empty password and set your new password in user settings";
         SET(passwordIsChanged) = "Password is successfully changed";
         SET(perch) = "Perch";
         SET(permissionError) = "You do not have permission to perform command %1";
@@ -170,6 +172,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(quantityShouldBeANumber) = "Quantity should be a number";
         SET(quantityShouldBeMoreThanZero) = "Quantity should be more than zero";
         SET(rating) = "Rating";
+        SET(resetPasswordConfirmation) = "Do you really want to reset your password?";
         SET(roach) = "Roach";
         SET(saving) = "Saving...";
         SET(savingIsComplete) = "Saving is complete";
@@ -301,6 +304,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(fishLabelText) = "Рыба, которую можно поймать в локации %1:\n%2";
         SET(font) = "Шрифт";
         SET(forbiddenSymbol) = "Недопустимый символ: %1";
+        SET(forgotPassword) = "Забыли пароль";
         SET(id) = "Идентификатор";
         SET(ide) = "Язь";
         SET(incorrectPassword) = "Неверный пароль!";
@@ -337,6 +341,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(oldPassword) = "Старый пароль";
         SET(open) = "Открыть";
         SET(password) = "Пароль";
+        SET(passwordHasBeenReseted) = "Ваш пароль был сброшен. Теперь вы можете войти в игру с пустым паролем и установить новый пароль в настройках пользователя";
         SET(passwordIsChanged) = "Пароль успешно изменен";
         SET(perch) = "Окунь";
         SET(permissionError) = "У вас недостаточно привилегий для выполнения команды %1";
@@ -349,6 +354,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(quantityShouldBeANumber) = "Количество должно быть числом";
         SET(quantityShouldBeMoreThanZero) = "Количество должно быть больше нуля";
         SET(rating) = "Рейтинг";
+        SET(resetPasswordConfirmation) = "Вы действительно хотите сбросить пароль?";
         SET(roach) = "Плотва";
         SET(saving) = "Сохранение...";
         SET(savingIsComplete) = "Сохранение завершено";
