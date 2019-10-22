@@ -102,6 +102,7 @@ void LoginMenu::loginFunction() {
         game->userTimestamp = QDateTime::currentDateTime();
     } else {
         QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.incorrectPassword);
+        passwordText.setText("");
     }
     return;
 }
