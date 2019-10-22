@@ -26,6 +26,11 @@ LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
     signUpButton.setVisible(false);
     signUpButton.setEnabled(false);
 
+    connect(&forgotPasswordButton, SIGNAL(released()), this, SLOT(forgotPasswordFunction()));
+    grid->addWidget(&forgotPasswordButton, 1, 1);
+    forgotPasswordButton.setVisible(false);
+    forgotPasswordButton.setEnabled(false);
+
     connect(&demoButton, SIGNAL(released()), this, SLOT(demoFunction()));
     grid->addWidget(&demoButton, 1, 2);
     demoButton.setVisible(false);
@@ -60,6 +65,10 @@ void LoginMenu::display() {
     signUpButton.setVisible(true);
     signUpButton.setEnabled(true);
 
+    forgotPasswordButton.setText(game->str.forgotPassword);
+    forgotPasswordButton.setVisible(true);
+    forgotPasswordButton.setEnabled(true);
+
     demoButton.setText(game->str.demoMode);
     demoButton.setVisible(true);
     demoButton.setEnabled(true);
@@ -93,6 +102,7 @@ void LoginMenu::loginFunction() {
         game->userTimestamp = QDateTime::currentDateTime();
     } else {
         QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.incorrectPassword);
+        passwordText.setText("");
     }
     return;
 }
@@ -100,6 +110,20 @@ void LoginMenu::loginFunction() {
 void LoginMenu::signUpFunction() {
     this->hide();
     game->signupMenu.display();
+}
+
+void LoginMenu::forgotPasswordFunction() {
+    const int userIndex = loginSelector.currentIndex();
+    if (userIndex == -1) {
+        return;
+    }
+    QMessageBox::StandardButton resetPasswordResult =
+        QMessageBox::question(this, game->str.fishingTime, game->str.resetPasswordConfirmation,
+        QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Cancel);
+    if (resetPasswordResult == QMessageBox::Yes) {
+        game->users[userIndex].setPasswordHash(QCryptographicHash::hash("", QCryptographicHash::Md5));
+        QMessageBox::information(game, game->str.fishingTime + ": " + game->str.information, game->str.passwordHasBeenReseted);
+    }
 }
 
 void LoginMenu::demoFunction() {
@@ -137,6 +161,9 @@ void LoginMenu::hide() {
 
     signUpButton.setVisible(false);
     signUpButton.setEnabled(false);
+
+    forgotPasswordButton.setVisible(false);
+    forgotPasswordButton.setEnabled(false);
 
     demoButton.setVisible(false);
     demoButton.setEnabled(false);

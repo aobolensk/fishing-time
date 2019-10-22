@@ -16,12 +16,14 @@ private:
     QLineEdit passwordText;
     QPushButton loginButton,
                 signUpButton,
+                forgotPasswordButton,
                 demoButton,
                 backButton;
     QGridLayout *grid;
 private slots:
     void loginFunction();
     void signUpFunction();
+    void forgotPasswordFunction();
     void demoFunction();
     void backFunction();
 public:

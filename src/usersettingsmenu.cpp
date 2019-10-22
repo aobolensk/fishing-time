@@ -109,6 +109,9 @@ void UsersettingsMenu::changePasswordFunction() {
     }
     game->users[game->activeUser].setPasswordHash(QCryptographicHash::hash(newPasswordText.text().toLatin1(), QCryptographicHash::Md5));
     QMessageBox::information(game, game->str.fishingTime + ": " + game->str.information, game->str.passwordIsChanged);
+    oldPasswordText.setText("");
+    newPasswordText.setText("");
+    newPasswordConfirmationText.setText("");
 }
 
 void UsersettingsMenu::deleteAccountFunction() {
