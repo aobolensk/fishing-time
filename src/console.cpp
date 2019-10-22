@@ -122,6 +122,12 @@ void Console::parse(QStringList &args) {
             if (retCode != 0) {
                 break;
             }
+        } else if (args[i] == "||") {
+            int retCode = parseCommand(command);
+            command.clear();
+            if (retCode == 0) {
+                break;
+            }
         } else {
             command.append(args[i]);
         }
