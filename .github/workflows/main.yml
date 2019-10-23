@@ -3,7 +3,7 @@ name: Build application
 on: [push, pull_request]
 
 jobs:
-  build:
+  ubuntu-build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -18,4 +18,17 @@ jobs:
         mkdir build
         cd build
         cmake ..
+        cmake --build . -- -j
+  macOS-build:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup environment
+      run: |
+        brew install qt
+    - name: Build application
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_PREFIX_PATH=$(brew --prefix qt)/lib/cmake/Qt5
         cmake --build . -- -j
