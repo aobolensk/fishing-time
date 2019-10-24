@@ -8,6 +8,8 @@ StatisticsMenu::StatisticsMenu(Game *game, QGridLayout *grid) :
     statisticsText.setReadOnly(true);
     statisticsText.setVisible(false);
     statisticsText.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    statisticsText.setTextInteractionFlags(Qt::NoTextInteraction);
+    statisticsText.setFrameStyle(QFrame::NoFrame);
 
     grid->addWidget(&backButton, 1, 1);
     backButton.setVisible(false);
