@@ -31,6 +31,7 @@ public:
         const QMap <QString, int> &get() const;
         const QMap <QString, QMap <QString, int>> &getItemStats() const;
         QMap <QString, int> &set();
+        QMap <QString, QMap <QString, int>> &setItemStats();
     } inventory;
     // Object creation & deletion
     User(const QString &name = "", const QString &password = "");

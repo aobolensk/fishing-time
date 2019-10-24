@@ -53,6 +53,17 @@ QVariant User::deserialize(const QVariantMap &map) {
         inventory[i.key()] = i.value().toInt();
     }
     user.inventory.set() = inventory;
+    QVariantMap itemStats = map["itemStats"].toJsonObject().toVariantMap();
+    QMap <QString, QMap <QString, int>> itemStatistics;
+    for (auto i = itemStats.begin(); i != itemStats.end(); ++i) {
+        QVariantMap stat = i.value().toMap();
+        QMap <QString, int> statistics;
+        for (auto j = stat.begin(); j != stat.end(); ++j) {
+            statistics[j.key()] = j.value().toInt();
+        }
+        itemStatistics[i.key()] = statistics;
+    }
+    user.inventory.setItemStats() = itemStatistics;
     return QVariant::fromValue(user);
 }
 
@@ -98,6 +109,10 @@ const QMap <QString, QMap <QString, int>> &User::Inventory::getItemStats() const
 
 QMap <QString, int> &User::Inventory::set() {
     return inventory;
+}
+
+QMap <QString, QMap <QString, int>> &User::Inventory::setItemStats() {
+    return itemStatistics;
 }
 
 QString User::getUsername() const {
