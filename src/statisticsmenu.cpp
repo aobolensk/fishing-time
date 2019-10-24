@@ -25,17 +25,51 @@ void StatisticsMenu::updateStatistics() {
     auto stats = game->users[game->activeUser].getStatistsics(game);
     auto it = stats.cbegin();
     while (it != stats.cend()) {
-        statText += QString("<table border=\"1\" width=\"100%\">"
-                        "<tr>"
-                            "<td width=\"50%\">%1</td>"
-                            "<td width=\"50%\">%2</td>"
-                        "</tr>"
-                    "</table>")
-            .arg(
-                it->first,
-                it->second
+        statText += QString(
+            "<table border=\"1\" width=\"100%\">"
+                "<tr>"
+                    "<td width=\"50%\">%1</td>"
+                    "<td width=\"50%\">%2</td>"
+                "</tr>"
+            "</table>"
+        ).arg(
+            it->first,
+            it->second
+        );
+        ++it;
+    }
+    statText += QString(
+        "<table border=\"1\" width=\"100%\">"
+            "<tr>"
+                "<td width=\"100%\">Items statistics:</td>"
+            "</tr>"
+        "</table>"
+    );
+    statText += QString(
+        "<table border=\"1\" width=\"100%\">"
+            "<tr>"
+                "<td width=\"50%\" align=\"center\">Item name</td>"
+                "<td width=\"50%\" align=\"center\">Got</td>"
+            "</tr>"
+        "</table>"
+    );
+    auto it2 = game->str.itemNames.cbegin();
+    Q_ASSERT(game->str.itemNames.size() > 1);
+    while (it2 != game->str.itemNames.cend()) {
+        if (it2.key() != "item.undefined") {
+            statText += QString(
+                "<table border=\"1\" width=\"100%\">"
+                    "<tr>"
+                        "<td width=\"50%\" align=\"center\">%1</td>"
+                        "<td width=\"50%\" align=\"center\">%2</td>"
+                    "</tr>"
+                "</table>"
+            ).arg(
+                *it2.value(),
+                QString::number(0)
             );
-            ++it;
+        }
+        ++it2;
     }
     statisticsText.setText(statText);
 }
