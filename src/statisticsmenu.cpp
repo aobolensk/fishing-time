@@ -55,8 +55,14 @@ void StatisticsMenu::updateStatistics() {
     );
     auto it2 = game->str.itemNames.cbegin();
     Q_ASSERT(game->str.itemNames.size() > 1);
+    const auto &itemStats = game->users[game->activeUser].inventory.getItemStats();
     while (it2 != game->str.itemNames.cend()) {
         if (it2.key() != "item.undefined") {
+            auto item = itemStats.find(it2.key());
+            int gotValue = 0;
+            if (item != itemStats.end()) {
+                gotValue = item.value().got;
+            }
             statText += QString(
                 "<table border=\"1\" width=\"100%\">"
                     "<tr>"
@@ -66,7 +72,7 @@ void StatisticsMenu::updateStatistics() {
                 "</table>"
             ).arg(
                 *it2.value(),
-                QString::number(0)
+                QString::number(gotValue)
             );
         }
         ++it2;

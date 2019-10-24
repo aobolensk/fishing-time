@@ -48,15 +48,27 @@ QVariant User::deserialize(const QVariantMap &map) {
 }
 
 void User::Inventory::changeItem(const QString &name, int quantity) {
-    QMap <QString, int>::iterator it = inventory.find(name);
-    if (it == inventory.end()) {
-        if (quantity <= 0)
-            return;
-        inventory.insert(name, quantity);
-    } else {
-        it.value() += quantity;
-        if (it.value() <= 0)
-            inventory.erase(it);
+    if (true) {
+        QMap <QString, int>::iterator it = inventory.find(name);
+        if (it == inventory.end()) {
+            if (quantity <= 0)
+                return;
+            inventory.insert(name, quantity);
+        } else {
+            it.value() += quantity;
+            if (it.value() <= 0)
+                inventory.erase(it);
+        }
+    }
+    if (quantity > 0) {
+        QMap <QString, Statistics>::iterator it = itemStatistics.find(name);
+        if (it == itemStatistics.end()) {
+            Statistics statistics;
+            statistics.got = quantity;
+            itemStatistics.insert(name, statistics);
+        } else {
+            it.value().got += quantity;
+        }
     }
 }
 
@@ -69,6 +81,10 @@ int User::Inventory::getItem(const QString &name) {
 
 const QMap <QString, int> &User::Inventory::get() const {
     return inventory;
+}
+
+const QMap <QString, User::Inventory::Statistics> &User::Inventory::getItemStats() const {
+    return itemStatistics;
 }
 
 QMap <QString, int> &User::Inventory::set() {
