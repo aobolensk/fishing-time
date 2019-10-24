@@ -9,6 +9,11 @@ environment:
   - COMPILER: MSVC
     QT_PATH: C:\Qt\5.13\msvc2017
 
+matrix:
+  exclude:
+    - COMPILER: MinGW
+      image: Visual Studio 2019
+
 before_build:
 for:
   -
@@ -16,7 +21,7 @@ for:
       only:
         - image: Visual Studio 2017
           COMPILER: MinGW
-    build_script:
+    before_build:
     - set BUILD_DIR=%cd%
     - set PATH=%QT_PATH%\bin;C:\mingw-w64\i686-8.1.0-posix-seh-rt_v6-rev0\mingw32\bin;%PATH%
     - if not exist "C:\mingw-w64\i686-8.1.0-posix-seh-rt_v6-rev0" md "C:\mingw-w64\i686-8.1.0-posix-seh-rt_v6-rev0"
@@ -24,20 +29,17 @@ for:
     - if not exist "mingw32" appveyor-retry appveyor DownloadFile "http://downloads.sourceforge.net/mingw-w64/i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z" -FileName "mingw32.7z"
     - if exist "mingw32.7z" 7z x -y "mingw32.7z" > NUL
     - cd %BUILD_DIR%
-    - mkdir build
-    - cd build
-    - if %COMPILER% == MSVC cmake .. "-DCMAKE_PREFIX_PATH=%QT_PATH%"
-    - if %COMPILER% == MinGW cmake .. -G "MinGW Makefiles" "-DCMAKE_PREFIX_PATH=%QT_PATH%" -DCMAKE_SH="CMAKE_SH-NOTFOUND"
-    - cmake --build .
   -
     matrix:
       only:
         - COMPILER: MSVC
-    build_script:
+    before_build:
     - set BUILD_DIR=%cd%
     - set PATH=%QT_PATH%\bin;C:\mingw-w64\i686-8.1.0-posix-seh-rt_v6-rev0\mingw32\bin;%PATH%
-    - mkdir build
-    - cd build
-    - if %COMPILER% == MSVC cmake .. "-DCMAKE_PREFIX_PATH=%QT_PATH%"
-    - if %COMPILER% == MinGW cmake .. -G "MinGW Makefiles" "-DCMAKE_PREFIX_PATH=%QT_PATH%" -DCMAKE_SH="CMAKE_SH-NOTFOUND"
-    - cmake --build .
+
+build_script:
+  - mkdir build
+  - cd build
+  - if %COMPILER% == MSVC cmake .. "-DCMAKE_PREFIX_PATH=%QT_PATH%" -A Win32
+  - if %COMPILER% == MinGW cmake .. -G "MinGW Makefiles" "-DCMAKE_PREFIX_PATH=%QT_PATH%" -DCMAKE_SH="CMAKE_SH-NOTFOUND"
+  - cmake --build .
