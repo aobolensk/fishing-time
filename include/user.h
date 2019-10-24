@@ -22,17 +22,14 @@ private:
 public:
     class Inventory {
     public:
-        struct Statistics {
-            int got = 0;
-        };
     private:
         QMap <QString, int> inventory;
-        QMap <QString, Statistics> itemStatistics;
+        QMap <QString, QMap <QString, int>> itemStatistics;
     public:
         int getItem(const QString &name);
         void changeItem(const QString &name, int quantity);
         const QMap <QString, int> &get() const;
-        const QMap <QString, Statistics> &getItemStats() const;
+        const QMap <QString, QMap <QString, int>> &getItemStats() const;
         QMap <QString, int> &set();
     } inventory;
     // Object creation & deletion

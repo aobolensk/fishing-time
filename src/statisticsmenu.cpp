@@ -61,7 +61,7 @@ void StatisticsMenu::updateStatistics() {
             auto item = itemStats.find(it2.key());
             int gotValue = 0;
             if (item != itemStats.end()) {
-                gotValue = item.value().got;
+                gotValue = item.value()["got"];
             }
             statText += QString(
                 "<table border=\"1\" width=\"100%\">"

@@ -27,6 +27,15 @@ QJsonObject User::serialize() const {
         inv[i.key()] = i.value();
     }
     jsonObj["inventory"] = QJsonObject::fromVariantMap(inv);
+    QVariantMap itemStats;
+    for (auto i = inventory.getItemStats().begin(); i != inventory.getItemStats().end(); ++i) {
+        QVariantMap stat;
+        for (auto j = i.value().begin(); j != i.value().end(); ++j) {
+            stat[j.key()] = j.value();
+        }
+        itemStats[i.key()].setValue(stat);
+    }
+    jsonObj["itemStats"] = QJsonObject::fromVariantMap(itemStats);
     return jsonObj;
 }
 
@@ -61,13 +70,13 @@ void User::Inventory::changeItem(const QString &name, int quantity) {
         }
     }
     if (quantity > 0) {
-        QMap <QString, Statistics>::iterator it = itemStatistics.find(name);
+        QMap <QString, QMap <QString, int>>::iterator it = itemStatistics.find(name);
         if (it == itemStatistics.end()) {
-            Statistics statistics;
-            statistics.got = quantity;
+            QMap <QString, int> statistics;
+            statistics["got"] = quantity;
             itemStatistics.insert(name, statistics);
         } else {
-            it.value().got += quantity;
+            it.value()["got"] += quantity;
         }
     }
 }
@@ -83,7 +92,7 @@ const QMap <QString, int> &User::Inventory::get() const {
     return inventory;
 }
 
-const QMap <QString, User::Inventory::Statistics> &User::Inventory::getItemStats() const {
+const QMap <QString, QMap <QString, int>> &User::Inventory::getItemStats() const {
     return itemStatistics;
 }
 
