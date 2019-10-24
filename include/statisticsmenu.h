@@ -2,7 +2,7 @@
 #define INCLUDE_STATISTICSMENU_H_
 #include <QPushButton>
 #include <QGridLayout>
-#include <QLabel>
+#include <QTextEdit>
 #include <QTimer>
 #include "menu.h"
 
@@ -12,7 +12,7 @@ private:
 private:
     bool displayed = false;
     Game *game;
-    QLabel statisticsText;
+    QTextEdit statisticsText;
     QPushButton backButton;
     QGridLayout *grid;
     QTimer timer;

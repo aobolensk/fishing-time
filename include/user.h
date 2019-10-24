@@ -21,13 +21,17 @@ private:
     qint64 inGameTime = 0ll;
 public:
     class Inventory {
+    public:
     private:
         QMap <QString, int> inventory;
+        QMap <QString, QMap <QString, int>> itemStatistics;
     public:
         int getItem(const QString &name);
         void changeItem(const QString &name, int quantity);
         const QMap <QString, int> &get() const;
+        const QMap <QString, QMap <QString, int>> &getItemStats() const;
         QMap <QString, int> &set();
+        QMap <QString, QMap <QString, int>> &setItemStats();
     } inventory;
     // Object creation & deletion
     User(const QString &name = "", const QString &password = "");
@@ -48,7 +52,7 @@ public:
     qint64 getCoins() const;
     qint64 getPrivilegeLevel() const;
     QString getInGameTime() const;
-    // Get statistics
+    // Statistics
     QVector <QPair<QString, QString>> getStatistsics(Game *game) const;
 };
 
