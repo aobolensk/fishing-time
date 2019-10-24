@@ -29,13 +29,6 @@ for:
     - if not exist "mingw32" appveyor-retry appveyor DownloadFile "http://downloads.sourceforge.net/mingw-w64/i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z" -FileName "mingw32.7z"
     - if exist "mingw32.7z" 7z x -y "mingw32.7z" > NUL
     - cd %BUILD_DIR%
-  -
-    matrix:
-      only:
-        - COMPILER: MSVC
-    before_build:
-    - set BUILD_DIR=%cd%
-    - set PATH=%QT_PATH%\bin;C:\mingw-w64\i686-8.1.0-posix-seh-rt_v6-rev0\mingw32\bin;%PATH%
 
 build_script:
   - mkdir build
