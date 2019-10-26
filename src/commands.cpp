@@ -171,14 +171,14 @@ void Console::registerCommands() {
                 log.writeln(it->first + ": " + it->second);
                 ++it;
             }
-            log.writeln("Item statistics:");
+            log.writeln(game->str.itemStatistics + ":");
             auto itemStats = game->users[game->activeUser].getItemStatistsics();
             auto item = itemStats.cbegin();
             while (item != itemStats.cend()) {
                 log.writeln(item->first + ": ");
                 auto option = item->second.cbegin();
                 while (option != item->second.cend()) {
-                    log.writeln("> " + option.key() + ": " + option.value());
+                    log.writeln("> " + game->str.stats[option.key()] + ": " + option.value());
                     ++option;
                 }
                 ++item;
