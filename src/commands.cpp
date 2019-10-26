@@ -171,6 +171,18 @@ void Console::registerCommands() {
                 log.writeln(it->first + ": " + it->second);
                 ++it;
             }
+            log.writeln(game->str.itemStatistics + ":");
+            auto itemStats = game->users[game->activeUser].getItemStatistsics();
+            auto item = itemStats.cbegin();
+            while (item != itemStats.cend()) {
+                log.writeln(*game->str.itemNames[item->first] + ": ");
+                auto option = item->second.cbegin();
+                while (option != item->second.cend()) {
+                    log.writeln("> " + game->str.stats[option.key()] + ": " + option.value());
+                    ++option;
+                }
+                ++item;
+            }
             return 0;
         },
         PrivilegeLevel::Common,

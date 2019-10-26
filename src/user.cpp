@@ -170,3 +170,19 @@ QVector <QPair<QString, QString>> User::getStatistsics(Game *game) const {
     result.push_back({game->str.timePlayed, this->getInGameTime()});
     return result;
 }
+
+QVector <QPair<QString, QMap <QString, QString>>> User::getItemStatistsics() const {
+    QVector <QPair<QString, QMap <QString, QString>>> result;
+    auto item = this->inventory.getItemStats().cbegin();
+    while (item != this->inventory.getItemStats().cend()) {
+        QMap <QString, QString> options;
+        auto option = item.value().cbegin();
+        while (option != item.value().cend()) {
+            options[option.key()] = QString::number(option.value());
+            ++option;
+        }
+        result.push_back({item.key(), options});
+        ++item;
+    }
+    return result;
+}

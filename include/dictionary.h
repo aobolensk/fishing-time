@@ -65,6 +65,7 @@ public:
             inventory,
             inventoryDescription,
             inventoryType,
+            itemStatistics,
             language,
             lightTheme,
             listOfAllCommands,
@@ -155,6 +156,9 @@ public:
             help,
             man;
     } commands;
+    QMap <QString, QString> stats = {
+        {"got", ""}
+    };
     static constexpr int DICTIONARY_END = __LINE__;
 private:
     int numberOfStrings = 0;
