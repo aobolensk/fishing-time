@@ -175,7 +175,7 @@ void Console::registerCommands() {
             auto itemStats = game->users[game->activeUser].getItemStatistsics();
             auto item = itemStats.cbegin();
             while (item != itemStats.cend()) {
-                log.writeln(item->first + ": ");
+                log.writeln(*game->str.itemNames[item->first] + ": ");
                 auto option = item->second.cbegin();
                 while (option != item->second.cend()) {
                     log.writeln("> " + game->str.stats[option.key()] + ": " + option.value());
