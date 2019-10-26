@@ -54,6 +54,7 @@ public:
     QString getInGameTime() const;
     // Statistics
     QVector <QPair<QString, QString>> getStatistsics(Game *game) const;
+    QVector <QPair<QString, QMap <QString, QString>>> getItemStatistsics() const;
 };
 
 Q_DECLARE_METATYPE(User)
