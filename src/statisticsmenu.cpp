@@ -26,36 +26,34 @@ void StatisticsMenu::updateStatistics() {
     QString statText;
     auto stats = game->users[game->activeUser].getStatistsics(game);
     auto it = stats.cbegin();
+    statText += "<table border=\"1\" width=\"100%\">";
     while (it != stats.cend()) {
         statText += QString(
-            "<table border=\"1\" width=\"100%\">"
-                "<tr>"
-                    "<td width=\"50%\">%1</td>"
-                    "<td width=\"50%\">%2</td>"
-                "</tr>"
-            "</table>"
+            "<tr>"
+                "<td width=\"50%\">%1</td>"
+                "<td width=\"50%\">%2</td>"
+            "</tr>"
         ).arg(
             it->first,
             it->second
         );
         ++it;
     }
+    statText += "</table>";
+    statText += "<table border=\"1\" width=\"100%\" table-layout=\"fixed\">";
     statText += QString(
-        "<table border=\"1\" width=\"100%\">"
-            "<tr>"
-                "<td width=\"100%\">%1</td>"
-            "</tr>"
-        "</table>"
+        "<tr>"
+            "<td colspan=\"3\">%1</td>"
+        "</tr>"
     ).arg(
         game->str.itemStatistics
     );
     statText += QString(
-        "<table border=\"1\" width=\"100%\" table-layout=\"fixed\">"
-            "<tr>"
-                "<td align=\"center\">%1</td>"
-                "<td align=\"center\">%2</td>"
-                "<td align=\"center\">%3</td>"
-            "</tr>"
+        "<tr>"
+            "<td align=\"center\">%1</td>"
+            "<td align=\"center\">%2</td>"
+            "<td align=\"center\">%3</td>"
+        "</tr>"
     ).arg(
         game->str.item,
         game->str.stats["got"],
@@ -93,7 +91,7 @@ void StatisticsMenu::updateStatistics() {
         }
         ++it2;
     }
-    statText += QString("</table>");
+    statText += "</table>";
     statisticsText.setText(statText);
 }
 
