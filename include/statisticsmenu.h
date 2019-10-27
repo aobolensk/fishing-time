@@ -10,7 +10,6 @@ class StatisticsMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    bool displayed = false;
     Game *game;
     QTextEdit statisticsText;
     QPushButton backButton;

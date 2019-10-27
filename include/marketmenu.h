@@ -10,7 +10,6 @@ class MarketMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    bool displayed = false;
     static const int SELLERS_COUNT = 3;
     Game *game;
     QPushButton backButton,

@@ -12,7 +12,6 @@ class GameMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    bool displayed = false;
     Game *game;
     QPushButton clickButton,
                 logOutButton,

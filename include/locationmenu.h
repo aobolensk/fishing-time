@@ -10,7 +10,6 @@ private:
     Q_OBJECT
 private:
     Game *game;
-    bool displayed = false;
     QLabel descriptionLabel;
     QPushButton backButton;
     QComboBox locationSelector;

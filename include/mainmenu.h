@@ -10,7 +10,6 @@ class MainMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    bool displayed = false;
     Game *game;
     QLabel infoLabel;
     QPushButton consoleButton,

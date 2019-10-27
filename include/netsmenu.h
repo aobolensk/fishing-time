@@ -11,7 +11,6 @@ class NetsMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    bool displayed = false;
     static const int SLOTS_COUNT = 9;
     Game *game;
     QPushButton backButton;
