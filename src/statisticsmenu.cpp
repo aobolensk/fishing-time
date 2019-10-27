@@ -43,7 +43,7 @@ void StatisticsMenu::updateStatistics() {
     statText += "<table border=\"1\" width=\"100%\" table-layout=\"fixed\">";
     statText += QString(
         "<tr>"
-            "<td colspan=\"3\">%1</td>"
+            "<td colspan=\"5\">%1</td>"
         "</tr>"
     ).arg(
         game->str.itemStatistics
@@ -53,11 +53,15 @@ void StatisticsMenu::updateStatistics() {
             "<td align=\"center\">%1</td>"
             "<td align=\"center\">%2</td>"
             "<td align=\"center\">%3</td>"
+            "<td align=\"center\">%4</td>"
+            "<td align=\"center\">%5</td>"
         "</tr>"
     ).arg(
         game->str.item,
         game->str.stats["got"],
-        game->str.stats["sold"]
+        game->str.stats["sold"],
+        game->str.stats["bought"],
+        game->str.stats["caught"]
     );
     auto it2 = game->str.itemNames.cbegin();
     Q_ASSERT(game->str.itemNames.size() > 1);
@@ -77,16 +81,28 @@ void StatisticsMenu::updateStatistics() {
             if (item.value().find("sold") != item.value().end()) {
                 soldValue = item.value()["sold"];
             }
+            int boughtValue = 0;
+            if (item.value().find("bought") != item.value().end()) {
+                boughtValue = item.value()["bought"];
+            }
+            int caughtValue = 0;
+            if (item.value().find("caught") != item.value().end()) {
+                caughtValue = item.value()["caught"];
+            }
             statText += QString(
                 "<tr>"
                     "<td align=\"center\">%1</td>"
                     "<td align=\"center\">%2</td>"
                     "<td align=\"center\">%3</td>"
+                    "<td align=\"center\">%4</td>"
+                    "<td align=\"center\">%5</td>"
                 "</tr>"
             ).arg(
                 *it2.value(),
                 QString::number(gotValue),
-                QString::number(soldValue)
+                QString::number(soldValue),
+                QString::number(boughtValue),
+                QString::number(caughtValue)
             );
         }
         ++it2;

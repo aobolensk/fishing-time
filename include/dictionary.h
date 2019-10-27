@@ -160,6 +160,8 @@ public:
     QMap <QString, QString> stats = {
         {"got", ""},
         {"sold", ""},
+        {"bought", ""},
+        {"caught", ""},
         {"undefined", ""}
     };
     static constexpr int DICTIONARY_END = __LINE__;

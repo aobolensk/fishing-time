@@ -146,10 +146,11 @@ void GameMenu::clickFunction() {
     const int MOD = 100;
     std::uniform_int_distribution<> dist(1, 99);
     int rnd = dist(game->randomGenerator) % MOD;
-    game->users[game->activeUser].inventory.
-            changeItem(game->locations[game->activeLocation].getFish(
+    QString fish = game->locations[game->activeLocation].getFish(
             qMin(rnd / (MOD / game->locations[game->activeLocation].getFishCount()),
-            game->locations[game->activeLocation].getFishCount() - 1)), 1);
+            game->locations[game->activeLocation].getFishCount() - 1));
+    game->users[game->activeUser].inventory.changeItem(fish, 1);
+    game->users[game->activeUser].inventory.updateStats(fish, "caught", 1);
     game->users[game->activeUser].incClicks();
     updateInfo();
 }
