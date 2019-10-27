@@ -73,7 +73,7 @@ int Dictionary::getNumberOfEntries(Language l) {
 }
 
 int Dictionary::getTotalNumberOfEntries() {
-    return (DICTIONARY_END - DICTIONARY_START - 7);
+    return (DICTIONARY_END - DICTIONARY_START - 8);
 }
 
 #define SET(string) (++updatesCount); (*(const_cast<QString*>(&string)))
