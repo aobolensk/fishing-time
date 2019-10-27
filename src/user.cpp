@@ -92,6 +92,15 @@ void User::Inventory::changeItem(const QString &name, int quantity) {
     }
 }
 
+void User::Inventory::updateStats(const QString &name, const QString &stat, int quantity) {
+    Q_ASSERT(quantity >= 0);
+    auto it = itemStatistics.find(name);
+    if (it == itemStatistics.end()) {
+        return;
+    }
+    it.value()[stat] += quantity;
+}
+
 int User::Inventory::getItem(const QString &name) {
     QMap <QString, int>::iterator it = inventory.find(name);
     if (it != inventory.end())
