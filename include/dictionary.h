@@ -161,6 +161,7 @@ public:
         {"got", ""},
         {"sold", ""},
         {"bought", ""},
+        {"caught", ""},
         {"undefined", ""}
     };
     static constexpr int DICTIONARY_END = __LINE__;
