@@ -264,6 +264,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "Usage: man &lt;command1&gt; &lt;command2&gt; ...";
         SET(stats["got"]) = "Got";
         SET(stats["sold"]) = "Sold";
+        SET(stats["bought"]) = "Bought";
 
         languages[Language::English].second = updatesCount;
         break;
@@ -450,6 +451,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "Использование: man &lt;команда1&gt; &lt;команда2&gt; ...";
         SET(stats["got"]) = "Получено";
         SET(stats["sold"]) = "Продано";
+        SET(stats["bought"]) = "Куплено";
 
         languages[Language::Russian].second = updatesCount;
         break;
