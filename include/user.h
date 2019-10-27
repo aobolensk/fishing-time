@@ -28,6 +28,7 @@ public:
     public:
         int getItem(const QString &name);
         void changeItem(const QString &name, int quantity);
+        void updateStats(const QString &name, const QString &stat, int quantity);
         const QMap <QString, int> &get() const;
         const QMap <QString, QMap <QString, int>> &getItemStats() const;
         QMap <QString, int> &set();

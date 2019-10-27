@@ -73,7 +73,7 @@ int Dictionary::getNumberOfEntries(Language l) {
 }
 
 int Dictionary::getTotalNumberOfEntries() {
-    return (DICTIONARY_END - DICTIONARY_START - 7);
+    return (DICTIONARY_END - DICTIONARY_START - 8);
 }
 
 #define SET(string) (++updatesCount); (*(const_cast<QString*>(&string)))
@@ -133,6 +133,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(inventory) = "Inventory";
         SET(inventoryDescription) = "Inventory of player %1";
         SET(inventoryType) = "Inventory type";
+        SET(item) = "Item";
         SET(itemStatistics) = "Item statistics";
         SET(language) = "Language";
         SET(lightTheme) = "Light theme";
@@ -262,6 +263,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "Print manual for commands<br>"
             "Usage: man &lt;command1&gt; &lt;command2&gt; ...";
         SET(stats["got"]) = "Got";
+        SET(stats["sold"]) = "Sold";
 
         languages[Language::English].second = updatesCount;
         break;
@@ -317,6 +319,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(inventory) = "Инвентарь";
         SET(inventoryDescription) = "Инвентарь игрока %1";
         SET(inventoryType) = "Тип инвентаря";
+        SET(item) = "Предмет";
         SET(itemStatistics) = "Статистика предметов";
         SET(language) = "Язык";
         SET(lightTheme) = "Светлая тема";
@@ -446,6 +449,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "Вывести мануал для команды<br>"
             "Использование: man &lt;команда1&gt; &lt;команда2&gt; ...";
         SET(stats["got"]) = "Получено";
+        SET(stats["sold"]) = "Продано";
 
         languages[Language::Russian].second = updatesCount;
         break;
