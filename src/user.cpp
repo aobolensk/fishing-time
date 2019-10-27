@@ -84,10 +84,10 @@ void User::Inventory::changeItem(const QString &name, int quantity) {
         QMap <QString, QMap <QString, int>>::iterator it = itemStatistics.find(name);
         if (it == itemStatistics.end()) {
             QMap <QString, int> statistics;
-            statistics["got"] = quantity;
+            statistics["stats.got"] = quantity;
             itemStatistics.insert(name, statistics);
         } else {
-            it.value()["got"] += quantity;
+            it.value()["stats.got"] += quantity;
         }
     }
 }

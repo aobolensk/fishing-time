@@ -158,11 +158,11 @@ public:
             man;
     } commands;
     QMap <QString, QString> stats = {
-        {"got", ""},
-        {"sold", ""},
-        {"bought", ""},
-        {"caught", ""},
-        {"undefined", ""}
+        {"stats.got", ""},
+        {"stats.sold", ""},
+        {"stats.bought", ""},
+        {"stats.caught", ""},
+        {"stats.undefined", ""}
     };
     static constexpr int DICTIONARY_END = __LINE__;
 private:

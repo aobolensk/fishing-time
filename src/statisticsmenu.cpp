@@ -58,10 +58,10 @@ void StatisticsMenu::updateStatistics() {
         "</tr>"
     ).arg(
         game->str.item,
-        game->str.stats["got"],
-        game->str.stats["sold"],
-        game->str.stats["bought"],
-        game->str.stats["caught"]
+        game->str.stats["stats.got"],
+        game->str.stats["stats.sold"],
+        game->str.stats["stats.bought"],
+        game->str.stats["stats.caught"]
     );
     auto it2 = game->str.itemNames.cbegin();
     Q_ASSERT(game->str.itemNames.size() > 1);
@@ -74,20 +74,20 @@ void StatisticsMenu::updateStatistics() {
                 continue;
             }
             int gotValue = 0;
-            if (item.value().find("got") != item.value().end()) {
-                gotValue = item.value()["got"];
+            if (item.value().find("stats.got") != item.value().end()) {
+                gotValue = item.value()["stats.got"];
             }
             int soldValue = 0;
-            if (item.value().find("sold") != item.value().end()) {
-                soldValue = item.value()["sold"];
+            if (item.value().find("stats.sold") != item.value().end()) {
+                soldValue = item.value()["stats.sold"];
             }
             int boughtValue = 0;
-            if (item.value().find("bought") != item.value().end()) {
-                boughtValue = item.value()["bought"];
+            if (item.value().find("stats.bought") != item.value().end()) {
+                boughtValue = item.value()["stats.bought"];
             }
             int caughtValue = 0;
-            if (item.value().find("caught") != item.value().end()) {
-                caughtValue = item.value()["caught"];
+            if (item.value().find("stats.caught") != item.value().end()) {
+                caughtValue = item.value()["stats.caught"];
             }
             statText += QString(
                 "<tr>"
