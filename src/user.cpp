@@ -3,7 +3,6 @@
 #include <QDateTime>
 #include "game.h"
 #include "user.h"
-#include "serialization.h"
 
 User::User(const QString &name, const QString &password) :
     username(name),
