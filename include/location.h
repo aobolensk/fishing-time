@@ -8,11 +8,18 @@ class Location {
 private:
     const QString *name;
     QVector <QString> fish;
+    bool hasMarket;
+    Location(
+        const QString &locName,
+        const QVector <QString> &fishList,
+        bool hasMarket
+    );
 public:
-    Location(const QString &locName = "", const QVector <QString> &fishList = {});
+    Location() = default;
     ~Location() = default;
     const QString &getName() const;
     const QString &getFish(int index) const;
+    bool getHasMarket() const;
     int getFishCount() const;
     static QVector <Location> initializeLocations(Game *game);
 };
