@@ -41,8 +41,16 @@ MarketMenu::MarketMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
+static int hash(int x) {
+    x = ((x >> 16) ^ x) * 0x45d9f3b;
+    x = ((x >> 16) ^ x) * 0x45d9f3b;
+    x = (x >> 16) ^ x;
+    return x;
+}
+
 void MarketMenu::updateDeals() {
     int seed = QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0)));
+    seed += hash(game->activeLocation + 1);
     std::mt19937 randGen(seed);
     qDebug() << "Random seed:" << seed;
     std::uniform_int_distribution<> gen(0, game->str.fishIds.size() - 2);
