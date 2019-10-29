@@ -156,6 +156,7 @@ void GameMenu::clickFunction() {
 }
 
 void GameMenu::logOutFunction() {
+    game->gameMenu.popUpInventoryTable.setVisible(false);
     game->netsMenu.foldNets();
     game->updateTimePlayed();
     game->userTimestamp = QDateTime();
