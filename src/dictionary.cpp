@@ -134,6 +134,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(inventoryDescription) = "Inventory of player %1";
         SET(inventoryType) = "Inventory type";
         SET(item) = "Item";
+        SET(items) = "Items";
         SET(itemStatistics) = "Item statistics";
         SET(language) = "Language";
         SET(lightTheme) = "Light theme";
@@ -322,6 +323,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(inventoryDescription) = "Инвентарь игрока %1";
         SET(inventoryType) = "Тип инвентаря";
         SET(item) = "Предмет";
+        SET(items) = "Предметы";
         SET(itemStatistics) = "Статистика предметов";
         SET(language) = "Язык";
         SET(lightTheme) = "Светлая тема";

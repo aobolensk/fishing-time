@@ -1,32 +1,28 @@
-#ifndef INCLUDE_STATISTICSMENU_H_
-#define INCLUDE_STATISTICSMENU_H_
+#ifndef INCLUDE_ITEMSTATISTICSMENU_H_
+#define INCLUDE_ITEMSTATISTICSMENU_H_
 #include <QPushButton>
 #include <QGridLayout>
 #include <QTextEdit>
 #include <QTimer>
 #include "menu.h"
 
-class StatisticsMenu : public Menu {
+class ItemStatisticsMenu : public Menu {
 private:
     Q_OBJECT
 private:
     Game *game;
     QTextEdit statisticsText;
-    QPushButton itemsButton,
-                backButton;
+    QPushButton backButton;
     QGridLayout *grid;
-    QTimer timer;
-    QMetaObject::Connection timerUpdater;
 private slots:
     void updateStatistics();
-    void itemsFunction();
     void backFunction();
 public:
-    StatisticsMenu(Game *game, QGridLayout *grid);
-    ~StatisticsMenu();
+    ItemStatisticsMenu(Game *game, QGridLayout *grid);
+    ~ItemStatisticsMenu();
     void display() override;
     void hide() override;
     bool isDisplayed() const;
 };
 
-#endif  // INCLUDE_STATISTICSMENU_H_
+#endif  // INCLUDE_ITEMSTATISTICSMENU_H_
