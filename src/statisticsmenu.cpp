@@ -50,7 +50,7 @@ void StatisticsMenu::updateStatistics() {
 
 void StatisticsMenu::display() {
     timerUpdater = connect(&timer, SIGNAL(timeout()), this, SLOT(updateStatistics()));
-    timer.start(1000);
+    timer.start(Config::STATISTICS_UPDATE_PERIOD);
     updateStatistics();
     statisticsText.setVisible(true);
 
