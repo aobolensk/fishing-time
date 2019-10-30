@@ -110,7 +110,7 @@ void SignupMenu::signUpFunction() {
         }
     }
     if (passwordText.text() == "") {
-        QMessageBox::StandardButton emptyPasswordResult = 
+        QMessageBox::StandardButton emptyPasswordResult =
             QMessageBox::question(game, game->str.fishingTime, game->str.emptyPasswordWarning,
             QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
         if (emptyPasswordResult != QMessageBox::Yes) {
@@ -168,5 +168,5 @@ void SignupMenu::hide() {
 }
 
 SignupMenu::~SignupMenu() {
-    
+
 }

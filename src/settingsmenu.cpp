@@ -123,7 +123,7 @@ void SettingsMenu::display() {
     inventoryTypeUpdater = connect(&inventoryTypeSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
     [this](int index) {
         if (index != -1) {
-            this->game->inventoryType = (InventoryType)index; 
+            this->game->inventoryType = (InventoryType)index;
         }
     });
 

@@ -134,5 +134,5 @@ void MainMenu::hide() {
 }
 
 MainMenu::~MainMenu() {
-    
+
 }

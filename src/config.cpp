@@ -4,7 +4,7 @@
 
 Config::Config(Game *game) :
     game(game) {
-    
+
 }
 
 void Config::deserialize(const QVariantMap &map) {

@@ -175,5 +175,5 @@ void LoginMenu::hide() {
 }
 
 LoginMenu::~LoginMenu() {
-    
+
 }

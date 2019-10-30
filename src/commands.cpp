@@ -195,7 +195,7 @@ void Console::registerCommands() {
                 log.error(game->str.invalidArgumentsFormat.arg(args[0]));
                 return 1;
             }
-            
+
             if (args[1] == "get") {
                 if (args.size() < 3) {
                     log.error(game->str.invalidArgumentsFormat.arg(args[0]));
@@ -217,7 +217,7 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             (void) args;
             if (game->activeUser == -1) {
-                log.writeln(game->str.youAreNotLoggedIn + ". " + 
+                log.writeln(game->str.youAreNotLoggedIn + ". " +
                     game->str.yourPrivilegeLevel + ": " +
                     game->str.privilegeLevelCommon);
             } else {
