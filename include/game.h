@@ -15,6 +15,7 @@
 #include "settingsmenu.h"
 #include "netsmenu.h"
 #include "statisticsmenu.h"
+#include "itemstatisticsmenu.h"
 #include "usersettingsmenu.h"
 #include "signupmenu.h"
 #include "ratingmenu.h"
@@ -58,6 +59,7 @@ public:
     SettingsMenu settingsMenu;
     NetsMenu netsMenu;
     StatisticsMenu statisticsMenu;
+    ItemStatisticsMenu itemStatisticsMenu;
     SignupMenu signupMenu;
     UsersettingsMenu usersettingsMenu;
     RatingMenu ratingMenu;

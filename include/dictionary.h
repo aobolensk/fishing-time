@@ -66,6 +66,7 @@ public:
             inventoryDescription,
             inventoryType,
             item,
+            items,
             itemStatistics,
             language,
             lightTheme,
