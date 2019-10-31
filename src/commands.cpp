@@ -109,6 +109,16 @@ void Console::registerCommands() {
         &game->str.commands.click
     };
 
+    commands["gui"] = {
+        [&](QStringList &args) -> int {
+            (void) args;
+            game->show();
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.gui
+    };
+
     commands["logout"] = {
         [&](QStringList &args) -> int {
             (void) args;

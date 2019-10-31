@@ -143,6 +143,7 @@ public:
             login,
             signup,
             click,
+            gui,
             logout,
             save,
             about,
