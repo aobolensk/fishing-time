@@ -26,7 +26,6 @@ public:
     ~InventoryMenu();
     void display() override;
     void hide() override;
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_INVENTORYMENU_H_

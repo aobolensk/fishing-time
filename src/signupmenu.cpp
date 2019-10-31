@@ -51,10 +51,6 @@ SignupMenu::SignupMenu(Game *game, QGridLayout *grid) :
     backButton.setEnabled(false);
 }
 
-bool SignupMenu::isDisplayed() const {
-    return displayed;
-}
-
 void SignupMenu::display() {
     signupLabel.setText(game->str.signupMenuText);
     signupLabel.setVisible(true);

@@ -31,7 +31,6 @@ public:
     ~RatingMenu();
     void display() override;
     void hide() override;
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_RATINGMENU_H_

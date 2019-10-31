@@ -30,7 +30,6 @@ public:
     ~LoginMenu();
     void display() override;
     void hide() override;
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_LOGINMENU_H_

@@ -17,10 +17,6 @@ ItemStatisticsMenu::ItemStatisticsMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
-bool ItemStatisticsMenu::isDisplayed() const {
-    return displayed;
-}
-
 void ItemStatisticsMenu::updateStatistics() {
     QString statText;
     auto stats = game->users[game->activeUser].getStatistsics(game);

@@ -84,10 +84,6 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
-bool GameMenu::isDisplayed() const {
-    return displayed;
-}
-
 void GameMenu::display() {
     updateInfo();
     infoLabel.setVisible(true);

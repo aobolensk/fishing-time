@@ -32,7 +32,6 @@ public:
     ~MainMenu();
     void display() override;
     void hide() override;
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_MAINMENU_H_

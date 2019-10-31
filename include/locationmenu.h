@@ -22,7 +22,6 @@ public:
     ~LocationMenu();
     void display() override;
     void hide() override;
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_LOCATIONMENU_H_

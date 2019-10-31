@@ -22,10 +22,6 @@ StatisticsMenu::StatisticsMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
-bool StatisticsMenu::isDisplayed() const {
-    return displayed;
-}
-
 void StatisticsMenu::updateStatistics() {
     qDebug() << "Statistics have been updated";
     QString statText;

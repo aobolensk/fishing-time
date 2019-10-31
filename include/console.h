@@ -35,6 +35,8 @@ private:
         QString getUpper();
         QString getLower();
     } inputHistory;
+private:
+    void closeEvent(QCloseEvent *event);
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 private:

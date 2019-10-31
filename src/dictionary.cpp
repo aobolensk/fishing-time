@@ -219,6 +219,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.click) =
             "Perform click<br>"
             "Usage: click";
+        SET(commands.gui) =
+            "Show GUI (graphical user interface) of the game<br>"
+            "Usage: gui";
         SET(commands.logout) =
             "Log out and go to main menu<br>"
             "Usage: logout";
@@ -413,6 +416,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.click) =
             "Сделать клик<br>"
             "Использование: click";
+        SET(commands.gui) =
+            "Показать графический интерфейс игры<br>"
+            "Использование: gui";
         SET(commands.logout) =
             "Выйти из аккаунта и перейти в главное меню<br>"
             "Использование: logout";

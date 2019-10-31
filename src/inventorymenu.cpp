@@ -52,10 +52,6 @@ void InventoryMenu::updateInventoryTable() {
     }
 }
 
-bool InventoryMenu::isDisplayed() const {
-    return displayed;
-}
-
 void InventoryMenu::display() {
     updateInventoryTable();
 

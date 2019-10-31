@@ -32,7 +32,6 @@ public:
     void display() override;
     void hide() override;
     void foldNets();
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_NETSMENU_H_

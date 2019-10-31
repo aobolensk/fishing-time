@@ -51,7 +51,6 @@ public:
     ~GameMenu();
     void display() override;
     void hide() override;
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_GAMEMENU_H_
