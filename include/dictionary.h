@@ -108,6 +108,7 @@ public:
             quantityShouldBeANumber,
             quantityShouldBeMoreThanZero,
             rating,
+            reportAnError,
             resetPasswordConfirmation,
             roach,
             saving,

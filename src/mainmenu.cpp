@@ -1,3 +1,4 @@
+#include <QDesktopServices>
 #include "mainmenu.h"
 #include "game.h"
 
@@ -33,6 +34,11 @@ MainMenu::MainMenu(Game *game, QGridLayout *grid) :
     aboutButton.setEnabled(false);
     connect(&aboutButton, SIGNAL(released()), this, SLOT(aboutFunction()));
 
+    grid->addWidget(&reportButton, 3, 2);
+    reportButton.setVisible(false);
+    reportButton.setEnabled(false);
+    connect(&reportButton, SIGNAL(released()), this, SLOT(reportFunction()));
+
     grid->addWidget(&exitButton, 4, 1);
     exitButton.setVisible(false);
     exitButton.setEnabled(false);
@@ -64,6 +70,10 @@ void MainMenu::display() {
     aboutButton.setText(game->str.about);
     aboutButton.setVisible(true);
     aboutButton.setEnabled(true);
+
+    reportButton.setText(game->str.reportAnError);
+    reportButton.setVisible(true);
+    reportButton.setEnabled(true);
 
     exitButton.setText(game->str.exit);
     exitButton.setVisible(true);
@@ -98,6 +108,10 @@ void MainMenu::ratingFunction() {
 
 void MainMenu::aboutFunction() {
     game->aboutMenu.display();
+}
+
+void MainMenu::reportFunction() {
+    QDesktopServices::openUrl(QUrl("https://github.com/gooddoog/fishing-time/issues"));
 }
 
 void MainMenu::exitFunction() {

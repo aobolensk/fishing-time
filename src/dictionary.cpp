@@ -189,6 +189,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(start) = "Start";
         SET(statistics) = "Statistics";
         SET(store) = "Store";
+        SET(reportAnError) = "Report an error";
         SET(successfullyLoggedIn) = "Successfully logged in as \"%1\"";
         SET(successfullyLoggedOut) = "Successfully logged out";
         SET(thisUserAlreadyExistsText) = "This user already exists";
@@ -373,6 +374,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(quantityShouldBeANumber) = "Количество должно быть числом";
         SET(quantityShouldBeMoreThanZero) = "Количество должно быть больше нуля";
         SET(rating) = "Рейтинг";
+        SET(reportAnError) = "Сообщить об ошибке";
         SET(resetPasswordConfirmation) = "Вы действительно хотите сбросить пароль?";
         SET(roach) = "Плотва";
         SET(saving) = "Сохранение...";

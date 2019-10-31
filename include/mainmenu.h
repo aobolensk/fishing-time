@@ -17,6 +17,7 @@ private:
                 settingsButton,
                 ratingButton,
                 aboutButton,
+                reportButton,
                 exitButton;
     QGridLayout *grid;
     int cnt = 0;
@@ -26,6 +27,7 @@ private slots:
     void settingsFunction();
     void ratingFunction();
     void aboutFunction();
+    void reportFunction();
     void exitFunction();
 public:
     MainMenu(Game *game, QGridLayout *grid);
