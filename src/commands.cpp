@@ -295,6 +295,34 @@ void Console::registerCommands() {
         &game->str.commands.inventory
     };
 
+    commands["give"] = {
+        [&](QStringList &args) -> int {
+            // args[1] -> item ID
+            // args[2] -> quantity
+            if (game->activeUser == -1) {
+                log.error(game->str.youAreNotLoggedIn);
+                return 1;
+            }
+            for (int i = 0; i < game->str.itemIds.count(); ++i) {
+                if (args[1] == game->str.itemIds[i]) {
+                    bool flag;
+                    int quantity = args[2].toInt(&flag);
+                    if (!flag) {
+                        log.error(game->str.quantityShouldBeANumber);
+                        return 1;
+                    }
+                    game->users[game->activeUser].inventory.changeItem(args[1], quantity);
+                    game->gameMenu.updateInventoryTable();
+                    return 0;
+                }
+            }
+            log.error(game->str.itemNotFound.arg(args[1]));
+            return 1;
+        },
+        PrivilegeLevel::Super,
+        &game->str.commands.give
+    };
+
     commands["rating"] = {
         [&](QStringList &args) -> int {
             (void) args;

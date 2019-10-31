@@ -134,6 +134,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(inventoryDescription) = "Inventory of player %1";
         SET(inventoryType) = "Inventory type";
         SET(item) = "Item";
+        SET(itemNotFound) = "Item %1 is not found";
         SET(items) = "Items";
         SET(itemStatistics) = "Item statistics";
         SET(language) = "Language";
@@ -248,6 +249,10 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.inventory) =
             "Show player's inventory<br>"
             "Usage: inventory";
+        SET(commands.give) =
+            "Give user some item<br>"
+            "Usage: give &lt;item ID&gt; &lt;quantity&gt;<br>"
+            "Only for superusers!";
         SET(commands.rating) =
             "Show users rating<br>"
             "Usage: rating";
@@ -323,6 +328,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(inventoryDescription) = "Инвентарь игрока %1";
         SET(inventoryType) = "Тип инвентаря";
         SET(item) = "Предмет";
+        SET(itemNotFound) = "Предмет %1 не найден";
         SET(items) = "Предметы";
         SET(itemStatistics) = "Статистика предметов";
         SET(language) = "Язык";
@@ -437,6 +443,10 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.inventory) =
             "Показать инвентарь игрока<br>"
             "Использование: inventory";
+        SET(commands.give) =
+            "Выдать пользователю предмет<br>"
+            "Использование: give &lt;ID предмета&gt; &lt;количество&gt;<br>"
+            "Только для суперпользователей!";
         SET(commands.rating) =
             "Показать рейтинг пользователей<br>"
             "Использование: rating";
