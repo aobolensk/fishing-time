@@ -1,7 +1,8 @@
+#include <QDialog>
+#include <QMessageBox>
+#include <QMutex>
 #include <QScrollBar>
 #include <QSettings>
-#include <QDialog>
-#include <QMutex>
 #include "console.h"
 #include "game.h"
 
@@ -62,6 +63,22 @@ QString Console::InputHistory::getLower() {
         return "";
     qDebug() << "getLower index:" << index;
     return buffer[index];
+}
+
+void Console::closeEvent(QCloseEvent *event) {
+    if (game->isHidden()) {
+        QMessageBox::StandardButton closeResult =
+            QMessageBox::question(this, game->str.fishingTime, game->str.exitConfirmation,
+            QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+        if (closeResult != QMessageBox::Yes) {
+            event->ignore();
+        } else {
+            event->accept();
+            QApplication::quit();
+        }
+    } else {
+        this->hide();
+    }
 }
 
 bool Console::eventFilter(QObject *obj, QEvent *event) {
