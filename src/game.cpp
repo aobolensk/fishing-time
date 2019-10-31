@@ -142,14 +142,18 @@ void Game::serialize() {
 }
 
 void Game::closeEvent(QCloseEvent *event) {
-    QMessageBox::StandardButton closeResult =
-        QMessageBox::question(this, str.fishingTime, str.exitConfirmation,
-        QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
-    if (closeResult != QMessageBox::Yes) {
-        event->ignore();
+    if (!this->console.isDisplayed()) {
+        QMessageBox::StandardButton closeResult =
+            QMessageBox::question(this, str.fishingTime, str.exitConfirmation,
+            QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+        if (closeResult != QMessageBox::Yes) {
+            event->ignore();
+        } else {
+            event->accept();
+            QApplication::quit();
+        }
     } else {
-        event->accept();
-        QApplication::quit();
+        this->hide();
     }
 }
 
