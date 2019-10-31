@@ -100,10 +100,6 @@ void MarketMenu::processDialog(int seller) {
     updateInfo();
 }
 
-bool MarketMenu::isDisplayed() const {
-    return displayed;
-}
-
 void MarketMenu::display() {
     if (!game->locations[game->activeLocation].getHasMarket()) {
         backFunction();

@@ -32,7 +32,6 @@ public:
     ~MarketMenu();
     void display() override;
     void hide() override;
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_MARKETMENU_H_

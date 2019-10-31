@@ -51,10 +51,6 @@ void RatingMenu::updateTable() {
     }
 }
 
-bool RatingMenu::isDisplayed() const {
-    return displayed;
-}
-
 void RatingMenu::display() {
     updateTable();
 

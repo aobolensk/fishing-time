@@ -32,7 +32,6 @@ public:
     ~UsersettingsMenu();
     void display() override;
     void hide() override;
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_USERSETTINGSMENU_H_

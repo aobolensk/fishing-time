@@ -29,7 +29,6 @@ public:
     ~SignupMenu();
     void display() override;
     void hide() override;
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_SIGNUPMENU_H_

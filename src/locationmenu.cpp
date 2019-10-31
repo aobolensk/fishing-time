@@ -21,10 +21,6 @@ LocationMenu::LocationMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
-bool LocationMenu::isDisplayed() const {
-    return displayed;
-}
-
 void LocationMenu::display() {
     descriptionLabel.setText(game->str.locationDescription);
     descriptionLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);

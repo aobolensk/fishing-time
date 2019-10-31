@@ -33,7 +33,6 @@ public:
     ~StoreMenu();
     void display() override;
     void hide() override;
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_STOREMENU_H_

@@ -173,8 +173,11 @@ void Console::commandParser() {
 void Console::display() {
     this->setWindowTitle(game->str.fishingTime + ": " + game->str.console);
     this->show();
+
+    displayed = true;
 }
 
 void Console::hide() {
     this->QWidget::hide();
+    displayed = false;
 }

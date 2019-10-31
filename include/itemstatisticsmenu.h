@@ -22,7 +22,6 @@ public:
     ~ItemStatisticsMenu();
     void display() override;
     void hide() override;
-    bool isDisplayed() const;
 };
 
 #endif  // INCLUDE_ITEMSTATISTICSMENU_H_
