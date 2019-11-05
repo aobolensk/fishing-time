@@ -137,6 +137,9 @@ void MainMenu::hide() {
     aboutButton.setVisible(false);
     aboutButton.setEnabled(false);
 
+    reportButton.setVisible(false);
+    reportButton.setEnabled(false);
+
     exitButton.setVisible(false);
     exitButton.setEnabled(false);
 
