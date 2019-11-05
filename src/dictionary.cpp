@@ -73,7 +73,7 @@ int Dictionary::getNumberOfEntries(Language l) {
 }
 
 int Dictionary::getTotalNumberOfEntries() {
-    return (DICTIONARY_END - DICTIONARY_START - 8);
+    return (DICTIONARY_END - DICTIONARY_START - 10);
 }
 
 #define SET(string) (++updatesCount); (*(const_cast<QString*>(&string)))
@@ -159,7 +159,6 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(newPassword) = "New password";
         SET(newPasswordConfirmation) = "Confirm new password";
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
-        SET(oka) = "Oka";
         SET(oldPassword) = "Old password";
         SET(open) = "Open";
         SET(password) = "Password";
@@ -200,7 +199,6 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(userSettings) = "User settings";
         SET(userSettingsText) = "User: %1";
         SET(username) = "Username";
-        SET(volga) = "Volga";
         SET(warning) = "Warning";
         SET(youAreAlreadyLoggedIn) = "You are already logged in";
         SET(youAreNotLoggedIn) = "You are not logged in";
@@ -272,10 +270,14 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.man) =
             "Print manual for commands<br>"
             "Usage: man &lt;command1&gt; &lt;command2&gt; ...";
+
         SET(stats["stats.got"]) = "Got";
         SET(stats["stats.sold"]) = "Sold";
         SET(stats["stats.bought"]) = "Bought";
         SET(stats["stats.caught"]) = "Caught";
+
+        SET(locations["location.volga"]) = "Volga";
+        SET(locations["location.oka"]) = "Oka";
 
         languages[Language::English].second = updatesCount;
         break;
@@ -357,7 +359,6 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(newPassword) = "Новый пароль";
         SET(newPasswordConfirmation) = "Подтверждение нового пароля";
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
-        SET(oka) = "Ока";
         SET(oldPassword) = "Старый пароль";
         SET(open) = "Открыть";
         SET(password) = "Пароль";
@@ -398,7 +399,6 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(userSettings) = "Настройки пользователя";
         SET(userSettingsText) = "Пользователь: %1";
         SET(username) = "Логин";
-        SET(volga) = "Волга";
         SET(warning) = "Внимание";
         SET(youAreAlreadyLoggedIn) = "Вы уже вошли в систему";
         SET(youAreNotLoggedIn) = "Вы не вошли в систему";
@@ -470,10 +470,14 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.man) =
             "Вывести мануал для команды<br>"
             "Использование: man &lt;команда1&gt; &lt;команда2&gt; ...";
+
         SET(stats["stats.got"]) = "Получено";
         SET(stats["stats.sold"]) = "Продано";
         SET(stats["stats.bought"]) = "Куплено";
         SET(stats["stats.caught"]) = "Поймано";
+
+        SET(locations["location.volga"]) = "Волга";
+        SET(locations["location.oka"]) = "Ока";
 
         languages[Language::Russian].second = updatesCount;
         break;

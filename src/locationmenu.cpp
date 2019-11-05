@@ -27,7 +27,7 @@ void LocationMenu::display() {
     descriptionLabel.setVisible(true);
 
     for (int i = 0; i < game->locations.size(); ++i) {
-        locationSelector.addItem(game->locations[i].getName());
+        locationSelector.addItem(game->str.locations[game->locations[i].getId()]);
     }
     locationSelector.setCurrentIndex(game->activeLocation);
     locationUpdater = connect(&locationSelector,

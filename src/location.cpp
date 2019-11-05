@@ -2,11 +2,11 @@
 #include "game.h"
 
 Location::Location(
-        const QString &locName,             // Location name
+        const QString &locId,               // Location id
         const QVector <QString> &fishList,  // List of fish that can ge caught
         bool hasMarket                      // Is market enabled?
     ) :
-    name(&locName),
+    id(locId),
     fish(fishList),
     hasMarket(hasMarket)
     {}
@@ -14,20 +14,20 @@ Location::Location(
 QVector <Location> Location::initializeLocations(Game *game) {
     return QVector <Location>({
         Location(
-            game->str.volga,
+            "location.volga",
             {"fish.carp", "fish.perch", "fish.pike"},
             true
         ),
         Location(
-            game->str.oka,
+            "location.oka",
             {"fish.bream", "fish.ide", "fish.roach"},
             true
         )
     });
 }
 
-const QString &Location::getName() const {
-    return *name;
+const QString &Location::getId() const {
+    return id;
 }
 
 const QString &Location::getFish(int index) const {

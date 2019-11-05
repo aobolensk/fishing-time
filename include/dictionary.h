@@ -91,7 +91,6 @@ public:
             newPassword,
             newPasswordConfirmation,
             newUserCreatedText,
-            oka,
             oldPassword,
             open,
             password,
@@ -132,7 +131,6 @@ public:
             userSettings,
             userSettingsText,
             username,
-            volga,
             warning,
             youAreAlreadyLoggedIn,
             youAreNotLoggedIn,
@@ -168,6 +166,10 @@ public:
         {"stats.bought", ""},
         {"stats.caught", ""},
         {"stats.undefined", ""}
+    };
+    QMap <QString, QString> locations = {
+        {"locations.volga", ""},
+        {"locations.oka", ""}
     };
     static constexpr int DICTIONARY_END = __LINE__;
 private:
