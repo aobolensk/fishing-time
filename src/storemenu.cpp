@@ -109,8 +109,12 @@ void StoreMenu::updateTable() {
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
         ++index;
     };
-    addDeal("fish.pike", game->str.pike, 1000);
-    addDeal("net.basic", game->str.basicNet, 1000);
+    if (game->activeLocation == 0) {
+        addDeal("fish.pike", game->str.pike, 1000);
+        addDeal("net.basic", game->str.basicNet, 1000);
+    } else if (game->activeLocation == 1) {
+        addDeal("fish.ide", game->str.ide, 1100);
+    }
 }
 
 void StoreMenu::updateInfo() {

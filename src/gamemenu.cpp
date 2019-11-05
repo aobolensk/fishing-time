@@ -258,7 +258,7 @@ void GameMenu::updateInfo() {
                 game->str.getItemName(game->locations[game->activeLocation].getFish(i)));
         }
         fishLabel.setText(game->str.fishLabelText.arg(
-            game->locations[game->activeLocation].getName(),
+            game->str.locations[game->locations[game->activeLocation].getId()],
             fishList.join(", ")
         ));
     }
