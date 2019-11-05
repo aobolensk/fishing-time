@@ -21,7 +21,7 @@ public:
     const QString &getFish(int index) const;
     bool getHasMarket() const;
     int getFishCount() const;
-    static QVector <Location> initializeLocations(Game *game);
+    static QVector <Location> initializeLocations();
 };
 
 #endif  // INCLUDE_LOCATION_H_

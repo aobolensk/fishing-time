@@ -11,7 +11,7 @@ Location::Location(
     hasMarket(hasMarket)
     {}
 
-QVector <Location> Location::initializeLocations(Game *game) {
+QVector <Location> Location::initializeLocations() {
     return QVector <Location>({
         Location(
             "location.volga",

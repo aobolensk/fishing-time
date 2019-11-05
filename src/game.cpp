@@ -18,7 +18,7 @@ Game::Game(QWidget *parent, const QString &file) :
         cfg(Config(this)),
         console(Console(this)),
         str(Dictionary(this)),
-        locations(Location::initializeLocations(this)),
+        locations(Location::initializeLocations()),
         mainMenu(MainMenu(this, &grid)),
         loginMenu(LoginMenu(this, &grid)),
         gameMenu(GameMenu(this, &grid)),
