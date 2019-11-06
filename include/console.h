@@ -25,7 +25,6 @@ private:
     };
     class InputHistory {
     private:
-        static const int MAX_INPUT_HISTORY_SIZE = 128;
         std::deque <QString> buffer = {""};
         size_t index = 0;
     public:

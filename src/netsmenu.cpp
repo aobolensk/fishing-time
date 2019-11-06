@@ -2,15 +2,14 @@
 #include "netsmenu.h"
 #include "game.h"
 
-static const int netsTimerInterval = 5 * 60 * 1000;
 
 NetsMenu::NetsMenu(Game *game, QGridLayout *grid) :
         game(game),
         grid(grid) {
-    grid->addWidget(&netsDescription, 0, 0, 1, SLOTS_COUNT);
+    grid->addWidget(&netsDescription, 0, 0, 1, Config::SLOTS_COUNT);
     netsDescription.setVisible(false);
 
-    for (int i = 0; i < SLOTS_COUNT; ++i) {
+    for (int i = 0; i < Config::SLOTS_COUNT; ++i) {
         grid->addWidget(&netSlotLabel[i], 1 + (i / 3) * 2, i % 3);
         netSlotLabel[i].setVisible(false);
         netSlotLabel[i].setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -20,19 +19,19 @@ NetsMenu::NetsMenu(Game *game, QGridLayout *grid) :
         netSlot[i].setEnabled(false);
     }
 
-    grid->addWidget(&backButton, 3 + SLOTS_COUNT / 3 * 2, 1);
+    grid->addWidget(&backButton, 3 + Config::SLOTS_COUNT / 3 * 2, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 
-    netsTimer.start(netsTimerInterval);
+    netsTimer.start(Config::NETS_TIMER_INTERVAL);
     connect(&netsTimer, SIGNAL(timeout()), this, SLOT(netsTimerTick()));
 }
 
 void NetsMenu::updateNets() {
     const QMap<QString, int> &inv = game->users[game->activeUser].inventory.get();
     auto it = inv.begin();
-    for (int i = 0; i < SLOTS_COUNT; ++i) {
+    for (int i = 0; i < Config::SLOTS_COUNT; ++i) {
         netSlotLabel[i].setText(game->str.netSlot.arg(
             QString::number(i),
             nets[i] == "" ? game->str.empty : *game->str.itemNames[nets[i]]
@@ -44,7 +43,7 @@ void NetsMenu::updateNets() {
     }
     while (it != inv.end()) {
         if (QRegExp("net.*").exactMatch(it.key())) {
-            for (int i = 0; i < SLOTS_COUNT; ++i) {
+            for (int i = 0; i < Config::SLOTS_COUNT; ++i) {
                 netSlot[i].addItem(it.key() + " (" + QString::number(it.value()) + ')');
             }
         }
@@ -53,7 +52,7 @@ void NetsMenu::updateNets() {
 }
 
 void NetsMenu::foldNets() {
-    for (int i = 0; i < SLOTS_COUNT; ++i) {
+    for (int i = 0; i < Config::SLOTS_COUNT; ++i) {
         if (nets[i] != "") {
             this->game->users[this->game->activeUser].inventory.changeItem(nets[i], 1);
             nets[i] = "";
@@ -62,7 +61,7 @@ void NetsMenu::foldNets() {
 }
 
 void NetsMenu::netsTimerTick() {
-    for (int i = 0; i < SLOTS_COUNT; ++i) {
+    for (int i = 0; i < Config::SLOTS_COUNT; ++i) {
         if (nets[i] != "") {
             if (nets[i] == "net.basic") {
                 const int MOD = 100;
@@ -85,7 +84,7 @@ void NetsMenu::display() {
     netsDescription.setText(game->str.netsDescription);
     netsDescription.setVisible(true);
 
-    for (int i = 0; i < SLOTS_COUNT; ++i) {
+    for (int i = 0; i < Config::SLOTS_COUNT; ++i) {
         connect(&netSlot[i], static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
             [this, i](int index) {
                 if (index < 1)
@@ -109,7 +108,7 @@ void NetsMenu::display() {
         );
     }
 
-    for (int i = 0; i < SLOTS_COUNT; ++i) {
+    for (int i = 0; i < Config::SLOTS_COUNT; ++i) {
         netSlotLabel[i].setVisible(true);
 
         netSlot[i].setVisible(true);
@@ -131,7 +130,7 @@ void NetsMenu::backFunction() {
 void NetsMenu::hide() {
     netsDescription.setVisible(false);
 
-    for (int i = 0; i < SLOTS_COUNT; ++i) {
+    for (int i = 0; i < Config::SLOTS_COUNT; ++i) {
         netSlotLabel[i].setVisible(false);
 
         netSlot[i].setVisible(false);

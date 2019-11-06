@@ -5,21 +5,21 @@
 #include <QLineEdit>
 #include <QLabel>
 #include "menu.h"
+#include "config.h"
 
 class MarketMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    static const int SELLERS_COUNT = 3;
     Game *game;
     QPushButton backButton,
-                dialogButton[SELLERS_COUNT];
+                dialogButton[Config::SELLERS_COUNT];
     QLabel descriptionLabel,
            infoLabel,
-           dialogLabel[SELLERS_COUNT];
-    QLineEdit quantityText[SELLERS_COUNT];
-    QString goodId[SELLERS_COUNT];
-    qint64 goodPrice[SELLERS_COUNT];
+           dialogLabel[Config::SELLERS_COUNT];
+    QLineEdit quantityText[Config::SELLERS_COUNT];
+    QString goodId[Config::SELLERS_COUNT];
+    qint64 goodPrice[Config::SELLERS_COUNT];
     QGridLayout *grid;
 private slots:
     void backFunction();

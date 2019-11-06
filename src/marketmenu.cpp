@@ -17,7 +17,7 @@ MarketMenu::MarketMenu(Game *game, QGridLayout *grid) :
     infoLabel.setEnabled(false);
     infoLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    for (int i = 0; i < SELLERS_COUNT; ++i) {
+    for (int i = 0; i < Config::SELLERS_COUNT; ++i) {
         dialogLabel[i].setWordWrap(true);
         dialogLabel[i].setVisible(false);
         dialogLabel[i].setEnabled(false);
@@ -51,7 +51,7 @@ void MarketMenu::updateDeals() {
     std::mt19937 randGen(seed);
     qDebug() << "Random seed:" << seed;
     std::uniform_int_distribution<> gen(0, game->str.fishIds.size() - 2);
-    for (int i = 0; i < SELLERS_COUNT; ++i) {
+    for (int i = 0; i < Config::SELLERS_COUNT; ++i) {
         goodId[i] = game->str.fishIds[gen(randGen)];
         goodPrice[i] = randGen() % 100;
     }
@@ -64,7 +64,7 @@ void MarketMenu::updateInfo() {
         QString::number(game->users[game->activeUser].getClicks())
     ));
 
-    for (int i = 0; i < SELLERS_COUNT; ++i) {
+    for (int i = 0; i < Config::SELLERS_COUNT; ++i) {
         dialogLabel[i].setText(
             game->str.sellerText.arg(
                 QString::number(i),
@@ -115,7 +115,7 @@ void MarketMenu::display() {
     infoLabel.setVisible(true);
     infoLabel.setEnabled(true);
 
-    for (int i = 0; i < SELLERS_COUNT; ++i) {
+    for (int i = 0; i < Config::SELLERS_COUNT; ++i) {
         dialogButton[i].setText(game->str.dialog);
         dialogButton[i].setVisible(true);
         dialogButton[i].setEnabled(true);
@@ -146,7 +146,7 @@ void MarketMenu::hide() {
     descriptionLabel.setVisible(false);
     descriptionLabel.setEnabled(false);
 
-    for (int i = 0; i < SELLERS_COUNT; ++i) {
+    for (int i = 0; i < Config::SELLERS_COUNT; ++i) {
         dialogButton[i].setVisible(false);
         dialogButton[i].setEnabled(false);
 

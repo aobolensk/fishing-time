@@ -6,18 +6,18 @@
 #include <QComboBox>
 #include <QTimer>
 #include "menu.h"
+#include "config.h"
 
 class NetsMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    static const int SLOTS_COUNT = 9;
     Game *game;
     QPushButton backButton;
     QLabel netsDescription,
-           netSlotLabel[SLOTS_COUNT];
-    QComboBox netSlot[SLOTS_COUNT];
-    QString nets[SLOTS_COUNT];
+           netSlotLabel[Config::SLOTS_COUNT];
+    QComboBox netSlot[Config::SLOTS_COUNT];
+    QString nets[Config::SLOTS_COUNT];
     QTimer netsTimer;
     QGridLayout *grid;
 private:

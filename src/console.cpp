@@ -42,7 +42,7 @@ void Console::InputHistory::reset() {
 }
 
 void Console::InputHistory::push(const QString &str) {
-    while (buffer.size() >= MAX_INPUT_HISTORY_SIZE)
+    while (buffer.size() >= Config::MAX_INPUT_HISTORY_SIZE)
         buffer.pop_front();
     buffer.push_back(str);
     index = buffer.size();
