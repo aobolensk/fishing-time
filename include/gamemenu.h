@@ -13,15 +13,15 @@ private:
     Q_OBJECT
 private:
     QPushButton clickButton,
-            logOutButton,
-            backButton,
-            inventoryButton,
-            netsButton,
-            marketButton,
-            storeButton,
-            statisticsButton,
-            usersettingsButton,
-            locationButton;
+                logOutButton,
+                backButton,
+                inventoryButton,
+                netsButton,
+                marketButton,
+                storeButton,
+                statisticsButton,
+                usersettingsButton,
+                locationButton;
     QLabel infoLabel,
            fishLabel;
     QTableWidget popUpInventoryTable;
