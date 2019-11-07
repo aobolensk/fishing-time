@@ -17,6 +17,14 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
     return QObject::eventFilter(obj, event);
 }
 
+void Menu::pre_display() {
+
+}
+
+void Menu::pre_hide() {
+
+}
+
 void Menu::backFunction() {
 
 }
