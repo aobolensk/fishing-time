@@ -2,8 +2,7 @@
 #include "game.h"
 
 StatisticsMenu::StatisticsMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&statisticsText, 0, 0, 1, 3);
     statisticsText.setReadOnly(true);
     statisticsText.setVisible(false);
@@ -45,6 +44,8 @@ void StatisticsMenu::updateStatistics() {
 }
 
 void StatisticsMenu::display() {
+    this->pre_display();
+
     timerUpdater = connect(&timer, SIGNAL(timeout()), this, SLOT(updateStatistics()));
     timer.start(Config::STATISTICS_UPDATE_PERIOD);
     updateStatistics();
@@ -72,6 +73,8 @@ void StatisticsMenu::itemsFunction() {
 }
 
 void StatisticsMenu::hide() {
+    this->pre_hide();
+
     timer.stop();
     disconnect(timerUpdater);
 

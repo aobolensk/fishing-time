@@ -4,9 +4,8 @@
 #include "game.h"
 
 StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        storeTable(game),
-        grid(grid) {
+        Menu(game, grid),
+        storeTable(game) {
     grid->addWidget(&selectedItemLabel, 1, 2);
     selectedItemLabel.setWordWrap(true);
     selectedItemLabel.setVisible(false);
@@ -51,6 +50,8 @@ StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
 }
 
 void StoreMenu::display() {
+    this->pre_display();
+
     updateTable();
     updateInfo();
 
@@ -160,6 +161,8 @@ void StoreMenu::backFunction() {
 }
 
 void StoreMenu::hide() {
+    this->pre_hide();
+
     selectedItemLabel.setVisible(false);
     selectedItemLabel.setEnabled(false);
 

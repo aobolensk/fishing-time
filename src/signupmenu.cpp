@@ -3,8 +3,7 @@
 #include "game.h"
 
 SignupMenu::SignupMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&signupLabel, 0, 0, 1, 3);
     signupLabel.setWordWrap(true);
     signupLabel.setVisible(false);
@@ -52,6 +51,8 @@ SignupMenu::SignupMenu(Game *game, QGridLayout *grid) :
 }
 
 void SignupMenu::display() {
+    this->pre_display();
+
     signupLabel.setText(game->str.signupMenuText);
     signupLabel.setVisible(true);
 
@@ -137,6 +138,8 @@ void SignupMenu::signUpFunction() {
 }
 
 void SignupMenu::hide() {
+    this->pre_hide();
+
     signupLabel.setVisible(false);
 
     loginLabel.setVisible(false);

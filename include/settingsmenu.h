@@ -12,7 +12,6 @@ class SettingsMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QLabel autoSavePeriodLabel,
            autoSavePeriodValueLabel,
            languageLabel,
@@ -33,7 +32,6 @@ private:
                             inventoryTypeUpdater,
                             colorThemeUpdater;
 private:
-    QGridLayout *grid;
 private slots:
     void fontSetupFunction();
     void eraseAllDataFunction();

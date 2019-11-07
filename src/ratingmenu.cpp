@@ -4,8 +4,7 @@
 #include "game.h"
 
 RatingMenu::RatingMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&ratingTable, 0, 0, 2, 3);
     ratingTable.setRowCount(0);
     ratingTable.setColumnCount(2);
@@ -52,6 +51,8 @@ void RatingMenu::updateTable() {
 }
 
 void RatingMenu::display() {
+    this->pre_display();
+
     updateTable();
 
     usernameHeader.setText(game->str.username);
@@ -74,6 +75,8 @@ void RatingMenu::backFunction() {
 }
 
 void RatingMenu::hide() {
+    this->pre_hide();
+
     ratingTable.setVisible(false);
     ratingTable.setEnabled(false);
 

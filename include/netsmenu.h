@@ -12,14 +12,12 @@ class NetsMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QPushButton backButton;
     QLabel netsDescription,
            netSlotLabel[Config::SLOTS_COUNT];
     QComboBox netSlot[Config::SLOTS_COUNT];
     QString nets[Config::SLOTS_COUNT];
     QTimer netsTimer;
-    QGridLayout *grid;
 private:
     void updateNets();
 private slots:

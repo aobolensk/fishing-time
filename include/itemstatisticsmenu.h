@@ -10,10 +10,8 @@ class ItemStatisticsMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QTextEdit statisticsText;
     QPushButton backButton;
-    QGridLayout *grid;
 private slots:
     void updateStatistics();
     void backFunction();

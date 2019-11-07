@@ -3,9 +3,8 @@
 #include "game.h"
 
 InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        inventoryTable(game),
-        grid(grid) {
+        Menu(game, grid),
+        inventoryTable(game) {
     grid->addWidget(&descriptionLabel, 0, 1);
     descriptionLabel.setVisible(false);
     descriptionLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -53,6 +52,8 @@ void InventoryMenu::updateInventoryTable() {
 }
 
 void InventoryMenu::display() {
+    this->pre_display();
+
     updateInventoryTable();
 
     descriptionLabel.setVisible(true);
@@ -80,6 +81,8 @@ void InventoryMenu::backFunction() {
 }
 
 void InventoryMenu::hide() {
+    this->pre_hide();
+
     descriptionLabel.setVisible(false);
 
     inventoryTable.setVisible(false);

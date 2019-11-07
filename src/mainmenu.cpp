@@ -3,8 +3,7 @@
 #include "game.h"
 
 MainMenu::MainMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&infoLabel, 0, 2);
     infoLabel.setVisible(false);
     infoLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -46,6 +45,8 @@ MainMenu::MainMenu(Game *game, QGridLayout *grid) :
 }
 
 void MainMenu::display() {
+    this->pre_display();
+
     infoLabel.setText(game->str.mainMenuText.arg(
         game->activeUser == -1 ? "" : game->users[game->activeUser].getUsername()
     ));
@@ -120,6 +121,8 @@ void MainMenu::exitFunction() {
 }
 
 void MainMenu::hide() {
+    this->pre_hide();
+
     infoLabel.setVisible(false);
 
     consoleButton.setVisible(false);

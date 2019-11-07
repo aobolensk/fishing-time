@@ -9,10 +9,8 @@ class AboutMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QLabel descriptionLabel;
     QPushButton backButton;
-    QGridLayout grid;
 private slots:
     void backFunction();
 public:

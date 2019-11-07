@@ -3,8 +3,10 @@
 #include "game.h"
 
 AboutMenu::AboutMenu(Game *game) :
-        game(game) {
-    this->setLayout(&grid);
+        Menu(game, nullptr) {
+    qDebug() << "lul1";
+    this->setLayout(grid);
+    qDebug() << "lul2";
     this->setFixedSize(this->width(), this->height());
 
     QSettings settings;
@@ -13,14 +15,14 @@ AboutMenu::AboutMenu(Game *game) :
         this->setGeometry(QRect(QPoint(200, 200), QSize(320, 240)));
     }
 
-    grid.addWidget(&descriptionLabel, 0, 0, 1, 3);
+    grid->addWidget(&descriptionLabel, 0, 0, 1, 3);
     descriptionLabel.setVisible(false);
     descriptionLabel.setWordWrap(true);
     descriptionLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     descriptionLabel.setTextFormat(Qt::RichText);
     descriptionLabel.setOpenExternalLinks(true);
 
-    grid.addWidget(&backButton, 1, 1);
+    grid->addWidget(&backButton, 1, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -50,6 +52,8 @@ QString AboutMenu::getAboutInfo() {
 }
 
 void AboutMenu::display() {
+    this->pre_display();
+
     this->setWindowTitle(game->str.fishingTime + ": " + game->str.about);
     this->setVisible(true);
 
@@ -68,6 +72,8 @@ void AboutMenu::backFunction() {
 }
 
 void AboutMenu::hide() {
+    this->pre_hide();
+
     descriptionLabel.setVisible(false);
 
     backButton.setVisible(false);

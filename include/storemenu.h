@@ -11,7 +11,6 @@ class StoreMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QLabel selectedItemLabel,
            infoLabel;
     QLineEdit quantityText;
@@ -21,7 +20,6 @@ private:
     QTableWidgetItem idHeader,
                      nameHeader,
                      priceHeader;
-    QGridLayout *grid;
 private slots:
     void buyFunction();
     void backFunction();

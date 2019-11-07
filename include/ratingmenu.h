@@ -11,12 +11,10 @@ class RatingMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QTableWidget ratingTable;
     QTableWidgetItem usernameHeader,
                      coinsHeader;
     QPushButton backButton;
-    QGridLayout *grid;
     struct RatingRow {
         QString username;
         qint64 coins;

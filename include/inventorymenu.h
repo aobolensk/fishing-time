@@ -10,13 +10,11 @@ class InventoryMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
-    QLabel descriptionLabel;
+        QLabel descriptionLabel;
     QTableWidget inventoryTable;
     QTableWidgetItem nameHeader,
                      quantityHeader;
     QPushButton backButton;
-    QGridLayout *grid;
 private slots:
     void backFunction();
 private:

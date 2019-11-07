@@ -5,8 +5,7 @@
 #include "game.h"
 
 LocationMenu::LocationMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&descriptionLabel, 0, 0, 1, 3);
     descriptionLabel.setVisible(false);
 
@@ -22,6 +21,8 @@ LocationMenu::LocationMenu(Game *game, QGridLayout *grid) :
 }
 
 void LocationMenu::display() {
+    this->pre_display();
+
     descriptionLabel.setText(game->str.locationDescription);
     descriptionLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     descriptionLabel.setVisible(true);
@@ -54,6 +55,8 @@ void LocationMenu::backFunction() {
 }
 
 void LocationMenu::hide() {
+    this->pre_hide();
+
     descriptionLabel.setVisible(false);
 
     disconnect(locationUpdater);

@@ -2,8 +2,7 @@
 #include "game.h"
 
 ItemStatisticsMenu::ItemStatisticsMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&statisticsText, 0, 0, 1, 3);
     statisticsText.setReadOnly(true);
     statisticsText.setVisible(false);
@@ -92,6 +91,8 @@ void ItemStatisticsMenu::updateStatistics() {
 }
 
 void ItemStatisticsMenu::display() {
+    this->pre_display();
+
     updateStatistics();
     statisticsText.setVisible(true);
 
@@ -108,6 +109,8 @@ void ItemStatisticsMenu::backFunction() {
 }
 
 void ItemStatisticsMenu::hide() {
+    this->pre_hide();
+
     statisticsText.setVisible(false);
 
     backButton.setVisible(false);

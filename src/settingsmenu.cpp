@@ -5,8 +5,7 @@
 #include "game.h"
 
 SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&autoSavePeriodLabel, 0, 0);
     autoSavePeriodLabel.setVisible(false);
     autoSavePeriodLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -84,6 +83,8 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
 }
 
 void SettingsMenu::display() {
+    this->pre_display();
+
     autoSavePeriodLabel.setText(game->str.autoSavePeriod);
     autoSavePeriodLabel.setVisible(true);
 
@@ -215,6 +216,8 @@ void SettingsMenu::backFunction() {
 }
 
 void SettingsMenu::hide() {
+    this->pre_hide();
+
     autoSavePeriodLabel.setVisible(false);
 
     disconnect(autoSaveUpdater);

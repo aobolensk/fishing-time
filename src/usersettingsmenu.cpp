@@ -3,8 +3,7 @@
 #include "game.h"
 
 UsersettingsMenu::UsersettingsMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&usersettingsLabel, 0, 0, 1, 2);
     usersettingsLabel.setVisible(false);
 
@@ -52,6 +51,8 @@ UsersettingsMenu::UsersettingsMenu(Game *game, QGridLayout *grid) :
 }
 
 void UsersettingsMenu::display() {
+    this->pre_display();
+
     usersettingsLabel.setText(game->str.userSettingsText.arg(
         game->users[game->activeUser].getUsername()
     ));
@@ -130,6 +131,8 @@ void UsersettingsMenu::backFunction() {
 }
 
 void UsersettingsMenu::hide() {
+    this->pre_hide();
+
     usersettingsLabel.setVisible(false);
 
     changePasswordLabel.setVisible(false);

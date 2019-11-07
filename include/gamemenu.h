@@ -12,7 +12,6 @@ class GameMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QPushButton clickButton,
                 logOutButton,
                 backButton,
@@ -28,7 +27,6 @@ private:
     QTableWidget popUpInventoryTable;
     QTableWidgetItem nameHeader,
                      quantityHeader;
-    QGridLayout *grid;
 public slots:
     void logOutFunction();
     void clickFunction();

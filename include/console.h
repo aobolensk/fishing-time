@@ -39,8 +39,6 @@ private:
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 private:
-    Game *game;
-    QGridLayout grid;
     QTextEdit console;
     QLineEdit input;
     Log log;

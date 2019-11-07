@@ -4,8 +4,7 @@
 #include "game.h"
 
 LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&loginSelector, 0, 0);
     loginSelector.setVisible(false);
     loginSelector.setEnabled(false);
@@ -43,6 +42,8 @@ LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
 }
 
 void LoginMenu::display() {
+    this->pre_display();
+
     for (int i = 0; i < game->users.count(); ++i) {
         loginSelector.addItem(game->users[i].getUsername());
     }
@@ -145,6 +146,8 @@ void LoginMenu::demoFunction() {
 }
 
 void LoginMenu::hide() {
+    this->pre_hide();
+
     loginSelector.clear();
     loginSelector.setVisible(false);
     loginSelector.setEnabled(false);

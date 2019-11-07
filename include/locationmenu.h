@@ -9,12 +9,10 @@ class LocationMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QLabel descriptionLabel;
     QPushButton backButton;
     QComboBox locationSelector;
     QMetaObject::Connection locationUpdater;
-    QGridLayout *grid;
 private slots:
     void backFunction();
 public:

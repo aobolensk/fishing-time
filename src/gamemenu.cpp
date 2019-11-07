@@ -5,8 +5,7 @@
 #include "game.h"
 
 GameMenu::GameMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     QSettings settings;
     if (!popUpInventoryTable.restoreGeometry(settings.value("inventoryWindowGeometry").toByteArray())) {
         qDebug() << "Unable to restore inventory window geometry. Loading defaults...";
@@ -85,6 +84,8 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
 }
 
 void GameMenu::display() {
+    this->pre_display();
+
     updateInfo();
     infoLabel.setVisible(true);
     infoLabel.setEnabled(true);
@@ -265,6 +266,8 @@ void GameMenu::updateInfo() {
 }
 
 void GameMenu::hide() {
+    this->pre_hide();
+
     infoLabel.setVisible(false);
 
     fishLabel.setVisible(false);

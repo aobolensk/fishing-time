@@ -5,8 +5,7 @@
 #include "game.h"
 
 MarketMenu::MarketMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&descriptionLabel, 0, 0, 1, 2);
     descriptionLabel.setVisible(false);
     descriptionLabel.setEnabled(false);
@@ -101,6 +100,8 @@ void MarketMenu::processDialog(int seller) {
 }
 
 void MarketMenu::display() {
+    this->pre_display();
+
     if (!game->locations[game->activeLocation].getHasMarket()) {
         backFunction();
         return;
@@ -140,6 +141,8 @@ void MarketMenu::backFunction() {
 }
 
 void MarketMenu::hide() {
+    this->pre_hide();
+
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
 
