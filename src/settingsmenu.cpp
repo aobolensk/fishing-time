@@ -84,6 +84,8 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
 }
 
 void SettingsMenu::display() {
+    game->installEventFilter(this);
+
     autoSavePeriodLabel.setText(game->str.autoSavePeriod);
     autoSavePeriodLabel.setVisible(true);
 
@@ -215,6 +217,8 @@ void SettingsMenu::backFunction() {
 }
 
 void SettingsMenu::hide() {
+    game->removeEventFilter(this);
+
     autoSavePeriodLabel.setVisible(false);
 
     disconnect(autoSaveUpdater);

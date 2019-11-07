@@ -50,6 +50,8 @@ QString AboutMenu::getAboutInfo() {
 }
 
 void AboutMenu::display() {
+    game->installEventFilter(this);
+
     this->setWindowTitle(game->str.fishingTime + ": " + game->str.about);
     this->setVisible(true);
 
@@ -68,6 +70,8 @@ void AboutMenu::backFunction() {
 }
 
 void AboutMenu::hide() {
+    game->removeEventFilter(this);
+
     descriptionLabel.setVisible(false);
 
     backButton.setVisible(false);

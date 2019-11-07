@@ -79,6 +79,8 @@ void NetsMenu::netsTimerTick() {
 }
 
 void NetsMenu::display() {
+    game->installEventFilter(this);
+
     updateNets();
 
     netsDescription.setText(game->str.netsDescription);
@@ -128,6 +130,8 @@ void NetsMenu::backFunction() {
 }
 
 void NetsMenu::hide() {
+    game->removeEventFilter(this);
+
     netsDescription.setVisible(false);
 
     for (int i = 0; i < Config::SLOTS_COUNT; ++i) {

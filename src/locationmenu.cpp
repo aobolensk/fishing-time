@@ -22,6 +22,8 @@ LocationMenu::LocationMenu(Game *game, QGridLayout *grid) :
 }
 
 void LocationMenu::display() {
+    game->installEventFilter(this);
+
     descriptionLabel.setText(game->str.locationDescription);
     descriptionLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     descriptionLabel.setVisible(true);
@@ -54,6 +56,8 @@ void LocationMenu::backFunction() {
 }
 
 void LocationMenu::hide() {
+    game->removeEventFilter(this);
+
     descriptionLabel.setVisible(false);
 
     disconnect(locationUpdater);

@@ -101,6 +101,8 @@ void MarketMenu::processDialog(int seller) {
 }
 
 void MarketMenu::display() {
+    game->installEventFilter(this);
+
     if (!game->locations[game->activeLocation].getHasMarket()) {
         backFunction();
         return;
@@ -140,6 +142,8 @@ void MarketMenu::backFunction() {
 }
 
 void MarketMenu::hide() {
+    game->removeEventFilter(this);
+
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
 

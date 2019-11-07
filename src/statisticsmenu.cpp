@@ -45,6 +45,8 @@ void StatisticsMenu::updateStatistics() {
 }
 
 void StatisticsMenu::display() {
+    game->installEventFilter(this);
+
     timerUpdater = connect(&timer, SIGNAL(timeout()), this, SLOT(updateStatistics()));
     timer.start(Config::STATISTICS_UPDATE_PERIOD);
     updateStatistics();
@@ -72,6 +74,8 @@ void StatisticsMenu::itemsFunction() {
 }
 
 void StatisticsMenu::hide() {
+    game->removeEventFilter(this);
+
     timer.stop();
     disconnect(timerUpdater);
 

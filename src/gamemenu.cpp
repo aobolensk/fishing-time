@@ -85,6 +85,8 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
 }
 
 void GameMenu::display() {
+    game->installEventFilter(this);
+
     updateInfo();
     infoLabel.setVisible(true);
     infoLabel.setEnabled(true);
@@ -265,6 +267,8 @@ void GameMenu::updateInfo() {
 }
 
 void GameMenu::hide() {
+    game->removeEventFilter(this);
+
     infoLabel.setVisible(false);
 
     fishLabel.setVisible(false);

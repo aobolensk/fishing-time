@@ -52,6 +52,8 @@ UsersettingsMenu::UsersettingsMenu(Game *game, QGridLayout *grid) :
 }
 
 void UsersettingsMenu::display() {
+    game->installEventFilter(this);
+
     usersettingsLabel.setText(game->str.userSettingsText.arg(
         game->users[game->activeUser].getUsername()
     ));
@@ -130,6 +132,8 @@ void UsersettingsMenu::backFunction() {
 }
 
 void UsersettingsMenu::hide() {
+    game->removeEventFilter(this);
+
     usersettingsLabel.setVisible(false);
 
     changePasswordLabel.setVisible(false);

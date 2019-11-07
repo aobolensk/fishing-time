@@ -52,6 +52,8 @@ void RatingMenu::updateTable() {
 }
 
 void RatingMenu::display() {
+    game->installEventFilter(this);
+
     updateTable();
 
     usernameHeader.setText(game->str.username);
@@ -74,6 +76,8 @@ void RatingMenu::backFunction() {
 }
 
 void RatingMenu::hide() {
+    game->removeEventFilter(this);
+
     ratingTable.setVisible(false);
     ratingTable.setEnabled(false);
 

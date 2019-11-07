@@ -92,6 +92,8 @@ void ItemStatisticsMenu::updateStatistics() {
 }
 
 void ItemStatisticsMenu::display() {
+    game->installEventFilter(this);
+
     updateStatistics();
     statisticsText.setVisible(true);
 
@@ -108,6 +110,8 @@ void ItemStatisticsMenu::backFunction() {
 }
 
 void ItemStatisticsMenu::hide() {
+    game->removeEventFilter(this);
+
     statisticsText.setVisible(false);
 
     backButton.setVisible(false);

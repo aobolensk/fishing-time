@@ -43,6 +43,8 @@ LoginMenu::LoginMenu(Game *game, QGridLayout *grid) :
 }
 
 void LoginMenu::display() {
+    game->installEventFilter(this);
+
     for (int i = 0; i < game->users.count(); ++i) {
         loginSelector.addItem(game->users[i].getUsername());
     }
@@ -145,6 +147,8 @@ void LoginMenu::demoFunction() {
 }
 
 void LoginMenu::hide() {
+    game->removeEventFilter(this);
+
     loginSelector.clear();
     loginSelector.setVisible(false);
     loginSelector.setEnabled(false);

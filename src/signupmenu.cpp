@@ -52,6 +52,8 @@ SignupMenu::SignupMenu(Game *game, QGridLayout *grid) :
 }
 
 void SignupMenu::display() {
+    game->installEventFilter(this);
+
     signupLabel.setText(game->str.signupMenuText);
     signupLabel.setVisible(true);
 
@@ -137,6 +139,8 @@ void SignupMenu::signUpFunction() {
 }
 
 void SignupMenu::hide() {
+    game->removeEventFilter(this);
+
     signupLabel.setVisible(false);
 
     loginLabel.setVisible(false);
