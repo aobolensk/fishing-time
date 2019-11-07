@@ -5,8 +5,7 @@
 #include "game.h"
 
 MarketMenu::MarketMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&descriptionLabel, 0, 0, 1, 2);
     descriptionLabel.setVisible(false);
     descriptionLabel.setEnabled(false);

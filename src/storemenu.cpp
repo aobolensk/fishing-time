@@ -4,9 +4,8 @@
 #include "game.h"
 
 StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        storeTable(game),
-        grid(grid) {
+        Menu(game, grid),
+        storeTable(game) {
     grid->addWidget(&selectedItemLabel, 1, 2);
     selectedItemLabel.setWordWrap(true);
     selectedItemLabel.setVisible(false);

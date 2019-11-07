@@ -3,8 +3,7 @@
 #include "game.h"
 
 SignupMenu::SignupMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&signupLabel, 0, 0, 1, 3);
     signupLabel.setWordWrap(true);
     signupLabel.setVisible(false);

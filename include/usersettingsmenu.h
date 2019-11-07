@@ -10,7 +10,6 @@ class UsersettingsMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QLabel usersettingsLabel,
            oldPasswordLabel,
            newPasswordLabel,
@@ -22,7 +21,6 @@ private:
     QPushButton deleteAccountButton,
                 changePasswordButton,
                 backButton;
-    QGridLayout *grid;
 private slots:
     void changePasswordFunction();
     void deleteAccountFunction();

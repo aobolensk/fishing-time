@@ -4,8 +4,7 @@
 #include "game.h"
 
 RatingMenu::RatingMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&ratingTable, 0, 0, 2, 3);
     ratingTable.setRowCount(0);
     ratingTable.setColumnCount(2);

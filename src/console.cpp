@@ -7,20 +7,21 @@
 #include "game.h"
 
 Console::Console(Game *game) :
-    game(game),
-    grid(QGridLayout(this)),
+    Menu(game, nullptr),
     log(game, &console) {
     QSettings settings;
     if (!this->restoreGeometry(settings.value("consoleGeometry").toByteArray())) {
         qDebug() << "Unable to restore console window geometry. Loading defaults...";
         this->setGeometry(QRect(QPoint(740, 100), QSize(360, 480)));
     }
-    this->setLayout(&grid);
+    qDebug() << "lul3";
+    this->setLayout(grid);
+    qDebug() << "lul4";
 
-    grid.addWidget(&console, 0, 0);
+    grid->addWidget(&console, 0, 0);
     console.setReadOnly(true);
 
-    grid.addWidget(&input, 1, 0);
+    grid->addWidget(&input, 1, 0);
     QObject::connect(&input, &QLineEdit::returnPressed, [this]() {
         QMutex mutex;
         mutex.lock();

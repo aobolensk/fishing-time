@@ -4,8 +4,7 @@
 
 
 NetsMenu::NetsMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&netsDescription, 0, 0, 1, Config::SLOTS_COUNT);
     netsDescription.setVisible(false);
 

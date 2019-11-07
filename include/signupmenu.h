@@ -10,7 +10,6 @@ class SignupMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QLabel signupLabel,
            loginLabel,
            passwordLabel,
@@ -20,7 +19,6 @@ private:
               passwordConfirmationText;
     QPushButton signUpButton,
                 backButton;
-    QGridLayout *grid;
 private slots:
     void signUpFunction();
     void backFunction();

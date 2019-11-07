@@ -10,7 +10,6 @@ class MainMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QLabel infoLabel;
     QPushButton consoleButton,
                 startButton,
@@ -19,7 +18,6 @@ private:
                 aboutButton,
                 reportButton,
                 exitButton;
-    QGridLayout *grid;
     int cnt = 0;
 private slots:
     void consoleFunction();

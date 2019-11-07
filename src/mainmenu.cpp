@@ -3,8 +3,7 @@
 #include "game.h"
 
 MainMenu::MainMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&infoLabel, 0, 2);
     infoLabel.setVisible(false);
     infoLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);

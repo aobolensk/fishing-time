@@ -10,7 +10,6 @@ class LoginMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QComboBox loginSelector;
     QLineEdit passwordText;
     QPushButton loginButton,
@@ -18,7 +17,6 @@ private:
                 forgotPasswordButton,
                 demoButton,
                 backButton;
-    QGridLayout *grid;
 private slots:
     void loginFunction();
     void signUpFunction();

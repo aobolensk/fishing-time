@@ -1,6 +1,14 @@
-#include <QKeyEvent>
 #include <QDebug>
+#include <QKeyEvent>
 #include "menu.h"
+
+Menu::Menu(Game *game, QGridLayout *grid) :
+    game(game),
+    grid(grid) {
+    if (!this->grid) {
+        this->grid = new QGridLayout(this);
+    }
+}
 
 bool Menu::isDisplayed() const {
     return displayed;
@@ -26,5 +34,9 @@ void Menu::pre_hide() {
 }
 
 void Menu::backFunction() {
+
+}
+
+Menu::~Menu() {
 
 }

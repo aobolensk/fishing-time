@@ -10,11 +10,9 @@ class StatisticsMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QTextEdit statisticsText;
     QPushButton itemsButton,
                 backButton;
-    QGridLayout *grid;
     QTimer timer;
     QMetaObject::Connection timerUpdater;
 private slots:

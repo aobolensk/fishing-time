@@ -12,23 +12,21 @@ class GameMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QPushButton clickButton,
-                logOutButton,
-                backButton,
-                inventoryButton,
-                netsButton,
-                marketButton,
-                storeButton,
-                statisticsButton,
-                usersettingsButton,
-                locationButton;
+            logOutButton,
+            backButton,
+            inventoryButton,
+            netsButton,
+            marketButton,
+            storeButton,
+            statisticsButton,
+            usersettingsButton,
+            locationButton;
     QLabel infoLabel,
            fishLabel;
     QTableWidget popUpInventoryTable;
     QTableWidgetItem nameHeader,
                      quantityHeader;
-    QGridLayout *grid;
 public slots:
     void logOutFunction();
     void clickFunction();

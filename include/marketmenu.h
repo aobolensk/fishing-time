@@ -11,7 +11,6 @@ class MarketMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    Game *game;
     QPushButton backButton,
                 dialogButton[Config::SELLERS_COUNT];
     QLabel descriptionLabel,
@@ -20,7 +19,6 @@ private:
     QLineEdit quantityText[Config::SELLERS_COUNT];
     QString goodId[Config::SELLERS_COUNT];
     qint64 goodPrice[Config::SELLERS_COUNT];
-    QGridLayout *grid;
 private slots:
     void backFunction();
     void processDialog(int seller);

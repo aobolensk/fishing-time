@@ -5,8 +5,7 @@
 #include "game.h"
 
 LocationMenu::LocationMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&descriptionLabel, 0, 0, 1, 3);
     descriptionLabel.setVisible(false);
 

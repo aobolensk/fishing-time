@@ -3,8 +3,7 @@
 #include "game.h"
 
 UsersettingsMenu::UsersettingsMenu(Game *game, QGridLayout *grid) :
-        game(game),
-        grid(grid) {
+        Menu(game, grid) {
     grid->addWidget(&usersettingsLabel, 0, 0, 1, 2);
     usersettingsLabel.setVisible(false);
 
