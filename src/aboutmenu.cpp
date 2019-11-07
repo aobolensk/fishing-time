@@ -52,7 +52,7 @@ QString AboutMenu::getAboutInfo() {
 }
 
 void AboutMenu::display() {
-    game->installEventFilter(this);
+    this->pre_display();
 
     this->setWindowTitle(game->str.fishingTime + ": " + game->str.about);
     this->setVisible(true);
@@ -72,7 +72,7 @@ void AboutMenu::backFunction() {
 }
 
 void AboutMenu::hide() {
-    game->removeEventFilter(this);
+    this->pre_hide();
 
     descriptionLabel.setVisible(false);
 

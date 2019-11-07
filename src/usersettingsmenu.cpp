@@ -51,7 +51,7 @@ UsersettingsMenu::UsersettingsMenu(Game *game, QGridLayout *grid) :
 }
 
 void UsersettingsMenu::display() {
-    game->installEventFilter(this);
+    this->pre_display();
 
     usersettingsLabel.setText(game->str.userSettingsText.arg(
         game->users[game->activeUser].getUsername()
@@ -131,7 +131,7 @@ void UsersettingsMenu::backFunction() {
 }
 
 void UsersettingsMenu::hide() {
-    game->removeEventFilter(this);
+    this->pre_hide();
 
     usersettingsLabel.setVisible(false);
 

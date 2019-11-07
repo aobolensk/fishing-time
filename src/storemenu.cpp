@@ -50,7 +50,7 @@ StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
 }
 
 void StoreMenu::display() {
-    game->installEventFilter(this);
+    this->pre_display();
 
     updateTable();
     updateInfo();
@@ -161,7 +161,7 @@ void StoreMenu::backFunction() {
 }
 
 void StoreMenu::hide() {
-    game->removeEventFilter(this);
+    this->pre_hide();
 
     selectedItemLabel.setVisible(false);
     selectedItemLabel.setEnabled(false);

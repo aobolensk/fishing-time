@@ -45,7 +45,7 @@ MainMenu::MainMenu(Game *game, QGridLayout *grid) :
 }
 
 void MainMenu::display() {
-    game->installEventFilter(this);
+    this->pre_display();
 
     infoLabel.setText(game->str.mainMenuText.arg(
         game->activeUser == -1 ? "" : game->users[game->activeUser].getUsername()
@@ -121,7 +121,7 @@ void MainMenu::exitFunction() {
 }
 
 void MainMenu::hide() {
-    game->removeEventFilter(this);
+    this->pre_hide();
 
     infoLabel.setVisible(false);
 

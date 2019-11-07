@@ -52,7 +52,7 @@ void InventoryMenu::updateInventoryTable() {
 }
 
 void InventoryMenu::display() {
-    game->installEventFilter(this);
+    this->pre_display();
 
     updateInventoryTable();
 
@@ -81,7 +81,7 @@ void InventoryMenu::backFunction() {
 }
 
 void InventoryMenu::hide() {
-    game->removeEventFilter(this);
+    this->pre_hide();
 
     descriptionLabel.setVisible(false);
 

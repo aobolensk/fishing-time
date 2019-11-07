@@ -78,7 +78,7 @@ void NetsMenu::netsTimerTick() {
 }
 
 void NetsMenu::display() {
-    game->installEventFilter(this);
+    this->pre_display();
 
     updateNets();
 
@@ -129,7 +129,7 @@ void NetsMenu::backFunction() {
 }
 
 void NetsMenu::hide() {
-    game->removeEventFilter(this);
+    this->pre_hide();
 
     netsDescription.setVisible(false);
 

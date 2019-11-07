@@ -1,6 +1,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include "menu.h"
+#include "game.h"
 
 Menu::Menu(Game *game, QGridLayout *grid) :
     game(game),
@@ -26,11 +27,11 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
 }
 
 void Menu::pre_display() {
-
+    game->installEventFilter(this);
 }
 
 void Menu::pre_hide() {
-
+    game->removeEventFilter(this);
 }
 
 void Menu::backFunction() {

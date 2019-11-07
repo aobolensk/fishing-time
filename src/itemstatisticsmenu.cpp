@@ -91,7 +91,7 @@ void ItemStatisticsMenu::updateStatistics() {
 }
 
 void ItemStatisticsMenu::display() {
-    game->installEventFilter(this);
+    this->pre_display();
 
     updateStatistics();
     statisticsText.setVisible(true);
@@ -109,7 +109,7 @@ void ItemStatisticsMenu::backFunction() {
 }
 
 void ItemStatisticsMenu::hide() {
-    game->removeEventFilter(this);
+    this->pre_hide();
 
     statisticsText.setVisible(false);
 

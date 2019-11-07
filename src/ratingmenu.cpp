@@ -51,7 +51,7 @@ void RatingMenu::updateTable() {
 }
 
 void RatingMenu::display() {
-    game->installEventFilter(this);
+    this->pre_display();
 
     updateTable();
 
@@ -75,7 +75,7 @@ void RatingMenu::backFunction() {
 }
 
 void RatingMenu::hide() {
-    game->removeEventFilter(this);
+    this->pre_hide();
 
     ratingTable.setVisible(false);
     ratingTable.setEnabled(false);
