@@ -1,12 +1,9 @@
 #ifndef INCLUDE_CONSOLE_H_
 #define INCLUDE_CONSOLE_H_
-#include <deque>
-#include <functional>
-#include <QWidget>
-#include <QGridLayout>
 #include <QLineEdit>
-#include <QTextEdit>
 #include <QMap>
+#include <QTextEdit>
+#include <deque>
 #include "log.h"
 #include "menu.h"
 

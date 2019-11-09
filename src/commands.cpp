@@ -1,3 +1,5 @@
+#include <QApplication>
+#include <QCryptographicHash>
 #include "console.h"
 #include "game.h"
 

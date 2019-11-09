@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QStyleFactory>
 #include "config.h"
 #include "game.h"

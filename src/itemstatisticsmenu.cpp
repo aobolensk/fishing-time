@@ -1,5 +1,5 @@
-#include "itemstatisticsmenu.h"
 #include "game.h"
+#include "itemstatisticsmenu.h"
 
 ItemStatisticsMenu::ItemStatisticsMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {

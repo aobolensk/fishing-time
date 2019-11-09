@@ -1,7 +1,6 @@
 #ifndef INCLUDE_CONFIG_H_
 #define INCLUDE_CONFIG_H_
 #include <QVariantMap>
-#include <QByteArray>
 
 class Game;
 

@@ -1,8 +1,7 @@
 #ifndef INCLUDE_ABOUTMENU_H_
 #define INCLUDE_ABOUTMENU_H_
-#include <QPushButton>
-#include <QGridLayout>
 #include <QLabel>
+#include <QPushButton>
 #include "menu.h"
 
 class AboutMenu : public Menu {

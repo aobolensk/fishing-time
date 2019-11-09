@@ -1,8 +1,7 @@
 #ifndef INCLUDE_LOCATIONMENU_H_
 #define INCLUDE_LOCATIONMENU_H_
-#include <QPushButton>
-#include <QGridLayout>
 #include <QLabel>
+#include <QPushButton>
 #include "menu.h"
 
 class LocationMenu : public Menu {

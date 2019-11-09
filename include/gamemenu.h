@@ -1,11 +1,8 @@
 #ifndef INCLUDE_GAMEMENU_H_
 #define INCLUDE_GAMEMENU_H_
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLineEdit>
 #include <QLabel>
+#include <QPushButton>
 #include <QTableWidget>
-#include <QComboBox>
 #include "menu.h"
 
 class GameMenu : public Menu {

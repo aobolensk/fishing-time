@@ -1,10 +1,9 @@
-#include "game.h"
-#include <QFile>
-#include <QDebug>
-#include <QMessageBox>
+#include <QApplication>
 #include <QJsonArray>
 #include <QJsonParseError>
+#include <QMessageBox>
 #include <QSettings>
+#include "game.h"
 
 Game::Game(QWidget *parent, const QString &file) :
         QWidget(parent),

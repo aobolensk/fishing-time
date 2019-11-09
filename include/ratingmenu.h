@@ -1,9 +1,6 @@
 #ifndef INCLUDE_RATINGMENU_H_
 #define INCLUDE_RATINGMENU_H_
 #include <QPushButton>
-#include <QGridLayout>
-#include <QLabel>
-#include <QComboBox>
 #include <QTableWidget>
 #include "menu.h"
 

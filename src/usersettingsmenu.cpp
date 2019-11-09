@@ -1,3 +1,4 @@
+#include <QCryptographicHash>
 #include <QMessageBox>
 #include "usersettingsmenu.h"
 #include "game.h"

@@ -1,7 +1,7 @@
 #ifndef INCLUDE_DICTIONARY_H_
 #define INCLUDE_DICTIONARY_H_
-#include <QVector>
 #include <QMap>
+#include <QVector>
 
 class Game;
 

@@ -1,10 +1,9 @@
 #ifndef INCLUDE_STOREMENU_H_
 #define INCLUDE_STOREMENU_H_
-#include <QPushButton>
-#include <QGridLayout>
-#include <QTableWidget>
-#include <QLineEdit>
 #include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QTableWidget>
 #include "menu.h"
 
 class StoreMenu : public Menu {

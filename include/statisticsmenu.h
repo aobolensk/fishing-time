@@ -1,7 +1,6 @@
 #ifndef INCLUDE_STATISTICSMENU_H_
 #define INCLUDE_STATISTICSMENU_H_
 #include <QPushButton>
-#include <QGridLayout>
 #include <QTextEdit>
 #include <QTimer>
 #include "menu.h"
