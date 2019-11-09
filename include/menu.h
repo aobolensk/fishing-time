@@ -8,7 +8,7 @@ class Game;
 
 class Menu : public QWidget {
 protected:
-    bool eventFilter(QObject *obj, QEvent *event);
+    bool eventFilter(QObject *obj, QEvent *event) override;
 protected slots:
     virtual void backFunction();
 protected:

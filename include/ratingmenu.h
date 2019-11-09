@@ -20,7 +20,7 @@ private:
 private:
     void updateTable();
 private slots:
-    void backFunction();
+    void backFunction() override;
 public:
     RatingMenu(Game *game, QGridLayout *grid);
     ~RatingMenu();

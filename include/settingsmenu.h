@@ -36,7 +36,7 @@ private slots:
     void eraseAllDataFunction();
     void configFileSetupFunction();
     void autoSavePeriodSliderFunction(int value);
-    void backFunction();
+    void backFunction() override;
 public:
     SettingsMenu(Game *game, QGridLayout *grid);
     ~SettingsMenu();

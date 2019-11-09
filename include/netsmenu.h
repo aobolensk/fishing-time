@@ -22,7 +22,7 @@ private:
 private slots:
     void netsTimerTick();
 private slots:
-    void backFunction();
+    void backFunction() override;
 public:
     NetsMenu(Game *game, QGridLayout *grid);
     ~NetsMenu();

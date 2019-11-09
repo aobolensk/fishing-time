@@ -13,7 +13,7 @@ private:
     QComboBox locationSelector;
     QMetaObject::Connection locationUpdater;
 private slots:
-    void backFunction();
+    void backFunction() override;
 public:
     LocationMenu(Game *game, QGridLayout *grid);
     ~LocationMenu();

@@ -19,7 +19,7 @@ private:
     QString goodId[Config::SELLERS_COUNT];
     qint64 goodPrice[Config::SELLERS_COUNT];
 private slots:
-    void backFunction();
+    void backFunction() override;
     void processDialog(int seller);
 private:
     void updateDeals();

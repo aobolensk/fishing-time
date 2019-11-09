@@ -21,7 +21,7 @@ private slots:
     void signUpFunction();
     void forgotPasswordFunction();
     void demoFunction();
-    void backFunction();
+    void backFunction() override;
 public:
     LoginMenu(Game *game, QGridLayout *grid);
     ~LoginMenu();

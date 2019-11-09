@@ -15,7 +15,7 @@ private:
                      quantityHeader;
     QPushButton backButton;
 private slots:
-    void backFunction();
+    void backFunction() override;
 private:
     void updateInventoryTable();
 public:
