@@ -1,9 +1,8 @@
 #ifndef INCLUDE_LOGINMENU_H_
 #define INCLUDE_LOGINMENU_H_
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLineEdit>
 #include <QComboBox>
+#include <QLineEdit>
+#include <QPushButton>
 #include "menu.h"
 
 class LoginMenu : public Menu {

@@ -1,6 +1,6 @@
 #include <QHeaderView>
-#include <QStringList>
 #include <QSettings>
+#include <QStringList>
 #include "gamemenu.h"
 #include "game.h"
 

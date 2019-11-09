@@ -1,9 +1,7 @@
 #ifndef INCLUDE_ITEMSTATISTICSMENU_H_
 #define INCLUDE_ITEMSTATISTICSMENU_H_
 #include <QPushButton>
-#include <QGridLayout>
 #include <QTextEdit>
-#include <QTimer>
 #include "menu.h"
 
 class ItemStatisticsMenu : public Menu {

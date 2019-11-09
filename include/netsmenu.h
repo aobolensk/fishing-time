@@ -1,9 +1,8 @@
 #ifndef INCLUDE_NETSMENU_H_
 #define INCLUDE_NETSMENU_H_
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLabel>
 #include <QComboBox>
+#include <QLabel>
+#include <QPushButton>
 #include <QTimer>
 #include "menu.h"
 #include "config.h"

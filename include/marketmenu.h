@@ -1,9 +1,8 @@
 #ifndef INCLUDE_MARKETMENU_H_
 #define INCLUDE_MARKETMENU_H_
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLineEdit>
 #include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
 #include "menu.h"
 #include "config.h"
 

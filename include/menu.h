@@ -1,7 +1,7 @@
 #ifndef INCLUDE_MENU_H_
 #define INCLUDE_MENU_H_
-#include <QWidget>
 #include <QGridLayout>
+#include <QWidget>
 #include "menu.h"
 
 class Game;

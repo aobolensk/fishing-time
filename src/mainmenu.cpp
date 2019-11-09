@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QDesktopServices>
 #include "mainmenu.h"
 #include "game.h"

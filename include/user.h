@@ -1,11 +1,8 @@
 #ifndef INCLUDE_USER_H_
 #define INCLUDE_USER_H_
+#include <QJsonObject>
 #include <QString>
 #include <QVariant>
-#include <QJsonObject>
-#include <QDebug>
-#include <QCoreApplication>
-#include <QCryptographicHash>
 #include "menu.h"
 
 class User {

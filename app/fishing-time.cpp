@@ -1,5 +1,4 @@
 #include <QApplication>
-#include <QDebug>
 #include "game.h"
 #include "user.h"
 

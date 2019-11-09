@@ -1,5 +1,3 @@
-#include <stdexcept>
-#include <QDebug>
 #include "dictionary.h"
 #include "game.h"
 

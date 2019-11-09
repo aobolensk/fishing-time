@@ -1,9 +1,8 @@
 #ifndef INCLUDE_SIGNUPMENU_H_
 #define INCLUDE_SIGNUPMENU_H_
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLineEdit>
 #include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
 #include "menu.h"
 
 class SignupMenu : public Menu {

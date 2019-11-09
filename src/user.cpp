@@ -1,3 +1,5 @@
+#include <QApplication>
+#include <QCryptographicHash>
 #include <QDateTime>
 #include "game.h"
 #include "user.h"

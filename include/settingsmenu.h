@@ -1,9 +1,8 @@
 #ifndef INCLUDE_SETTINGSMENU_H_
 #define INCLUDE_SETTINGSMENU_H_
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLabel>
 #include <QComboBox>
+#include <QLabel>
+#include <QPushButton>
 #include <QPushButton>
 #include <QSlider>
 #include "menu.h"

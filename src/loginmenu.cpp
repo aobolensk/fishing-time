@@ -1,5 +1,6 @@
-#include <random>
+#include <QCryptographicHash>
 #include <QMessageBox>
+#include <random>
 #include "loginmenu.h"
 #include "game.h"
 

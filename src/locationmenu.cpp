@@ -1,6 +1,3 @@
-#include <random>
-#include <QDateTime>
-#include <QMessageBox>
 #include "gamemenu.h"
 #include "game.h"
 

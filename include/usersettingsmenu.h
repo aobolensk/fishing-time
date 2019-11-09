@@ -1,9 +1,8 @@
 #ifndef INCLUDE_USERSETTINGSMENU_H_
 #define INCLUDE_USERSETTINGSMENU_H_
-#include <QPushButton>
-#include <QGridLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QPushButton>
 #include "menu.h"
 
 class UsersettingsMenu : public Menu {

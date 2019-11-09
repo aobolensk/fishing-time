@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QDialog>
 #include <QMessageBox>
 #include <QMutex>
