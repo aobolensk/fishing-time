@@ -23,7 +23,7 @@ private:
 private slots:
     void changePasswordFunction();
     void deleteAccountFunction();
-    void backFunction();
+    void backFunction() override;
 public:
     UsersettingsMenu(Game *game, QGridLayout *grid);
     ~UsersettingsMenu();

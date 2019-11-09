@@ -11,7 +11,7 @@ private:
     QLabel descriptionLabel;
     QPushButton backButton;
 private slots:
-    void backFunction();
+    void backFunction() override;
 public:
     AboutMenu(Game *game);
     ~AboutMenu();

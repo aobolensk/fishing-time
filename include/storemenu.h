@@ -21,7 +21,7 @@ private:
                      priceHeader;
 private slots:
     void buyFunction();
-    void backFunction();
+    void backFunction() override;
 private:
     void updateInfo();
     void updateTable();

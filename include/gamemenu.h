@@ -28,7 +28,7 @@ public slots:
     void logOutFunction();
     void clickFunction();
 private slots:
-    void backFunction();
+    void backFunction() override;
     void inventoryFunction();
     void marketFunction();
     void storeFunction();

@@ -12,7 +12,7 @@ private:
     QPushButton backButton;
 private slots:
     void updateStatistics();
-    void backFunction();
+    void backFunction() override;
 public:
     ItemStatisticsMenu(Game *game, QGridLayout *grid);
     ~ItemStatisticsMenu();

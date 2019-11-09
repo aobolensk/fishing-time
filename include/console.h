@@ -32,9 +32,9 @@ private:
         QString getLower();
     } inputHistory;
 private:
-    void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event) override;
 protected:
-    bool eventFilter(QObject *obj, QEvent *event);
+    bool eventFilter(QObject *obj, QEvent *event) override;
 private:
     QTextEdit console;
     QLineEdit input;
