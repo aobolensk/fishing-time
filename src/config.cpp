@@ -8,6 +8,8 @@ Config::Config(Game *game) :
 
 }
 
+const QString Config::imagesDirectory = "../images/";
+
 void Config::deserialize(const QVariantMap &map) {
     if (isReady)
         return;

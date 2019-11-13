@@ -40,7 +40,7 @@ Game::Game(QWidget *parent, const QString &file) :
     }
     this->setLayout(&grid);
     this->setWindowTitle(str.fishingTime);
-    this->setWindowIcon(QIcon("../images/icon.png"));
+    this->setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
     grid.setColumnStretch(0, 1);
     grid.setColumnStretch(1, 1);
     grid.setColumnStretch(2, 1);

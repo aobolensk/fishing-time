@@ -193,6 +193,7 @@ void Console::commandParser() {
 
 void Console::display() {
     this->setWindowTitle(game->str.fishingTime + ": " + game->str.console);
+    this->setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
     this->show();
 
     displayed = true;

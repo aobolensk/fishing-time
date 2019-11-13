@@ -507,8 +507,11 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
 
     if (!initialSetup) {
         game->aboutMenu.setWindowTitle(fishingTime + ": " + about);
+        game->aboutMenu.setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
         game->console.setWindowTitle(fishingTime + ": " + console);
+        game->console.setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
         game->setWindowTitle(fishingTime);
         game->gameMenu.getPopUpInventoryTable().setWindowTitle(fishingTime + ": " + inventory);
+        game->gameMenu.getPopUpInventoryTable().setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
     }
 }
