@@ -44,10 +44,14 @@ static int hash(int x) {
 }
 
 void MarketMenu::updateDeals() {
-    int seed = QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0)));
-    seed += hash(game->activeLocation + 1);
-    std::mt19937 randGen(seed);
-    qDebug() << "Random seed:" << seed;
+    int currentSeed = QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0)));
+    if (seed == currentSeed) {
+        qDebug() << "Seed is not changed";
+        return;
+    }
+    seed = currentSeed;
+    std::mt19937 randGen(seed + hash(game->activeLocation + 1));
+    qDebug() << "Random seed:" << seed + hash(game->activeLocation + 1);
     std::uniform_int_distribution<> gen(0, game->str.fishIds.size() - 2);
     for (int i = 0; i < Config::SELLERS_COUNT; ++i) {
         goodId[i] = game->str.fishIds[gen(randGen)];
@@ -105,6 +109,10 @@ void MarketMenu::display() {
         backFunction();
         return;
     }
+
+    timerUpdater = connect(&timer, SIGNAL(timeout()), this, SLOT(updateDeals()));
+    timer.start(Config::MARKET_UPDATE_PERIOD);
+
     updateDeals();
     updateInfo();
 
@@ -141,6 +149,10 @@ void MarketMenu::backFunction() {
 
 void MarketMenu::hide() {
     this->pre_hide();
+
+    timer.stop();
+    disconnect(timerUpdater);
+    seed = -1;
 
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
