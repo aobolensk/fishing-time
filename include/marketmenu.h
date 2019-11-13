@@ -18,11 +18,14 @@ private:
     QLineEdit quantityText[Config::SELLERS_COUNT];
     QString goodId[Config::SELLERS_COUNT];
     qint64 goodPrice[Config::SELLERS_COUNT];
+    QTimer timer;
+    QMetaObject::Connection timerUpdater;
+    int seed = -1;
 private slots:
     void backFunction() override;
     void processDialog(int seller);
-private:
     void updateDeals();
+private:
     void updateInfo();
 public:
     MarketMenu(Game *game, QGridLayout *grid);
