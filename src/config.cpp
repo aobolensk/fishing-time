@@ -5,10 +5,10 @@
 
 Config::Config(Game *game) :
     game(game) {
-
+    qDebug() << "Project directory:" << PROJECT_DIR;
 }
 
-const QString Config::imagesDirectory = "../images/";
+const QString Config::imagesDirectory = PROJECT_DIR "/images/";
 
 void Config::deserialize(const QVariantMap &map) {
     if (isReady)
