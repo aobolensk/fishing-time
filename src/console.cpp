@@ -99,7 +99,8 @@ bool Console::eventFilter(QObject *obj, QEvent *event) {
 int Console::parseCommand(QStringList &args) {
     auto commandIterator = commands.find(args[0]);
     if (args[0] == "login" ||
-        args[0] == "signup") {
+        args[0] == "signup" ||
+        args[0] == "password") {
         inputHistory.needToPush = false;
     }
     int retCode = 0;

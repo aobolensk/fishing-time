@@ -96,6 +96,48 @@ void Console::registerCommands() {
         &game->str.commands.signup
     };
 
+    commands["password"] = {
+        [&](QStringList &args) -> int {
+            // args[1] -> option
+            if (game->activeUser == -1) {
+                log.error(game->str.youAreNotLoggedIn);
+                return 1;
+            }
+            if (args.count() < 2) {
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                return 1;
+            }
+            if (args[1] == "change") {
+                // args[2] -> old password
+                // args[3] -> new password
+                // args[4] -> new password confirmation
+                if (args.count() != 5) {
+                    log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                    return 1;
+                }
+                if (QCryptographicHash::hash(args[2].toUtf8(), QCryptographicHash::Md5) !=
+                    game->users[game->activeUser].getPasswordHash()) {
+                    log.error(game->str.incorrectPassword);
+                    return 1;
+                }
+                if (args[3] != args[4]) {
+                    log.error(game->str.confirmPasswordWarning);
+                    return 1;
+                }
+                game->users[game->activeUser].setPasswordHash(
+                    QCryptographicHash::hash(args[3].toUtf8(), QCryptographicHash::Md5)
+                );
+                log.info(game->str.passwordIsChanged);
+            } else {
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                return 1;
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.password
+    };
+
     commands["click"] = {
         [&](QStringList &args) -> int {
             (void) args;

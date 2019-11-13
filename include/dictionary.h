@@ -142,6 +142,7 @@ public:
             echo,
             login,
             signup,
+            password,
             click,
             gui,
             logout,

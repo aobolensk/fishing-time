@@ -212,7 +212,14 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "Usage: login &lt;login&gt; &lt;password&gt;";
         SET(commands.signup) =
             "Sign up new user<br>"
-            "Usage: signup &lt;login&gt; &lt;password&gt; &lt;password confirmation&gt;";
+            "Usage: signup &lt;login&gt; &lt;password&gt; &lt;password confirmation&gt; ";
+        SET(commands.password) =
+            "Manage password settings<br>"
+            "Usage: password &lt;option&gt; &lt;option_args&gt;<br>"
+            "List of supported options:<br>"
+            "\tchange - change password<br>"
+            "\t(password change &lt;old password&gt; &lt;new password&gt;"
+            "&lt;new password confirmation&gt;)";
         SET(commands.click) =
             "Perform click<br>"
             "Usage: click";
@@ -413,6 +420,13 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.signup) =
             "Зарегистрировать нового пользователя<br>"
             "Использование: signup &lt;логин&gt; &lt;пароль&gt; &lt;подтверждение пароля&gt;";
+        SET(commands.password) =
+            "Управление настройками пароля<br>"
+            "Использование: password &lt;операция&gt; &lt;аргументы_для_операции&gt;<br>"
+            "Список поддерживаемых операций:<br>"
+            "\tchange - изменить пароль<br>"
+            "\t(password change &lt;старый пароль&gt; &lt;новый пароль&gt; "
+            "&lt;подтверждение нового пароля&gt;)";
         SET(commands.click) =
             "Сделать клик<br>"
             "Использование: click";
