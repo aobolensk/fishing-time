@@ -138,6 +138,34 @@ void Console::registerCommands() {
         &game->str.commands.password
     };
 
+    commands["delete_account"] = {
+        [&](QStringList &args) -> int {
+            // args[1] -> password
+            // args[2] -> password confirmation
+            if (game->activeUser == -1) {
+                log.error(game->str.youAreNotLoggedIn);
+                return 1;
+            }
+            if (args.count() != 3) {
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                return 1;
+            }
+            if (args[1] != args[2]) {
+                log.error(game->str.confirmPasswordWarning);
+                return 1;
+            }
+            game->netsMenu.foldNets();
+            game->users.erase(game->users.begin() + game->activeUser);
+            game->activeUser = -1;
+            game->activeLocation = -1;
+            game->hideCurrentMenu();
+            game->mainMenu.display();
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.delete_account
+    };
+
     commands["click"] = {
         [&](QStringList &args) -> int {
             (void) args;

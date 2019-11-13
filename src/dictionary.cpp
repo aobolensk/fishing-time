@@ -220,6 +220,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "\tchange - change password<br>"
             "\t(password change &lt;old password&gt; &lt;new password&gt;"
             "&lt;new password confirmation&gt;)";
+        SET(commands.delete_account) =
+            "Delete an account (permanently!)<br>"
+            "Usage: delete_account &lt;password&gt; &lt;password confirmation&gt;";
         SET(commands.click) =
             "Perform click<br>"
             "Usage: click";
@@ -427,6 +430,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "\tchange - изменить пароль<br>"
             "\t(password change &lt;старый пароль&gt; &lt;новый пароль&gt; "
             "&lt;подтверждение нового пароля&gt;)";
+        SET(commands.delete_account) =
+            "Удалить аккаунт (безвозвратно!)<br>"
+            "Использование: delete_account &lt;пароль&gt; &lt;подтверждение пароля&gt;";
         SET(commands.click) =
             "Сделать клик<br>"
             "Использование: click";

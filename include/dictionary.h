@@ -143,6 +143,7 @@ public:
             login,
             signup,
             password,
+            delete_account,
             click,
             gui,
             logout,
