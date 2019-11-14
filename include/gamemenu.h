@@ -25,6 +25,8 @@ private:
     QTableWidget popUpInventoryTable;
     QTableWidgetItem nameHeader,
                      quantityHeader;
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
 public slots:
     void logOutFunction();
     void clickFunction();
@@ -40,6 +42,9 @@ private slots:
     void locationFunction();
 private:
     void updateInfo();
+    bool displayedButtons = true;
+    void displayButtons();
+    void hideButtons();
 public:
     void updateInventoryTable();
     QTableWidget &getPopUpInventoryTable();

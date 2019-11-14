@@ -24,12 +24,14 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     infoLabel.setWordWrap(true);
     infoLabel.setVisible(false);
     infoLabel.setEnabled(false);
+    infoLabel.setAttribute(Qt::WA_TransparentForMouseEvents);
     infoLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&fishLabel, 1, 2);
     fishLabel.setWordWrap(true);
     fishLabel.setVisible(false);
     fishLabel.setEnabled(false);
+    fishLabel.setAttribute(Qt::WA_TransparentForMouseEvents);
     fishLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&profileButton, 0, 0);
@@ -90,6 +92,8 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
 
 void GameMenu::display() {
     this->pre_display();
+
+    game->setMouseTracking(true);
 
     updateInfo();
     infoLabel.setVisible(true);
@@ -159,6 +163,71 @@ void GameMenu::clickFunction() {
     game->users[game->activeUser].inventory.updateStats(fish, "stats.caught", 1);
     game->users[game->activeUser].incClicks();
     updateInfo();
+}
+
+bool GameMenu::eventFilter(QObject *obj, QEvent *event) {
+    if (event->type() == QEvent::MouseMove) {
+        QMouseEvent *e = static_cast<QMouseEvent *>(event);
+        qDebug() << e->pos() << game->height();
+        if (!displayedButtons && e->pos().y() > game->height() * 2 / 3) {
+            qDebug() << "display";
+            displayButtons();
+        } else if (displayedButtons && e->pos().y() <= game->height() * 2 / 3) {
+            qDebug() << "hide";
+            hideButtons();
+        }
+    }
+    return QObject::eventFilter(obj, event);
+}
+
+void GameMenu::displayButtons() {
+    inventoryButton.setVisible(true);
+    inventoryButton.setEnabled(true);
+
+    marketButton.setVisible(true);
+    marketButton.setEnabled(true);
+
+    storeButton.setVisible(true);
+    storeButton.setEnabled(true);
+
+    netsButton.setVisible(true);
+    netsButton.setEnabled(true);
+
+    statisticsButton.setVisible(true);
+    statisticsButton.setEnabled(true);
+
+    usersettingsButton.setVisible(true);
+    usersettingsButton.setEnabled(true);
+
+    locationButton.setVisible(true);
+    locationButton.setEnabled(true);
+
+    displayedButtons = true;
+}
+
+void GameMenu::hideButtons() {
+    inventoryButton.setVisible(false);
+    inventoryButton.setEnabled(false);
+
+    marketButton.setVisible(false);
+    marketButton.setEnabled(false);
+
+    storeButton.setVisible(false);
+    storeButton.setEnabled(false);
+
+    netsButton.setVisible(false);
+    netsButton.setEnabled(false);
+
+    statisticsButton.setVisible(false);
+    statisticsButton.setEnabled(false);
+
+    usersettingsButton.setVisible(false);
+    usersettingsButton.setEnabled(false);
+
+    locationButton.setVisible(false);
+    locationButton.setEnabled(false);
+
+    displayedButtons = false;
 }
 
 void GameMenu::profileFunction() {
@@ -281,6 +350,8 @@ void GameMenu::updateInfo() {
 
 void GameMenu::hide() {
     this->pre_hide();
+
+    game->setMouseTracking(false);
 
     infoLabel.setVisible(false);
 
