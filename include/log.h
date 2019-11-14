@@ -12,6 +12,9 @@ public:
     void info(const QString &message);
     void warning(const QString &message);
     void error(const QString &message);
+    void infoT(const QString &message);
+    void warningT(const QString &message);
+    void errorT(const QString &message);
     void write(const QString &message);
     void writeln(const QString &message);
     void setColor(const QString &color);
