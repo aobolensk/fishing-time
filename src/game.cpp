@@ -49,6 +49,7 @@ Game::Game(QWidget *parent, const QString &file) :
     this->deserialize();
     this->mainMenu.display();
     this->logger.info("Logging system is successfully initialized!");
+    this->logger.debug("Debug logging system is enabled!");
 }
 
 void Game::setAutoSavePeriod(int periodInMinutes) {

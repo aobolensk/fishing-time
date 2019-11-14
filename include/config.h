@@ -12,6 +12,10 @@ enum class ColorTheme {
     LIGHT, DARK
 };
 
+enum class LoggerLevel {
+    RELEASE,
+    DEBUG
+};
 
 class Config {
 public: /* Constants */

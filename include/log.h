@@ -10,9 +10,11 @@ private:
     QTextEdit *console;
     QString getTimestamp();
 public:
+    void debug(const QString &message);
     void info(const QString &message);
     void warning(const QString &message);
     void error(const QString &message);
+    void debugT(const QString &message);
     void infoT(const QString &message);
     void warningT(const QString &message);
     void errorT(const QString &message);

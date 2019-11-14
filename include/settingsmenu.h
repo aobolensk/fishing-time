@@ -17,11 +17,13 @@ private:
            inventoryTypeLabel,
            fontLabel,
            colorThemeLabel,
+           loggerLevelLabel,
            configFileLabel;
     QSlider autoSavePeriodSlider;
     QComboBox languageSelector,
               inventoryTypeSelector,
-              colorThemeSelector;
+              colorThemeSelector,
+              loggerLevelSelector;
     QPushButton fontSetupButton,
                 eraseAllDataButton,
                 configFileSetupButton,
@@ -29,7 +31,8 @@ private:
     QMetaObject::Connection languageUpdater,
                             autoSaveUpdater,
                             inventoryTypeUpdater,
-                            colorThemeUpdater;
+                            colorThemeUpdater,
+                            loggerLevelUpdater;
 private:
 private slots:
     void fontSetupFunction();

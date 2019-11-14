@@ -5,16 +5,25 @@ Log::Log(Game *game, QTextEdit *logField) :
     game(game),
     console(logField) {}
 
+
+QString Log::getTimestamp() {
+    return "[" + QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss.zzz") + "]";
+}
+
+void Log::debug(const QString &message) {
+    console->moveCursor(QTextCursor::End);
+    console->insertHtml(
+        game->str.logDebug + ' ' + message +
+        "<br>"
+    );
+}
+
 void Log::info(const QString &message) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(
         game->str.logInfo + ' ' + message +
         "<br>"
     );
-}
-
-QString Log::getTimestamp() {
-    return "[" + QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss.zzz") + "]";
 }
 
 void Log::warning(const QString &message) {
@@ -32,6 +41,15 @@ void Log::error(const QString &message) {
         "<font color=\"red\">" +
         game->str.logError + ' ' + message +
         "</font><br>"
+    );
+}
+
+void Log::debugT(const QString &message) {
+    console->moveCursor(QTextCursor::End);
+    console->insertHtml(
+        getTimestamp() + ' ' +
+        game->str.logDebug + ' ' + message +
+        "<br>"
     );
 }
 

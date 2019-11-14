@@ -76,6 +76,7 @@ public:
     QDateTime userTimestamp;
     InventoryType inventoryType = InventoryType::POPUP;
     ColorTheme colorTheme = ColorTheme::LIGHT;
+    LoggerLevel loggerLevel = LoggerLevel::RELEASE;
     QFont textFont = QFont("Noto Sans", 11, QFont::Normal, false);
     void setAutoSavePeriod(int periodInMinutes);
     void setConfigFile(const QString &new_config_file);

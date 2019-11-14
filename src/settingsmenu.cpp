@@ -62,21 +62,30 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     colorThemeSelector.setVisible(false);
     colorThemeSelector.setEnabled(false);
 
-    grid->addWidget(&eraseAllDataButton, 5, 1);
+    grid->addWidget(&loggerLevelLabel, 5, 0);
+    loggerLevelLabel.setVisible(false);
+    loggerLevelLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+    grid->addWidget(&loggerLevelSelector, 5, 1);
+    loggerLevelSelector.setCurrentIndex(-1);
+    loggerLevelSelector.setVisible(false);
+    loggerLevelSelector.setEnabled(false);
+
+    grid->addWidget(&eraseAllDataButton, 6, 1);
     eraseAllDataButton.setVisible(false);
     eraseAllDataButton.setEnabled(false);
     connect(&eraseAllDataButton, SIGNAL(released()), this, SLOT(eraseAllDataFunction()));
 
-    grid->addWidget(&configFileLabel, 6, 0);
+    grid->addWidget(&configFileLabel, 7, 0);
     configFileLabel.setVisible(false);
     configFileLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    grid->addWidget(&configFileSetupButton, 6, 1);
+    grid->addWidget(&configFileSetupButton, 7, 1);
     configFileSetupButton.setVisible(false);
     configFileSetupButton.setEnabled(false);
     connect(&configFileSetupButton, SIGNAL(released()), this, SLOT(configFileSetupFunction()));
 
-    grid->addWidget(&backButton, 7, 1);
+    grid->addWidget(&backButton, 8, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -144,6 +153,21 @@ void SettingsMenu::display() {
         if (index != -1) {
             this->game->colorTheme = (ColorTheme)index;
             this->game->cfg.applyColorTheme(this->game->colorTheme);
+        }
+    });
+
+    loggerLevelLabel.setText(game->str.loggerLevel);
+    loggerLevelLabel.setVisible(true);
+
+    loggerLevelSelector.addItem(game->str.loggerLevelRelease);
+    loggerLevelSelector.addItem(game->str.loggerLevelDebug);
+    loggerLevelSelector.setCurrentIndex((int)game->loggerLevel);
+    loggerLevelSelector.setVisible(true);
+    loggerLevelSelector.setEnabled(true);
+    loggerLevelUpdater = connect(&loggerLevelSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    [this](int index) {
+        if (index != -1) {
+            this->game->loggerLevel = (LoggerLevel)index;
         }
     });
 
@@ -243,6 +267,13 @@ void SettingsMenu::hide() {
 
     fontSetupButton.setVisible(false);
     fontSetupButton.setEnabled(false);
+
+    loggerLevelLabel.setVisible(false);
+
+    loggerLevelSelector.setVisible(false);
+    loggerLevelSelector.setEnabled(false);
+    disconnect(loggerLevelUpdater);
+    loggerLevelSelector.clear();
 
     colorThemeLabel.setVisible(false);
 

@@ -34,6 +34,12 @@ void Logger::closeEvent(QCloseEvent *event) {
     }
 }
 
+void Logger::debug(const QString &message) {
+    if (game->loggerLevel == LoggerLevel::DEBUG) {
+        this->log.debugT(message);
+    }
+}
+
 void Logger::info(const QString &message) {
     this->log.infoT(message);
 }
