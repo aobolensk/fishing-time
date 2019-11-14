@@ -74,6 +74,7 @@ public:
             listOfAllCommands,
             location,
             locationDescription,
+            log,
             logError,
             logIn,
             logInfo,

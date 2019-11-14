@@ -9,7 +9,8 @@ private:
     Q_OBJECT
 private:
     QLabel infoLabel;
-    QPushButton consoleButton,
+    QPushButton logButton,
+                consoleButton,
                 startButton,
                 settingsButton,
                 ratingButton,
@@ -18,6 +19,7 @@ private:
                 exitButton;
     int cnt = 0;
 private slots:
+    void logFunction();
     void consoleFunction();
     void startFunction();
     void settingsFunction();

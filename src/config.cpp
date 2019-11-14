@@ -56,9 +56,11 @@ void Config::applyColorTheme(ColorTheme theme) {
     game->setAutoFillBackground(true);
     game->setPalette(p);
     game->aboutMenu.setPalette(p);
+    game->logger.setPalette(p);
     game->console.setPalette(p);
     game->gameMenu.getPopUpInventoryTable().setPalette(p);
     game->setFont(game->textFont);
+    game->logger.setFont(game->textFont);
     game->console.setFont(game->textFont);
     game->aboutMenu.setFont(game->textFont);
     game->gameMenu.getPopUpInventoryTable().setFont(game->textFont);

@@ -9,6 +9,11 @@ MainMenu::MainMenu(Game *game, QGridLayout *grid) :
     infoLabel.setVisible(false);
     infoLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
+    grid->addWidget(&logButton, 2, 2);
+    logButton.setVisible(false);
+    logButton.setEnabled(false);
+    connect(&logButton, SIGNAL(released()), this, SLOT(logFunction()));
+
     grid->addWidget(&consoleButton, 1, 2);
     consoleButton.setVisible(false);
     consoleButton.setEnabled(false);
@@ -53,6 +58,10 @@ void MainMenu::display() {
     ));
     infoLabel.setVisible(true);
 
+    logButton.setText(game->str.log);
+    logButton.setVisible(true);
+    logButton.setEnabled(true);
+
     consoleButton.setText(game->str.console);
     consoleButton.setVisible(true);
     consoleButton.setEnabled(true);
@@ -82,6 +91,10 @@ void MainMenu::display() {
     exitButton.setEnabled(true);
 
     displayed = true;
+}
+
+void MainMenu::logFunction() {
+    game->logger.display();
 }
 
 void MainMenu::consoleFunction() {
@@ -125,6 +138,9 @@ void MainMenu::hide() {
     this->pre_hide();
 
     infoLabel.setVisible(false);
+
+    logButton.setVisible(false);
+    logButton.setEnabled(false);
 
     consoleButton.setVisible(false);
     consoleButton.setEnabled(false);
