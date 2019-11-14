@@ -7,32 +7,61 @@ Log::Log(Game *game, QTextEdit *logField) :
 
 void Log::info(const QString &message) {
     console->moveCursor(QTextCursor::End);
-    console->insertHtml(game->str.logInfo + ' ' + message + "<br>");
+    console->insertHtml(
+        game->str.logInfo + ' ' + message +
+        "<br>"
+    );
+}
+
+QString Log::getTimestamp() {
+    return "[" + QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss.zzz") + "]";
 }
 
 void Log::warning(const QString &message) {
     console->moveCursor(QTextCursor::End);
-    console->insertHtml("<font color=\"orange\">" + game->str.logWarning + ' ' + message + "</font><br>");
+    console->insertHtml(
+        "<font color=\"orange\">" +
+        game->str.logWarning + ' ' + message +
+        "</font><br>"
+    );
 }
 
 void Log::error(const QString &message) {
     console->moveCursor(QTextCursor::End);
-    console->insertHtml("<font color=\"red\">" + game->str.logError + ' ' + message + "</font><br>");
+    console->insertHtml(
+        "<font color=\"red\">" +
+        game->str.logError + ' ' + message +
+        "</font><br>"
+    );
 }
 
 void Log::infoT(const QString &message) {
     console->moveCursor(QTextCursor::End);
-    console->insertHtml("[" + QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss.zzz") + "] " + game->str.logInfo + ' ' + message + "<br>");
+    console->insertHtml(
+        getTimestamp() + ' ' +
+        game->str.logInfo + ' ' + message +
+        "<br>"
+    );
 }
 
 void Log::warningT(const QString &message) {
     console->moveCursor(QTextCursor::End);
-    console->insertHtml("<font color=\"orange\">[" + QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss.zzz") + "] " + game->str.logWarning + ' ' + message + "</font><br>");
+    console->insertHtml(
+        "<font color=\"orange\">" +
+        getTimestamp() + ' ' +
+        game->str.logWarning + ' ' + message +
+        "</font><br>"
+    );
 }
 
 void Log::errorT(const QString &message) {
     console->moveCursor(QTextCursor::End);
-    console->insertHtml("<font color=\"red\">[" + QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss.zzz") + "] " + game->str.logError + ' ' + message + "</font><br>");
+    console->insertHtml(
+        "<font color=\"red\">" +
+        getTimestamp() + ' ' +
+        game->str.logError + ' ' + message +
+        "</font><br>"
+    );
 }
 
 

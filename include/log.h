@@ -8,6 +8,7 @@ class Log {
 private:
     Game *game;
     QTextEdit *console;
+    QString getTimestamp();
 public:
     void info(const QString &message);
     void warning(const QString &message);
