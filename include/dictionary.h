@@ -75,6 +75,7 @@ public:
             location,
             locationDescription,
             log,
+            logDebug,
             logError,
             logIn,
             logInfo,

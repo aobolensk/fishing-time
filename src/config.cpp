@@ -17,6 +17,7 @@ void Config::deserialize(const QVariantMap &map) {
     game->autoSavePeriod = map["autoSavePeriod"].toInt();
     game->inventoryType = (InventoryType)map["inventoryType"].toInt();
     game->colorTheme = (ColorTheme)map["colorTheme"].toInt();
+    game->loggerLevel = (LoggerLevel)map["loggerLevel"].toInt();
     game->textFont.fromString(map["textFont"].toString());
     isReady = true;
 }
@@ -28,6 +29,7 @@ QJsonObject Config::serialize() const {
     jsonObj["autoSavePeriod"] = game->autoSavePeriod;
     jsonObj["inventoryType"] = (int)game->inventoryType;
     jsonObj["colorTheme"] = (int)game->colorTheme;
+    jsonObj["loggerLevel"] = (int)game->loggerLevel;
     jsonObj["textFont"] = game->font().toString();
     return jsonObj;
 }

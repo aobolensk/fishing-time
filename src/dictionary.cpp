@@ -141,6 +141,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(location) = "Location";
         SET(locationDescription) = "You can travel between locations to get different fish.\nChoose location:";
         SET(log) = "Log";
+        SET(logDebug) = "[DEBUG]";
         SET(logError) = "[ERROR]";
         SET(logIn) = "Log in";
         SET(logInfo) = "[INFO]";
@@ -353,6 +354,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(location) = "Локация";
         SET(locationDescription) = "Вы можете перемещаться между локациями, чтобы получать разную рыбу.\nВыберите локацию:";
         SET(log) = "Лог";
+        SET(logDebug) = "[ОТЛАДКА]";
         SET(logError) = "[ОШИБКА]";
         SET(logIn) = "Войти";
         SET(logInfo) = "[ИНФО]";
