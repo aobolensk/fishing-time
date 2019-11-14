@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QDateTime>
 #include <QMessageBox>
 #include <QSettings>
 #include "logger.h"
@@ -34,31 +35,15 @@ void Logger::closeEvent(QCloseEvent *event) {
 }
 
 void Logger::info(const QString &message) {
-    this->log.info(message);
+    this->log.infoT(message);
 }
 
 void Logger::warning(const QString &message) {
-    this->log.warning(message);
+    this->log.warningT(message);
 }
 
 void Logger::error(const QString &message) {
-    this->log.error(message);
-}
-
-void Logger::write(const QString &message) {
-    this->log.write(message);
-}
-
-void Logger::writeln(const QString &message) {
-    this->log.writeln(message);
-}
-
-void Logger::setColor(const QString &color) {
-    this->log.setColor(color);
-}
-
-void Logger::resetColor() {
-    this->log.resetColor();
+    this->log.errorT(message);
 }
 
 void Logger::display() {
