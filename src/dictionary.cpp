@@ -147,6 +147,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(logInfo) = "[INFO]";
         SET(logOut) = "Log out";
         SET(logWarning) = "[WARNING]";
+        SET(loggerLevel) = "Logging level";
+        SET(loggerLevelDebug) = "Debug (more logs)";
+        SET(loggerLevelRelease) = "Release (less logs)";
         SET(mainLabelText) = "Welcome, %1\nCoins: %2\nTotal clicks: %3\n";
         SET(mainMenuText) = "%1";
         SET(market) = "Market";
@@ -360,6 +363,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(logInfo) = "[ИНФО]";
         SET(logOut) = "Выйти";
         SET(logWarning) = "[ПРЕДУПРЕЖДЕНИЕ]";
+        SET(loggerLevel) = "Уровень логов";
+        SET(loggerLevelDebug) = "Отладка (больше логов)";
+        SET(loggerLevelRelease) = "Выпуск (меньше логов)";
         SET(mainLabelText) = "Добро пожаловать, %1\nМонет: %2\nВсего кликов: %3\n";
         SET(mainMenuText) = "%1";
         SET(market) = "Рынок";
