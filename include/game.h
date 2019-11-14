@@ -21,6 +21,7 @@
 #include "signupmenu.h"
 #include "ratingmenu.h"
 #include "inventorymenu.h"
+#include "userprofilemenu.h"
 #include "locationmenu.h"
 #include "aboutmenu.h"
 #include "user.h"
@@ -66,6 +67,7 @@ public:
     RatingMenu ratingMenu;
     InventoryMenu inventoryMenu;
     LocationMenu locationMenu;
+    UserProfileMenu userProfileMenu;
     AboutMenu aboutMenu;
     int activeUser = -1;
     int activeLocation = -1;

@@ -32,6 +32,11 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
     fishLabel.setEnabled(false);
     fishLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
+    grid->addWidget(&profileButton, 0, 0);
+    profileButton.setVisible(false);
+    profileButton.setEnabled(false);
+    connect(&profileButton, SIGNAL(released()), this, SLOT(profileFunction()));
+
     grid->addWidget(&logOutButton, 0, 2);
     logOutButton.setVisible(false);
     logOutButton.setEnabled(false);
@@ -100,6 +105,10 @@ void GameMenu::display() {
     clickButton.setVisible(true);
     clickButton.setEnabled(true);
 
+    profileButton.setText(game->str.profile);
+    profileButton.setVisible(true);
+    profileButton.setEnabled(true);
+
     logOutButton.setText(game->str.logOut);
     logOutButton.setVisible(true);
     logOutButton.setEnabled(true);
@@ -150,6 +159,11 @@ void GameMenu::clickFunction() {
     game->users[game->activeUser].inventory.updateStats(fish, "stats.caught", 1);
     game->users[game->activeUser].incClicks();
     updateInfo();
+}
+
+void GameMenu::profileFunction() {
+    this->hide();
+    game->userProfileMenu.display();
 }
 
 void GameMenu::logOutFunction() {
@@ -274,6 +288,9 @@ void GameMenu::hide() {
 
     clickButton.setVisible(false);
     clickButton.setEnabled(false);
+
+    profileButton.setVisible(false);
+    profileButton.setEnabled(false);
 
     logOutButton.setVisible(false);
     logOutButton.setEnabled(false);

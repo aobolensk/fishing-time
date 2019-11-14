@@ -10,6 +10,7 @@ private:
     Q_OBJECT
 private:
     QPushButton clickButton,
+                profileButton,
                 logOutButton,
                 backButton,
                 inventoryButton,
@@ -28,6 +29,7 @@ public slots:
     void logOutFunction();
     void clickFunction();
 private slots:
+    void profileFunction();
     void backFunction() override;
     void inventoryFunction();
     void marketFunction();

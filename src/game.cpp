@@ -32,6 +32,7 @@ Game::Game(QWidget *parent, const QString &file) :
         ratingMenu(RatingMenu(this, &grid)),
         inventoryMenu(InventoryMenu(this, &grid)),
         locationMenu(LocationMenu(this, &grid)),
+        userProfileMenu(UserProfileMenu(this, &grid)),
         aboutMenu(AboutMenu(this)) {
     QSettings settings;
     if (!this->restoreGeometry(settings.value("mainWindowGeometry").toByteArray())) {

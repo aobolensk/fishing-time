@@ -169,6 +169,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(price) = "Price";
         SET(privilegeLevelCommon) = "Common";
         SET(privilegeLevelSuper) = "Super";
+        SET(profile) = "Profile";
         SET(quantity) = "Quantity";
         SET(quantityShouldBeANumber) = "Quantity should be a number";
         SET(quantityShouldBeMoreThanZero) = "Quantity should be more than zero";
@@ -379,6 +380,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(price) = "Цена";
         SET(privilegeLevelCommon) = "Общий";
         SET(privilegeLevelSuper) = "Супер";
+        SET(profile) = "Профиль";
         SET(quantity) = "Количество";
         SET(quantityShouldBeANumber) = "Количество должно быть числом";
         SET(quantityShouldBeMoreThanZero) = "Количество должно быть больше нуля";

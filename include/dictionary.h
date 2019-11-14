@@ -103,6 +103,7 @@ public:
             price,
             privilegeLevelCommon,
             privilegeLevelSuper,
+            profile,
             quantity,
             quantityShouldBeANumber,
             quantityShouldBeMoreThanZero,
