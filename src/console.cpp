@@ -68,7 +68,7 @@ QString Console::InputHistory::getLower() {
 }
 
 void Console::closeEvent(QCloseEvent *event) {
-    if (game->isHidden()) {
+    if (game->isHidden() && game->logger.isHidden()) {
         QMessageBox::StandardButton closeResult =
             QMessageBox::question(this, game->str.fishingTime, game->str.exitConfirmation,
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);

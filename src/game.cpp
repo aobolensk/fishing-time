@@ -15,6 +15,7 @@ Game::Game(QWidget *parent, const QString &file) :
             randomGenerator(static_cast<unsigned>(time(nullptr))),
         #endif  // __MINGW32__
         cfg(Config(this)),
+        logger(Logger(this)),
         console(Console(this)),
         str(Dictionary(this)),
         locations(Location::initializeLocations()),
@@ -47,6 +48,7 @@ Game::Game(QWidget *parent, const QString &file) :
     grid.setColumnStretch(2, 1);
     this->deserialize();
     this->mainMenu.display();
+    this->logger.info("Logging system is successfully initialized!");
 }
 
 void Game::setAutoSavePeriod(int periodInMinutes) {
@@ -121,6 +123,7 @@ void Game::updateTimePlayed() {
 void Game::serialize() {
     QSettings settings;
     settings.setValue("mainWindowGeometry", this->saveGeometry());
+    settings.setValue("loggerGeometry", logger.saveGeometry());
     settings.setValue("consoleGeometry", console.saveGeometry());
     settings.setValue("aboutWindowGeometry", aboutMenu.saveGeometry());
     settings.setValue("inventoryWindowGeometry", gameMenu.getPopUpInventoryTable().saveGeometry());
@@ -143,7 +146,7 @@ void Game::serialize() {
 }
 
 void Game::closeEvent(QCloseEvent *event) {
-    if (!this->console.isDisplayed()) {
+    if (this->console.isHidden() && this->logger.isHidden()) {
         QMessageBox::StandardButton closeResult =
             QMessageBox::question(this, str.fishingTime, str.exitConfirmation,
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
