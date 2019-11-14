@@ -48,6 +48,7 @@ Game::Game(QWidget *parent, const QString &file) :
     grid.setColumnStretch(2, 1);
     this->deserialize();
     this->mainMenu.display();
+    this->logger.info("Logging system is successfully initialized!");
 }
 
 void Game::setAutoSavePeriod(int periodInMinutes) {
