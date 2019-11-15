@@ -9,7 +9,7 @@ AboutMenu::AboutMenu(Game *game) :
 
     QSettings settings;
     if (!this->restoreGeometry(settings.value("aboutWindowGeometry").toByteArray())) {
-        this->game->logger.warning("Unable to restore about window geometry. Loading defaults...");
+        this->game->logger.error("Unable to restore about window geometry. Loading defaults...");
         this->setGeometry(QRect(QPoint(200, 200), QSize(320, 240)));
     }
 
