@@ -62,6 +62,9 @@ void MarketMenu::updateDeals() {
 void MarketMenu::updateInfo() {
     infoLabel.setText(game->str.mainLabelText.arg(
         game->users[game->activeUser].getUsername(),
+        QString::number(game->users[game->activeUser].getLevel()),
+        QString::number(game->users[game->activeUser].getRemainingForNextLevel()),
+        QString::number(game->users[game->activeUser].getNeededForNextLevel()),
         QString::number(game->users[game->activeUser].getCoins()),
         QString::number(game->users[game->activeUser].getClicks())
     ));

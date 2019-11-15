@@ -150,7 +150,11 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(loggerLevel) = "Logging level";
         SET(loggerLevelDebug) = "Debug (more logs)";
         SET(loggerLevelRelease) = "Release (less logs)";
-        SET(mainLabelText) = "Welcome, %1\nCoins: %2\nTotal clicks: %3\n";
+        SET(mainLabelText) =
+            "Welcome, %1\n"
+            "Level: %2 (%3 / %4 XP)\n"
+            "Coins: %5\n"
+            "Total clicks: %6\n";
         SET(mainMenuText) = "%1";
         SET(market) = "Market";
         SET(marketDescription) = "You can sell fish that you caught here. Just choose quantity and press button. All these deals update once a day.";
@@ -366,7 +370,11 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(loggerLevel) = "Уровень логов";
         SET(loggerLevelDebug) = "Отладка (больше логов)";
         SET(loggerLevelRelease) = "Выпуск (меньше логов)";
-        SET(mainLabelText) = "Добро пожаловать, %1\nМонет: %2\nВсего кликов: %3\n";
+        SET(mainLabelText) =
+            "Добро пожаловать, %1\n"
+            "Уровень: %2 (%3 / %4 XP)\n"
+            "Монет: %5\n"
+            "Всего кликов: %6\n";
         SET(mainMenuText) = "%1";
         SET(market) = "Рынок";
         SET(marketDescription) = "Вы можете продать пойманную рыбу здесь. Просто выберите количество и нажмите на кнопку. Все эти сделки обновляются раз в день.";

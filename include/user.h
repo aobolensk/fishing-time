@@ -11,6 +11,7 @@ private:
     QString username;
     QString passwordHash;
     qint64 coins = 0ll;
+    qint64 experience = 0ll;
     int privilegeLevel = 0;
     // Statistics
     QString signUpTime;
@@ -39,6 +40,7 @@ public:
     static QVariant deserialize(const QVariantMap &map);
     // Setters
     void incClicks();
+    void changeExperience(qint64 quantity);
     void changeCoins(qint64 quantity);
     void setPasswordHash(const QString &hashedPassword);
     void setPrivilegeLevel(int level);
@@ -48,6 +50,10 @@ public:
     QString getPasswordHash() const;
     qint64 getClicks() const;
     qint64 getCoins() const;
+    qint64 getExperience() const;
+    int getLevel() const;
+    qint64 getRemainingForNextLevel() const;
+    qint64 getNeededForNextLevel() const;
     qint64 getPrivilegeLevel() const;
     QString getInGameTime() const;
     // Statistics
