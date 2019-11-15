@@ -162,6 +162,7 @@ void GameMenu::clickFunction() {
     game->users[game->activeUser].inventory.changeItem(fish, 1);
     game->users[game->activeUser].inventory.updateStats(fish, "stats.caught", 1);
     game->users[game->activeUser].incClicks();
+    game->users[game->activeUser].changeExperience(1);
     updateInfo();
 }
 
