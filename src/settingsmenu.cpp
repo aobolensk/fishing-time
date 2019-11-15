@@ -222,9 +222,9 @@ void SettingsMenu::eraseAllDataFunction() {
     if (eraseResult == QMessageBox::Yes) {
         game->gameMenu.logOutFunction();
         if (remove(game->getConfigFileName().toStdString().c_str())) {
-            qDebug() << "Error while deleting config file";
+            game->logger.error("Error while deleting config file");
         } else {
-            qDebug() << "Config file is successfully removed";
+            game->logger.info("Config file is successfully removed");
         }
     }
 }

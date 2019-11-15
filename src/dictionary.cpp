@@ -520,7 +520,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         languages[Language::Russian].second = updatesCount;
         break;
     } default: {
-        qDebug() << "Unknown language";
+        this->game->logger.error("Unknown language");
         break;
     }
     }

@@ -34,7 +34,7 @@ void LocationMenu::display() {
             if (index == -1)
                 return;
             this->game->activeLocation = index;
-            qDebug() << "set location:" << this->game->activeLocation;
+            game->logger.info("Set location:" + QString::number(this->game->activeLocation));
         });
     locationSelector.setVisible(true);
     locationSelector.setEnabled(true);

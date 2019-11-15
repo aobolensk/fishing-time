@@ -154,7 +154,7 @@ void StoreMenu::buyFunction() {
     game->users[game->activeUser].inventory.changeItem(storeTable.item(storeTable.currentRow(), 0)->text(), quantity);
     game->users[game->activeUser].changeCoins(-sum);
     game->users[game->activeUser].inventory.updateStats(storeTable.item(storeTable.currentRow(), 0)->text(), "stats.bought", quantity);
-    qDebug() << "Bought" << quantity << "of" << storeTable.currentRow();
+    game->logger.info("Bought " + QString::number(quantity) + " of " + QString::number(storeTable.currentRow()));
     updateInfo();
 }
 

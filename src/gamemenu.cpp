@@ -8,7 +8,7 @@ GameMenu::GameMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
     QSettings settings;
     if (!popUpInventoryTable.restoreGeometry(settings.value("inventoryWindowGeometry").toByteArray())) {
-        qDebug() << "Unable to restore inventory window geometry. Loading defaults...";
+        this->game->logger.error("Unable to restore inventory window geometry. Loading defaults...");
         popUpInventoryTable.setGeometry(QRect(QPoint(0, 0), QSize(300, 400)));
     }
     popUpInventoryTable.setRowCount(0);

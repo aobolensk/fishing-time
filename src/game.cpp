@@ -37,7 +37,7 @@ Game::Game(QWidget *parent, const QString &file) :
         aboutMenu(AboutMenu(this)) {
     QSettings settings;
     if (!this->restoreGeometry(settings.value("mainWindowGeometry").toByteArray())) {
-        qDebug() << "Unable to restore game window geometry. Loading defaults...";
+        this->logger.error("Unable to restore game window geometry. Loading defaults...");
         this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
     }
     this->setLayout(&grid);
@@ -58,7 +58,7 @@ void Game::setAutoSavePeriod(int periodInMinutes) {
     autoSavePeriod = periodInMinutes;
     autoSaveTimer.start(autoSavePeriod * 60 * 1000);
     connect(&autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSaveFunction()));
-    qDebug() << "Autosave period is set to " << autoSavePeriod << " mins";
+    this->logger.info("Autosave period is set to " + QString::number(autoSavePeriod) + " mins");
 }
 
 void Game::setConfigFile(const QString &new_config_file) {
@@ -75,9 +75,9 @@ void Game::deserialize() {
     this->activeUser = -1;
     QFile config(config_file);
     if (!config.exists()) {
-        qDebug() << "File " << config_file << " does not exist";
+        this->logger.error("File " + config_file + " does not exist");
     } else if (!config.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Can not open file: " << config_file;
+        this->logger.error("Can not open file: " + config_file);
     } else {
         QVariant result;
         QString jsons = config.readAll();
@@ -90,12 +90,12 @@ void Game::deserialize() {
                 if (!result.isNull()) {
                     users.push_back(result.value<User>());
                 } else {
-                    qDebug() << "Result of user deserialization is null";
+                    this->logger.error("Result of user deserialization is null");
                 }
             } else if (map["fishingtime_object"] == QString("config")) {
                 cfg.deserialize(map);
             } else {
-                qDebug() << "Unknown object found in JSON file";
+                this->logger.error("Unknown object found in JSON file");
             }
         }
     }
@@ -104,9 +104,6 @@ void Game::deserialize() {
     this->aboutMenu.setFont(this->textFont);
     this->gameMenu.getPopUpInventoryTable().setFont(this->textFont);
     str.setLanguage(activeLanguage);
-    for (const User &user : users) {
-        qDebug() << user.getUsername();
-    }
     setAutoSavePeriod(autoSavePeriod);
     this->cfg.applyColorTheme(colorTheme);
 }
@@ -133,7 +130,7 @@ void Game::serialize() {
         netsMenu.foldNets();
     QFile config(config_file);
     if (!config.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qDebug() << "Can not open file: " << config_file;
+        this->logger.error("Can not open file: " + config_file);
     } else {
         QJsonArray jsons;
         jsons.push_back(cfg.serialize());
@@ -191,9 +188,9 @@ void Game::hideCurrentMenu() {
 }
 
 void Game::autoSaveFunction() {
-    qDebug() << "Performing autosave";
+    this->logger.debug("Performing autosave");
     serialize();
-    qDebug() << "Autosave is complete";
+    this->logger.debug("Autosave is complete");
 }
 
 QString Game::getConfigFileName() {

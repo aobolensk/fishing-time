@@ -4,14 +4,12 @@
 
 AboutMenu::AboutMenu(Game *game) :
         Menu(game, nullptr) {
-    qDebug() << "lul1";
     this->setLayout(grid);
-    qDebug() << "lul2";
     this->setFixedSize(this->width(), this->height());
 
     QSettings settings;
     if (!this->restoreGeometry(settings.value("aboutWindowGeometry").toByteArray())) {
-        qDebug() << "Unable to restore about window geometry. Loading defaults...";
+        this->game->logger.error("Unable to restore about window geometry. Loading defaults...");
         this->setGeometry(QRect(QPoint(200, 200), QSize(320, 240)));
     }
 
