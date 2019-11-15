@@ -2,6 +2,7 @@
 #define INCLUDE_LOGGER_H_
 #include <QTextEdit>
 #include "texteditlog.h"
+#include "filelog.h"
 #include "config.h"
 #include "menu.h"
 
@@ -11,6 +12,7 @@ private:
 private:
     QTextEdit console;
     TextEditLog log;
+    FileLog fileLog;
 public:
     void debug(const QString &message);
     void info(const QString &message);

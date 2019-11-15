@@ -7,7 +7,8 @@
 
 Logger::Logger(Game *game) :
     Menu(game, nullptr),
-    log(game, &console) {
+    log(game, &console),
+    fileLog(game, "log.txt") {
     QSettings settings;
     if (!this->restoreGeometry(settings.value("loggerGeometry").toByteArray())) {
         qDebug() << "Unable to restore console window geometry. Loading defaults...";
@@ -37,19 +38,23 @@ void Logger::closeEvent(QCloseEvent *event) {
 void Logger::debug(const QString &message) {
     if (game->loggerLevel == LoggerLevel::DEBUG) {
         this->log.debugT(message);
+        this->fileLog.debugT(message);
     }
 }
 
 void Logger::info(const QString &message) {
     this->log.infoT(message);
+    this->fileLog.infoT(message);
 }
 
 void Logger::warning(const QString &message) {
     this->log.warningT(message);
+    this->fileLog.warningT(message);
 }
 
 void Logger::error(const QString &message) {
     this->log.errorT(message);
+    this->fileLog.errorT(message);
 }
 
 void Logger::display() {
