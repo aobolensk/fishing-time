@@ -182,6 +182,12 @@ bool GameMenu::eventFilter(QObject *obj, QEvent *event) {
 }
 
 void GameMenu::displayButtons() {
+    clickButton.setVisible(true);
+    clickButton.setEnabled(true);
+
+    backButton.setVisible(true);
+    backButton.setEnabled(true);
+
     inventoryButton.setVisible(true);
     inventoryButton.setEnabled(true);
 
@@ -207,6 +213,12 @@ void GameMenu::displayButtons() {
 }
 
 void GameMenu::hideButtons() {
+    clickButton.setVisible(false);
+    clickButton.setEnabled(false);
+
+    backButton.setVisible(false);
+    backButton.setEnabled(false);
+
     inventoryButton.setVisible(false);
     inventoryButton.setEnabled(false);
 
@@ -361,38 +373,13 @@ void GameMenu::hide() {
 
     fishLabel.setVisible(false);
 
-    clickButton.setVisible(false);
-    clickButton.setEnabled(false);
-
     profileButton.setVisible(false);
     profileButton.setEnabled(false);
 
     logOutButton.setVisible(false);
     logOutButton.setEnabled(false);
 
-    backButton.setVisible(false);
-    backButton.setEnabled(false);
-
-    inventoryButton.setVisible(false);
-    inventoryButton.setEnabled(false);
-
-    marketButton.setVisible(false);
-    marketButton.setEnabled(false);
-
-    storeButton.setVisible(false);
-    storeButton.setEnabled(false);
-
-    netsButton.setVisible(false);
-    netsButton.setEnabled(false);
-
-    statisticsButton.setVisible(false);
-    statisticsButton.setEnabled(false);
-
-    usersettingsButton.setVisible(false);
-    usersettingsButton.setEnabled(false);
-
-    locationButton.setVisible(false);
-    locationButton.setEnabled(false);
+    hideButtons();
 
     displayed = false;
 }
