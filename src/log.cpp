@@ -1,16 +1,18 @@
 #include "log.h"
 #include "game.h"
 
-Log::Log(Game *game, QTextEdit *logField) :
-    game(game),
-    console(logField) {}
-
+Log::Log(Game *game) :
+    game(game) {}
 
 QString Log::getTimestamp() {
     return "[" + QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss.zzz") + "]";
 }
 
-void Log::debug(const QString &message) {
+TextEditLog::TextEditLog(Game *game, QTextEdit *logField) :
+    Log(game),
+    console(logField) {}
+
+void TextEditLog::debug(const QString &message) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(
         game->str.logDebug + ' ' + message +
@@ -18,7 +20,7 @@ void Log::debug(const QString &message) {
     );
 }
 
-void Log::info(const QString &message) {
+void TextEditLog::info(const QString &message) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(
         game->str.logInfo + ' ' + message +
@@ -26,7 +28,7 @@ void Log::info(const QString &message) {
     );
 }
 
-void Log::warning(const QString &message) {
+void TextEditLog::warning(const QString &message) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(
         "<font color=\"orange\">" +
@@ -35,7 +37,7 @@ void Log::warning(const QString &message) {
     );
 }
 
-void Log::error(const QString &message) {
+void TextEditLog::error(const QString &message) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(
         "<font color=\"red\">" +
@@ -44,7 +46,7 @@ void Log::error(const QString &message) {
     );
 }
 
-void Log::debugT(const QString &message) {
+void TextEditLog::debugT(const QString &message) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(
         getTimestamp() + ' ' +
@@ -53,7 +55,7 @@ void Log::debugT(const QString &message) {
     );
 }
 
-void Log::infoT(const QString &message) {
+void TextEditLog::infoT(const QString &message) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(
         getTimestamp() + ' ' +
@@ -62,7 +64,7 @@ void Log::infoT(const QString &message) {
     );
 }
 
-void Log::warningT(const QString &message) {
+void TextEditLog::warningT(const QString &message) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(
         "<font color=\"orange\">" +
@@ -72,7 +74,7 @@ void Log::warningT(const QString &message) {
     );
 }
 
-void Log::errorT(const QString &message) {
+void TextEditLog::errorT(const QString &message) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(
         "<font color=\"red\">" +
@@ -83,22 +85,22 @@ void Log::errorT(const QString &message) {
 }
 
 
-void Log::write(const QString &message) {
+void TextEditLog::write(const QString &message) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(message + ' ');
 }
 
-void Log::writeln(const QString &message) {
+void TextEditLog::writeln(const QString &message) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(message + "<br>");
 }
 
-void Log::setColor(const QString &color) {
+void TextEditLog::setColor(const QString &color) {
     console->moveCursor(QTextCursor::End);
     console->insertHtml(QString("<font color=\"%1\">").arg(color));
 }
 
-void Log::resetColor() {
+void TextEditLog::resetColor() {
     console->moveCursor(QTextCursor::End);
     console->insertHtml("</font>");
 }

@@ -38,7 +38,7 @@ protected:
 private:
     QTextEdit console;
     QLineEdit input;
-    Log log;
+    TextEditLog log;
     QMap <QString, Command> commands;
 private:
     void parse(QStringList &args);

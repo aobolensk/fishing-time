@@ -10,7 +10,7 @@ private:
     void closeEvent(QCloseEvent *event) override;
 private:
     QTextEdit console;
-    Log log;
+    TextEditLog log;
 public:
     void debug(const QString &message);
     void info(const QString &message);
