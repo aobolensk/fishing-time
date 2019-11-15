@@ -17,6 +17,7 @@ QJsonObject User::serialize() const {
     jsonObj["username"] = username;
     jsonObj["clicks"] = clicks;
     jsonObj["coins"] = coins;
+    jsonObj["experience"] = experience;
     jsonObj["privilegeLevel"] = privilegeLevel;
     jsonObj["passwordHash"] = passwordHash;
     jsonObj["signUpTime"] = signUpTime;
@@ -42,6 +43,7 @@ QVariant User::deserialize(const QVariantMap &map) {
     User user = User(map["username"].toString());
     user.clicks = map["clicks"].toLongLong();
     user.coins = map["coins"].toLongLong();
+    user.experience = map["experience"].toLongLong();
     user.privilegeLevel = map["privilegeLevel"].toInt();
     user.passwordHash = map["passwordHash"].toString();
     user.signUpTime = map["signUpTime"].toString();
@@ -78,6 +80,10 @@ void User::incClicks() {
     ++clicks;
 }
 
+void User::changeExperience(qint64 quantity) {
+    experience += quantity;
+}
+
 void User::changeCoins(qint64 quantity) {
     if (coins + quantity >= 0) {
         coins += quantity;
@@ -102,6 +108,35 @@ qint64 User::getClicks() const {
 
 qint64 User::getCoins() const {
     return coins;
+}
+
+qint64 User::getExperience() const {
+    return experience;
+}
+
+int User::getLevel() const {
+    int l = 0, r = 56;
+    int level = 0;
+    while (l <= r) {
+        int c = (l + r) / 2;
+        if (100ll * (1ll << c) > experience) {
+            r = c - 1;
+        } else {
+            level = c;
+            l = c + 1;
+        }
+    }
+    return level;
+}
+
+qint64 User::getRemainingForNextLevel() const {
+    int level = getLevel();
+    return 100ll * (1ll << (level + 1)) - experience;
+}
+
+qint64 User::getNeededForNextLevel() const {
+    int level = getLevel();
+    return 100ll * (1ll << (level + 1)) - (level > 0 ? 100ll * (1ll << level) : 0);
 }
 
 qint64 User::getPrivilegeLevel() const {
