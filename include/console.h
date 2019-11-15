@@ -4,7 +4,7 @@
 #include <QMap>
 #include <QTextEdit>
 #include <deque>
-#include "log.h"
+#include "texteditlog.h"
 #include "menu.h"
 
 class Console : public Menu {
@@ -38,7 +38,7 @@ protected:
 private:
     QTextEdit console;
     QLineEdit input;
-    Log log;
+    TextEditLog log;
     QMap <QString, Command> commands;
 private:
     void parse(QStringList &args);

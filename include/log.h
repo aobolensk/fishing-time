@@ -5,24 +5,23 @@
 class Game;
 
 class Log {
-private:
+protected:
     Game *game;
-    QTextEdit *console;
     QString getTimestamp();
 public:
-    void debug(const QString &message);
-    void info(const QString &message);
-    void warning(const QString &message);
-    void error(const QString &message);
-    void debugT(const QString &message);
-    void infoT(const QString &message);
-    void warningT(const QString &message);
-    void errorT(const QString &message);
-    void write(const QString &message);
-    void writeln(const QString &message);
-    void setColor(const QString &color);
-    void resetColor();
-    Log(Game *game, QTextEdit *logField);
+    virtual void debug(const QString &message) = 0;
+    virtual void info(const QString &message) = 0;
+    virtual void warning(const QString &message) = 0;
+    virtual void error(const QString &message) = 0;
+    virtual void debugT(const QString &message) = 0;
+    virtual void infoT(const QString &message) = 0;
+    virtual void warningT(const QString &message) = 0;
+    virtual void errorT(const QString &message) = 0;
+    virtual void write(const QString &message) = 0;
+    virtual void writeln(const QString &message) = 0;
+    virtual void setColor(const QString &color) = 0;
+    virtual void resetColor() = 0;
+    Log(Game *game);
     ~Log() = default;
 };
 
