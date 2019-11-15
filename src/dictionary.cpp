@@ -117,6 +117,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(eraseAllDataConfirmation) = "Do you really want to erase all your data?";
         SET(exit) = "Exit";
         SET(exitConfirmation) = "Do you want to exit?";
+        SET(experience) = "Experience";
         SET(fishLabelText) = "Fish that can be caught in location %1:\n%2";
         SET(font) = "Font";
         SET(forbiddenSymbol) = "Forbidden symbol: %1";
@@ -136,6 +137,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(items) = "Items";
         SET(itemStatistics) = "Item statistics";
         SET(language) = "Language";
+        SET(level) = "Level";
         SET(lightTheme) = "Light theme";
         SET(listOfAllCommands) = "List of all commands";
         SET(location) = "Location";
@@ -337,6 +339,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(eraseAllDataConfirmation) = "Вы действительно хотите удалить все данные?";
         SET(exit) = "Выход";
         SET(exitConfirmation) = "Вы действительно хотите выйти из игры?";
+        SET(experience) = "Опыт";
         SET(fishLabelText) = "Рыба, которую можно поймать в локации %1:\n%2";
         SET(font) = "Шрифт";
         SET(forbiddenSymbol) = "Недопустимый символ: %1";
@@ -356,6 +359,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(items) = "Предметы";
         SET(itemStatistics) = "Статистика предметов";
         SET(language) = "Язык";
+        SET(level) = "Уровень";
         SET(lightTheme) = "Светлая тема";
         SET(listOfAllCommands) = "Список всех команд";
         SET(location) = "Локация";

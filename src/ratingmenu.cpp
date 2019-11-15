@@ -7,10 +7,11 @@ RatingMenu::RatingMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
     grid->addWidget(&ratingTable, 0, 0, 2, 3);
     ratingTable.setRowCount(0);
-    ratingTable.setColumnCount(2);
+    ratingTable.setColumnCount(3);
     ratingTable.setSelectionMode(QAbstractItemView::NoSelection);
     ratingTable.setHorizontalHeaderItem(0, &usernameHeader);
-    ratingTable.setHorizontalHeaderItem(1, &coinsHeader);
+    ratingTable.setHorizontalHeaderItem(1, &levelHeader);
+    ratingTable.setHorizontalHeaderItem(2, &expHeader);
     ratingTable.setVisible(false);
     ratingTable.setEnabled(false);
 
@@ -26,11 +27,12 @@ void RatingMenu::updateTable() {
     for (int i = 0; i < game->users.size(); ++i) {
         rows[i] = {
             game->users[i].getUsername(),
-            game->users[i].getCoins()
+            game->users[i].getLevel(),
+            game->users[i].getExperience(),
         };
     }
     std::sort(rows.begin(), rows.end(), [](const RatingRow &a, const RatingRow &b) {
-        return a.coins > b.coins;
+        return a.exp > b.exp;
     });
     for (int i = 0; i < game->users.size(); ++i) {
         QTableWidgetItem *cell = ratingTable.item(i, 0);
@@ -45,7 +47,14 @@ void RatingMenu::updateTable() {
             cell = new QTableWidgetItem;
             ratingTable.setItem(i, 1, cell);
         }
-        cell->setText(QString::number(rows[i].coins));
+        cell->setText(QString::number(rows[i].level));
+        cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
+        cell = ratingTable.item(i, 2);
+        if (!cell) {
+            cell = new QTableWidgetItem;
+            ratingTable.setItem(i, 2, cell);
+        }
+        cell->setText(QString::number(rows[i].exp));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
     }
 }
@@ -56,7 +65,8 @@ void RatingMenu::display() {
     updateTable();
 
     usernameHeader.setText(game->str.username);
-    coinsHeader.setText(game->str.coins);
+    levelHeader.setText(game->str.level);
+    expHeader.setText(game->str.experience);
 
     ratingTable.horizontalHeader()->setFont(game->font());
     ratingTable.setVisible(true);

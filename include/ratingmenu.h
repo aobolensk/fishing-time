@@ -10,11 +10,13 @@ private:
 private:
     QTableWidget ratingTable;
     QTableWidgetItem usernameHeader,
-                     coinsHeader;
+                     levelHeader,
+                     expHeader;
     QPushButton backButton;
     struct RatingRow {
         QString username;
-        qint64 coins;
+        int level;
+        qint64 exp;
     };
     QVector <RatingRow> rows;
 private:
