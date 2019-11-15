@@ -92,7 +92,7 @@ void LoginMenu::loginFunction() {
     qDebug() << game->users[userIndex].getPasswordHash().toLatin1();
     if (QCryptographicHash::hash(passwordText.text().toLatin1(), QCryptographicHash::Md5) ==
             game->users[userIndex].getPasswordHash()) {
-        qDebug() << "Logged in as " << game->users[userIndex].getUsername();
+        game->logger.info("Logged in as " + game->users[userIndex].getUsername());
         game->activeUser = userIndex;
         game->activeLocation = 0;
         this->hide();

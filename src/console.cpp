@@ -15,9 +15,7 @@ Console::Console(Game *game) :
         qDebug() << "Unable to restore console window geometry. Loading defaults...";
         this->setGeometry(QRect(QPoint(740, 100), QSize(360, 480)));
     }
-    qDebug() << "lul3";
     this->setLayout(grid);
-    qDebug() << "lul4";
 
     grid->addWidget(&console, 0, 0);
     console.setReadOnly(true);
