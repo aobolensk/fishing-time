@@ -1,7 +1,7 @@
 #ifndef INCLUDE_LOGGER_H_
 #define INCLUDE_LOGGER_H_
 #include <QTextEdit>
-#include "log.h"
+#include "texteditlog.h"
 #include "config.h"
 #include "menu.h"
 

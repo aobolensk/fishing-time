@@ -4,7 +4,7 @@
 #include <QMap>
 #include <QTextEdit>
 #include <deque>
-#include "log.h"
+#include "texteditlog.h"
 #include "menu.h"
 
 class Console : public Menu {
