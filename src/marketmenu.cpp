@@ -82,7 +82,7 @@ void MarketMenu::updateInfo() {
 }
 
 void MarketMenu::processDialog(int seller) {
-    game->logger.info("Processing dialog for seller" + seller);
+    game->logger.info("Processing dialog for seller" + QString::number(seller));
     bool ok;
     int quantity = quantityText[seller].text().toInt(&ok, 10);
     if (!ok) {
