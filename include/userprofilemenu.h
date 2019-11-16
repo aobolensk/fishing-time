@@ -8,6 +8,7 @@ class UserProfileMenu : public Menu {
 private:
     Q_OBJECT
 private:
+    QLabel userProfileLabel;
     QPushButton backButton;
 private slots:
     void backFunction() override;

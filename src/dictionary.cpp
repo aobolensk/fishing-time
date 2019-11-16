@@ -206,6 +206,10 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(unknownCommand) = "Unknown command: %1";
         SET(unknownUser) = "User \"%1\" is not found";
         SET(useManToGetDescription) = "Use 'man &lt;command&gt;' to get description";
+        SET(userProfileText) =
+            "Name: %1\n"
+            "Level: %2 (%3 / %4 XP)\n"
+            "Coins: %5\n";
         SET(userSettings) = "User settings";
         SET(userSettingsText) = "User: %1";
         SET(username) = "Username";
@@ -428,6 +432,10 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(unknownCommand) = "Неизвестная команда: %1";
         SET(unknownUser) = "Пользователь \"%1\" не найден";
         SET(useManToGetDescription) = "Используйте 'man &lt;команда&gt;' чтобы получить описание";
+        SET(userProfileText) =
+            "Имя: %1\n"
+            "Уровень: %2 (%3 / %4 XP)\n"
+            "Количество монет: %5\n";
         SET(userSettings) = "Настройки пользователя";
         SET(userSettingsText) = "Пользователь: %1";
         SET(username) = "Логин";

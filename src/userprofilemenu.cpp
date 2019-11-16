@@ -7,7 +7,11 @@
 UserProfileMenu::UserProfileMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
 
-    grid->addWidget(&backButton, 4, 2);
+    grid->addWidget(&userProfileLabel, 1, 0, 1, 3);
+    userProfileLabel.setWordWrap(true);
+    userProfileLabel.setVisible(false);
+
+    grid->addWidget(&backButton, 4, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -15,6 +19,15 @@ UserProfileMenu::UserProfileMenu(Game *game, QGridLayout *grid) :
 
 void UserProfileMenu::display() {
     this->pre_display();
+
+    userProfileLabel.setText(game->str.userProfileText.arg(
+        game->users[game->activeUser].getUsername(),
+        QString::number(game->users[game->activeUser].getLevel()),
+        QString::number(game->users[game->activeUser].getRemainingForNextLevel()),
+        QString::number(game->users[game->activeUser].getNeededForNextLevel()),
+        QString::number(game->users[game->activeUser].getCoins())
+    ));
+    userProfileLabel.setVisible(true);
 
     backButton.setText(game->str.back);
     backButton.setVisible(true);
@@ -30,6 +43,8 @@ void UserProfileMenu::backFunction() {
 
 void UserProfileMenu::hide() {
     this->pre_hide();
+
+    userProfileLabel.setVisible(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

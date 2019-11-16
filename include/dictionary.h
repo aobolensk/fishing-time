@@ -136,6 +136,7 @@ public:
             unknownCommand,
             unknownUser,
             useManToGetDescription,
+            userProfileText,
             userSettings,
             userSettingsText,
             username,
