@@ -46,8 +46,7 @@ Dictionary::Dictionary(Game *game) :
         game(game)
 
         {
-    for (int i = languages.count() - 1; i >= 0; --i)
-        this->setLanguage((Language)i, true);
+    this->setLanguage((Language)0, true);
     numberOfStrings = updatesCount;
     if (getReadiness(Language::English) != 100.)
         throw std::logic_error("Default language (English) does not contain all necessary translations. "
@@ -535,6 +534,11 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         this->game->logger.error("Unknown language");
         break;
     }
+    }
+    if (initialSetup) {
+        this->game->logger.info("Default language is set up");
+    } else {
+        this->game->logger.info("Set language " + QString::number((int)l));
     }
 
     if (!initialSetup) {
