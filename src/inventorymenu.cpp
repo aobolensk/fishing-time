@@ -39,6 +39,8 @@ InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid) :
 }
 
 void InventoryMenu::updateInventoryTables() {
+    fishTable.setRowCount(0);
+    othersTable.setRowCount(0);
     auto inv = game->users[game->activeUser].inventory.get();
     QMap<QString, int>::const_iterator it = inv.constBegin();
     int fishTableIndex = 0;
