@@ -159,40 +159,12 @@ void Game::closeEvent(QCloseEvent *event) {
     }
 }
 
-void Game::hideCurrentMenu() {
-    if (gameMenu.isDisplayed()) {
-        gameMenu.hide();
-    } else if (inventoryMenu.isDisplayed()) {
-        inventoryMenu.hide();
-    } else if (itemStatisticsMenu.isDisplayed()) {
-        itemStatisticsMenu.hide();
-    } else if (locationMenu.isDisplayed()) {
-        locationMenu.hide();
-    } else if (loginMenu.isDisplayed()) {
-        loginMenu.hide();
-    } else if (mainMenu.isDisplayed()) {
-        mainMenu.hide();
-    } else if (marketMenu.isDisplayed()) {
-        marketMenu.hide();
-    } else if (netsMenu.isDisplayed()) {
-        netsMenu.hide();
-    } else if (ratingMenu.isDisplayed()) {
-        ratingMenu.hide();
-    } else if (settingsMenu.isDisplayed()) {
-        settingsMenu.hide();
-    } else if (signupMenu.isDisplayed()) {
-        signupMenu.hide();
-    } else if (statisticsMenu.isDisplayed()) {
-        statisticsMenu.hide();
-    } else if (storeMenu.isDisplayed()) {
-        storeMenu.hide();
-    } else if (userProfileMenu.isDisplayed()) {
-        userProfileMenu.hide();
-    } else if (usersettingsMenu.isDisplayed()) {
-        usersettingsMenu.hide();
-    } else {
-        this->logger.error("Menu does not exist");
-    }
+void Game::setCurrentMenu(Menu *menu) {
+    this->currentMenu = menu;
+}
+
+Menu *Game::getCurrentMenu() const {
+    return this->currentMenu;
 }
 
 void Game::autoSaveFunction() {

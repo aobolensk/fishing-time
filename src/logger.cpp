@@ -6,7 +6,7 @@
 #include "game.h"
 
 Logger::Logger(Game *game) :
-    Menu(game, nullptr),
+    Menu(game, nullptr, true),
     log(game, &console),
     fileLog(game, "log.txt") {
     QSettings settings;

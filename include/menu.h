@@ -15,10 +15,11 @@ protected:
     Game *game;
     QGridLayout *grid;
     bool displayed = false;
+    bool floating = false;
     virtual void pre_display() final;
     virtual void pre_hide() final;
 public:
-    Menu(Game *game, QGridLayout *grid);
+    Menu(Game *game, QGridLayout *grid, bool floating = false);
     ~Menu();
     virtual void display() = 0;
     virtual void hide() = 0;

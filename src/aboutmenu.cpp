@@ -3,7 +3,7 @@
 #include "game.h"
 
 AboutMenu::AboutMenu(Game *game) :
-        Menu(game, nullptr) {
+        Menu(game, nullptr, true) {
     this->setLayout(grid);
     this->setFixedSize(this->width(), this->height());
 

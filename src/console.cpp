@@ -8,7 +8,7 @@
 #include "game.h"
 
 Console::Console(Game *game) :
-    Menu(game, nullptr),
+    Menu(game, nullptr, true),
     log(game, &console) {
     QSettings settings;
     if (!this->restoreGeometry(settings.value("consoleGeometry").toByteArray())) {

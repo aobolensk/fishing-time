@@ -47,6 +47,7 @@ private slots:
 private:
     std::random_device rd;
     int autoSavePeriod = 3;
+    Menu *currentMenu = nullptr;
 public:
     std::mt19937 randomGenerator;
     Config cfg;
@@ -82,6 +83,8 @@ public:
     void setConfigFile(const QString &new_config_file);
     int getAutoSavePeriod();
     QString getConfigFileName();
+    void setCurrentMenu(Menu *menu);
+    Menu *getCurrentMenu() const;
     Language activeLanguage = Language::English;
     QTimer autoSaveTimer;
 public:
@@ -89,7 +92,6 @@ public:
     ~Game();
     friend QJsonObject Config::serialize() const;
     friend void Config::deserialize(const QVariantMap &map);
-    void hideCurrentMenu();
     void manualSave();
     void updateTimePlayed();
 };

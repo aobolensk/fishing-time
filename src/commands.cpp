@@ -55,7 +55,7 @@ void Console::registerCommands() {
                     game->users[userIndex].getPasswordHash()) {
                 game->activeUser = userIndex;
                 game->activeLocation = 0;
-                game->hideCurrentMenu();
+                game->getCurrentMenu()->hide();
                 game->gameMenu.display();
                 game->userTimestamp = QDateTime::currentDateTime();
                 log.info(game->str.successfullyLoggedIn.arg(args[1]));
@@ -158,7 +158,7 @@ void Console::registerCommands() {
             game->users.erase(game->users.begin() + game->activeUser);
             game->activeUser = -1;
             game->activeLocation = -1;
-            game->hideCurrentMenu();
+            game->getCurrentMenu()->hide();
             game->mainMenu.display();
             return 0;
         },
@@ -197,8 +197,8 @@ void Console::registerCommands() {
             if (game->activeUser == -1) {
                 log.error(game->str.youAreNotLoggedIn);
             } else {
-                game->hideCurrentMenu();
                 game->gameMenu.logOutFunction();
+                game->getCurrentMenu()->hide();
                 game->mainMenu.display();
                 log.info(game->str.successfullyLoggedOut);
             }
@@ -364,7 +364,7 @@ void Console::registerCommands() {
                     log.error(game->str.invalidArgumentsFormat.arg(args[0]));
                     return 1;
                 }
-                game->hideCurrentMenu();
+                game->getCurrentMenu()->hide();
                 game->gameMenu.display();
             } else {
                 log.error(game->str.invalidArgumentsFormat.arg(args[0]));
