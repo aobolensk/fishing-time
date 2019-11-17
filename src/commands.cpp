@@ -271,6 +271,30 @@ void Console::registerCommands() {
         &game->str.commands.aboutme
     };
 
+    commands["autosave"] = {
+        [&](QStringList &args) -> int {
+            if (args.size() == 1) {
+                log.info(game->str.autoSavePeriod + ": " +
+                    QString::number(game->getAutoSavePeriod()));
+            } else if (args.size() == 2) {
+                bool flag;
+                int time = args[1].toInt(&flag);
+                if (!flag) {
+                    log.error(game->str.timeShouldBeANumber);
+                    return 1;
+                }
+                game->setAutoSavePeriod(time);
+                log.info(game->str.autoSavePeriodSet.arg(QString::number(time)));
+            } else {
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                return 1;
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.autosave
+    };
+
     commands["privilege"] = {
         [&](QStringList &args) -> int {
             (void) args;
