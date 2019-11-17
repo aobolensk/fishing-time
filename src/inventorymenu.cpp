@@ -41,27 +41,35 @@ InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid) :
 void InventoryMenu::updateInventoryTables() {
     auto inv = game->users[game->activeUser].inventory.get();
     QMap<QString, int>::const_iterator it = inv.constBegin();
-    int i = 0;
+    int fishTableIndex = 0;
+    int othersTableIndex = 0;
+    int *i;
     while (it != inv.constEnd()) {
         QTableWidget *table;
-        table = &fishTable;
+        if (it.key().startsWith("fish.")) {
+            table = &fishTable;
+            i = &fishTableIndex;
+        } else {
+            table = &othersTable;
+            i = &othersTableIndex;
+        }
         table->setRowCount(table->rowCount() + 1);
-        QTableWidgetItem *cell = table->item(i, 0);
+        QTableWidgetItem *cell = table->item(*i, 0);
         if (!cell) {
             cell = new QTableWidgetItem;
-            table->setItem(i, 0, cell);
+            table->setItem(*i, 0, cell);
         }
         cell->setText(game->str.getItemName(it.key()));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
-        cell = table->item(i, 1);
+        cell = table->item(*i, 1);
         if (!cell) {
             cell = new QTableWidgetItem;
-            table->setItem(i, 1, cell);
+            table->setItem(*i, 1, cell);
         }
         cell->setText(QString::number(it.value()));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
         ++it;
-        ++i;
+        ++(*i);
     }
 }
 
@@ -84,6 +92,10 @@ void InventoryMenu::display() {
     fishTable.setVisible(true);
     fishTable.setEnabled(true);
 
+    othersTable.horizontalHeader()->setFont(game->font());
+    othersTable.setVisible(true);
+    othersTable.setEnabled(true);
+
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
@@ -104,6 +116,9 @@ void InventoryMenu::hide() {
     fishTable.setVisible(false);
     fishTable.setEnabled(false);
 
+    othersTable.setVisible(false);
+    othersTable.setEnabled(false);
+
     backButton.setVisible(false);
     backButton.setEnabled(false);
 
@@ -117,6 +132,18 @@ InventoryMenu::~InventoryMenu() {
             if (fishTable.item(i, j)) {
                 ++cnt;
                 delete fishTable.item(i, j);
+            }
+        }
+        if (!cnt) {
+            break;
+        }
+    }
+    for (int i = 0; ; ++i) {
+        int cnt = 0;
+        for (int j = 0; j < 2; ++j) {
+            if (othersTable.item(i, j)) {
+                ++cnt;
+                delete othersTable.item(i, j);
             }
         }
         if (!cnt) {
