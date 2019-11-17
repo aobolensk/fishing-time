@@ -87,6 +87,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
                                 "OS: %2<br>"
                                 "Compiler: %3<br>";
         SET(autoSavePeriod) = "Autosave period";
+        SET(autoSavePeriodSet) = "Autosave period is set to %1 minutes";
         SET(back) = "Back";
         SET(basicNet) = "Basic net";
         SET(bream) = "Bream";
@@ -202,6 +203,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(successfullyLoggedOut) = "Successfully logged out";
         SET(thisUserAlreadyExistsText) = "This user already exists";
         SET(timePlayed) = "Time played";
+        SET(timeShouldBeANumber) = "Time should be a number";
         SET(unknownCommand) = "Unknown command: %1";
         SET(unknownUser) = "User \"%1\" is not found";
         SET(useManToGetDescription) = "Use 'man &lt;command&gt;' to get description";
@@ -259,12 +261,17 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.aboutme) =
             "Print information about current user<br>"
             "Usage: aboutme";
-        SET(commands.settings) =
-            "Get information about the settings or edit the settings<br>"
-            "Usage: settings get &lt;setting_name&gt;<br>"
-            "List of supported settings:<br>"
-            "\tautosave - auto save period<br>"
-            "\tlanguage - current language";
+        SET(commands.autosave) =
+            "Set and get game autosave period<br>"
+            "Usage:<br>"
+            "\tautosave - get autosave period<br>"
+            "\tautosave 60 - set autosave period to 60 minutes";
+        SET(commands.logging) =
+            "Set and get game logging level<br>"
+            "Usage:<br>"
+            "\tlogging - get logging level<br>"
+            "\tlogging debug - set logging level to DEBUG<br>"
+            "\tlogging release - set logging level to RELEASE";
         SET(commands.privilege) =
             "Print privilege level of current user<br>"
             "Usage: privilege";
@@ -313,6 +320,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
                                 "ОС: %2<br>"
                                 "Компилятор: %3<br>";
         SET(autoSavePeriod) = "Период автосохранения";
+        SET(autoSavePeriodSet) = "Период автосохранения установлен в %1 минут";
         SET(back) = "Назад";
         SET(basicNet) = "Базовая сеть";
         SET(bream) = "Лещ";
@@ -428,6 +436,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(successfullyLoggedOut) = "Вы успешно вышли из аккаунта";
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";
         SET(timePlayed) = "Проведено времени в игре";
+        SET(timeShouldBeANumber) = "Время должно быть числом";
         SET(unknownCommand) = "Неизвестная команда: %1";
         SET(unknownUser) = "Пользователь \"%1\" не найден";
         SET(useManToGetDescription) = "Используйте 'man &lt;команда&gt;' чтобы получить описание";
@@ -485,12 +494,17 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.aboutme) =
             "Вывести информацию о текущем пользователе<br>"
             "Использование: aboutme";
-        SET(commands.settings) =
-            "Получить информацию о настройках или отредактировать настройки<br>"
-            "Использование: settings get &lt;setting_name&gt;<br>"
-            "Список поддерживаемых настроек:<br>"
-            "\tautosave - период автосохранения<br>"
-            "\tlanguage - текущий язык";
+        SET(commands.autosave) =
+            "Установить и получить период автосохранения<br>"
+            "Использование:<br>"
+            "\tautosave - получить период автосохранения<br>"
+            "\tautosave 60 - установить период автосохранения в 60 минут";
+        SET(commands.logging) =
+            "Установить и получить уровень логов<br>"
+            "Использование:<br>"
+            "\tlogging - получить уровень логов<br>"
+            "\tlogging debug - установить уровень логов в ОТЛАДКА<br>"
+            "\tlogging release - установить уровень логов в ВЫПУСК";
         SET(commands.privilege) =
             "Вывести уровень привилегий текущего пользователя<br>"
             "Использование: privilege";

@@ -6,11 +6,13 @@ TextEditLog::TextEditLog(Game *game, QTextEdit *logField) :
     console(logField) {}
 
 void TextEditLog::debug(const QString &message) {
-    console->moveCursor(QTextCursor::End);
-    console->insertHtml(
-        game->str.logDebug + ' ' + message +
-        "<br>"
-    );
+    if (game->loggerLevel == LoggerLevel::DEBUG) {
+        console->moveCursor(QTextCursor::End);
+        console->insertHtml(
+            game->str.logDebug + ' ' + message +
+            "<br>"
+        );
+    }
 }
 
 void TextEditLog::info(const QString &message) {
@@ -40,12 +42,14 @@ void TextEditLog::error(const QString &message) {
 }
 
 void TextEditLog::debugT(const QString &message) {
-    console->moveCursor(QTextCursor::End);
-    console->insertHtml(
-        getTimestamp() + ' ' +
-        game->str.logDebug + ' ' + message +
-        "<br>"
-    );
+    if (game->loggerLevel == LoggerLevel::DEBUG) {
+        console->moveCursor(QTextCursor::End);
+        console->insertHtml(
+            getTimestamp() + ' ' +
+            game->str.logDebug + ' ' + message +
+            "<br>"
+        );
+    }
 }
 
 void TextEditLog::infoT(const QString &message) {

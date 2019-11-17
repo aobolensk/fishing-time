@@ -271,20 +271,20 @@ void Console::registerCommands() {
         &game->str.commands.aboutme
     };
 
-    commands["settings"] = {
+    commands["autosave"] = {
         [&](QStringList &args) -> int {
-            if (args.size() < 2) {
-                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
-                return 1;
-            }
-
-            if (args[1] == "get") {
-                if (args.size() < 3) {
-                    log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+            if (args.size() == 1) {
+                log.info(game->str.autoSavePeriod + ": " +
+                    QString::number(game->getAutoSavePeriod()));
+            } else if (args.size() == 2) {
+                bool flag;
+                int time = args[1].toInt(&flag);
+                if (!flag) {
+                    log.error(game->str.timeShouldBeANumber);
                     return 1;
                 }
-                log.writeln(args[2] + " : " +
-                    game->settingsMenu.getSetting(args[2]));
+                game->setAutoSavePeriod(time);
+                log.info(game->str.autoSavePeriodSet.arg(QString::number(time)));
             } else {
                 log.error(game->str.invalidArgumentsFormat.arg(args[0]));
                 return 1;
@@ -292,7 +292,32 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        &game->str.commands.settings
+        &game->str.commands.autosave
+    };
+
+    commands["logging"] = {
+        [&](QStringList &args) -> int {
+            if (args.size() == 1) {
+                log.info(game->str.loggerLevel + ": " +
+                    QString::number((int)game->loggerLevel));
+            } else if (args.size() == 2) {
+                args[1] = args[1].toLower();
+                if (args[1] == "debug") {
+                    game->loggerLevel = LoggerLevel::DEBUG;
+                } else if (args[1] == "release") {
+                    game->loggerLevel = LoggerLevel::RELEASE;
+                } else {
+                    log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                    return 1;
+                }
+            } else {
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                return 1;
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.logging
     };
 
     commands["privilege"] = {

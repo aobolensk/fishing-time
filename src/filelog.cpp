@@ -12,7 +12,9 @@ FileLog::FileLog(Game *game, const QString &filePath) :
 }
 
 void FileLog::debug(const QString &message) {
-    *fs << game->str.logDebug << ' ' << message << '\n';
+    if (game->loggerLevel == LoggerLevel::DEBUG) {
+        *fs << game->str.logDebug << ' ' << message << '\n';
+    }
 }
 
 void FileLog::info(const QString &message) {
@@ -28,7 +30,9 @@ void FileLog::error(const QString &message) {
 }
 
 void FileLog::debugT(const QString &message) {
-    *fs << getTimestamp() << ' ' << game->str.logDebug << ' ' << message << '\n';
+    if (game->loggerLevel == LoggerLevel::DEBUG) {
+        *fs << getTimestamp() << ' ' << game->str.logDebug << ' ' << message << '\n';
+    }
 }
 
 void FileLog::infoT(const QString &message) {
