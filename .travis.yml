@@ -34,7 +34,7 @@ matrix:
         - cmake ..
         - cmake --build . -- -j
     - os: osx
-      osx_image: xcode10.2
+      osx_image: xcode11.2
       addons:
         homebrew:
           packages:
