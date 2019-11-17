@@ -272,6 +272,12 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "\tlogging - get logging level<br>"
             "\tlogging debug - set logging level to DEBUG<br>"
             "\tlogging release - set logging level to RELEASE";
+        SET(commands.language) =
+            "Set and get game language<br>"
+            "Usage:<br>"
+            "\tlanguage - get language<br>"
+            "\tlanguage en - set language to ENGLISH<br>"
+            "\tlanguage ru - set language to RUSSIAN";
         SET(commands.privilege) =
             "Print privilege level of current user<br>"
             "Usage: privilege";
@@ -505,6 +511,12 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "\tlogging - получить уровень логов<br>"
             "\tlogging debug - установить уровень логов в ОТЛАДКА<br>"
             "\tlogging release - установить уровень логов в ВЫПУСК";
+        SET(commands.language) =
+            "Установить и получить язык<br>"
+            "Использование:<br>"
+            "\tlanguage - получить язык<br>"
+            "\tlanguage en - установить язык в АНГЛИЙСКИЙ<br>"
+            "\tlanguage ru - установить язык в РУССКИЙ";
         SET(commands.privilege) =
             "Вывести уровень привилегий текущего пользователя<br>"
             "Использование: privilege";

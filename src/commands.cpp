@@ -320,6 +320,31 @@ void Console::registerCommands() {
         &game->str.commands.logging
     };
 
+    commands["language"] = {
+        [&](QStringList &args) -> int {
+            if (args.size() == 1) {
+                log.info(game->str.language + ": " +
+                    QString::number((int)game->activeLanguage));
+            } else if (args.size() == 2) {
+                args[1] = args[1].toLower();
+                if (args[1] == "en") {
+                    this->game->str.setLanguage(game->activeLanguage = Language::English);
+                } else if (args[1] == "ru") {
+                    this->game->str.setLanguage(game->activeLanguage = Language::Russian);
+                } else {
+                    log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                    return 1;
+                }
+            } else {
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                return 1;
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.language
+    };
+
     commands["privilege"] = {
         [&](QStringList &args) -> int {
             (void) args;

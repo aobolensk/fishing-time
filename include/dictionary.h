@@ -164,6 +164,7 @@ public:
             aboutme,
             autosave,
             logging,
+            language,
             privilege,
             clear,
             inventory,
