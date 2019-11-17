@@ -279,6 +279,11 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "\tlanguage - get language<br>"
             "\tlanguage en - set language to ENGLISH<br>"
             "\tlanguage ru - set language to RUSSIAN";
+        SET(commands.location) =
+            "Go to locations<br>"
+            "Usage:<br>"
+            "\tlocation - get current location<br>"
+            "\tlocation &lt;location name&gt; - go to specific location";
         SET(commands.privilege) =
             "Print privilege level of current user<br>"
             "Usage: privilege";
@@ -518,6 +523,11 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "\tlanguage - получить язык<br>"
             "\tlanguage en - установить язык в АНГЛИЙСКИЙ<br>"
             "\tlanguage ru - установить язык в РУССКИЙ";
+        SET(commands.location) =
+            "Перейти в локации<br>"
+            "Использование:<br>"
+            "\tlocation - узнать текущую локацию<br>"
+            "\tlocation &lt;location name&gt; - перейти в конкретную локацию";
         SET(commands.privilege) =
             "Вывести уровень привилегий текущего пользователя<br>"
             "Использование: privilege";

@@ -345,6 +345,37 @@ void Console::registerCommands() {
         &game->str.commands.language
     };
 
+    commands["location"] = {
+        [&](QStringList &args) -> int {
+            if (game->activeUser == -1) {
+                log.error(game->str.youAreNotLoggedIn);
+                return 1;
+            }
+            if (args.size() == 1) {
+                log.info(game->str.location + ": " +
+                    QString::number((int)game->activeLanguage));
+            } else if (args.size() == 2) {
+                args[1] = args[1].toLower();
+                if (args[1] == "volga") {
+                    game->activeLocation = 0;
+                } else if (args[1] == "oka") {
+                    game->activeLocation = 1;
+                } else {
+                    log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                    return 1;
+                }
+                game->hideCurrentMenu();
+                game->gameMenu.display();
+            } else {
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                return 1;
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.location
+    };
+
     commands["privilege"] = {
         [&](QStringList &args) -> int {
             (void) args;

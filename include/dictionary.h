@@ -165,6 +165,7 @@ public:
             autosave,
             logging,
             language,
+            location,
             privilege,
             clear,
             inventory,
