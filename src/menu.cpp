@@ -29,10 +29,11 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
 void Menu::pre_display() {
     if (!this->floating) {
         if (game->getCurrentMenu() != nullptr) {
-            game->logger.error("Previous menu (" + QString(typeid(*game->getCurrentMenu()).name()) + ") is not hide!");
+            Menu *currentMenu = game->getCurrentMenu();
+            game->logger.error("Previous menu (" + QString(typeid(*currentMenu).name()) + ") is not hide!");
         }
         game->setCurrentMenu(this);
-        game->logger.debug("Set current menu to " + QString(typeid(*game->getCurrentMenu()).name()));
+        game->logger.debug("Set current menu to " + QString(typeid(*this).name()));
     }
     game->installEventFilter(this);
 }
