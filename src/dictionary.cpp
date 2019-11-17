@@ -266,6 +266,12 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "Usage:<br>"
             "\tautosave - get autosave period<br>"
             "\tautosave 60 - set autosave period to 60 minutes";
+        SET(commands.logging) =
+            "Set and get game logging level<br>"
+            "Usage:<br>"
+            "\tlogging - get logging level<br>"
+            "\tlogging debug - set logging level to DEBUG<br>"
+            "\tlogging release - set logging level to RELEASE";
         SET(commands.privilege) =
             "Print privilege level of current user<br>"
             "Usage: privilege";
@@ -488,6 +494,17 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.aboutme) =
             "Вывести информацию о текущем пользователе<br>"
             "Использование: aboutme";
+        SET(commands.autosave) =
+            "Установить и получить период автосохранения<br>"
+            "Использование:<br>"
+            "\tautosave - получить период автосохранения<br>"
+            "\tautosave 60 - установить период автосохранения в 60 минут";
+        SET(commands.logging) =
+            "Установить и получить уровень логов<br>"
+            "Использование:<br>"
+            "\tlogging - получить уровень логов<br>"
+            "\tlogging debug - установить уровень логов в ОТЛАДКА<br>"
+            "\tlogging release - установить уровень логов в ВЫПУСК";
         SET(commands.privilege) =
             "Вывести уровень привилегий текущего пользователя<br>"
             "Использование: privilege";

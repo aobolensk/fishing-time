@@ -163,6 +163,7 @@ public:
             version,
             aboutme,
             autosave,
+            logging,
             privilege,
             clear,
             inventory,

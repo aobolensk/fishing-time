@@ -295,6 +295,31 @@ void Console::registerCommands() {
         &game->str.commands.autosave
     };
 
+    commands["logging"] = {
+        [&](QStringList &args) -> int {
+            if (args.size() == 1) {
+                log.info(game->str.loggerLevel + ": " +
+                    QString::number((int)game->loggerLevel));
+            } else if (args.size() == 2) {
+                args[1] = args[1].toLower();
+                if (args[1] == "debug") {
+                    game->loggerLevel = LoggerLevel::DEBUG;
+                } else if (args[1] == "release") {
+                    game->loggerLevel = LoggerLevel::RELEASE;
+                } else {
+                    log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                    return 1;
+                }
+            } else {
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                return 1;
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.logging
+    };
+
     commands["privilege"] = {
         [&](QStringList &args) -> int {
             (void) args;
