@@ -10,14 +10,17 @@ private:
     Q_OBJECT
 private:
     QLabel descriptionLabel;
-    QTableWidget inventoryTable;
-    QTableWidgetItem nameHeader,
-                     quantityHeader;
+    QTableWidget fishTable,
+                 othersTable;
+    QTableWidgetItem fishNameHeader,
+                     fishQuantityHeader,
+                     othersNameHeader,
+                     othersQuantityHeader;
     QPushButton backButton;
 private slots:
     void backFunction() override;
 private:
-    void updateInventoryTable();
+    void updateInventoryTables();
 public:
     InventoryMenu(Game *game, QGridLayout *grid);
     ~InventoryMenu();

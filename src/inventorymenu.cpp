@@ -4,69 +4,97 @@
 
 InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid),
-        inventoryTable(game) {
+        fishTable(game),
+        othersTable(game) {
     grid->addWidget(&descriptionLabel, 0, 1);
     descriptionLabel.setVisible(false);
     descriptionLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    grid->addWidget(&inventoryTable, 1, 0, 1, 3);
-    inventoryTable.setRowCount(0);
-    inventoryTable.setColumnCount(2);
-    inventoryTable.setSelectionMode(QAbstractItemView::NoSelection);
-    inventoryTable.verticalHeader()->setVisible(false);
-    inventoryTable.setHorizontalHeaderItem(0, &nameHeader);
-    inventoryTable.setHorizontalHeaderItem(1, &quantityHeader);
-    inventoryTable.setVisible(false);
-    inventoryTable.setEnabled(false);
-    inventoryTable.horizontalHeader()->setStretchLastSection(true);
+    grid->addWidget(&fishTable, 1, 0, 1, 3);
+    fishTable.setRowCount(0);
+    fishTable.setColumnCount(2);
+    fishTable.setSelectionMode(QAbstractItemView::NoSelection);
+    fishTable.verticalHeader()->setVisible(false);
+    fishTable.setHorizontalHeaderItem(0, &fishNameHeader);
+    fishTable.setHorizontalHeaderItem(1, &fishQuantityHeader);
+    fishTable.setVisible(false);
+    fishTable.setEnabled(false);
+    fishTable.horizontalHeader()->setStretchLastSection(true);
 
-    grid->addWidget(&backButton, 2, 1);
+    grid->addWidget(&othersTable, 2, 0, 1, 3);
+    othersTable.setRowCount(0);
+    othersTable.setColumnCount(2);
+    othersTable.setSelectionMode(QAbstractItemView::NoSelection);
+    othersTable.verticalHeader()->setVisible(false);
+    othersTable.setHorizontalHeaderItem(0, &othersNameHeader);
+    othersTable.setHorizontalHeaderItem(1, &othersQuantityHeader);
+    othersTable.setVisible(false);
+    othersTable.setEnabled(false);
+    othersTable.horizontalHeader()->setStretchLastSection(true);
+
+    grid->addWidget(&backButton, 3, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
-void InventoryMenu::updateInventoryTable() {
+void InventoryMenu::updateInventoryTables() {
     auto inv = game->users[game->activeUser].inventory.get();
-    inventoryTable.setRowCount(inv.size());
     QMap<QString, int>::const_iterator it = inv.constBegin();
-    int i = 0;
+    int fishTableIndex = 0;
+    int othersTableIndex = 0;
+    int *i;
     while (it != inv.constEnd()) {
-        QTableWidgetItem *cell = inventoryTable.item(i, 0);
+        QTableWidget *table;
+        if (it.key().startsWith("fish.")) {
+            table = &fishTable;
+            i = &fishTableIndex;
+        } else {
+            table = &othersTable;
+            i = &othersTableIndex;
+        }
+        table->setRowCount(table->rowCount() + 1);
+        QTableWidgetItem *cell = table->item(*i, 0);
         if (!cell) {
             cell = new QTableWidgetItem;
-            inventoryTable.setItem(i, 0, cell);
+            table->setItem(*i, 0, cell);
         }
         cell->setText(game->str.getItemName(it.key()));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
-        cell = inventoryTable.item(i, 1);
+        cell = table->item(*i, 1);
         if (!cell) {
             cell = new QTableWidgetItem;
-            inventoryTable.setItem(i, 1, cell);
+            table->setItem(*i, 1, cell);
         }
         cell->setText(QString::number(it.value()));
         cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
         ++it;
-        ++i;
+        ++(*i);
     }
 }
 
 void InventoryMenu::display() {
     this->pre_display();
 
-    updateInventoryTable();
+    updateInventoryTables();
 
     descriptionLabel.setVisible(true);
     descriptionLabel.setText(game->str.inventoryDescription.arg(
         game->users[game->activeUser].getUsername()
     ));
 
-    nameHeader.setText(game->str.name);
-    quantityHeader.setText(game->str.quantity);
+    fishNameHeader.setText(game->str.name);
+    fishQuantityHeader.setText(game->str.quantity);
+    othersNameHeader.setText(game->str.name);
+    othersQuantityHeader.setText(game->str.quantity);
 
-    inventoryTable.horizontalHeader()->setFont(game->font());
-    inventoryTable.setVisible(true);
-    inventoryTable.setEnabled(true);
+    fishTable.horizontalHeader()->setFont(game->font());
+    fishTable.setVisible(true);
+    fishTable.setEnabled(true);
+
+    othersTable.horizontalHeader()->setFont(game->font());
+    othersTable.setVisible(true);
+    othersTable.setEnabled(true);
 
     backButton.setText(game->str.back);
     backButton.setVisible(true);
@@ -85,8 +113,11 @@ void InventoryMenu::hide() {
 
     descriptionLabel.setVisible(false);
 
-    inventoryTable.setVisible(false);
-    inventoryTable.setEnabled(false);
+    fishTable.setVisible(false);
+    fishTable.setEnabled(false);
+
+    othersTable.setVisible(false);
+    othersTable.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
@@ -98,9 +129,21 @@ InventoryMenu::~InventoryMenu() {
     for (int i = 0; ; ++i) {
         int cnt = 0;
         for (int j = 0; j < 2; ++j) {
-            if (inventoryTable.item(i, j)) {
+            if (fishTable.item(i, j)) {
                 ++cnt;
-                delete inventoryTable.item(i, j);
+                delete fishTable.item(i, j);
+            }
+        }
+        if (!cnt) {
+            break;
+        }
+    }
+    for (int i = 0; ; ++i) {
+        int cnt = 0;
+        for (int j = 0; j < 2; ++j) {
+            if (othersTable.item(i, j)) {
+                ++cnt;
+                delete othersTable.item(i, j);
             }
         }
         if (!cnt) {
