@@ -45,7 +45,6 @@ public:
     ~SettingsMenu();
     void display() override;
     void hide() override;
-    QString getSetting(const QString &settingName);
 };
 
 #endif  // INCLUDE_SETTINGSMENU_H_

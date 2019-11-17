@@ -259,12 +259,6 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.aboutme) =
             "Print information about current user<br>"
             "Usage: aboutme";
-        SET(commands.settings) =
-            "Get information about the settings or edit the settings<br>"
-            "Usage: settings get &lt;setting_name&gt;<br>"
-            "List of supported settings:<br>"
-            "\tautosave - auto save period<br>"
-            "\tlanguage - current language";
         SET(commands.privilege) =
             "Print privilege level of current user<br>"
             "Usage: privilege";
@@ -485,12 +479,6 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.aboutme) =
             "Вывести информацию о текущем пользователе<br>"
             "Использование: aboutme";
-        SET(commands.settings) =
-            "Получить информацию о настройках или отредактировать настройки<br>"
-            "Использование: settings get &lt;setting_name&gt;<br>"
-            "Список поддерживаемых настроек:<br>"
-            "\tautosave - период автосохранения<br>"
-            "\tlanguage - текущий язык";
         SET(commands.privilege) =
             "Вывести уровень привилегий текущего пользователя<br>"
             "Использование: privilege";

@@ -160,7 +160,6 @@ public:
             about,
             version,
             aboutme,
-            settings,
             privilege,
             clear,
             inventory,
