@@ -571,5 +571,6 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         game->setWindowTitle(fishingTime);
         game->gameMenu.getPopUpInventoryTable().setWindowTitle(fishingTime + ": " + inventory);
         game->gameMenu.getPopUpInventoryTable().setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
+        game->logger.info("Set language: " + QString::number((int)l));
     }
 }

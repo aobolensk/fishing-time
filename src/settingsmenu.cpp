@@ -30,7 +30,6 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
             QString::number(game->str.getTotalNumberOfEntries()) + " -> " +
             QString::number(game->str.getReadiness((Language)i)) + "%) ready");
     }
-    qDebug() << (int)game->activeLanguage;
 
     languageSelector.setVisible(false);
     languageSelector.setEnabled(false);
