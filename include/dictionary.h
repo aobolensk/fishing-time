@@ -48,6 +48,7 @@ public:
             empty,
             emptyLoginWarning,
             emptyPasswordWarning,
+            enter,
             eraseAllData,
             eraseAllDataConfirmation,
             exit,

@@ -114,6 +114,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(empty) = "<EMPTY>";
         SET(emptyLoginWarning) = "Login is empty!";
         SET(emptyPasswordWarning) = "Do you really want to leave your password empty?";
+        SET(enter) = "Enter";
         SET(eraseAllData) = "Erase all data";
         SET(eraseAllDataConfirmation) = "Do you really want to erase all your data?";
         SET(exit) = "Exit";
@@ -358,6 +359,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(empty) = "<ПУСТО>";
         SET(emptyLoginWarning) = "Логин пуст!";
         SET(emptyPasswordWarning) = "Вы действительно хотите оставить пароль пустым?";
+        SET(enter) = "Ввод";
         SET(eraseAllData) = "Удалить все данные";
         SET(eraseAllDataConfirmation) = "Вы действительно хотите удалить все данные?";
         SET(exit) = "Выход";

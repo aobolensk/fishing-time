@@ -17,17 +17,19 @@ Console::Console(Game *game) :
     }
     this->setLayout(grid);
 
-    grid->addWidget(&console, 0, 0);
+    grid->addWidget(&console, 0, 0, 1, 6);
     console.setReadOnly(true);
 
-    grid->addWidget(&input, 1, 0);
+    grid->addWidget(&input, 1, 0, 1, 5);
     QObject::connect(&input, &QLineEdit::returnPressed, [this]() {
-        QMutex mutex;
-        mutex.lock();
-        commandParser();
-        input.clear();
-        console.verticalScrollBar()->setValue(console.verticalScrollBar()->maximum());
-        mutex.unlock();
+        enterCommandFunction();
+    });
+
+    grid->addWidget(&enterButton, 1, 5, 1, 1);
+    enterButton.setVisible(false);
+    enterButton.setEnabled(false);
+    QObject::connect(&enterButton, &QPushButton::clicked, [this]() {
+        enterCommandFunction();
     });
 
     input.installEventFilter(this);
@@ -92,6 +94,15 @@ bool Console::eventFilter(QObject *obj, QEvent *event) {
         qDebug() << key->key();
     }
     return QObject::eventFilter(obj, event);
+}
+
+void Console::enterCommandFunction() {
+    QMutex mutex;
+    mutex.lock();
+    this->commandParser();
+    input.clear();
+    console.verticalScrollBar()->setValue(console.verticalScrollBar()->maximum());
+    mutex.unlock();
 }
 
 int Console::parseCommand(QStringList &args) {
@@ -194,10 +205,18 @@ void Console::display() {
     this->setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
     this->show();
 
+    enterButton.setText(game->str.enter);
+    enterButton.setVisible(true);
+    enterButton.setEnabled(true);
+
     displayed = true;
 }
 
 void Console::hide() {
     this->QWidget::hide();
+
+    enterButton.setVisible(false);
+    enterButton.setEnabled(false);
+
     displayed = false;
 }

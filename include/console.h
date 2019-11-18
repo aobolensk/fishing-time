@@ -2,6 +2,7 @@
 #define INCLUDE_CONSOLE_H_
 #include <QLineEdit>
 #include <QMap>
+#include <QPushButton>
 #include <QTextEdit>
 #include <deque>
 #include "texteditlog.h"
@@ -38,6 +39,7 @@ protected:
 private:
     QTextEdit console;
     QLineEdit input;
+    QPushButton enterButton;
     TextEditLog log;
     QMap <QString, Command> commands;
 private:
@@ -46,6 +48,7 @@ private:
     void registerCommands();
 private slots:
     void commandParser();
+    void enterCommandFunction();
 public:
     Console(Game *game = nullptr);
     ~Console() = default;
