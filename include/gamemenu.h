@@ -41,11 +41,11 @@ private slots:
     void usersettingsFunction();
     void locationFunction();
 private:
-    void updateInfo();
     bool displayedButtons = true;
     void displayButtons();
     void hideButtons();
 public:
+    void updateInfo();
     void updateInventoryTable();
     QTableWidget &getPopUpInventoryTable();
 public:

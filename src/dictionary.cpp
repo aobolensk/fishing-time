@@ -299,6 +299,10 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
             "Give user some item<br>"
             "Usage: give &lt;item ID&gt; &lt;quantity&gt;<br>"
             "Only for superusers!";
+        SET(commands.experience) =
+            "Change user experience<br>"
+            "Usage: experience &lt;amount&gt;<br>"
+            "Only for superusers!";
         SET(commands.rating) =
             "Show users rating<br>"
             "Usage: rating";
@@ -544,6 +548,10 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.give) =
             "Выдать пользователю предмет<br>"
             "Использование: give &lt;ID предмета&gt; &lt;количество&gt;<br>"
+            "Только для суперпользователей!";
+        SET(commands.experience) =
+            "Изменить количество опыта у пользователя<br>"
+            "Использование: experience &lt;количество опыта&gt;<br>"
             "Только для суперпользователей!";
         SET(commands.rating) =
             "Показать рейтинг пользователей<br>"

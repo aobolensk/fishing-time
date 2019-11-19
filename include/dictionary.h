@@ -172,6 +172,7 @@ public:
             clear,
             inventory,
             give,
+            experience,
             rating,
             exit,
             time,

@@ -486,6 +486,26 @@ void Console::registerCommands() {
         &game->str.commands.give
     };
 
+    commands["experience"] = {
+        [&](QStringList &args) -> int {
+            if (game->activeUser == -1) {
+                log.error(game->str.youAreNotLoggedIn);
+                return 1;
+            }
+            bool flag;
+            int quantity = args[1].toInt(&flag);
+            if (!flag) {
+                log.error(game->str.quantityShouldBeANumber);
+                return 1;
+            }
+            game->users[game->activeUser].changeExperience(quantity);
+            game->gameMenu.updateInfo();
+            return 0;
+        },
+        PrivilegeLevel::Super,
+        &game->str.commands.experience
+    };
+
     commands["rating"] = {
         [&](QStringList &args) -> int {
             (void) args;
