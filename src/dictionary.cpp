@@ -138,6 +138,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(itemNotFound) = "Item %1 is not found";
         SET(items) = "Items";
         SET(itemStatistics) = "Item statistics";
+        SET(jumpToBottom) = "Jump to bottom";
         SET(language) = "Language";
         SET(level) = "Level";
         SET(lightTheme) = "Light theme";
@@ -383,6 +384,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(itemNotFound) = "Предмет %1 не найден";
         SET(items) = "Предметы";
         SET(itemStatistics) = "Статистика предметов";
+        SET(jumpToBottom) = "Перейти вниз";
         SET(language) = "Язык";
         SET(level) = "Уровень";
         SET(lightTheme) = "Светлая тема";

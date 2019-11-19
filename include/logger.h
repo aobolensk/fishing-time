@@ -1,6 +1,7 @@
 #ifndef INCLUDE_LOGGER_H_
 #define INCLUDE_LOGGER_H_
 #include <QTextEdit>
+#include <QPushButton>
 #include "texteditlog.h"
 #include "filelog.h"
 #include "config.h"
@@ -11,8 +12,11 @@ private:
     void closeEvent(QCloseEvent *event) override;
 private:
     QTextEdit console;
+    QPushButton jumpToBottomButton;
     TextEditLog log;
     FileLog fileLog;
+private slots:
+    void jumpToBottomFunction();
 public:
     void debug(const QString &message);
     void info(const QString &message);

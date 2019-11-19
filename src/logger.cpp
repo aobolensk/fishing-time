@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QMessageBox>
+#include <QScrollBar>
 #include <QSettings>
 #include "logger.h"
 #include "game.h"
@@ -15,8 +16,17 @@ Logger::Logger(Game *game) :
         this->setGeometry(QRect(QPoint(200, 100), QSize(360, 480)));
     }
 
-    grid->addWidget(&console, 0, 0);
+    grid->addWidget(&jumpToBottomButton, 0, 0);
+    connect(&jumpToBottomButton, &QPushButton::clicked, [this]() {
+        jumpToBottomFunction();
+    });
+
+    grid->addWidget(&console, 1, 0);
     console.setReadOnly(true);
+}
+
+void Logger::jumpToBottomFunction() {
+    console.verticalScrollBar()->setValue(console.verticalScrollBar()->maximum());
 }
 
 void Logger::closeEvent(QCloseEvent *event) {
@@ -61,6 +71,8 @@ void Logger::display() {
     this->setWindowTitle(game->str.fishingTime + ": " + game->str.console);
     this->setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
     this->show();
+
+    jumpToBottomButton.setText(game->str.jumpToBottom);
 
     displayed = true;
 }

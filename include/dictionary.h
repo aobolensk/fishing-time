@@ -72,6 +72,7 @@ public:
             itemNotFound,
             items,
             itemStatistics,
+            jumpToBottom,
             language,
             level,
             lightTheme,
