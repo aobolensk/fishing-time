@@ -16,6 +16,10 @@ Logger::Logger(Game *game) :
         this->setGeometry(QRect(QPoint(200, 100), QSize(360, 480)));
     }
 
+    QFont font = console.font();
+    font.setFamily("Courier New");
+    console.setFont(font);
+
     grid->addWidget(&jumpToBottomButton, 0, 0);
     connect(&jumpToBottomButton, &QPushButton::clicked, [this]() {
         jumpToBottomFunction();
