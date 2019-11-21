@@ -42,6 +42,7 @@ private:
     void serialize();
 private:
     void closeEvent(QCloseEvent *event);
+    void resizeEvent(QResizeEvent *event);
 private slots:
     void autoSaveFunction();
 private:
@@ -74,6 +75,7 @@ public:
     AboutMenu aboutMenu;
     int activeUser = -1;
     int activeLocation = -1;
+    QString bgImagePath;
     QDateTime userTimestamp;
     InventoryType inventoryType = InventoryType::POPUP;
     ColorTheme colorTheme = ColorTheme::LIGHT;

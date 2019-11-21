@@ -70,6 +70,16 @@ int Game::getAutoSavePeriod() {
     return autoSavePeriod;
 }
 
+void Game::resizeEvent(QResizeEvent *event) {
+    if (this->bgImagePath.size()) {
+        QPixmap bkgnd(this->bgImagePath);
+        bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
+        QPalette palette = this->palette();
+        palette.setBrush(QPalette::Background, bkgnd);
+        this->setPalette(palette);
+    }
+}
+
 void Game::deserialize() {
     this->users.clear();
     this->activeUser = -1;
