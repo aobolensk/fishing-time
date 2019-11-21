@@ -73,7 +73,17 @@ int Game::getAutoSavePeriod() {
 void Game::resizeEvent(QResizeEvent *event) {
     if (this->bgImagePath.size()) {
         QPixmap bkgnd(this->bgImagePath);
-        bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
+        int w = this->width();
+        int h = this->height();
+        bkgnd = bkgnd.scaled(QSize(w, h), Qt::KeepAspectRatio);
+        if (this->height() > bkgnd.height()) {
+            h = this->height();
+            w = h * bkgnd.width() / bkgnd.height();
+        } else {
+            w = this->width();
+            h = w * bkgnd.height() / bkgnd.width();
+        }
+        bkgnd = bkgnd.scaled(QSize(w, h), Qt::KeepAspectRatio);
         QPalette palette = this->palette();
         palette.setBrush(QPalette::Background, bkgnd);
         this->setPalette(palette);
