@@ -52,6 +52,10 @@ StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
 void StoreMenu::display() {
     this->pre_display();
 
+    QPalette p = storeTable.palette();
+    p.setBrush(QPalette::Base, Qt::transparent);
+    storeTable.setPalette(p);
+
     updateTable();
     updateInfo();
 
