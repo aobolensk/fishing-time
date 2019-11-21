@@ -70,6 +70,27 @@ int Game::getAutoSavePeriod() {
     return autoSavePeriod;
 }
 
+void Game::resizeEvent(QResizeEvent *event) {
+    (void) event;
+    if (this->bgImagePath.size()) {
+        QPixmap bkgnd(this->bgImagePath);
+        int w = this->width();
+        int h = this->height();
+        bkgnd = bkgnd.scaled(QSize(w, h), Qt::KeepAspectRatio);
+        if (this->height() > bkgnd.height()) {
+            h = this->height();
+            w = h * bkgnd.width() / bkgnd.height();
+        } else {
+            w = this->width();
+            h = w * bkgnd.height() / bkgnd.width();
+        }
+        bkgnd = bkgnd.scaled(QSize(w, h), Qt::KeepAspectRatio);
+        QPalette palette = this->palette();
+        palette.setBrush(QPalette::Window, bkgnd);
+        this->setPalette(palette);
+    }
+}
+
 void Game::deserialize() {
     this->users.clear();
     this->activeUser = -1;
