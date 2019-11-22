@@ -47,6 +47,7 @@ Game::Game(QWidget *parent, const QString &file) :
     grid.setColumnStretch(1, 1);
     grid.setColumnStretch(2, 1);
     this->deserialize();
+    this->logger.setFile(this->logFile);
     this->mainMenu.display();
     this->logger.info("Logging system is successfully initialized!");
     this->logger.debug("Debug logging system is enabled!");

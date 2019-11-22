@@ -148,6 +148,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(log) = "Log";
         SET(logDebug) = "[DEBUG]";
         SET(logError) = "[ERROR]";
+        SET(logFile) = "Log file";
         SET(logIn) = "Log in";
         SET(logInfo) = "[INFO]";
         SET(logOut) = "Log out";
@@ -398,6 +399,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(log) = "Лог";
         SET(logDebug) = "[ОТЛАДКА]";
         SET(logError) = "[ОШИБКА]";
+        SET(logFile) = "Файл логов";
         SET(logIn) = "Войти";
         SET(logInfo) = "[ИНФО]";
         SET(logOut) = "Выйти";

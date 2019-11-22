@@ -50,6 +50,7 @@ private:
     int autoSavePeriod = 3;
     Menu *currentMenu = nullptr;
 public:
+    QString logFile = "log.txt";
     std::mt19937 randomGenerator;
     Config cfg;
     Logger logger;
