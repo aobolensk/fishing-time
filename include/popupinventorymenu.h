@@ -1,11 +1,11 @@
-#ifndef INCLUDE_INVENTORYMENU_H_
-#define INCLUDE_INVENTORYMENU_H_
+#ifndef INCLUDE_POPUPINVENTORYMENU_H_
+#define INCLUDE_POPUPINVENTORYMENU_H_
 #include <QLabel>
 #include <QPushButton>
 #include <QTableWidget>
 #include "menu.h"
 
-class InventoryMenu : public Menu {
+class PopUpInventoryMenu : public Menu {
 private:
     Q_OBJECT
 private:
@@ -20,11 +20,11 @@ private:
 private slots:
     void backFunction() override;
 public:
-    InventoryMenu(Game *game, QGridLayout *grid);
-    ~InventoryMenu();
+    PopUpInventoryMenu(Game *game);
+    ~PopUpInventoryMenu();
     void updateInventoryTables();
     void display() override;
     void hide() override;
 };
 
-#endif  // INCLUDE_INVENTORYMENU_H_
+#endif  // INCLUDE_POPUPINVENTORYMENU_H_

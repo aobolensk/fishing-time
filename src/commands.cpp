@@ -475,7 +475,7 @@ void Console::registerCommands() {
                         return 1;
                     }
                     game->users[game->activeUser].inventory.changeItem(args[1], quantity);
-                    game->gameMenu.updateInventoryTable();
+                    game->gameMenu.getPopUpInventoryTable().updateInventoryTables();
                     return 0;
                 }
             }

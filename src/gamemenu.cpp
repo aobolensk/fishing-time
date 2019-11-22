@@ -4,21 +4,15 @@
 #include "gamemenu.h"
 #include "game.h"
 
-GameMenu::GameMenu(Game *game, QGridLayout *grid) :
-        Menu(game, grid) {
+GameMenu::GameMenu(Game *game, QGridLayout *grid, PopUpInventoryMenu *inv) :
+        Menu(game, grid),
+        popUpInventoryTable(inv) {
     QSettings settings;
-    if (!popUpInventoryTable.restoreGeometry(settings.value("inventoryWindowGeometry").toByteArray())) {
+    if (!popUpInventoryTable->restoreGeometry(settings.value("inventoryWindowGeometry").toByteArray())) {
         this->game->logger.error("Unable to restore inventory window geometry. Loading defaults...");
-        popUpInventoryTable.setGeometry(QRect(QPoint(0, 0), QSize(300, 400)));
+        popUpInventoryTable->setGeometry(QRect(QPoint(0, 0), QSize(300, 400)));
     }
-    popUpInventoryTable.setRowCount(0);
-    popUpInventoryTable.setColumnCount(2);
-    popUpInventoryTable.setSelectionMode(QAbstractItemView::NoSelection);
-    popUpInventoryTable.verticalHeader()->setVisible(false);
-    popUpInventoryTable.setHorizontalHeaderItem(0, &nameHeader);
-    popUpInventoryTable.setHorizontalHeaderItem(1, &quantityHeader);
-    popUpInventoryTable.setVisible(false);
-    popUpInventoryTable.setEnabled(false);
+    popUpInventoryTable->hide();
 
     grid->addWidget(&infoLabel, 1, 0);
     infoLabel.setWordWrap(true);
@@ -249,7 +243,7 @@ void GameMenu::profileFunction() {
 }
 
 void GameMenu::logOutFunction() {
-    game->gameMenu.popUpInventoryTable.setVisible(false);
+    game->gameMenu.popUpInventoryTable->setVisible(false);
     game->netsMenu.foldNets();
     game->updateTimePlayed();
     game->userTimestamp = QDateTime();
@@ -267,11 +261,11 @@ void GameMenu::inventoryFunction() {
     updateInfo();
     switch (game->inventoryType) {
     case InventoryType::POPUP:
-        popUpInventoryTable.setWindowTitle(game->str.fishingTime + ": " + game->str.inventory);
-        popUpInventoryTable.setFont(game->font());
-        popUpInventoryTable.setVisible(true);
-        popUpInventoryTable.horizontalHeader()->setFont(game->font());
-        popUpInventoryTable.setEnabled(true);
+        popUpInventoryTable->setWindowTitle(game->str.fishingTime + ": " + game->str.inventory);
+        popUpInventoryTable->setFont(game->font());
+        popUpInventoryTable->setVisible(true);
+        popUpInventoryTable->setEnabled(true);
+        popUpInventoryTable->display();
         break;
     case InventoryType::BUILTIN:
         this->hide();
@@ -310,38 +304,9 @@ void GameMenu::locationFunction() {
     game->locationMenu.display();
 }
 
-void GameMenu::updateInventoryTable() {
-    auto inv = game->users[game->activeUser].inventory.get();
-    popUpInventoryTable.setRowCount(inv.size());
-    QMap<QString, int>::const_iterator it = inv.constBegin();
-    int i = 0;
-    while (it != inv.constEnd()) {
-        QTableWidgetItem *cell = popUpInventoryTable.item(i, 0);
-        if (!cell) {
-            cell = new QTableWidgetItem;
-            popUpInventoryTable.setItem(i, 0, cell);
-        }
-        cell->setText(game->str.getItemName(it.key()));
-        cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
-        cell = popUpInventoryTable.item(i, 1);
-        if (!cell) {
-            cell = new QTableWidgetItem;
-            popUpInventoryTable.setItem(i, 1, cell);
-        }
-        cell->setText(QString::number(it.value()));
-        cell->setFlags(cell->flags() & (~Qt::ItemIsEditable));
-        ++it;
-        ++i;
-    }
-}
-
-QTableWidget &GameMenu::getPopUpInventoryTable() {
-    return popUpInventoryTable;
-}
-
 void GameMenu::updateInfo() {
     if (game->activeUser != -1) {
-        updateInventoryTable();
+        popUpInventoryTable->updateInventoryTables();
         infoLabel.setText(game->str.mainLabelText.arg(
             game->users[game->activeUser].getUsername(),
             QString::number(game->users[game->activeUser].getLevel()),
@@ -362,6 +327,10 @@ void GameMenu::updateInfo() {
             fishList.join(", ")
         ));
     }
+}
+
+PopUpInventoryMenu &GameMenu::getPopUpInventoryTable() {
+    return *popUpInventoryTable;
 }
 
 void GameMenu::hide() {
@@ -385,16 +354,5 @@ void GameMenu::hide() {
 }
 
 GameMenu::~GameMenu() {
-    for (int i = 0; ; ++i) {
-        int cnt = 0;
-        for (int j = 0; j < 2; ++j) {
-            if (popUpInventoryTable.item(i, j)) {
-                ++cnt;
-                delete popUpInventoryTable.item(i, j);
-            }
-        }
-        if (!cnt) {
-            break;
-        }
-    }
+
 }
