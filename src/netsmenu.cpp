@@ -71,7 +71,7 @@ void NetsMenu::netsTimerTick() {
                         changeItem(game->locations[game->activeLocation].getFish(
                         qMin(rnd / (MOD / game->locations[game->activeLocation].getFishCount()),
                         game->locations[game->activeLocation].getFishCount() - 1)), 1);
-                game->gameMenu.updateInventoryTable();
+                game->gameMenu.getPopUpInventoryTable().updateInventoryTables();
             }
         }
     }
@@ -104,7 +104,7 @@ void NetsMenu::display() {
                 }
                 netSlot[i].setCurrentIndex(0);
                 updateNets();
-                game->gameMenu.updateInventoryTable();
+                game->gameMenu.getPopUpInventoryTable().updateInventoryTables();
             }
         );
     }

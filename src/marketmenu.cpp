@@ -78,7 +78,7 @@ void MarketMenu::updateInfo() {
                 QString::number(game->users[game->activeUser].inventory.getItem(goodId[i]))
             ));
     }
-    game->gameMenu.updateInventoryTable();
+    game->gameMenu.getPopUpInventoryTable().updateInventoryTables();
 }
 
 void MarketMenu::processDialog(int seller) {

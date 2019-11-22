@@ -131,7 +131,7 @@ void StoreMenu::updateInfo() {
         QString::number(game->users[game->activeUser].getCoins()),
         QString::number(game->users[game->activeUser].getClicks())
     ));
-    game->gameMenu.updateInventoryTable();
+    game->gameMenu.getPopUpInventoryTable().updateInventoryTables();
 }
 
 void StoreMenu::buyFunction() {
