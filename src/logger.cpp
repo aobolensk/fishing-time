@@ -27,7 +27,8 @@ Logger::Logger(Game *game) :
 
     grid->addWidget(&console, 1, 0);
     console.setReadOnly(true);
-    fileLog.open(game->logFile);
+
+    this->setFile(game->logFile);
 }
 
 void Logger::jumpToBottomFunction() {
@@ -80,6 +81,10 @@ void Logger::display() {
     jumpToBottomButton.setText(game->str.jumpToBottom);
 
     displayed = true;
+}
+
+void Logger::setFile(const QString &filePath) {
+    fileLog.open(filePath);
 }
 
 void Logger::hide() {

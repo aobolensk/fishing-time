@@ -27,7 +27,7 @@ public:
     ~Logger() = default;
     void display() override;
     void hide() override;
-    void setLevel(LoggerLevel level);
+    void setFile(const QString &filePath);
     LoggerLevel getLevel();
 };
 

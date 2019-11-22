@@ -84,7 +84,16 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     configFileSetupButton.setEnabled(false);
     connect(&configFileSetupButton, SIGNAL(released()), this, SLOT(configFileSetupFunction()));
 
-    grid->addWidget(&backButton, 8, 1);
+    grid->addWidget(&logFileLabel, 8, 0);
+    logFileLabel.setVisible(false);
+    logFileLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+    grid->addWidget(&logFileSetupButton, 8, 1);
+    logFileSetupButton.setVisible(false);
+    logFileSetupButton.setEnabled(false);
+    connect(&logFileSetupButton, SIGNAL(released()), this, SLOT(logFileSetupFunction()));
+
+    grid->addWidget(&backButton, 9, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -181,6 +190,13 @@ void SettingsMenu::display() {
     configFileSetupButton.setVisible(true);
     configFileSetupButton.setEnabled(true);
 
+    logFileLabel.setText(game->str.logFile);
+    logFileLabel.setVisible(true);
+
+    logFileSetupButton.setText(game->str.open);
+    logFileSetupButton.setVisible(true);
+    logFileSetupButton.setEnabled(true);
+
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
@@ -198,10 +214,19 @@ void SettingsMenu::fontSetupFunction() {
 
 void SettingsMenu::configFileSetupFunction() {
     QString config_file = QFileDialog::getOpenFileName();
-    qDebug() << "New config file:" << config_file;
+    game->logger.info("New config file: " + config_file);
     if (config_file.size() > 0) {
         game->setConfigFile(config_file);
     }
+}
+
+void SettingsMenu::logFileSetupFunction() {
+    QString log_file = QFileDialog::getOpenFileName();
+    if (log_file.size() > 0) {
+        game->logFile = log_file;
+        game->logger.setFile(game->logFile);
+    }
+    game->logger.info("New log file: " + log_file);
 }
 
 void SettingsMenu::eraseAllDataFunction() {
@@ -278,6 +303,11 @@ void SettingsMenu::hide() {
 
     configFileSetupButton.setVisible(false);
     configFileSetupButton.setEnabled(false);
+
+    logFileLabel.setVisible(false);
+
+    logFileSetupButton.setVisible(false);
+    logFileSetupButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

@@ -82,6 +82,7 @@ public:
             log,
             logDebug,
             logError,
+            logFile,
             logIn,
             logInfo,
             logOut,
