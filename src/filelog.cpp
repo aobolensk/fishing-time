@@ -1,14 +1,26 @@
 #include "filelog.h"
 #include "game.h"
 
-FileLog::FileLog(Game *game, const QString &filePath) :
+FileLog::FileLog(Game *game) :
     Log(game),
-    file(QFile(filePath)),
+    file(nullptr),
     fs(nullptr) {
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Append)) {
+}
+
+void FileLog::open(const QString &filePath) {
+    if (file) {
+        delete file;
+        file = nullptr;
+    }
+    if (fs) {
+        delete fs;
+        fs = nullptr;
+    }
+    file = new QFile(filePath);
+    if (!file->open(QIODevice::WriteOnly | QIODevice::Append)) {
         qDebug() << "Failed to open file '" << filePath << "' for logging";
     }
-    fs = new QTextStream(&file);
+    fs = new QTextStream(file);
 }
 
 void FileLog::debug(const QString &message) {

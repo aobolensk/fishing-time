@@ -9,7 +9,7 @@
 Logger::Logger(Game *game) :
     Menu(game, nullptr, true),
     log(game, &console),
-    fileLog(game, "log.txt") {
+    fileLog(game) {
     QSettings settings;
     if (!this->restoreGeometry(settings.value("loggerGeometry").toByteArray())) {
         qDebug() << "Unable to restore console window geometry. Loading defaults...";
@@ -27,6 +27,7 @@ Logger::Logger(Game *game) :
 
     grid->addWidget(&console, 1, 0);
     console.setReadOnly(true);
+    fileLog.open(game->logFile);
 }
 
 void Logger::jumpToBottomFunction() {
