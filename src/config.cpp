@@ -18,6 +18,9 @@ void Config::deserialize(const QVariantMap &map) {
     game->inventoryType = (InventoryType)map["inventoryType"].toInt();
     game->colorTheme = (ColorTheme)map["colorTheme"].toInt();
     game->loggerLevel = (LoggerLevel)map["loggerLevel"].toInt();
+    if (map["logFile"].toString().size() > 0) {
+        game->logFile = map["logFile"].toString();
+    }
     game->textFont.fromString(map["textFont"].toString());
     isReady = true;
 }
@@ -30,6 +33,7 @@ QJsonObject Config::serialize() const {
     jsonObj["inventoryType"] = (int)game->inventoryType;
     jsonObj["colorTheme"] = (int)game->colorTheme;
     jsonObj["loggerLevel"] = (int)game->loggerLevel;
+    jsonObj["logFile"] = game->logFile;
     jsonObj["textFont"] = game->font().toString();
     return jsonObj;
 }
