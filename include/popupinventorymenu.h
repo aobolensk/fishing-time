@@ -18,9 +18,6 @@ private:
                      fishQuantityHeader,
                      othersNameHeader,
                      othersQuantityHeader;
-    QPushButton backButton;
-private slots:
-    void backFunction() override;
 public:
     PopUpInventoryMenu(Game *game);
     ~PopUpInventoryMenu();

@@ -39,11 +39,6 @@ PopUpInventoryMenu::PopUpInventoryMenu(Game *game) :
     othersTable.setVisible(false);
     othersTable.setEnabled(false);
     othersTable.horizontalHeader()->setStretchLastSection(true);
-
-    grid->addWidget(&backButton, 5, 1);
-    backButton.setVisible(false);
-    backButton.setEnabled(false);
-    connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
 void PopUpInventoryMenu::updateInventoryTables() {
@@ -112,16 +107,7 @@ void PopUpInventoryMenu::display() {
     othersTable.setVisible(true);
     othersTable.setEnabled(true);
 
-    backButton.setText(game->str.back);
-    backButton.setVisible(true);
-    backButton.setEnabled(true);
-
     displayed = true;
-}
-
-void PopUpInventoryMenu::backFunction() {
-    this->hide();
-    game->gameMenu.display();
 }
 
 void PopUpInventoryMenu::hide() {
@@ -138,9 +124,6 @@ void PopUpInventoryMenu::hide() {
 
     othersTable.setVisible(false);
     othersTable.setEnabled(false);
-
-    backButton.setVisible(false);
-    backButton.setEnabled(false);
 
     displayed = false;
 }
