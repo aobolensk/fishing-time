@@ -120,6 +120,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(exit) = "Exit";
         SET(exitConfirmation) = "Do you want to exit?";
         SET(experience) = "Experience";
+        SET(fish) = "Fish";
         SET(fishLabelText) = "Fish that can be caught in location %1:\n%2";
         SET(font) = "Font";
         SET(forbiddenSymbol) = "Forbidden symbol: %1";
@@ -174,6 +175,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(newUserCreatedText) = "New user \"%1\" successfully created";
         SET(oldPassword) = "Old password";
         SET(open) = "Open";
+        SET(otherItems) = "Other items";
         SET(password) = "Password";
         SET(passwordHasBeenReseted) = "Your password has been reseted. You can login with empty password and set your new password in user settings";
         SET(passwordIsChanged) = "Password is successfully changed";
@@ -371,6 +373,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(exit) = "Выход";
         SET(exitConfirmation) = "Вы действительно хотите выйти из игры?";
         SET(experience) = "Опыт";
+        SET(fish) = "Рыба";
         SET(fishLabelText) = "Рыба, которую можно поймать в локации %1:\n%2";
         SET(font) = "Шрифт";
         SET(forbiddenSymbol) = "Недопустимый символ: %1";
@@ -425,6 +428,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(newUserCreatedText) = "Новый пользователь \"%1\" успешно создан";
         SET(oldPassword) = "Старый пароль";
         SET(open) = "Открыть";
+        SET(otherItems) = "Другие предметы";
         SET(password) = "Пароль";
         SET(passwordHasBeenReseted) = "Ваш пароль был сброшен. Теперь вы можете войти в игру с пустым паролем и установить новый пароль в настройках пользователя";
         SET(passwordIsChanged) = "Пароль успешно изменен";

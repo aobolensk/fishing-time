@@ -10,7 +10,11 @@ PopUpInventoryMenu::PopUpInventoryMenu(Game *game) :
     descriptionLabel.setVisible(false);
     descriptionLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    grid->addWidget(&fishTable, 1, 0, 1, 3);
+    grid->addWidget(&fishLabel, 1, 1);
+    fishLabel.setVisible(false);
+    fishLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+    grid->addWidget(&fishTable, 2, 0, 1, 3);
     fishTable.setRowCount(0);
     fishTable.setColumnCount(2);
     fishTable.setSelectionMode(QAbstractItemView::NoSelection);
@@ -21,7 +25,11 @@ PopUpInventoryMenu::PopUpInventoryMenu(Game *game) :
     fishTable.setEnabled(false);
     fishTable.horizontalHeader()->setStretchLastSection(true);
 
-    grid->addWidget(&othersTable, 2, 0, 1, 3);
+    grid->addWidget(&otherItemsLabel, 3, 1);
+    otherItemsLabel.setVisible(false);
+    otherItemsLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+    grid->addWidget(&othersTable, 4, 0, 1, 3);
     othersTable.setRowCount(0);
     othersTable.setColumnCount(2);
     othersTable.setSelectionMode(QAbstractItemView::NoSelection);
@@ -31,11 +39,6 @@ PopUpInventoryMenu::PopUpInventoryMenu(Game *game) :
     othersTable.setVisible(false);
     othersTable.setEnabled(false);
     othersTable.horizontalHeader()->setStretchLastSection(true);
-
-    grid->addWidget(&backButton, 3, 1);
-    backButton.setVisible(false);
-    backButton.setEnabled(false);
-    connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
 void PopUpInventoryMenu::updateInventoryTables() {
@@ -90,24 +93,21 @@ void PopUpInventoryMenu::display() {
     othersNameHeader.setText(game->str.name);
     othersQuantityHeader.setText(game->str.quantity);
 
+    fishLabel.setVisible(true);
+    fishLabel.setText(game->str.fish);
+
     fishTable.horizontalHeader()->setFont(game->font());
     fishTable.setVisible(true);
     fishTable.setEnabled(true);
+
+    otherItemsLabel.setVisible(true);
+    otherItemsLabel.setText(game->str.otherItems);
 
     othersTable.horizontalHeader()->setFont(game->font());
     othersTable.setVisible(true);
     othersTable.setEnabled(true);
 
-    backButton.setText(game->str.back);
-    backButton.setVisible(true);
-    backButton.setEnabled(true);
-
     displayed = true;
-}
-
-void PopUpInventoryMenu::backFunction() {
-    this->hide();
-    game->gameMenu.display();
 }
 
 void PopUpInventoryMenu::hide() {
@@ -115,14 +115,15 @@ void PopUpInventoryMenu::hide() {
 
     descriptionLabel.setVisible(false);
 
+    fishLabel.setVisible(false);
+
     fishTable.setVisible(false);
     fishTable.setEnabled(false);
 
+    otherItemsLabel.setVisible(false);
+
     othersTable.setVisible(false);
     othersTable.setEnabled(false);
-
-    backButton.setVisible(false);
-    backButton.setEnabled(false);
 
     displayed = false;
 }

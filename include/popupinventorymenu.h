@@ -9,16 +9,15 @@ class PopUpInventoryMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    QLabel descriptionLabel;
+    QLabel descriptionLabel,
+           fishLabel,
+           otherItemsLabel;
     QTableWidget fishTable,
                  othersTable;
     QTableWidgetItem fishNameHeader,
                      fishQuantityHeader,
                      othersNameHeader,
                      othersQuantityHeader;
-    QPushButton backButton;
-private slots:
-    void backFunction() override;
 public:
     PopUpInventoryMenu(Game *game);
     ~PopUpInventoryMenu();

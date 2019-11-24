@@ -9,7 +9,9 @@ class InventoryMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    QLabel descriptionLabel;
+    QLabel descriptionLabel,
+           fishLabel,
+           otherItemsLabel;
     QTableWidget fishTable,
                  othersTable;
     QTableWidgetItem fishNameHeader,
