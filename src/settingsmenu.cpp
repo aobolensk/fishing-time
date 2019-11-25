@@ -61,39 +61,49 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     colorThemeSelector.setVisible(false);
     colorThemeSelector.setEnabled(false);
 
-    grid->addWidget(&loggerLevelLabel, 5, 0);
+    grid->addWidget(&backgroundImagesLabel, 5, 0);
+    backgroundImagesLabel.setWordWrap(true);
+    backgroundImagesLabel.setVisible(false);
+    backgroundImagesLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+    grid->addWidget(&backgroundImagesSwitch, 5, 1);
+    backgroundImagesSwitch.setTristate(false);
+    backgroundImagesSwitch.setVisible(false);
+    backgroundImagesSwitch.setEnabled(false);
+
+    grid->addWidget(&loggerLevelLabel, 6, 0);
     loggerLevelLabel.setVisible(false);
     loggerLevelLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    grid->addWidget(&loggerLevelSelector, 5, 1);
+    grid->addWidget(&loggerLevelSelector, 6, 1);
     loggerLevelSelector.setCurrentIndex(-1);
     loggerLevelSelector.setVisible(false);
     loggerLevelSelector.setEnabled(false);
 
-    grid->addWidget(&eraseAllDataButton, 6, 1);
+    grid->addWidget(&eraseAllDataButton, 7, 1);
     eraseAllDataButton.setVisible(false);
     eraseAllDataButton.setEnabled(false);
     connect(&eraseAllDataButton, SIGNAL(released()), this, SLOT(eraseAllDataFunction()));
 
-    grid->addWidget(&configFileLabel, 7, 0);
+    grid->addWidget(&configFileLabel, 8, 0);
     configFileLabel.setVisible(false);
     configFileLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    grid->addWidget(&configFileSetupButton, 7, 1);
+    grid->addWidget(&configFileSetupButton, 8, 1);
     configFileSetupButton.setVisible(false);
     configFileSetupButton.setEnabled(false);
     connect(&configFileSetupButton, SIGNAL(released()), this, SLOT(configFileSetupFunction()));
 
-    grid->addWidget(&logFileLabel, 8, 0);
+    grid->addWidget(&logFileLabel, 9, 0);
     logFileLabel.setVisible(false);
     logFileLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    grid->addWidget(&logFileSetupButton, 8, 1);
+    grid->addWidget(&logFileSetupButton, 9, 1);
     logFileSetupButton.setVisible(false);
     logFileSetupButton.setEnabled(false);
     connect(&logFileSetupButton, SIGNAL(released()), this, SLOT(logFileSetupFunction()));
 
-    grid->addWidget(&backButton, 9, 1);
+    grid->addWidget(&backButton, 10, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -162,6 +172,17 @@ void SettingsMenu::display() {
             this->game->colorTheme = (ColorTheme)index;
             this->game->cfg.applyColorTheme(this->game->colorTheme);
         }
+    });
+
+    backgroundImagesLabel.setText(game->str.showBackgroundImages);
+    backgroundImagesLabel.setVisible(true);
+
+    backgroundImagesSwitch.setVisible(true);
+    backgroundImagesSwitch.setEnabled(true);
+    backgroundImagesSwitch.setChecked(game->showBgImages);
+    backgroundImagesUpdater = connect(&backgroundImagesSwitch, static_cast<void(QCheckBox::*)(int)>(&QCheckBox::stateChanged),
+    [this](int state) {
+        this->game->showBgImages = bool(state);
     });
 
     loggerLevelLabel.setText(game->str.loggerLevel);
@@ -281,6 +302,12 @@ void SettingsMenu::hide() {
 
     fontSetupButton.setVisible(false);
     fontSetupButton.setEnabled(false);
+
+    backgroundImagesLabel.setVisible(false);
+
+    backgroundImagesSwitch.setVisible(false);
+    backgroundImagesSwitch.setEnabled(false);
+    disconnect(backgroundImagesUpdater);
 
     loggerLevelLabel.setVisible(false);
 

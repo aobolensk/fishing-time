@@ -79,6 +79,7 @@ public:
     int activeUser = -1;
     int activeLocation = -1;
     QString bgImagePath;
+    bool showBgImages = true;
     QDateTime userTimestamp;
     InventoryType inventoryType = InventoryType::POPUP;
     ColorTheme colorTheme = ColorTheme::LIGHT;

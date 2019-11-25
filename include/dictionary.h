@@ -130,6 +130,7 @@ public:
             sellerText,
             settings,
             setup,
+            showBackgroundImages,
             signUp,
             signupMenuText,
             start,
