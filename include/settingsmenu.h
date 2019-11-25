@@ -1,5 +1,6 @@
 #ifndef INCLUDE_SETTINGSMENU_H_
 #define INCLUDE_SETTINGSMENU_H_
+#include <QCheckBox>
 #include <QComboBox>
 #include <QLabel>
 #include <QPushButton>
@@ -17,6 +18,7 @@ private:
            inventoryTypeLabel,
            fontLabel,
            colorThemeLabel,
+           backgroundImagesLabel,
            loggerLevelLabel,
            configFileLabel,
            logFileLabel;
@@ -30,10 +32,12 @@ private:
                 configFileSetupButton,
                 logFileSetupButton,
                 backButton;
+    QCheckBox backgroundImagesSwitch;
     QMetaObject::Connection languageUpdater,
                             autoSaveUpdater,
                             inventoryTypeUpdater,
                             colorThemeUpdater,
+                            backgroundImagesUpdater,
                             loggerLevelUpdater;
 private:
 private slots:
