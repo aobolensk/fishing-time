@@ -74,7 +74,7 @@ int Game::getAutoSavePeriod() {
 
 void Game::resizeEvent(QResizeEvent *event) {
     (void) event;
-    if (this->bgImagePath.size()) {
+    if (this->showBgImages && this->bgImagePath.size()) {
         QPixmap bkgnd(this->bgImagePath);
         int w = this->width();
         int h = this->height();
