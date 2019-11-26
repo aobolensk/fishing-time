@@ -17,6 +17,8 @@ private:
     FileLog fileLog;
 private slots:
     void jumpToBottomFunction();
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
 public:
     void debug(const QString &message);
     void info(const QString &message);

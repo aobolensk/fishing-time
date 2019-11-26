@@ -168,6 +168,8 @@ void Game::serialize() {
 
 void Game::closeEvent(QCloseEvent *event) {
     if (this->console.isHidden() && this->logger.isHidden()) {
+        this->console.hide();
+        this->logger.hide();
         QMessageBox::StandardButton closeResult =
             QMessageBox::question(this, str.fishingTime, str.exitConfirmation,
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);

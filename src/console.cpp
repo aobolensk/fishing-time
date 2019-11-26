@@ -17,23 +17,32 @@ Console::Console(Game *game) :
     }
     this->setLayout(grid);
 
-    grid->addWidget(&console, 0, 0, 1, 6);
+    grid->addWidget(&jumpToBottomButton, 0, 0, 1, 6);
+    jumpToBottomButton.setVisible(false);
+    jumpToBottomButton.setEnabled(false);
+    QObject::connect(&jumpToBottomButton, &QPushButton::clicked, [this]() {
+        jumpToBottomFunction();
+    });
+
+    grid->addWidget(&console, 1, 0, 1, 6);
     console.setReadOnly(true);
 
-    grid->addWidget(&input, 1, 0, 1, 5);
+    grid->addWidget(&input, 2, 0, 1, 5);
     QObject::connect(&input, &QLineEdit::returnPressed, [this]() {
         enterCommandFunction();
     });
 
-    grid->addWidget(&enterButton, 1, 5, 1, 1);
+    grid->addWidget(&enterButton, 2, 5, 1, 1);
     enterButton.setVisible(false);
     enterButton.setEnabled(false);
     QObject::connect(&enterButton, &QPushButton::clicked, [this]() {
         enterCommandFunction();
     });
 
-    input.installEventFilter(this);
     input.setFocus();
+
+    input.installEventFilter(this);
+    console.installEventFilter(this);
 
     registerCommands();
 }
@@ -69,6 +78,8 @@ QString Console::InputHistory::getLower() {
 
 void Console::closeEvent(QCloseEvent *event) {
     if (game->isHidden() && game->logger.isHidden()) {
+        game->console.hide();
+        game->logger.hide();
         QMessageBox::StandardButton closeResult =
             QMessageBox::question(this, game->str.fishingTime, game->str.exitConfirmation,
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
@@ -84,6 +95,7 @@ void Console::closeEvent(QCloseEvent *event) {
 }
 
 bool Console::eventFilter(QObject *obj, QEvent *event) {
+    if (this->isHidden()) return false;
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent *key = static_cast<QKeyEvent *>(event);
         if (key->key() == 16777235) { // arrow up
@@ -93,7 +105,16 @@ bool Console::eventFilter(QObject *obj, QEvent *event) {
         }
         qDebug() << key->key();
     }
+    if (console.verticalScrollBar()->value() == console.verticalScrollBar()->maximum()) {
+        jumpToBottomButton.hide();
+    } else {
+        jumpToBottomButton.show();
+    }
     return QObject::eventFilter(obj, event);
+}
+
+void Console::jumpToBottomFunction() {
+    console.verticalScrollBar()->setValue(console.verticalScrollBar()->maximum());
 }
 
 void Console::enterCommandFunction() {
@@ -205,6 +226,10 @@ void Console::display() {
     this->setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
     this->show();
 
+    jumpToBottomButton.setText(game->str.jumpToBottom);
+    jumpToBottomButton.setVisible(true);
+    jumpToBottomButton.setEnabled(true);
+
     enterButton.setText(game->str.enter);
     enterButton.setVisible(true);
     enterButton.setEnabled(true);
@@ -214,6 +239,9 @@ void Console::display() {
 
 void Console::hide() {
     this->QWidget::hide();
+
+    jumpToBottomButton.setVisible(false);
+    jumpToBottomButton.setEnabled(false);
 
     enterButton.setVisible(false);
     enterButton.setEnabled(false);

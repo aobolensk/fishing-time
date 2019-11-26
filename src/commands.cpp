@@ -531,6 +531,8 @@ void Console::registerCommands() {
     commands["q"] = {
         [&](QStringList &args) -> int {
             (void) args;
+            game->logger.hide();
+            game->console.hide();
             QApplication::quit();
             return 0;
         },

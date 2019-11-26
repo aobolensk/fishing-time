@@ -37,6 +37,7 @@ private:
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
 private:
+    QPushButton jumpToBottomButton;
     QTextEdit console;
     QLineEdit input;
     QPushButton enterButton;
@@ -49,6 +50,7 @@ private:
 private slots:
     void commandParser();
     void enterCommandFunction();
+    void jumpToBottomFunction();
 public:
     Console(Game *game = nullptr);
     ~Console() = default;
