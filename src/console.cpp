@@ -194,7 +194,7 @@ void Console::commandParser() {
         inputHistory.reset();
         input.clear();
         return;
-        }
+    }
     QStringList argsCopy(args);
     for (int i = 0; i < argsCopy.size();) {
         if (argsCopy[i] == "login" ||
