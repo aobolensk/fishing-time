@@ -17,10 +17,10 @@ Console::Console(Game *game) :
     }
     this->setLayout(grid);
 
-    grid->addWidget(&jumpToButtomButton, 0, 0, 1, 6);
-    jumpToButtomButton.setVisible(false);
-    jumpToButtomButton.setEnabled(false);
-    QObject::connect(&jumpToButtomButton, &QPushButton::clicked, [this]() {
+    grid->addWidget(&jumpToBottomButton, 0, 0, 1, 6);
+    jumpToBottomButton.setVisible(false);
+    jumpToBottomButton.setEnabled(false);
+    QObject::connect(&jumpToBottomButton, &QPushButton::clicked, [this]() {
         jumpToBottomFunction();
     });
 
@@ -39,7 +39,7 @@ Console::Console(Game *game) :
         enterCommandFunction();
     });
 
-    input.installEventFilter(this);
+    console.installEventFilter(this);
     input.setFocus();
 
     registerCommands();
@@ -99,6 +99,11 @@ bool Console::eventFilter(QObject *obj, QEvent *event) {
             input.setText(inputHistory.getLower());
         }
         qDebug() << key->key();
+    }
+    if (console.verticalScrollBar()->value() == console.verticalScrollBar()->maximum()) {
+        jumpToBottomButton.hide();
+    } else {
+        jumpToBottomButton.show();
     }
     return QObject::eventFilter(obj, event);
 }
@@ -184,7 +189,7 @@ void Console::commandParser() {
         inputHistory.reset();
         input.clear();
         return;
-    }
+        }
     QStringList argsCopy(args);
     for (int i = 0; i < argsCopy.size();) {
         if (argsCopy[i] == "login" ||
@@ -216,9 +221,9 @@ void Console::display() {
     this->setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
     this->show();
 
-    jumpToButtomButton.setText(game->str.jumpToBottom);
-    jumpToButtomButton.setVisible(true);
-    jumpToButtomButton.setEnabled(true);
+    jumpToBottomButton.setText(game->str.jumpToBottom);
+    jumpToBottomButton.setVisible(true);
+    jumpToBottomButton.setEnabled(true);
 
     enterButton.setText(game->str.enter);
     enterButton.setVisible(true);
@@ -230,8 +235,8 @@ void Console::display() {
 void Console::hide() {
     this->QWidget::hide();
 
-    jumpToButtomButton.setVisible(false);
-    jumpToButtomButton.setEnabled(false);
+    jumpToBottomButton.setVisible(false);
+    jumpToBottomButton.setEnabled(false);
 
     enterButton.setVisible(false);
     enterButton.setEnabled(false);

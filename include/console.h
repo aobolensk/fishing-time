@@ -37,7 +37,7 @@ private:
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
 private:
-    QPushButton jumpToButtomButton;
+    QPushButton jumpToBottomButton;
     QTextEdit console;
     QLineEdit input;
     QPushButton enterButton;
