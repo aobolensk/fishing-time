@@ -3,7 +3,7 @@ name: Build application
 on: [push, pull_request]
 
 jobs:
-  ubuntu-build:
+  ubuntu-gcc-build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -18,6 +18,21 @@ jobs:
         mkdir build
         cd build
         cmake ..
+        cmake --build . -- -j
+  ubuntu-clang-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup environment
+      run: |
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+        sudo apt update
+        sudo apt install clang-8 qt5-default
+    - name: Build application
+      run: |
+        mkdir build
+        cd build
+        CC="clang-8" CXX="clang++-8" cmake ..
         cmake --build . -- -j
   macOS-build:
     runs-on: macOS-latest
