@@ -28,6 +28,8 @@ Logger::Logger(Game *game) :
     grid->addWidget(&console, 1, 0);
     console.setReadOnly(true);
 
+    console.installEventFilter(this);
+
     this->setFile(game->logFile);
 }
 
@@ -35,8 +37,20 @@ void Logger::jumpToBottomFunction() {
     console.verticalScrollBar()->setValue(console.verticalScrollBar()->maximum());
 }
 
+bool Logger::eventFilter(QObject *obj, QEvent *event) {
+    if (this->isHidden()) return false;
+    if (console.verticalScrollBar()->value() == console.verticalScrollBar()->maximum()) {
+        jumpToBottomButton.hide();
+    } else {
+        jumpToBottomButton.show();
+    }
+    return QObject::eventFilter(obj, event);
+}
+
 void Logger::closeEvent(QCloseEvent *event) {
     if (game->isHidden() && game->console.isHidden()) {
+        game->console.hide();
+        game->logger.hide();
         QMessageBox::StandardButton closeResult =
             QMessageBox::question(this, game->str.fishingTime, game->str.exitConfirmation,
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);

@@ -39,8 +39,10 @@ Console::Console(Game *game) :
         enterCommandFunction();
     });
 
-    console.installEventFilter(this);
     input.setFocus();
+
+    input.installEventFilter(this);
+    console.installEventFilter(this);
 
     registerCommands();
 }
@@ -76,6 +78,8 @@ QString Console::InputHistory::getLower() {
 
 void Console::closeEvent(QCloseEvent *event) {
     if (game->isHidden() && game->logger.isHidden()) {
+        game->console.hide();
+        game->logger.hide();
         QMessageBox::StandardButton closeResult =
             QMessageBox::question(this, game->str.fishingTime, game->str.exitConfirmation,
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
@@ -91,6 +95,7 @@ void Console::closeEvent(QCloseEvent *event) {
 }
 
 bool Console::eventFilter(QObject *obj, QEvent *event) {
+    if (this->isHidden()) return false;
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent *key = static_cast<QKeyEvent *>(event);
         if (key->key() == 16777235) { // arrow up
