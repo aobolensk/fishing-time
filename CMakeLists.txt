@@ -13,10 +13,7 @@ find_package(Qt5 REQUIRED COMPONENTS Widgets)
 
 include_directories(include)
 
-file(GLOB_RECURSE headers "include/*.h")
-file(GLOB_RECURSE sources "src/*.cpp")
-
 include("${PROJECT_SOURCE_DIR}/cmake/config.cmake")
-add_executable(${PROJECT_NAME} app/fishing-time.cpp ${sources} ${headers})
 
-qt5_use_modules(${PROJECT_NAME} Widgets)
+add_subdirectory(src)
+add_subdirectory(app)
