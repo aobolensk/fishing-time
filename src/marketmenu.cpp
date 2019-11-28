@@ -59,6 +59,16 @@ void MarketMenu::updateDeals() {
     }
 }
 
+QString MarketMenu::getDealInfo(int seller) {
+    this->updateDeals();
+    return game->str.sellerText.arg(
+        QString::number(seller),
+        game->str.getItemName(goodId[seller]),
+        QString::number(goodPrice[seller]),
+        QString::number(game->users[game->activeUser].inventory.getItem(goodId[seller]))
+    );
+}
+
 void MarketMenu::updateInfo() {
     infoLabel.setText(game->str.mainLabelText.arg(
         game->users[game->activeUser].getUsername(),
@@ -70,13 +80,7 @@ void MarketMenu::updateInfo() {
     ));
 
     for (int i = 0; i < Config::SELLERS_COUNT; ++i) {
-        dialogLabel[i].setText(
-            game->str.sellerText.arg(
-                QString::number(i),
-                game->str.getItemName(goodId[i]),
-                QString::number(goodPrice[i]),
-                QString::number(game->users[game->activeUser].inventory.getItem(goodId[i]))
-            ));
+        dialogLabel[i].setText(this->getDealInfo(i));
     }
     game->gameMenu.getPopUpInventoryTable().updateInventoryTables();
 }

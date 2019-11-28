@@ -293,6 +293,10 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.privilege) =
             "Print privilege level of current user<br>"
             "Usage: privilege";
+        SET(commands.market) =
+            "Use market<br>"
+            "Usage:<br>"
+            "\tmarket - get all deals on the market";
         SET(commands.su) =
             "Toggle privilege level (common, super)<br>"
             "Usage: su";
@@ -550,6 +554,10 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.privilege) =
             "Вывести уровень привилегий текущего пользователя<br>"
             "Использование: privilege";
+        SET(commands.market) =
+            "Посетить рынок<br>"
+            "Использование:<br>"
+            "\tmarket - получить список сделок на рынке";
         SET(commands.su) =
             "Переключить уровень привилегий (общий, супер)<br>"
             "Использование: su";

@@ -30,6 +30,7 @@ private:
 public:
     MarketMenu(Game *game, QGridLayout *grid);
     ~MarketMenu();
+    QString getDealInfo(int seller);
     void display() override;
     void hide() override;
 };
