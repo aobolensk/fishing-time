@@ -296,7 +296,8 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.market) =
             "Use market<br>"
             "Usage:<br>"
-            "\tmarket - get all deals on the market";
+            "\tmarket - get all deals on the market"
+            "\tmarket <seller> <quantity> - process the deal";
         SET(commands.su) =
             "Toggle privilege level (common, super)<br>"
             "Usage: su";
@@ -557,7 +558,8 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.market) =
             "Посетить рынок<br>"
             "Использование:<br>"
-            "\tmarket - получить список сделок на рынке";
+            "\tmarket - получить список сделок на рынке"
+            "\tmarket <продавец> <количество> - совершить сделку";
         SET(commands.su) =
             "Переключить уровень привилегий (общий, супер)<br>"
             "Использование: su";

@@ -23,10 +23,13 @@ private:
     int seed = -1;
 private slots:
     void backFunction() override;
-    void processDialog(int seller);
     void updateDeals();
+public slots:
+    void processDialog(int seller);
 private:
     void updateInfo();
+public:
+    void setQuantity(int index, int quantity);
 public:
     MarketMenu(Game *game, QGridLayout *grid);
     ~MarketMenu();

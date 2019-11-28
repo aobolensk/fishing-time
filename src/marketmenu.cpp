@@ -69,6 +69,10 @@ QString MarketMenu::getDealInfo(int seller) {
     );
 }
 
+void MarketMenu::setQuantity(int index, int quantity) {
+    this->quantityText[index].setText(QString::number(quantity));
+}
+
 void MarketMenu::updateInfo() {
     infoLabel.setText(game->str.mainLabelText.arg(
         game->users[game->activeUser].getUsername(),
