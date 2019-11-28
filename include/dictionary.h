@@ -173,6 +173,8 @@ public:
             language,
             location,
             privilege,
+            market,
+            su,
             clear,
             inventory,
             give,

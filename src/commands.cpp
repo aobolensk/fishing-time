@@ -400,6 +400,44 @@ void Console::registerCommands() {
         &game->str.commands.privilege
     };
 
+    commands["market"] = {
+        [&](QStringList &args) -> int {
+            if (game->activeUser == -1) {
+                log.error(game->str.youAreNotLoggedIn);
+                return 1;
+            }
+            if (args.size() == 1) {
+                for (int i = 0; i < Config::SELLERS_COUNT; ++i) {
+                    log.info(game->marketMenu.getDealInfo(i));
+                }
+            } else if (args.size() == 3) {
+                // args[1] - seller index
+                // args[2] - quantity
+                bool flag;
+                int index = args[1].toInt(&flag);
+                if (!flag) {
+                    log.error(game->str.quantityShouldBeANumber);
+                    return 1;
+                }
+                int quantity = args[2].toInt(&flag);
+                if (!flag) {
+                    log.error(game->str.quantityShouldBeANumber);
+                    return 1;
+                }
+                game->marketMenu.setQuantity(index, quantity);
+                game->marketMenu.processDialog(index);
+                game->gameMenu.updateInfo();
+                game->gameMenu.getPopUpInventoryTable().updateInventoryTables();
+            } else {
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                return 1;
+            }
+            return 0;
+        },
+        PrivilegeLevel::Common,
+        &game->str.commands.market
+    };
+
     commands["su"] = {
         [&](QStringList &args) -> int {
             (void) args;
@@ -422,7 +460,7 @@ void Console::registerCommands() {
             return 0;
         },
         PrivilegeLevel::Common,
-        &game->str.commands.clear
+        &game->str.commands.su
     };
 
     commands["clear"] = {
