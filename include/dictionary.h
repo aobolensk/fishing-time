@@ -173,6 +173,7 @@ public:
             language,
             location,
             privilege,
+            su,
             clear,
             inventory,
             give,

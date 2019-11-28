@@ -293,6 +293,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.privilege) =
             "Print privilege level of current user<br>"
             "Usage: privilege";
+        SET(commands.su) =
+            "Toggle privilege level (common, super)<br>"
+            "Usage: su";
         SET(commands.clear) =
             "Clear console output<br>"
             "Usage: clear";
@@ -547,6 +550,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(commands.privilege) =
             "Вывести уровень привилегий текущего пользователя<br>"
             "Использование: privilege";
+        SET(commands.su) =
+            "Переключить уровень привилегий (общий, супер)<br>"
+            "Использование: su";
         SET(commands.clear) =
             "Очистить окно консоли<br>"
             "Использование: clear";
