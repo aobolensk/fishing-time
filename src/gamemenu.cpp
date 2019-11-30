@@ -171,6 +171,12 @@ bool GameMenu::eventFilter(QObject *obj, QEvent *event) {
             qDebug() << "hide";
             hideButtons();
         }
+    } else if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *key = static_cast<QKeyEvent *>(event);
+        qDebug() << typeid(*this).name() << "->" << key->key();
+        if (key->key() == 16777216) { // escape
+            this->backFunction();
+        }
     }
     return QObject::eventFilter(obj, event);
 }
