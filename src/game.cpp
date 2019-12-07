@@ -32,6 +32,7 @@ Game::Game(QWidget *parent, const QString &file) :
         signupMenu(SignupMenu(this, &grid)),
         usersettingsMenu(UsersettingsMenu(this, &grid)),
         ratingMenu(RatingMenu(this, &grid)),
+        creditsMenu(CreditsMenu(this, &grid)),
         inventoryMenu(InventoryMenu(this, &grid)),
         locationMenu(LocationMenu(this, &grid)),
         userProfileMenu(UserProfileMenu(this, &grid)),

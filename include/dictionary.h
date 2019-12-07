@@ -40,6 +40,7 @@ public:
             confirmPassword,
             confirmPasswordWarning,
             console,
+            credits,
             darkTheme,
             deleteAccount,
             deleteAccountConfirmation,

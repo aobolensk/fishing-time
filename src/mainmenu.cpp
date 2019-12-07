@@ -29,6 +29,11 @@ MainMenu::MainMenu(Game *game, QGridLayout *grid) :
     settingsButton.setEnabled(false);
     connect(&settingsButton, SIGNAL(released()), this, SLOT(settingsFunction()));
 
+    grid->addWidget(&creditsButton, 2, 0);
+    creditsButton.setVisible(false);
+    creditsButton.setEnabled(false);
+    connect(&creditsButton, SIGNAL(released()), this, SLOT(creditsFunction()));
+
     grid->addWidget(&ratingButton, 2, 1);
     ratingButton.setVisible(false);
     ratingButton.setEnabled(false);
@@ -74,6 +79,10 @@ void MainMenu::display() {
     settingsButton.setVisible(true);
     settingsButton.setEnabled(true);
 
+    creditsButton.setText(game->str.credits);
+    creditsButton.setVisible(true);
+    creditsButton.setEnabled(true);
+
     ratingButton.setText(game->str.rating);
     ratingButton.setVisible(true);
     ratingButton.setEnabled(true);
@@ -116,6 +125,11 @@ void MainMenu::settingsFunction() {
     game->settingsMenu.display();
 }
 
+void MainMenu::creditsFunction() {
+    this->hide();
+    game->creditsMenu.display();
+}
+
 void MainMenu::ratingFunction() {
     this->hide();
     game->ratingMenu.display();
@@ -150,6 +164,9 @@ void MainMenu::hide() {
 
     settingsButton.setVisible(false);
     settingsButton.setEnabled(false);
+
+    creditsButton.setVisible(false);
+    creditsButton.setEnabled(false);
 
     ratingButton.setVisible(false);
     ratingButton.setEnabled(false);

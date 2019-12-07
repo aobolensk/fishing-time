@@ -13,6 +13,7 @@ private:
                 consoleButton,
                 startButton,
                 settingsButton,
+                creditsButton,
                 ratingButton,
                 aboutButton,
                 reportButton,
@@ -23,6 +24,7 @@ private slots:
     void consoleFunction();
     void startFunction();
     void settingsFunction();
+    void creditsFunction();
     void ratingFunction();
     void aboutFunction();
     void reportFunction();
