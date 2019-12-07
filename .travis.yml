@@ -19,6 +19,7 @@ matrix:
         - cd build
         - cmake ..
         - cmake --build . -- -j
+        - ./bin/fishing-time_test
     - os: linux
       dist: bionic
       compiler: clang
@@ -33,6 +34,7 @@ matrix:
         - cd build
         - cmake ..
         - cmake --build . -- -j
+        - ./bin/fishing-time_test
     # - os: osx
     #   osx_image: xcode11.2
     #   addons:
