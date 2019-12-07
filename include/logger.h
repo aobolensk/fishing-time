@@ -12,10 +12,12 @@ private:
     void closeEvent(QCloseEvent *event) override;
 private:
     QTextEdit console;
-    QPushButton jumpToBottomButton;
+    QPushButton clearButton,
+                jumpToBottomButton;
     TextEditLog log;
     FileLog fileLog;
 private slots:
+    void clearFunction();
     void jumpToBottomFunction();
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;

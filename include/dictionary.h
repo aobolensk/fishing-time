@@ -30,6 +30,7 @@ public:
             buy,
             carp,
             changePassword,
+            clear,
             click,
             clicksCount,
             coins,

@@ -20,17 +20,26 @@ Logger::Logger(Game *game) :
     font.setFamily("Courier New");
     console.setFont(font);
 
-    grid->addWidget(&jumpToBottomButton, 0, 0);
+    grid->addWidget(&clearButton, 0, 0);
+    connect(&clearButton, &QPushButton::clicked, [this]() {
+        clearFunction();
+    });
+
+    grid->addWidget(&jumpToBottomButton, 1, 0);
     connect(&jumpToBottomButton, &QPushButton::clicked, [this]() {
         jumpToBottomFunction();
     });
 
-    grid->addWidget(&console, 1, 0);
+    grid->addWidget(&console, 2, 0);
     console.setReadOnly(true);
 
     console.installEventFilter(this);
 
     this->setFile(game->logFile);
+}
+
+void Logger::clearFunction() {
+    console.setText("");
 }
 
 void Logger::jumpToBottomFunction() {
@@ -91,6 +100,8 @@ void Logger::display() {
     this->setWindowTitle(game->str.fishingTime + ": " + game->str.console);
     this->setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
     this->show();
+
+    clearButton.setText(game->str.clear);
 
     jumpToBottomButton.setText(game->str.jumpToBottom);
 

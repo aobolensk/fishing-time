@@ -96,6 +96,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(buy) = "Buy";
         SET(carp) = "Carp";
         SET(changePassword) = "Change password";
+        SET(clear) = "Clear";
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
         SET(coins) = "Coins";
@@ -358,6 +359,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(buy) = "Купить";
         SET(carp) = "Карп";
         SET(changePassword) = "Сменить пароль";
+        SET(clear) = "Очистить";
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
         SET(coins) = "Монет";
