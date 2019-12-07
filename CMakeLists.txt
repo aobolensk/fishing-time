@@ -9,7 +9,7 @@ if(${CMAKE_VERSION} VERSION_GREATER "3.13.0")
     cmake_policy(SET CMP0079 NEW)
 endif()
 
-find_package(Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt5 REQUIRED COMPONENTS Widgets Test)
 
 include_directories(include)
 
