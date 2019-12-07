@@ -17,3 +17,14 @@ void TestUser::setPasswordHash() {
     user.setPasswordHash(QCryptographicHash::hash("new_password", QCryptographicHash::Md5));
     QCOMPARE(user.getPasswordHash(), QCryptographicHash::hash("new_password", QCryptographicHash::Md5));
 }
+
+void TestUser::getPrivilegeLevel() {
+    User user("username", "password");
+    QCOMPARE(user.getPrivilegeLevel(), 0);
+}
+
+void TestUser::setPrivilegeLevel() {
+    User user("username", "password");
+    user.setPrivilegeLevel(1);
+    QCOMPARE(user.getPrivilegeLevel(), 1);
+}

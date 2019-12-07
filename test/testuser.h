@@ -8,6 +8,8 @@ private slots:
     void getUsername();
     void getPasswordHash();
     void setPasswordHash();
+    void getPrivilegeLevel();
+    void setPrivilegeLevel();
 };
 
 #endif  // TEST_TESTUSER_H_
