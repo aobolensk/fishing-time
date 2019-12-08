@@ -36,3 +36,4 @@ build_script:
   - if %COMPILER% == MSVC cmake .. "-DCMAKE_PREFIX_PATH=%QT_PATH%" -A Win32
   - if %COMPILER% == MinGW cmake .. -G "MinGW Makefiles" "-DCMAKE_PREFIX_PATH=%QT_PATH%" -DCMAKE_SH="CMAKE_SH-NOTFOUND"
   - cmake --build .
+  - if %COMPILER% == MinGW bin\\fishing-time_test
