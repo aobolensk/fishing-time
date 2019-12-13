@@ -9,6 +9,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Setup environment
       run: |
+        sudo rm -f /etc/apt/sources.list.d/dotnetdev.list /etc/apt/sources.list.d/microsoft-prod.list
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo apt update
         sudo apt install g++-9 qt5-default
@@ -26,6 +27,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Setup environment
       run: |
+        sudo rm -f /etc/apt/sources.list.d/dotnetdev.list /etc/apt/sources.list.d/microsoft-prod.list
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo apt update
         sudo apt install clang-8 qt5-default
