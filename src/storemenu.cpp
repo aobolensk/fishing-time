@@ -89,7 +89,8 @@ void StoreMenu::display() {
 
 void StoreMenu::updateTable() {
     int index = 0;
-    static auto addDeal = [this, &index](const QString &name, const QString &description, qint64 price) {
+    static auto addDeal =
+        [this](const QString &name, const QString &description, qint64 price, int &index) {
         storeTable.setRowCount(index + 1);
         QTableWidgetItem *cell = storeTable.item(index, 0);
         if (!cell) {
@@ -115,10 +116,10 @@ void StoreMenu::updateTable() {
         ++index;
     };
     if (game->activeLocation == 0) {
-        addDeal("fish.pike", game->str.pike, 1000);
-        addDeal("net.basic", game->str.basicNet, 1000);
+        addDeal("fish.pike", game->str.pike, 1000, index);
+        addDeal("net.basic", game->str.basicNet, 1000, index);
     } else if (game->activeLocation == 1) {
-        addDeal("fish.ide", game->str.ide, 1100);
+        addDeal("fish.ide", game->str.ide, 1100, index);
     }
 }
 
