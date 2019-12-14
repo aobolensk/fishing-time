@@ -8,7 +8,7 @@
 Game::Game(QWidget *parent, const QString &file) :
         QWidget(parent),
         grid(QGridLayout(this)),
-        config_file(file),
+        configFile(file),
         #ifndef __MINGW32__
             randomGenerator(rd()),
         #else
@@ -64,8 +64,8 @@ void Game::setAutoSavePeriod(int periodInMinutes) {
     this->logger.info("Autosave period is set to " + QString::number(autoSavePeriod) + " mins");
 }
 
-void Game::setConfigFile(const QString &new_config_file) {
-    this->config_file = new_config_file;
+void Game::setConfigFile(const QString &newConfigFile) {
+    this->configFile = newConfigFile;
     this->deserialize();
 }
 
@@ -131,11 +131,11 @@ void Game::setBackgroundImage(const QString &backgroundImagePath) {
 void Game::deserialize() {
     this->users.clear();
     this->activeUser = -1;
-    QFile config(config_file);
+    QFile config(configFile);
     if (!config.exists()) {
-        this->logger.error("File " + config_file + " does not exist");
+        this->logger.error("File " + configFile + " does not exist");
     } else if (!config.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        this->logger.error("Can not open file: " + config_file);
+        this->logger.error("Can not open file: " + configFile);
     } else {
         QVariant result;
         QString jsons = config.readAll();
@@ -186,9 +186,9 @@ void Game::serialize() {
     updateTimePlayed();
     if (activeUser != -1 && activeLocation != -1)
         netsMenu.foldNets();
-    QFile config(config_file);
+    QFile config(configFile);
     if (!config.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        this->logger.error("Can not open file: " + config_file);
+        this->logger.error("Can not open file: " + configFile);
     } else {
         QJsonArray jsons;
         jsons.push_back(cfg.serialize());
@@ -234,7 +234,7 @@ void Game::autoSaveFunction() {
 }
 
 QString Game::getConfigFileName() {
-    return config_file;
+    return configFile;
 }
 
 void Game::manualSave() {
