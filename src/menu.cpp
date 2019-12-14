@@ -36,6 +36,7 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
 
 void Menu::pre_display() {
     if (!this->floating) {
+        game->setBackgroundImage(this->backgroundImage);
         if (game->getCurrentMenu() != nullptr) {
             Menu *currentMenu = game->getCurrentMenu();
             game->logger.error("Previous menu (" + QString(typeid(*currentMenu).name()) + ") is not hide!");

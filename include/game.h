@@ -38,7 +38,7 @@ private:
     Q_OBJECT
 private:
     QGridLayout grid;
-    QString config_file;
+    QString configFile;
 private:
     void deserialize();
     void serialize();
@@ -88,7 +88,8 @@ public:
     LoggerLevel loggerLevel = LoggerLevel::RELEASE;
     QFont textFont = QFont("Noto Sans", 11, QFont::Normal, false);
     void setAutoSavePeriod(int periodInMinutes);
-    void setConfigFile(const QString &new_config_file);
+    void setConfigFile(const QString &newConfigFile);
+    void setBackgroundImage(const QString &backgroundImagePath);
     int getAutoSavePeriod();
     QString getConfigFileName();
     void setCurrentMenu(Menu *menu);
@@ -96,7 +97,7 @@ public:
     Language activeLanguage = Language::English;
     QTimer autoSaveTimer;
 public:
-    Game(QWidget *parent, const QString &config_file);
+    Game(QWidget *parent, const QString &configFile);
     ~Game();
     friend QJsonObject Config::serialize() const;
     friend void Config::deserialize(const QVariantMap &map);

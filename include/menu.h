@@ -16,6 +16,7 @@ protected:
     QGridLayout *grid;
     bool displayed = false;
     bool floating = false;
+    QString backgroundImage;
     virtual void pre_display() final;
     virtual void pre_hide() final;
 public:
