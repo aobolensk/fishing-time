@@ -89,6 +89,7 @@ public:
     QFont textFont = QFont("Noto Sans", 11, QFont::Normal, false);
     void setAutoSavePeriod(int periodInMinutes);
     void setConfigFile(const QString &new_config_file);
+    void setBackgroundImage(const QString &backgroundImagePath);
     int getAutoSavePeriod();
     QString getConfigFileName();
     void setCurrentMenu(Menu *menu);

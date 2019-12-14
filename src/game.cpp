@@ -94,6 +94,40 @@ void Game::resizeEvent(QResizeEvent *event) {
     }
 }
 
+void Game::setBackgroundImage(const QString &backgroundImagePath) {
+    if (this->showBgImages) {
+        this->bgImagePath = backgroundImagePath;
+        if (this->bgImagePath.size()) {
+            QPixmap bkgnd(this->bgImagePath);
+            int w = this->width();
+            int h = this->height();
+            bkgnd = bkgnd.scaled(QSize(w, h), Qt::KeepAspectRatio);
+            if (this->height() > bkgnd.height()) {
+                h = this->height();
+                w = h * bkgnd.width() / bkgnd.height();
+            } else {
+                w = this->width();
+                h = w * bkgnd.height() / bkgnd.width();
+            }
+            bkgnd = bkgnd.scaled(QSize(w, h), Qt::KeepAspectRatio);
+            QPalette palette = this->palette();
+            palette.setBrush(QPalette::Window, bkgnd);
+            this->setPalette(palette);
+        } else {
+            QPalette palette = this->palette();
+            switch (this->colorTheme) {
+            case ColorTheme::LIGHT:
+                palette.setColor(QPalette::Window, QColor(250, 250, 250));
+                break;
+            case ColorTheme::DARK:
+                palette.setColor(QPalette::Window, QColor(64, 64, 64));
+                break;
+            }
+            this->setPalette(palette);
+        }
+    }
+}
+
 void Game::deserialize() {
     this->users.clear();
     this->activeUser = -1;
