@@ -95,6 +95,10 @@ void ControlsMenu::backFunction() {
     game->settingsMenu.display();
 }
 
+void ControlsMenu::setHideUIElementsControl(int key) {
+    hideUIElementsControl = QKeySequence(key);
+}
+
 QKeySequence ControlsMenu::getHideUIElementsControl() {
     return hideUIElementsControl;
 }

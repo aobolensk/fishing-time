@@ -22,6 +22,7 @@ protected slots:
     bool eventFilter(QObject *obj, QEvent *event) override;
 public:
     QKeySequence getKeySequence(const QKeyEvent *const key);
+    void setHideUIElementsControl(int key);
     QKeySequence getHideUIElementsControl();
 public:
     ControlsMenu(Game *game, QGridLayout *grid);

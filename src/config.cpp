@@ -29,6 +29,8 @@ void Config::deserialize(const QVariantMap &map) {
         game->showBgImages = (bool)map["showBgImages"].toInt();
     }
     game->textFont.fromString(map["textFont"].toString());
+    QVariantMap controls = map["controls"].toJsonObject().toVariantMap();
+    game->controlsMenu.setHideUIElementsControl(controls["hideUIElements"].toInt());
     isReady = true;
 }
 
@@ -43,6 +45,9 @@ QJsonObject Config::serialize() const {
     jsonObj["logFile"] = game->logFile;
     jsonObj["showBgImages"] = (int)game->showBgImages;
     jsonObj["textFont"] = game->font().toString();
+    QVariantMap controls;
+    controls["hideUIElements"] =game->controlsMenu.getHideUIElementsControl()[0];
+    jsonObj["controls"] = QJsonObject::fromVariantMap(controls);
     return jsonObj;
 }
 
