@@ -158,6 +158,9 @@ void Game::deserialize() {
             }
         }
     }
+    if (this->controlsMenu.getHideUIElementsControl() == 0) {
+        this->controlsMenu.setHideUIElementsControl(67108936); // Ctrl + H
+    }
     this->setFont(this->textFont);
     this->console.setFont(this->textFont);
     this->aboutMenu.setFont(this->textFont);
