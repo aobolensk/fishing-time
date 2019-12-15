@@ -106,6 +106,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(confirmPassword) = "Confirm password";
         SET(confirmPasswordWarning) = "Password are not equal";
         SET(console) = "Console";
+        SET(controls) = "Controls";
         SET(credits) = "Credits";
         SET(darkTheme) = "Dark theme";
         SET(deleteAccount) = "Delete account";
@@ -113,6 +114,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(demoMode) = "Demo mode";
         SET(demoModeWarning) = "You run the game in demo mode. Some functions may be not available.";
         SET(dialog) = "Dialog";
+        SET(edit) = "Edit";
         SET(empty) = "<EMPTY>";
         SET(emptyLoginWarning) = "Login is empty!";
         SET(emptyPasswordWarning) = "Do you really want to leave your password empty?";
@@ -127,6 +129,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(font) = "Font";
         SET(forbiddenSymbol) = "Forbidden symbol: %1";
         SET(forgotPassword) = "Forgot password";
+        SET(hideUIElements) = "Hide UI elements";
         SET(id) = "Id";
         SET(ide) = "Ide";
         SET(incorrectPassword) = "Incorrect password!";
@@ -199,6 +202,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(savingIsComplete) = "Saving is complete";
         SET(selectItemFromList) = "Select item from list";
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
+        SET(set) = "Set";
         SET(settings) = "Settings";
         SET(setup) = "Setup";
         SET(showBackgroundImages) = "Show background images";
@@ -370,6 +374,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(confirmPassword) = "Подтвердите пароль";
         SET(confirmPasswordWarning) = "Пароли не совпадают";
         SET(console) = "Консоль";
+        SET(controls) = "Управление";
         SET(credits) = "Титры";
         SET(darkTheme) = "Темная тема";
         SET(deleteAccount) = "Удалить аккаунт";
@@ -377,6 +382,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(demoMode) = "Демо-режим";
         SET(demoModeWarning) = "Вы запускаете игру в демо-режиме. Некоторые функции могут быть недоступны.";
         SET(dialog) = "Диалог";
+        SET(edit) = "Редактировать";
         SET(empty) = "<ПУСТО>";
         SET(emptyLoginWarning) = "Логин пуст!";
         SET(emptyPasswordWarning) = "Вы действительно хотите оставить пароль пустым?";
@@ -391,6 +397,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(font) = "Шрифт";
         SET(forbiddenSymbol) = "Недопустимый символ: %1";
         SET(forgotPassword) = "Забыли пароль";
+        SET(hideUIElements) = "Скрыть элементы пользовательского интерфейса";
         SET(id) = "Идентификатор";
         SET(ide) = "Язь";
         SET(incorrectPassword) = "Неверный пароль!";
@@ -464,6 +471,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(savingIsComplete) = "Сохранение завершено";
         SET(selectItemFromList) = "Выберите предмет из списка";
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
+        SET(set) = "Установить";
         SET(settings) = "Настройки";
         SET(setup) = "Настроить";
         SET(showBackgroundImages) = "Показывать фоновые изображения";

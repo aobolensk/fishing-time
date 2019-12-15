@@ -103,7 +103,12 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
     logFileSetupButton.setEnabled(false);
     connect(&logFileSetupButton, SIGNAL(released()), this, SLOT(logFileSetupFunction()));
 
-    grid->addWidget(&backButton, 10, 1);
+    grid->addWidget(&controlsButton, 10, 1);
+    controlsButton.setVisible(false);
+    controlsButton.setEnabled(false);
+    connect(&controlsButton, SIGNAL(released()), this, SLOT(controlsFunction()));
+
+    grid->addWidget(&backButton, 11, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -218,6 +223,10 @@ void SettingsMenu::display() {
     logFileSetupButton.setVisible(true);
     logFileSetupButton.setEnabled(true);
 
+    controlsButton.setText(game->str.controls);
+    controlsButton.setVisible(true);
+    controlsButton.setEnabled(true);
+
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
@@ -267,6 +276,11 @@ void SettingsMenu::eraseAllDataFunction() {
 void SettingsMenu::autoSavePeriodSliderFunction(int value) {
     game->setAutoSavePeriod(value);
     autoSavePeriodValueLabel.setText(QString::number(value));
+}
+
+void SettingsMenu::controlsFunction() {
+    this->hide();
+    game->controlsMenu.display();
 }
 
 void SettingsMenu::backFunction() {
@@ -335,6 +349,9 @@ void SettingsMenu::hide() {
 
     logFileSetupButton.setVisible(false);
     logFileSetupButton.setEnabled(false);
+
+    controlsButton.setVisible(false);
+    controlsButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

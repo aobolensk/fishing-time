@@ -18,16 +18,20 @@ bool Menu::isDisplayed() const {
 bool Menu::eventFilter(QObject *obj, QEvent *event) {
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent *key = static_cast<QKeyEvent *>(event);
+        QKeySequence seq = game->controlsMenu.getKeySequence(key);
         qDebug() << typeid(*this).name() << "->" << key->key();
         if (key->key() == 16777216) { // escape
             this->backFunction();
-        } else if (key->key() == 72 && (key->modifiers() & Qt::ControlModifier)) { // Ctrl + H
-            if (this->displayed) {
-                this->hide();
-                game->installEventFilter(this);
-            } else {
-                game->removeEventFilter(this);
-                this->display();
+        } else if (seq == game->controlsMenu.getHideUIElementsControl()) {
+            // Hide UI elements
+            if (this != &game->controlsMenu) {
+                if (this->displayed) {
+                    this->hide();
+                    game->installEventFilter(this);
+                } else {
+                    game->removeEventFilter(this);
+                    this->display();
+                }
             }
         }
     }
