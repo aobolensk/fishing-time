@@ -10,7 +10,8 @@ private:
     Q_OBJECT
 private:
     QString currentControl;
-    QLabel hideUIElementsLabel;
+    QLabel controlsLabel,
+           hideUIElementsLabel;
     QLineEdit hideUIElementsText;
     QPushButton hideUIElementsButton,
                 backButton;

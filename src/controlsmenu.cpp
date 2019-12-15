@@ -3,10 +3,11 @@
 
 ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
+    grid->addWidget(&controlsLabel, 0, 1);
+    controlsLabel.setVisible(false);
 
     grid->addWidget(&hideUIElementsLabel, 1, 0);
     hideUIElementsLabel.setVisible(false);
-    hideUIElementsLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&hideUIElementsText, 1, 1);
     hideUIElementsText.setVisible(false);
@@ -17,7 +18,7 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
     hideUIElementsButton.setEnabled(false);
     connect(&hideUIElementsButton, SIGNAL(released()), this, SLOT(hideUIElementsEditFunction()));
 
-    grid->addWidget(&backButton, 2, 1);
+    grid->addWidget(&backButton, 10, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -25,6 +26,9 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
 
 void ControlsMenu::display() {
     this->pre_display();
+
+    controlsLabel.setText(game->str.controls);
+    controlsLabel.setVisible(true);
 
     hideUIElementsLabel.setText(game->str.hideUIElements);
     hideUIElementsLabel.setVisible(true);
@@ -105,6 +109,8 @@ QKeySequence ControlsMenu::getHideUIElementsControl() {
 
 void ControlsMenu::hide() {
     this->pre_hide();
+
+    controlsLabel.setVisible(false);
 
     hideUIElementsLabel.setVisible(false);
 
