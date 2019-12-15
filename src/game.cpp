@@ -117,10 +117,10 @@ void Game::setBackgroundImage(const QString &backgroundImagePath) {
             QPalette palette = this->palette();
             switch (this->colorTheme) {
             case ColorTheme::LIGHT:
-                palette.setColor(QPalette::Window, QColor(250, 250, 250));
+                palette.setColor(QPalette::Window, Config::LIGHT_THEME_WINDOW_COLOR);
                 break;
             case ColorTheme::DARK:
-                palette.setColor(QPalette::Window, QColor(64, 64, 64));
+                palette.setColor(QPalette::Window, Config::DARK_THEME_WINDOW_COLOR);
                 break;
             }
             this->setPalette(palette);

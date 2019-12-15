@@ -20,6 +20,10 @@ enum class LoggerLevel {
 class Config {
 public: /* Constants */
     static const QString imagesDirectory;
+    static const QColor LIGHT_THEME_WINDOW_COLOR;
+    static const QColor LIGHT_THEME_TEXT_COLOR;
+    static const QColor DARK_THEME_WINDOW_COLOR;
+    static const QColor DARK_THEME_TEXT_COLOR;
     static const int MIN_AUTO_SAVE_PERIOD = 1;
     static const int MAX_AUTO_SAVE_PERIOD = 120;
     static const int STATISTICS_UPDATE_PERIOD = 1000;

@@ -9,6 +9,10 @@ Config::Config(Game *game) :
 }
 
 const QString Config::imagesDirectory = PROJECT_DIR "/images/";
+const QColor Config::LIGHT_THEME_WINDOW_COLOR = QColor(250, 250, 250);
+const QColor Config::LIGHT_THEME_TEXT_COLOR = QColor(20, 20, 20);
+const QColor Config::DARK_THEME_WINDOW_COLOR = QColor(64, 64, 64);
+const QColor Config::DARK_THEME_TEXT_COLOR = QColor(240, 240, 240);
 
 void Config::deserialize(const QVariantMap &map) {
     if (isReady)
@@ -47,20 +51,20 @@ void Config::applyColorTheme(ColorTheme theme) {
     QPalette p(game->palette());
     switch (theme) {
     case ColorTheme::LIGHT:
-        p.setColor(QPalette::Window, QColor(250, 250, 250));
-        p.setColor(QPalette::Button, QColor(250, 250, 250));
-        p.setColor(QPalette::Base, QColor(250, 250, 250));
-        p.setColor(QPalette::ButtonText, QColor(20, 20, 20));
-        p.setColor(QPalette::WindowText, QColor(20, 20, 20));
-        p.setColor(QPalette::Text, QColor(20, 20, 20));
+        p.setColor(QPalette::Window, LIGHT_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::Button, LIGHT_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::Base, LIGHT_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::ButtonText, LIGHT_THEME_TEXT_COLOR);
+        p.setColor(QPalette::WindowText, LIGHT_THEME_TEXT_COLOR);
+        p.setColor(QPalette::Text, LIGHT_THEME_TEXT_COLOR);
         break;
     case ColorTheme::DARK:
-        p.setColor(QPalette::Window, QColor(64, 64, 64));
-        p.setColor(QPalette::Button, QColor(64, 64, 64));
-        p.setColor(QPalette::Base, QColor(64, 64, 64));
-        p.setColor(QPalette::ButtonText, QColor(240, 240, 240));
-        p.setColor(QPalette::WindowText, QColor(240, 240, 240));
-        p.setColor(QPalette::Text, QColor(240, 240, 240));
+        p.setColor(QPalette::Window, DARK_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::Button, DARK_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::Base, DARK_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::ButtonText, DARK_THEME_TEXT_COLOR);
+        p.setColor(QPalette::WindowText, DARK_THEME_TEXT_COLOR);
+        p.setColor(QPalette::Text, DARK_THEME_TEXT_COLOR);
         break;
     }
     game->setAutoFillBackground(true);
