@@ -19,7 +19,7 @@ private slots:
     void hideUIElementsEditFunction();
     void backFunction() override;
 protected slots:
-    bool eventFilter(QObject *obj, QEvent *event);
+    bool eventFilter(QObject *obj, QEvent *event) override;
 public:
     QKeySequence getKeySequence(const QKeyEvent *const key);
     QKeySequence getHideUIElementsControl();
