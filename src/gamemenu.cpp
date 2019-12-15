@@ -171,22 +171,8 @@ bool GameMenu::eventFilter(QObject *obj, QEvent *event) {
             qDebug() << "hide";
             hideButtons();
         }
-    } else if (event->type() == QEvent::KeyPress) {
-        QKeyEvent *key = static_cast<QKeyEvent *>(event);
-        qDebug() << typeid(*this).name() << "->" << key->key();
-        if (key->key() == 16777216) { // escape
-            this->backFunction();
-        } else if (key->key() == 72 && (key->modifiers() & Qt::ControlModifier)) { // Ctrl + H
-            if (this->displayed) {
-                this->hide();
-                game->installEventFilter(this);
-            } else {
-                game->removeEventFilter(this);
-                this->display();
-            }
-        }
     }
-    return QObject::eventFilter(obj, event);
+    return Menu::eventFilter(obj, event);
 }
 
 void GameMenu::displayButtons() {
