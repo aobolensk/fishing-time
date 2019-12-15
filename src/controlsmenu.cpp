@@ -33,6 +33,9 @@ void ControlsMenu::display() {
     hideUIElementsLabel.setText(game->str.hideUIElements);
     hideUIElementsLabel.setVisible(true);
 
+    hideUIElementsText.setText(
+        this->hideUIElementsControl.toString(QKeySequence::NativeText)
+    );
     hideUIElementsText.setVisible(true);
     hideUIElementsText.setEnabled(true);
 

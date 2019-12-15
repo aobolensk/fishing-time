@@ -22,9 +22,9 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
         qDebug() << typeid(*this).name() << "->" << key->key();
         if (key->key() == 16777216) { // escape
             this->backFunction();
-        } else if (key->key() == 72 && seq == game->controlsMenu.getHideUIElementsControl()) {
+        } else if (seq == game->controlsMenu.getHideUIElementsControl()) {
             // Hide UI elements
-            if (game->getCurrentMenu() != &game->controlsMenu) {
+            if (this != &game->controlsMenu) {
                 if (this->displayed) {
                     this->hide();
                     game->installEventFilter(this);
