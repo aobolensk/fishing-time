@@ -31,6 +31,7 @@ private:
                 eraseAllDataButton,
                 configFileSetupButton,
                 logFileSetupButton,
+                controlsButton,
                 backButton;
     QCheckBox backgroundImagesSwitch;
     QMetaObject::Connection languageUpdater,
@@ -46,6 +47,7 @@ private slots:
     void configFileSetupFunction();
     void logFileSetupFunction();
     void autoSavePeriodSliderFunction(int value);
+    void controlsFunction();
     void backFunction() override;
 public:
     SettingsMenu(Game *game, QGridLayout *grid);

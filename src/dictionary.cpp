@@ -106,6 +106,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(confirmPassword) = "Confirm password";
         SET(confirmPasswordWarning) = "Password are not equal";
         SET(console) = "Console";
+        SET(controls) = "Controls";
         SET(credits) = "Credits";
         SET(darkTheme) = "Dark theme";
         SET(deleteAccount) = "Delete account";
@@ -370,6 +371,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(confirmPassword) = "Подтвердите пароль";
         SET(confirmPasswordWarning) = "Пароли не совпадают";
         SET(console) = "Консоль";
+        SET(controls) = "Управление";
         SET(credits) = "Титры";
         SET(darkTheme) = "Темная тема";
         SET(deleteAccount) = "Удалить аккаунт";

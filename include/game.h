@@ -15,6 +15,7 @@
 #include "marketmenu.h"
 #include "storemenu.h"
 #include "settingsmenu.h"
+#include "controlsmenu.h"
 #include "netsmenu.h"
 #include "statisticsmenu.h"
 #include "itemstatisticsmenu.h"
@@ -67,6 +68,7 @@ public:
     MarketMenu marketMenu;
     StoreMenu storeMenu;
     SettingsMenu settingsMenu;
+    ControlsMenu controlsMenu;
     NetsMenu netsMenu;
     StatisticsMenu statisticsMenu;
     ItemStatisticsMenu itemStatisticsMenu;
