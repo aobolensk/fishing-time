@@ -23,7 +23,7 @@ for:
           COMPILER: MinGW
     before_build:
     - set BUILD_DIR=%cd%
-    - set PATH=%QT_PATH%\bin;C:\mingw-w64\i686-8.1.0-posix-seh-rt_v6-rev0\mingw32\bin;%PATH%
+    - set PATH=C:\mingw-w64\i686-8.1.0-posix-seh-rt_v6-rev0\mingw32\bin;%PATH%
     - if not exist "C:\mingw-w64\i686-8.1.0-posix-seh-rt_v6-rev0" md "C:\mingw-w64\i686-8.1.0-posix-seh-rt_v6-rev0"
     - cd C:\mingw-w64\i686-8.1.0-posix-seh-rt_v6-rev0
     - if not exist "mingw32" appveyor-retry appveyor DownloadFile "http://downloads.sourceforge.net/mingw-w64/i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z" -FileName "mingw32.7z"
@@ -31,9 +31,10 @@ for:
     - cd %BUILD_DIR%
 
 build_script:
+  - set PATH=%QT_PATH%\bin;%PATH%
   - mkdir build
   - cd build
   - if %COMPILER% == MSVC cmake .. "-DCMAKE_PREFIX_PATH=%QT_PATH%" -A Win32
   - if %COMPILER% == MinGW cmake .. -G "MinGW Makefiles" "-DCMAKE_PREFIX_PATH=%QT_PATH%" -DCMAKE_SH="CMAKE_SH-NOTFOUND"
   - cmake --build .
-  - if %COMPILER% == MinGW bin\\fishing-time_test
+  - bin\\fishing-time_test
