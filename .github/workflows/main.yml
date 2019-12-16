@@ -19,6 +19,8 @@ jobs:
         cd build
         cmake ..
         cmake --build . -- -j
+    - name: Run tests
+      run: |
         ./bin/fishing-time_test
   ubuntu-clang-build:
     runs-on: ubuntu-latest
@@ -35,6 +37,8 @@ jobs:
         cd build
         CC="clang-8" CXX="clang++-8" cmake ..
         cmake --build . -- -j
+    - name: Run tests
+      run: |
         ./bin/fishing-time_test
   macOS-build:
     runs-on: macOS-latest
@@ -49,4 +53,6 @@ jobs:
         cd build
         cmake .. -DCMAKE_PREFIX_PATH=$(brew --prefix qt)/lib/cmake/Qt5
         cmake --build . -- -j
+    - name: Run tests
+      run: |
         ./bin/fishing-time_test
