@@ -149,6 +149,7 @@ public:
             thisUserAlreadyExistsText,
             timePlayed,
             timeShouldBeANumber,
+            toggleFullscreenMode,
             unknownCommand,
             unknownUser,
             useManToGetDescription,

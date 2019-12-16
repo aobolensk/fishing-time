@@ -18,6 +18,18 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
     hideUIElementsButton.setEnabled(false);
     connect(&hideUIElementsButton, SIGNAL(released()), this, SLOT(hideUIElementsEditFunction()));
 
+    grid->addWidget(&toggleFullscreenModeLabel, 2, 0);
+    toggleFullscreenModeLabel.setVisible(false);
+
+    grid->addWidget(&toggleFullscreenModeText, 2, 1);
+    toggleFullscreenModeText.setVisible(false);
+    toggleFullscreenModeText.setReadOnly(true);
+
+    grid->addWidget(&toggleFullscreenModeButton, 2, 2);
+    toggleFullscreenModeButton.setVisible(false);
+    toggleFullscreenModeButton.setEnabled(false);
+    connect(&toggleFullscreenModeButton, SIGNAL(released()), this, SLOT(toggleFullscreenModeEditFunction()));
+
     grid->addWidget(&backButton, 10, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
@@ -43,6 +55,19 @@ void ControlsMenu::display() {
     hideUIElementsButton.setVisible(true);
     hideUIElementsButton.setEnabled(true);
 
+    toggleFullscreenModeLabel.setText(game->str.toggleFullscreenMode);
+    toggleFullscreenModeLabel.setVisible(true);
+
+    toggleFullscreenModeText.setText(
+        this->toggleFullscreenModeControl.toString(QKeySequence::NativeText)
+    );
+    toggleFullscreenModeText.setVisible(true);
+    toggleFullscreenModeText.setEnabled(true);
+
+    toggleFullscreenModeButton.setText(game->str.edit);
+    toggleFullscreenModeButton.setVisible(true);
+    toggleFullscreenModeButton.setEnabled(true);
+
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
@@ -57,6 +82,16 @@ void ControlsMenu::hideUIElementsEditFunction() {
     } else {
         currentControl = "";
         hideUIElementsButton.setText(game->str.edit);
+    }
+}
+
+void ControlsMenu::toggleFullscreenModeEditFunction() {
+    if (currentControl != "toggleFullscreenMode") {
+        currentControl = "toggleFullscreenMode";
+        toggleFullscreenModeButton.setText(game->str.set);
+    } else {
+        currentControl = "";
+        toggleFullscreenModeButton.setText(game->str.edit);
     }
 }
 
@@ -110,6 +145,14 @@ QKeySequence ControlsMenu::getHideUIElementsControl() {
     return hideUIElementsControl;
 }
 
+void ControlsMenu::setToggleFullscreenModeControl(int key) {
+    toggleFullscreenModeControl = QKeySequence(key);
+}
+
+QKeySequence ControlsMenu::getToggleFullscreenModeControl() {
+    return toggleFullscreenModeControl;
+}
+
 void ControlsMenu::hide() {
     this->pre_hide();
 
@@ -122,6 +165,14 @@ void ControlsMenu::hide() {
 
     hideUIElementsButton.setVisible(false);
     hideUIElementsButton.setEnabled(false);
+
+    toggleFullscreenModeLabel.setVisible(false);
+
+    toggleFullscreenModeText.setVisible(false);
+    toggleFullscreenModeText.setEnabled(false);
+
+    toggleFullscreenModeButton.setVisible(false);
+    toggleFullscreenModeButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

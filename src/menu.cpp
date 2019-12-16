@@ -22,6 +22,9 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
         qDebug() << typeid(*this).name() << "->" << key->key();
         if (key->key() == 16777216) { // escape
             this->backFunction();
+        } else if (seq == game->controlsMenu.getToggleFullscreenModeControl()) {
+            // Toggle fullscreen mode
+            game->window()->setWindowState(game->window()->windowState() ^ Qt::WindowFullScreen);
         } else if (seq == game->controlsMenu.getHideUIElementsControl()) {
             // Hide UI elements
             if (this != &game->controlsMenu) {

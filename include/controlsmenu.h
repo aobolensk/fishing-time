@@ -11,13 +11,18 @@ private:
 private:
     QString currentControl;
     QLabel controlsLabel,
-           hideUIElementsLabel;
-    QLineEdit hideUIElementsText;
+           hideUIElementsLabel,
+           toggleFullscreenModeLabel;
+    QLineEdit hideUIElementsText,
+              toggleFullscreenModeText;
     QPushButton hideUIElementsButton,
+                toggleFullscreenModeButton,
                 backButton;
-    QKeySequence hideUIElementsControl;
+    QKeySequence hideUIElementsControl,
+                 toggleFullscreenModeControl;
 private slots:
     void hideUIElementsEditFunction();
+    void toggleFullscreenModeEditFunction();
     void backFunction() override;
 protected slots:
     bool eventFilter(QObject *obj, QEvent *event) override;
@@ -25,6 +30,8 @@ public:
     QKeySequence getKeySequence(const QKeyEvent *const key);
     void setHideUIElementsControl(int key);
     QKeySequence getHideUIElementsControl();
+    void setToggleFullscreenModeControl(int key);
+    QKeySequence getToggleFullscreenModeControl();
 public:
     ControlsMenu(Game *game, QGridLayout *grid);
     ~ControlsMenu();
