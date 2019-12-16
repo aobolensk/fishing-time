@@ -10,6 +10,8 @@
 
 ### Build and run
 
+#### CMake
+
 ```console
 $ mkdir build
 $ cd build
@@ -17,6 +19,13 @@ $ cmake .. -DCMAKE_PREFIX_PATH="/path/to/qt/"
 $ cmake --build .
 $ ./bin/fishing-time
 ```
+
+#### QtCreator
+
+1. Open QtCreator
+1. `File > Open File or Project...` and select file CMakeLists.txt
+1. Select at least one configuration option and press "Configure Project"
+1. Wait until configuration is finished and press "Play" button (Ctrl + R)
 
 ### Create standalone build
 fishing-time build depends on Qt runtime. In order to include this runtime into the build and be able to run this executable on different machines you need to perform the following steps:
