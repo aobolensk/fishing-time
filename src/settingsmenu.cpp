@@ -1,114 +1,80 @@
 #include <QFileDialog>
-#include <QFontDialog>
 #include <QMessageBox>
 #include "settingsmenu.h"
 #include "game.h"
 
 SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
-    grid->addWidget(&autoSavePeriodLabel, 0, 0);
-    autoSavePeriodLabel.setVisible(false);
-    autoSavePeriodLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    grid->addWidget(&appearanceButton, 0, 1);
+    appearanceButton.setVisible(false);
+    appearanceButton.setEnabled(false);
+    connect(&appearanceButton, SIGNAL(released()), this, SLOT(appearanceFunction()));
 
-    grid->addWidget(&autoSavePeriodSlider, 0, 1);
-    autoSavePeriodSlider.setOrientation(Qt::Horizontal);
-    autoSavePeriodSlider.setRange(Config::MIN_AUTO_SAVE_PERIOD, Config::MAX_AUTO_SAVE_PERIOD);
-    autoSavePeriodSlider.setVisible(false);
-    autoSavePeriodSlider.setEnabled(false);
+    grid->addWidget(&controlsButton, 1, 1);
+    controlsButton.setVisible(false);
+    controlsButton.setEnabled(false);
+    connect(&controlsButton, SIGNAL(released()), this, SLOT(controlsFunction()));
 
-    grid->addWidget(&autoSavePeriodValueLabel, 0, 2);
-    autoSavePeriodValueLabel.setVisible(false);
-
-    grid->addWidget(&languageLabel, 1, 0);
+    grid->addWidget(&languageLabel, 2, 0);
     languageLabel.setVisible(false);
     languageLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    grid->addWidget(&languageSelector, 1, 1);
+    grid->addWidget(&languageSelector, 2, 1);
     for (int i = 0; i < game->str.languages.size(); ++i) {
         languageSelector.addItem(game->str.languages[(Language)i].first + " (" +
             QString::number(game->str.getNumberOfEntries((Language)i)) + "/" +
             QString::number(game->str.getTotalNumberOfEntries()) + " -> " +
             QString::number(game->str.getReadiness((Language)i)) + "%) ready");
     }
-
     languageSelector.setVisible(false);
     languageSelector.setEnabled(false);
 
-    grid->addWidget(&inventoryTypeLabel, 2, 0);
-    inventoryTypeLabel.setVisible(false);
-    inventoryTypeLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    grid->addWidget(&autoSavePeriodLabel, 3, 0);
+    autoSavePeriodLabel.setVisible(false);
+    autoSavePeriodLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    grid->addWidget(&inventoryTypeSelector, 2, 1);
-    inventoryTypeSelector.setCurrentIndex(-1);
-    inventoryTypeSelector.setVisible(false);
-    inventoryTypeSelector.setEnabled(false);
+    grid->addWidget(&autoSavePeriodSlider, 3, 1);
+    autoSavePeriodSlider.setOrientation(Qt::Horizontal);
+    autoSavePeriodSlider.setRange(Config::MIN_AUTO_SAVE_PERIOD, Config::MAX_AUTO_SAVE_PERIOD);
+    autoSavePeriodSlider.setVisible(false);
+    autoSavePeriodSlider.setEnabled(false);
 
-    grid->addWidget(&fontLabel, 3, 0);
-    fontLabel.setVisible(false);
-    fontLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    grid->addWidget(&autoSavePeriodValueLabel, 3, 2);
+    autoSavePeriodValueLabel.setVisible(false);
 
-    grid->addWidget(&fontSetupButton, 3, 1);
-    fontSetupButton.setVisible(false);
-    fontSetupButton.setEnabled(false);
-    connect(&fontSetupButton, SIGNAL(released()), this, SLOT(fontSetupFunction()));
-
-    grid->addWidget(&colorThemeLabel, 4, 0);
-    colorThemeLabel.setVisible(false);
-    colorThemeLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
-    grid->addWidget(&colorThemeSelector, 4, 1);
-    colorThemeSelector.setCurrentIndex(-1);
-    colorThemeSelector.setVisible(false);
-    colorThemeSelector.setEnabled(false);
-
-    grid->addWidget(&backgroundImagesLabel, 5, 0);
-    backgroundImagesLabel.setWordWrap(true);
-    backgroundImagesLabel.setVisible(false);
-    backgroundImagesLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
-    grid->addWidget(&backgroundImagesSwitch, 5, 1);
-    backgroundImagesSwitch.setTristate(false);
-    backgroundImagesSwitch.setVisible(false);
-    backgroundImagesSwitch.setEnabled(false);
-
-    grid->addWidget(&loggerLevelLabel, 6, 0);
+    grid->addWidget(&loggerLevelLabel, 4, 0);
     loggerLevelLabel.setVisible(false);
     loggerLevelLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    grid->addWidget(&loggerLevelSelector, 6, 1);
+    grid->addWidget(&loggerLevelSelector, 4, 1);
     loggerLevelSelector.setCurrentIndex(-1);
     loggerLevelSelector.setVisible(false);
     loggerLevelSelector.setEnabled(false);
+
+    grid->addWidget(&configFileLabel, 5, 0);
+    configFileLabel.setVisible(false);
+    configFileLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+    grid->addWidget(&configFileSetupButton, 5, 1);
+    configFileSetupButton.setVisible(false);
+    configFileSetupButton.setEnabled(false);
+    connect(&configFileSetupButton, SIGNAL(released()), this, SLOT(configFileSetupFunction()));
+
+    grid->addWidget(&logFileLabel, 6, 0);
+    logFileLabel.setVisible(false);
+    logFileLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+    grid->addWidget(&logFileSetupButton, 6, 1);
+    logFileSetupButton.setVisible(false);
+    logFileSetupButton.setEnabled(false);
+    connect(&logFileSetupButton, SIGNAL(released()), this, SLOT(logFileSetupFunction()));
 
     grid->addWidget(&eraseAllDataButton, 7, 1);
     eraseAllDataButton.setVisible(false);
     eraseAllDataButton.setEnabled(false);
     connect(&eraseAllDataButton, SIGNAL(released()), this, SLOT(eraseAllDataFunction()));
 
-    grid->addWidget(&configFileLabel, 8, 0);
-    configFileLabel.setVisible(false);
-    configFileLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
-    grid->addWidget(&configFileSetupButton, 8, 1);
-    configFileSetupButton.setVisible(false);
-    configFileSetupButton.setEnabled(false);
-    connect(&configFileSetupButton, SIGNAL(released()), this, SLOT(configFileSetupFunction()));
-
-    grid->addWidget(&logFileLabel, 9, 0);
-    logFileLabel.setVisible(false);
-    logFileLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
-    grid->addWidget(&logFileSetupButton, 9, 1);
-    logFileSetupButton.setVisible(false);
-    logFileSetupButton.setEnabled(false);
-    connect(&logFileSetupButton, SIGNAL(released()), this, SLOT(logFileSetupFunction()));
-
-    grid->addWidget(&controlsButton, 10, 1);
-    controlsButton.setVisible(false);
-    controlsButton.setEnabled(false);
-    connect(&controlsButton, SIGNAL(released()), this, SLOT(controlsFunction()));
-
-    grid->addWidget(&backButton, 11, 1);
+    grid->addWidget(&backButton, 8, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -140,55 +106,6 @@ void SettingsMenu::display() {
             this->game->str.setLanguage(this->game->activeLanguage = (Language)index);
             this->display();
         });
-
-    inventoryTypeLabel.setText(game->str.inventoryType);
-    inventoryTypeLabel.setVisible(true);
-
-    inventoryTypeSelector.addItem(game->str.popUp);
-    inventoryTypeSelector.addItem(game->str.builtIn);
-    inventoryTypeSelector.setCurrentIndex((int)game->inventoryType);
-    inventoryTypeSelector.setVisible(true);
-    inventoryTypeSelector.setEnabled(true);
-    inventoryTypeUpdater = connect(&inventoryTypeSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-    [this](int index) {
-        if (index != -1) {
-            this->game->inventoryType = (InventoryType)index;
-        }
-    });
-
-    fontLabel.setText(game->str.font);
-    fontLabel.setVisible(true);
-
-    fontSetupButton.setText(game->str.setup);
-    fontSetupButton.setVisible(true);
-    fontSetupButton.setEnabled(true);
-
-    colorThemeLabel.setText(game->str.colorTheme);
-    colorThemeLabel.setVisible(true);
-
-    colorThemeSelector.addItem(game->str.lightTheme);
-    colorThemeSelector.addItem(game->str.darkTheme);
-    colorThemeSelector.setCurrentIndex((int)game->colorTheme);
-    colorThemeSelector.setVisible(true);
-    colorThemeSelector.setEnabled(true);
-    colorThemeUpdater = connect(&colorThemeSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-    [this](int index) {
-        if (index != -1) {
-            this->game->colorTheme = (ColorTheme)index;
-            this->game->cfg.applyColorTheme(this->game->colorTheme);
-        }
-    });
-
-    backgroundImagesLabel.setText(game->str.showBackgroundImages);
-    backgroundImagesLabel.setVisible(true);
-
-    backgroundImagesSwitch.setVisible(true);
-    backgroundImagesSwitch.setEnabled(true);
-    backgroundImagesSwitch.setChecked(game->showBgImages);
-    backgroundImagesUpdater = connect(&backgroundImagesSwitch, static_cast<void(QCheckBox::*)(int)>(&QCheckBox::stateChanged),
-    [this](int state) {
-        this->game->showBgImages = bool(state);
-    });
 
     loggerLevelLabel.setText(game->str.loggerLevel);
     loggerLevelLabel.setVisible(true);
@@ -223,6 +140,10 @@ void SettingsMenu::display() {
     logFileSetupButton.setVisible(true);
     logFileSetupButton.setEnabled(true);
 
+    appearanceButton.setText(game->str.appearance);
+    appearanceButton.setVisible(true);
+    appearanceButton.setEnabled(true);
+
     controlsButton.setText(game->str.controls);
     controlsButton.setVisible(true);
     controlsButton.setEnabled(true);
@@ -232,14 +153,6 @@ void SettingsMenu::display() {
     backButton.setEnabled(true);
 
     displayed = true;
-}
-
-void SettingsMenu::fontSetupFunction() {
-    QFont newFont = QFontDialog::getFont(nullptr, game->textFont, nullptr);
-    game->setFont(newFont);
-    game->console.setFont(newFont);
-    game->aboutMenu.setFont(newFont);
-    game->gameMenu.getPopUpInventoryTable().setFont(newFont);
 }
 
 void SettingsMenu::configFileSetupFunction() {
@@ -278,6 +191,11 @@ void SettingsMenu::autoSavePeriodSliderFunction(int value) {
     autoSavePeriodValueLabel.setText(QString::number(value));
 }
 
+void SettingsMenu::appearanceFunction() {
+    this->hide();
+    game->appearanceSettingsMenu.display();
+}
+
 void SettingsMenu::controlsFunction() {
     this->hide();
     game->controlsMenu.display();
@@ -305,37 +223,12 @@ void SettingsMenu::hide() {
     languageSelector.setEnabled(false);
     disconnect(languageUpdater);
 
-    inventoryTypeLabel.setVisible(false);
-
-    inventoryTypeSelector.setVisible(false);
-    inventoryTypeSelector.setEnabled(false);
-    disconnect(inventoryTypeUpdater);
-    inventoryTypeSelector.clear();
-
-    fontLabel.setVisible(false);
-
-    fontSetupButton.setVisible(false);
-    fontSetupButton.setEnabled(false);
-
-    backgroundImagesLabel.setVisible(false);
-
-    backgroundImagesSwitch.setVisible(false);
-    backgroundImagesSwitch.setEnabled(false);
-    disconnect(backgroundImagesUpdater);
-
     loggerLevelLabel.setVisible(false);
 
     loggerLevelSelector.setVisible(false);
     loggerLevelSelector.setEnabled(false);
     disconnect(loggerLevelUpdater);
     loggerLevelSelector.clear();
-
-    colorThemeLabel.setVisible(false);
-
-    colorThemeSelector.setVisible(false);
-    colorThemeSelector.setEnabled(false);
-    disconnect(colorThemeUpdater);
-    colorThemeSelector.clear();
 
     eraseAllDataButton.setVisible(false);
     eraseAllDataButton.setEnabled(false);
@@ -349,6 +242,9 @@ void SettingsMenu::hide() {
 
     logFileSetupButton.setVisible(false);
     logFileSetupButton.setEnabled(false);
+
+    appearanceButton.setVisible(false);
+    appearanceButton.setEnabled(false);
 
     controlsButton.setVisible(false);
     controlsButton.setEnabled(false);

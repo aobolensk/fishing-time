@@ -21,6 +21,8 @@ public:
         const QString
             about,
             aboutDescription,
+            appearance,
+            appearanceSettings,
             autoSavePeriod,
             autoSavePeriodSet,
             back,

@@ -26,6 +26,7 @@ Game::Game(QWidget *parent, const QString &file) :
         marketMenu(MarketMenu(this, &grid)),
         storeMenu(StoreMenu(this, &grid)),
         settingsMenu(SettingsMenu(this, &grid)),
+        appearanceSettingsMenu(AppearanceSettingsMenu(this, &grid)),
         controlsMenu(ControlsMenu(this, &grid)),
         netsMenu(NetsMenu(this, &grid)),
         statisticsMenu(StatisticsMenu(this, &grid)),

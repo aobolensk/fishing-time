@@ -87,6 +87,8 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
                                 "Qt version: " QT_VERSION_STR "<br>"
                                 "OS: %2<br>"
                                 "Compiler: %3<br>";
+        SET(appearance) = "Appearance";
+        SET(appearanceSettings) = "Appearance settings";
         SET(autoSavePeriod) = "Autosave period";
         SET(autoSavePeriodSet) = "Autosave period is set to %1 minutes";
         SET(back) = "Back";
@@ -355,6 +357,8 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
                                 "Версия Qt: " QT_VERSION_STR "<br>"
                                 "ОС: %2<br>"
                                 "Компилятор: %3<br>";
+        SET(appearance) = "Внешний вид";
+        SET(appearanceSettings) = "Настройки внешнего вида";
         SET(autoSavePeriod) = "Период автосохранения";
         SET(autoSavePeriodSet) = "Период автосохранения установлен в %1 минут";
         SET(back) = "Назад";
