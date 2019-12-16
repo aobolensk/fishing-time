@@ -5,6 +5,7 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
     grid->addWidget(&controlsLabel, 0, 1);
     controlsLabel.setVisible(false);
+    controlsLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     grid->addWidget(&hideUIElementsLabel, 1, 0);
     hideUIElementsLabel.setVisible(false);
