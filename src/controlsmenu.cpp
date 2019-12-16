@@ -126,6 +126,9 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
             if (currentControl == "hideUIElements") {
                 hideUIElementsControl = seq;
                 hideUIElementsText.setText(keyText);
+            } else if (currentControl == "toggleFullscreenMode") {
+                toggleFullscreenModeControl = seq;
+                toggleFullscreenModeText.setText(keyText);
             }
         }
     }

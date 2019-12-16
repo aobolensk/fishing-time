@@ -24,7 +24,11 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
             this->backFunction();
         } else if (seq == game->controlsMenu.getToggleFullscreenModeControl()) {
             // Toggle fullscreen mode
-            game->window()->setWindowState(game->window()->windowState() ^ Qt::WindowFullScreen);
+            if (this != &game->controlsMenu) {
+                game->window()->setWindowState(
+                    game->window()->windowState() ^ Qt::WindowFullScreen
+                );
+            }
         } else if (seq == game->controlsMenu.getHideUIElementsControl()) {
             // Hide UI elements
             if (this != &game->controlsMenu) {
