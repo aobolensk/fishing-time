@@ -6,9 +6,11 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
     grid->addWidget(&controlsLabel, 0, 1);
     controlsLabel.setVisible(false);
     controlsLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    controlsLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&hideUIElementsLabel, 1, 0);
     hideUIElementsLabel.setVisible(false);
+    hideUIElementsLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&hideUIElementsText, 1, 1);
     hideUIElementsText.setVisible(false);
@@ -21,6 +23,7 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
 
     grid->addWidget(&toggleFullscreenModeLabel, 2, 0);
     toggleFullscreenModeLabel.setVisible(false);
+    toggleFullscreenModeLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&toggleFullscreenModeText, 2, 1);
     toggleFullscreenModeText.setVisible(false);
