@@ -35,14 +35,15 @@ matrix:
         - cmake ..
         - cmake --build . -- -j
         - ./bin/fishing-time_test
-    # - os: osx
-    #   osx_image: xcode11.2
-    #   addons:
-    #     homebrew:
-    #       packages:
-    #         - qt
-    #   script:
-    #     - mkdir build
-    #     - cd build
-    #     - cmake .. -DCMAKE_PREFIX_PATH=$(brew --prefix qt)/lib/cmake/Qt5
-    #     - cmake --build . -- -j
+    - os: osx
+      osx_image: xcode11.2
+      addons:
+        homebrew:
+          packages:
+            - qt
+      script:
+        - mkdir build
+        - cd build
+        - cmake .. -DCMAKE_PREFIX_PATH=$(brew --prefix qt)/lib/cmake/Qt5
+        - cmake --build . -- -j
+        - ./bin/fishing-time_test
