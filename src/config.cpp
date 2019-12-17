@@ -30,8 +30,8 @@ void Config::deserialize(const QVariantMap &map) {
     }
     game->textFont.fromString(map["textFont"].toString());
     QVariantMap controls = map["controls"].toJsonObject().toVariantMap();
-    game->controlsMenu.setHideUIElementsControl(controls["hideUIElements"].toInt());
-    game->controlsMenu.setToggleFullscreenModeControl(controls["toggleFullscreenMode"].toInt());
+    game->controlsMenu.set(Controls::HIDE_UI_ELEMENTS, controls["hideUIElements"].toInt());
+    game->controlsMenu.set(Controls::TOGGLE_FULLSCREEN_MODE, controls["toggleFullscreenMode"].toInt());
     isReady = true;
 }
 
@@ -47,8 +47,8 @@ QJsonObject Config::serialize() const {
     jsonObj["showBgImages"] = (int)game->showBgImages;
     jsonObj["textFont"] = game->font().toString();
     QVariantMap controls;
-    controls["hideUIElements"] = game->controlsMenu.getHideUIElementsControl()[0];
-    controls["toggleFullscreenMode"] = game->controlsMenu.getToggleFullscreenModeControl()[0];
+    controls["hideUIElements"] = game->controlsMenu.get(Controls::HIDE_UI_ELEMENTS)[0];
+    controls["toggleFullscreenMode"] = game->controlsMenu.get(Controls::TOGGLE_FULLSCREEN_MODE)[0];
     jsonObj["controls"] = QJsonObject::fromVariantMap(controls);
     return jsonObj;
 }

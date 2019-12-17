@@ -159,11 +159,11 @@ void Game::deserialize() {
             }
         }
     }
-    if (this->controlsMenu.getHideUIElementsControl() == 0) {
-        this->controlsMenu.setHideUIElementsControl(67108936); // Ctrl + H
+    if (this->controlsMenu.get(Controls::HIDE_UI_ELEMENTS) == 0) {
+        this->controlsMenu.set(Controls::HIDE_UI_ELEMENTS, 67108936); // Ctrl + H
     }
-    if (this->controlsMenu.getToggleFullscreenModeControl() == 0) {
-        this->controlsMenu.setToggleFullscreenModeControl(16777274); // F11
+    if (this->controlsMenu.get(Controls::TOGGLE_FULLSCREEN_MODE) == 0) {
+        this->controlsMenu.set(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
     }
     this->setFont(this->textFont);
     this->console.setFont(this->textFont);
