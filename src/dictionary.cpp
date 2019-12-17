@@ -1,5 +1,6 @@
 #include "dictionary.h"
 #include "game.h"
+#include "utils.h"
 
 static int updatesCount = 0;
 
@@ -83,7 +84,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(about) = "About";
         SET(aboutDescription) = "Fishing Time<br>"
                                 "Official repo: <a href=\"%1\">%1</a><br>"
-                                "Version: " COMMIT_HASH "<br>"
+                                "Version: " TOSTRING(COMMIT_HASH) "<br>"
                                 "Qt version: " QT_VERSION_STR "<br>"
                                 "OS: %2<br>"
                                 "Compiler: %3<br>";
@@ -354,7 +355,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(about) = "О программе";
         SET(aboutDescription) = "Fishing Time<br>"
                                 "Официальный репозиторий: <a href=\"%1\">%1</a><br>"
-                                "Версия: " COMMIT_HASH "<br>"
+                                "Версия: " TOSTRING(COMMIT_HASH) "<br>"
                                 "Версия Qt: " QT_VERSION_STR "<br>"
                                 "ОС: %2<br>"
                                 "Компилятор: %3<br>";

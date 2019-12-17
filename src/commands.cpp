@@ -2,6 +2,7 @@
 #include <QCryptographicHash>
 #include "console.h"
 #include "game.h"
+#include "utils.h"
 
 void Console::registerCommands() {
     /* Register commands only in this function.
@@ -233,7 +234,7 @@ void Console::registerCommands() {
     commands["version"] = {
         [&](QStringList &args) -> int {
             (void) args;
-            log.writeln(COMMIT_HASH);
+            log.writeln(TOSTRING(COMMIT_HASH));
             return 0;
         },
         PrivilegeLevel::Common,

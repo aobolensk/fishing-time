@@ -2,13 +2,14 @@
 #include <QStyleFactory>
 #include "config.h"
 #include "game.h"
+#include "utils.h"
 
 Config::Config(Game *game) :
     game(game) {
-    qDebug() << "Project directory:" << PROJECT_DIR;
+    qDebug() << "Project directory:" << TOSTRING(PROJECT_DIR);
 }
 
-const QString Config::imagesDirectory = PROJECT_DIR "/images/";
+const QString Config::imagesDirectory = TOSTRING(PROJECT_DIR) "/images/";
 const QColor Config::LIGHT_THEME_WINDOW_COLOR = QColor(250, 250, 250);
 const QColor Config::LIGHT_THEME_TEXT_COLOR = QColor(20, 20, 20);
 const QColor Config::DARK_THEME_WINDOW_COLOR = QColor(64, 64, 64);
