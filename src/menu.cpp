@@ -22,14 +22,14 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
         qDebug() << typeid(*this).name() << "->" << key->key();
         if (key->key() == 16777216) { // escape
             this->backFunction();
-        } else if (seq == game->controlsMenu.getToggleFullscreenModeControl()) {
+        } else if (seq == game->controlsMenu.get(Controls::TOGGLE_FULLSCREEN_MODE)) {
             // Toggle fullscreen mode
             if (this != &game->controlsMenu) {
                 game->window()->setWindowState(
                     game->window()->windowState() ^ Qt::WindowFullScreen
                 );
             }
-        } else if (seq == game->controlsMenu.getHideUIElementsControl()) {
+        } else if (seq == game->controlsMenu.get(Controls::HIDE_UI_ELEMENTS)) {
             // Hide UI elements
             if (this != &game->controlsMenu) {
                 if (this->displayed) {

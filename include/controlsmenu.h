@@ -5,33 +5,31 @@
 #include <QLineEdit>
 #include "menu.h"
 
+enum class Controls {
+    HIDE_UI_ELEMENTS,
+    TOGGLE_FULLSCREEN_MODE,
+    CONTROLS_N
+};
+
 class ControlsMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    QString currentControl;
-    QLabel controlsLabel,
-           hideUIElementsLabel,
-           toggleFullscreenModeLabel;
-    QLineEdit hideUIElementsText,
-              toggleFullscreenModeText;
-    QPushButton hideUIElementsButton,
-                toggleFullscreenModeButton,
+    Controls currentControl;
+    QLabel controlsTitleLabel,
+           controlsLabel[(size_t)Controls::CONTROLS_N];
+    QLineEdit controlsText[(size_t)Controls::CONTROLS_N];
+    QPushButton controlsButton[(size_t)Controls::CONTROLS_N],
                 backButton;
-    QKeySequence hideUIElementsControl,
-                 toggleFullscreenModeControl;
+    QKeySequence controls[(size_t)Controls::CONTROLS_N];
 private slots:
-    void hideUIElementsEditFunction();
-    void toggleFullscreenModeEditFunction();
     void backFunction() override;
 protected slots:
     bool eventFilter(QObject *obj, QEvent *event) override;
 public:
     QKeySequence getKeySequence(const QKeyEvent *const key);
-    void setHideUIElementsControl(int key);
-    QKeySequence getHideUIElementsControl();
-    void setToggleFullscreenModeControl(int key);
-    QKeySequence getToggleFullscreenModeControl();
+    QKeySequence get(Controls control);
+    void set(Controls control, int key);
 public:
     ControlsMenu(Game *game, QGridLayout *grid);
     ~ControlsMenu();
