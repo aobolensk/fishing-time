@@ -8,6 +8,7 @@
 enum class Controls {
     HIDE_UI_ELEMENTS,
     TOGGLE_FULLSCREEN_MODE,
+    GO_TO_PREVIOUS_MENU,
     CONTROLS_N
 };
 

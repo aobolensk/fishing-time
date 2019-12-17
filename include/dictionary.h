@@ -65,6 +65,7 @@ public:
             font,
             forbiddenSymbol,
             forgotPassword,
+            goToPreviousMenu,
             hideUIElements,
             id,
             ide,

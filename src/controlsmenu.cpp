@@ -45,6 +45,9 @@ void ControlsMenu::display() {
         case Controls::TOGGLE_FULLSCREEN_MODE:
             controlsLabel[i].setText(game->str.toggleFullscreenMode);
             break;
+        case Controls::GO_TO_PREVIOUS_MENU:
+            controlsLabel[i].setText(game->str.goToPreviousMenu);
+            break;
         case Controls::CONTROLS_N:
             break;
         }
