@@ -1,6 +1,7 @@
 #include <QSettings>
 #include "aboutmenu.h"
 #include "game.h"
+#include "utils.h"
 
 AboutMenu::AboutMenu(Game *game) :
         Menu(game, nullptr, true) {
@@ -33,8 +34,6 @@ QString AboutMenu::getAboutInfo() {
         QSysInfo::kernelType() + " " +
         QSysInfo::kernelVersion() + " " +
         QSysInfo::currentCpuArchitecture(),
-        #define STRINGIFY(x) #x
-        #define TOSTRING(x) STRINGIFY(x)
         #ifdef __clang__
         "clang++ " TOSTRING(__clang_major__) "." TOSTRING(__clang_minor__) "." TOSTRING(__clang_patchlevel__)
         #elif _MSC_FULL_VER
@@ -44,8 +43,6 @@ QString AboutMenu::getAboutInfo() {
         #else
         "unknown"
         #endif
-        #undef STRINGIFY
-        #undef TOSTRING
     );
 }
 
