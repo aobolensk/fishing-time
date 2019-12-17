@@ -165,6 +165,9 @@ void Game::deserialize() {
     if (this->controlsMenu.get(Controls::TOGGLE_FULLSCREEN_MODE) == 0) {
         this->controlsMenu.set(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
     }
+    if (this->controlsMenu.get(Controls::GO_TO_PREVIOUS_MENU) == 0) {
+        this->controlsMenu.set(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
+    }
     this->setFont(this->textFont);
     this->console.setFont(this->textFont);
     this->aboutMenu.setFont(this->textFont);

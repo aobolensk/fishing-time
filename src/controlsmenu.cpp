@@ -38,7 +38,19 @@ void ControlsMenu::display() {
     controlsTitleLabel.setVisible(true);
 
     for (size_t i = 0; i < (size_t)Controls::CONTROLS_N; ++i) {
-        controlsLabel[i].setText(game->str.controls);
+        switch ((Controls)i) {
+        case Controls::HIDE_UI_ELEMENTS:
+            controlsLabel[i].setText(game->str.hideUIElements);
+            break;
+        case Controls::TOGGLE_FULLSCREEN_MODE:
+            controlsLabel[i].setText(game->str.toggleFullscreenMode);
+            break;
+        case Controls::GO_TO_PREVIOUS_MENU:
+            controlsLabel[i].setText(game->str.goToPreviousMenu);
+            break;
+        case Controls::CONTROLS_N:
+            break;
+        }
         controlsLabel[i].setVisible(true);
 
         controlsText[i].setText(

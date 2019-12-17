@@ -20,8 +20,11 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
         QKeyEvent *key = static_cast<QKeyEvent *>(event);
         QKeySequence seq = game->controlsMenu.getKeySequence(key);
         qDebug() << typeid(*this).name() << "->" << key->key();
-        if (key->key() == 16777216) { // escape
-            this->backFunction();
+        if (seq == game->controlsMenu.get(Controls::GO_TO_PREVIOUS_MENU)) {
+            // Go to previous menu
+            if (this != &game->controlsMenu) {
+                this->backFunction();
+            }
         } else if (seq == game->controlsMenu.get(Controls::TOGGLE_FULLSCREEN_MODE)) {
             // Toggle fullscreen mode
             if (this != &game->controlsMenu) {

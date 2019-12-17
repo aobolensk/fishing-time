@@ -132,6 +132,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(font) = "Font";
         SET(forbiddenSymbol) = "Forbidden symbol: %1";
         SET(forgotPassword) = "Forgot password";
+        SET(goToPreviousMenu) = "Go to previous menu";
         SET(hideUIElements) = "Hide UI elements";
         SET(id) = "Id";
         SET(ide) = "Ide";
@@ -403,6 +404,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(font) = "Шрифт";
         SET(forbiddenSymbol) = "Недопустимый символ: %1";
         SET(forgotPassword) = "Забыли пароль";
+        SET(goToPreviousMenu) = "Выйти в предыдущее меню";
         SET(hideUIElements) = "Скрыть элементы пользовательского интерфейса";
         SET(id) = "Идентификатор";
         SET(ide) = "Язь";

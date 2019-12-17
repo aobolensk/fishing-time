@@ -33,6 +33,7 @@ void Config::deserialize(const QVariantMap &map) {
     QVariantMap controls = map["controls"].toJsonObject().toVariantMap();
     game->controlsMenu.set(Controls::HIDE_UI_ELEMENTS, controls["hideUIElements"].toInt());
     game->controlsMenu.set(Controls::TOGGLE_FULLSCREEN_MODE, controls["toggleFullscreenMode"].toInt());
+    game->controlsMenu.set(Controls::GO_TO_PREVIOUS_MENU, controls["goToPreviousMenu"].toInt());
     isReady = true;
 }
 
@@ -50,6 +51,7 @@ QJsonObject Config::serialize() const {
     QVariantMap controls;
     controls["hideUIElements"] = game->controlsMenu.get(Controls::HIDE_UI_ELEMENTS)[0];
     controls["toggleFullscreenMode"] = game->controlsMenu.get(Controls::TOGGLE_FULLSCREEN_MODE)[0];
+    controls["goToPreviousMenu"] = game->controlsMenu.get(Controls::GO_TO_PREVIOUS_MENU)[0];
     jsonObj["controls"] = QJsonObject::fromVariantMap(controls);
     return jsonObj;
 }
