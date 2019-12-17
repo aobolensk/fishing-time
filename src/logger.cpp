@@ -78,22 +78,26 @@ void Logger::debug(const QString &message) {
     if (game->loggerLevel == LoggerLevel::DEBUG) {
         this->log.debugT(message);
         this->fileLog.debugT(message);
+        this->jumpToBottomFunction();
     }
 }
 
 void Logger::info(const QString &message) {
     this->log.infoT(message);
     this->fileLog.infoT(message);
+    this->jumpToBottomFunction();
 }
 
 void Logger::warning(const QString &message) {
     this->log.warningT(message);
     this->fileLog.warningT(message);
+    this->jumpToBottomFunction();
 }
 
 void Logger::error(const QString &message) {
     this->log.errorT(message);
     this->fileLog.errorT(message);
+    this->jumpToBottomFunction();
 }
 
 void Logger::display() {
