@@ -5,7 +5,7 @@ set(CMAKE_AUTOMOC ON)
 
 cmake_policy(SET CMP0020 NEW)
 cmake_policy(SET CMP0043 NEW)
-if(${CMAKE_VERSION} VERSION_GREATER "3.13.0") 
+if(${CMAKE_VERSION} VERSION_GREATER "3.13.0")
     cmake_policy(SET CMP0079 NEW)
 endif()
 
