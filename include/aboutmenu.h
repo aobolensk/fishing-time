@@ -18,6 +18,8 @@ public:
     void display() override;
     void hide() override;
     QString getAboutInfo();
+    static QString getSystemInfo();
+    static QString getCompilerInfo();
 };
 
 #endif  // INCLUDE_ABOUTMENU_H_

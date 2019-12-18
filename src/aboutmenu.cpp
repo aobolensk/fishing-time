@@ -30,10 +30,20 @@ AboutMenu::AboutMenu(Game *game) :
 QString AboutMenu::getAboutInfo() {
     return game->str.aboutDescription.arg(
         "https://github.com/gooddoog/fishing-time/",
-        QSysInfo::prettyProductName() + " " +
-        QSysInfo::kernelType() + " " +
-        QSysInfo::kernelVersion() + " " +
-        QSysInfo::currentCpuArchitecture(),
+        this->getSystemInfo(),
+        this->getCompilerInfo()
+    );
+}
+
+QString AboutMenu::getSystemInfo() {
+    return QSysInfo::prettyProductName() + " " +
+           QSysInfo::kernelType() + " " +
+           QSysInfo::kernelVersion() + " " +
+           QSysInfo::currentCpuArchitecture();
+}
+
+QString AboutMenu::getCompilerInfo() {
+    return
         #ifdef __clang__
         "clang++ " TOSTRING(__clang_major__) "." TOSTRING(__clang_minor__) "." TOSTRING(__clang_patchlevel__)
         #elif _MSC_FULL_VER
@@ -43,7 +53,7 @@ QString AboutMenu::getAboutInfo() {
         #else
         "unknown"
         #endif
-    );
+    ;
 }
 
 void AboutMenu::display() {
