@@ -87,7 +87,8 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
                                 "Version: " TOSTRING(COMMIT_HASH) "<br>"
                                 "Qt version: " QT_VERSION_STR "<br>"
                                 "OS: %2<br>"
-                                "Compiler: %3<br>";
+                                "Compiler: %3<br>"
+                                "License: %4<br>";
         SET(appearance) = "Appearance";
         SET(appearanceSettings) = "Appearance settings";
         SET(autoSavePeriod) = "Autosave period";
@@ -359,7 +360,8 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
                                 "Версия: " TOSTRING(COMMIT_HASH) "<br>"
                                 "Версия Qt: " QT_VERSION_STR "<br>"
                                 "ОС: %2<br>"
-                                "Компилятор: %3<br>";
+                                "Компилятор: %3<br>"
+                                "Лицензия: %4<br>";
         SET(appearance) = "Внешний вид";
         SET(appearanceSettings) = "Настройки внешнего вида";
         SET(autoSavePeriod) = "Период автосохранения";

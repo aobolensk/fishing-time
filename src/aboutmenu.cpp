@@ -31,7 +31,8 @@ QString AboutMenu::getAboutInfo() {
     return game->str.aboutDescription.arg(
         "https://github.com/gooddoog/fishing-time/",
         this->getSystemInfo(),
-        this->getCompilerInfo()
+        this->getCompilerInfo(),
+        "<a href='https://github.com/gooddoog/fishing-time/blob/master/LICENSE'>MIT</a>"
     );
 }
 
