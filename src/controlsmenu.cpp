@@ -108,9 +108,13 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
         if (currentControl != Controls::CONTROLS_N) {
             QKeyEvent *key = static_cast<QKeyEvent *>(event);
             QKeySequence seq = getKeySequence(key);
-            QString keyText = seq.toString(QKeySequence::NativeText);
-            controls[(size_t)currentControl] = seq;
-            controlsText[(size_t)currentControl].setText(keyText);
+            if (seq[0]) {
+                QString keyText = seq.toString(QKeySequence::NativeText);
+                controls[(size_t)currentControl] = seq;
+                controlsText[(size_t)currentControl].setText(keyText);
+                controlsButton[(size_t)currentControl].setText(game->str.edit);
+                currentControl = Controls::CONTROLS_N;
+            }
         }
     }
     return Menu::eventFilter(obj, event);
