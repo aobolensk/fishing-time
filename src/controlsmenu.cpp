@@ -111,6 +111,10 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
             QString keyText = seq.toString(QKeySequence::NativeText);
             controls[(size_t)currentControl] = seq;
             controlsText[(size_t)currentControl].setText(keyText);
+            if (seq[0]) {
+                controlsButton[(size_t)currentControl].setText(game->str.edit);
+                currentControl = Controls::CONTROLS_N;
+            }
         }
     }
     return Menu::eventFilter(obj, event);
