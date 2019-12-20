@@ -28,3 +28,23 @@ void TestUser::setPrivilegeLevel() {
     user.setPrivilegeLevel(1);
     QCOMPARE(user.getPrivilegeLevel(), 1);
 }
+
+void TestUser::inventoryAddItem() {
+    User user("username", "password");
+    user.inventory.changeItem("test", 10);
+    QCOMPARE(user.inventory.getItem("test"), 10);
+}
+
+void TestUser::inventoryDeleteItem() {
+    User user("username", "password");
+    user.inventory.changeItem("test", 10);
+    user.inventory.changeItem("test", -10);
+    QCOMPARE(user.inventory.getItem("test"), 0);
+}
+
+void TestUser::inventoryQuantityIsNotLessThanZero() {
+    User user("username", "password");
+    user.inventory.changeItem("test", 10);
+    user.inventory.changeItem("test", -20);
+    QCOMPARE(user.inventory.getItem("test"), 0);
+}
