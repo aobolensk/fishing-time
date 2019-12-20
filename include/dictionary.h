@@ -130,6 +130,7 @@ public:
             quantityShouldBeMoreThanZero,
             rating,
             reportAnError,
+            reset,
             resetPasswordConfirmation,
             roach,
             saving,

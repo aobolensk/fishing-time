@@ -21,6 +21,11 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
         controlsButton[i].setText(game->str.edit);
         controlsButton[i].setVisible(false);
         controlsButton[i].setEnabled(false);
+
+        grid->addWidget(&resetButton[i], i + 1, 3);
+        resetButton[i].setText(game->str.reset);
+        resetButton[i].setVisible(false);
+        resetButton[i].setEnabled(false);
     }
 
     grid->addWidget(&backButton, (size_t)Controls::CONTROLS_N + 1, 1);
@@ -71,6 +76,16 @@ void ControlsMenu::display() {
                     currentControl = Controls::CONTROLS_N;
                     controlsButton[i].setText(game->str.edit);
                 }
+            }
+        );
+
+        resetButton[i].setVisible(true);
+        resetButton[i].setEnabled(true);
+
+        connect(&resetButton[i], static_cast<void(QPushButton::*)()>(&QPushButton::released),
+            [this, i]() {
+                controls[i] = defaultControls[i];
+                controlsText[(size_t)i].setText(controls[i].toString(QKeySequence::NativeText));
             }
         );
     }
@@ -124,6 +139,10 @@ QKeySequence ControlsMenu::get(Controls control) {
     return controls[(size_t)control];
 }
 
+void ControlsMenu::setDefault(Controls control, int key) {
+    defaultControls[(size_t)control] = QKeySequence(key);
+}
+
 void ControlsMenu::set(Controls control, int key) {
     controls[(size_t)control] = QKeySequence(key);
 }
@@ -147,6 +166,10 @@ void ControlsMenu::hide() {
         controlsButton[i].setVisible(false);
         controlsButton[i].setEnabled(false);
         controlsButton[i].disconnect();
+
+        resetButton[i].setVisible(false);
+        resetButton[i].setEnabled(false);
+        resetButton[i].disconnect();
     }
 
     backButton.setVisible(false);

@@ -21,8 +21,10 @@ private:
            controlsLabel[(size_t)Controls::CONTROLS_N];
     QLineEdit controlsText[(size_t)Controls::CONTROLS_N];
     QPushButton controlsButton[(size_t)Controls::CONTROLS_N],
+                resetButton[(size_t)Controls::CONTROLS_N],
                 backButton;
-    QKeySequence controls[(size_t)Controls::CONTROLS_N];
+    QKeySequence defaultControls[(size_t)Controls::CONTROLS_N],
+                 controls[(size_t)Controls::CONTROLS_N];
 private slots:
     void backFunction() override;
 protected slots:
@@ -30,6 +32,7 @@ protected slots:
 public:
     QKeySequence getKeySequence(const QKeyEvent *const key);
     QKeySequence get(Controls control);
+    void setDefault(Controls control, int key);
     void set(Controls control, int key);
 public:
     ControlsMenu(Game *game, QGridLayout *grid);

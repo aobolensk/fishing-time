@@ -201,6 +201,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(quantityShouldBeANumber) = "Quantity should be a number";
         SET(quantityShouldBeMoreThanZero) = "Quantity should be more than zero";
         SET(rating) = "Rating";
+        SET(reset) = "Reset";
         SET(resetPasswordConfirmation) = "Do you really want to reset your password?";
         SET(roach) = "Roach";
         SET(saving) = "Saving...";
@@ -475,6 +476,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(quantityShouldBeMoreThanZero) = "Количество должно быть больше нуля";
         SET(rating) = "Рейтинг";
         SET(reportAnError) = "Сообщить об ошибке";
+        SET(reset) = "Сбросить";
         SET(resetPasswordConfirmation) = "Вы действительно хотите сбросить пароль?";
         SET(roach) = "Плотва";
         SET(saving) = "Сохранение...";
