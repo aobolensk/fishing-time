@@ -48,3 +48,24 @@ void TestUser::inventoryQuantityIsNotLessThanZero() {
     user.inventory.changeItem("test", -20);
     QCOMPARE(user.inventory.getItem("test"), 0);
 }
+
+void TestUser::statsAddNewStat() {
+    User user("username", "password");
+    user.inventory.changeItem("test", 10);
+    user.inventory.updateStats("test", "received", 10);
+    QCOMPARE(user.inventory.getItemStats()["test"]["received"], 10);
+}
+
+void TestUser::statsWrongStatIsEmpty() {
+    User user("username", "password");
+    user.inventory.changeItem("test", 10);
+    user.inventory.updateStats("test", "received", 10);
+    QCOMPARE(user.inventory.getItemStats()["test"]["test2"], 0);
+}
+
+void TestUser::statsWrongItemStatIsEmpty() {
+    User user("username", "password");
+    user.inventory.changeItem("test", 10);
+    user.inventory.updateStats("test", "received", 10);
+    QCOMPARE(user.inventory.getItemStats()["test2"]["received"], 0);
+}

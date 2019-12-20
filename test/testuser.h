@@ -13,6 +13,9 @@ private slots:
     void inventoryAddItem();
     void inventoryDeleteItem();
     void inventoryQuantityIsNotLessThanZero();
+    void statsAddNewStat();
+    void statsWrongStatIsEmpty();
+    void statsWrongItemStatIsEmpty();
 };
 
 #endif  // TEST_TESTUSER_H_
