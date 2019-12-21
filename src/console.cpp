@@ -229,6 +229,7 @@ void Console::display() {
     jumpToBottomButton.setText(game->str.jumpToBottom);
     jumpToBottomButton.setVisible(true);
     jumpToBottomButton.setEnabled(true);
+    this->jumpToBottomFunction();
 
     enterButton.setText(game->str.enter);
     enterButton.setVisible(true);

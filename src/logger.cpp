@@ -108,6 +108,7 @@ void Logger::display() {
     clearButton.setText(game->str.clear);
 
     jumpToBottomButton.setText(game->str.jumpToBottom);
+    this->jumpToBottomFunction();
 
     displayed = true;
 }
