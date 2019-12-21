@@ -144,7 +144,9 @@ void MainMenu::reportFunction() {
 }
 
 void MainMenu::exitFunction() {
-    this->hide();
+    game->hide();
+    game->console.hide();
+    game->logger.hide();
     QApplication::quit();
 }
 
