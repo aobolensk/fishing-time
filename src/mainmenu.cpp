@@ -140,7 +140,7 @@ void MainMenu::aboutFunction() {
 }
 
 void MainMenu::reportFunction() {
-    QDesktopServices::openUrl(QUrl("https://github.com/gooddoog/fishing-time/issues"));
+    QDesktopServices::openUrl(QUrl(game->str.links.issueTracker));
 }
 
 void MainMenu::exitFunction() {

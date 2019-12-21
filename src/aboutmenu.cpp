@@ -29,10 +29,10 @@ AboutMenu::AboutMenu(Game *game) :
 
 QString AboutMenu::getAboutInfo() {
     return game->str.aboutDescription.arg(
-        "https://github.com/gooddoog/fishing-time/",
+        game->str.links.repository,
         this->getSystemInfo(),
         this->getCompilerInfo(),
-        "<a href='https://github.com/gooddoog/fishing-time/blob/master/LICENSE'>MIT</a>"
+        "<a href='" + game->str.links.license + "'>MIT</a>"
     );
 }
 

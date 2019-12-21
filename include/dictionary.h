@@ -208,6 +208,12 @@ public:
         {"locations.oka", ""}
     };
     static constexpr int DICTIONARY_END = __LINE__;
+    struct Links {
+        const QString
+            repository = "https://github.com/gooddoog/fishing-time/",
+            issueTracker = "https://github.com/gooddoog/fishing-time/issues/",
+            license = "https://github.com/gooddoog/fishing-time/blob/master/LICENSE/";
+    } links;
 private:
     int numberOfStrings = 0;
     Game *game;
