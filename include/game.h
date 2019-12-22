@@ -28,6 +28,7 @@
 #include "userprofilemenu.h"
 #include "locationmenu.h"
 #include "aboutmenu.h"
+#include "overlaywidget.h"
 #include "user.h"
 #include "location.h"
 #include "dictionary.h"
@@ -82,6 +83,7 @@ public:
     LocationMenu locationMenu;
     UserProfileMenu userProfileMenu;
     AboutMenu aboutMenu;
+    OverlayWidget overlay;
     int activeUser = -1;
     int activeLocation = -1;
     QString bgImagePath;
