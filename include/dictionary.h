@@ -17,6 +17,10 @@ public:
     const QVector <QString> itemIds;
     const QMap <QString, const QString*> itemNames;
     const QString fishingTime = "Fishing time";
+    const QString debugOverlayText =
+        "Fishing Time (development build)\n"
+        "Version: %1\n"
+        "OS: %2\n";
     static constexpr int DICTIONARY_START = __LINE__;
         const QString
             about,

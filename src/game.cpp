@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QSettings>
 #include "game.h"
+#include "utils.h"
 
 Game::Game(QWidget *parent, const QString &file) :
         QWidget(parent),
@@ -38,7 +39,8 @@ Game::Game(QWidget *parent, const QString &file) :
         inventoryMenu(InventoryMenu(this, &grid)),
         locationMenu(LocationMenu(this, &grid)),
         userProfileMenu(UserProfileMenu(this, &grid)),
-        aboutMenu(AboutMenu(this)) {
+        aboutMenu(AboutMenu(this)),
+        overlay(OverlayWidget(this)) {
     QSettings settings;
     if (!this->restoreGeometry(settings.value("mainWindowGeometry").toByteArray())) {
         this->logger.error("Unable to restore game window geometry. Loading defaults...");
@@ -55,6 +57,10 @@ Game::Game(QWidget *parent, const QString &file) :
     this->mainMenu.display();
     this->logger.info("Logging system is successfully initialized!");
     this->logger.debug("Debug logging system is enabled!");
+    overlay.setText(this->str.debugOverlayText.arg(
+        TOSTRING(COMMIT_HASH),
+        this->aboutMenu.getSystemInfo()
+    ));
 }
 
 void Game::setAutoSavePeriod(int periodInMinutes) {
