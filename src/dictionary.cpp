@@ -167,6 +167,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(loggerLevel) = "Logging level";
         SET(loggerLevelDebug) = "Debug (more logs)";
         SET(loggerLevelRelease) = "Release (less logs)";
+        SET(lottery) = "Lottery";
         SET(mainLabelText) =
             "Welcome, %1\n"
             "Level: %2 (%3 / %4 XP)\n"
@@ -441,6 +442,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(loggerLevel) = "Уровень логов";
         SET(loggerLevelDebug) = "Отладка (больше логов)";
         SET(loggerLevelRelease) = "Выпуск (меньше логов)";
+        SET(lottery) = "Лотерея";
         SET(mainLabelText) =
             "Добро пожаловать, %1\n"
             "Уровень: %2 (%3 / %4 XP)\n"

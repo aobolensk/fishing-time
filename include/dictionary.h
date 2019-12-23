@@ -103,6 +103,7 @@ public:
             loggerLevel,
             loggerLevelDebug,
             loggerLevelRelease,
+            lottery,
             mainLabelText,
             mainMenuText,
             market,
