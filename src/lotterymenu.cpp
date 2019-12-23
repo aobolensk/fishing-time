@@ -15,6 +15,17 @@ LotteryMenu::LotteryMenu(Game *game, QGridLayout *grid) :
     grid->addWidget(&ticketLabel, 2, 1);
     ticketLabel.setVisible(false);
 
+    // 3rd row is reserved for ticket grid
+
+    grid->addWidget(&comboLabel, 4, 0, 1, 3);
+    comboLabel.setVisible(false);
+    comboLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+    grid->addWidget(&submitButton, 5, 1);
+    submitButton.setVisible(false);
+    submitButton.setEnabled(false);
+    connect(&submitButton, SIGNAL(released()), this, SLOT(submitFunction()));
+
     grid->addWidget(&backButton, 10, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
@@ -49,17 +60,50 @@ void LotteryMenu::display() {
 void LotteryMenu::selectTicketFunction() {
     QString currentTicket = ticketSelector.currentText().split(" ").first();
     ticketLabel.setText(currentTicket);
+    combo.clear();
 
     ticketGrid = new QGridLayout(nullptr);
     grid->addLayout(ticketGrid, 3, 0, 1, 3);
+
+    comboLabel.setVisible(true);
+
     if (currentTicket == "ticket.basic") {
         for (int i = 0; i < Config::LOTTERY_BUTTONS_COUNT; ++i) {
             ticketGrid->addWidget(&numberButton[i], i / 10, i % 10);
             numberButton[i].setText(QString::number(i + 1));
             numberButton[i].setVisible(true);
             numberButton[i].setEnabled(true);
+            connect(&numberButton[i], &QPushButton::clicked, [this, i]() {
+                if (combo.find(i + 1) == combo.end()) {
+                    if (combo.size() < Config::LOTTERY_NEED_BUTTONS_COUNT) {
+                        combo.insert(i + 1);
+                    }
+                } else {
+                    combo.erase(combo.find(i + 1));
+                }
+                QString comboText = "C: {";
+                bool first = true;
+                for (int x : combo) {
+                    if (!first) {
+                        comboText += ", " + QString::number(x);
+                    } else {
+                        comboText += QString::number(x);
+                        first = false;
+                    }
+                }
+                comboText += "}";
+                comboLabel.setText(comboText);
+            });
         }
     }
+
+    submitButton.setText(game->str.submit);
+    submitButton.setVisible(true);
+    submitButton.setEnabled(true);
+}
+
+void LotteryMenu::submitFunction() {
+
 }
 
 void LotteryMenu::backFunction() {
@@ -79,13 +123,19 @@ void LotteryMenu::hide() {
 
     ticketLabel.setVisible(false);
 
+    comboLabel.setVisible(false);
+
     for (int i = 0; i < Config::LOTTERY_BUTTONS_COUNT; ++i) {
         numberButton[i].setText(QString::number(i + 1));
         numberButton[i].setVisible(false);
         numberButton[i].setEnabled(false);
+        numberButton[i].disconnect();
     }
     delete ticketGrid;
     ticketGrid = nullptr;
+
+    submitButton.setVisible(false);
+    submitButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

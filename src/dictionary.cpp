@@ -226,6 +226,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(statistics) = "Statistics";
         SET(store) = "Store";
         SET(reportAnError) = "Report an error";
+        SET(submit) = "Submit";
         SET(successfullyLoggedIn) = "Successfully logged in as \"%1\"";
         SET(successfullyLoggedOut) = "Successfully logged out";
         SET(thisUserAlreadyExistsText) = "This user already exists";
@@ -503,6 +504,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(start) = "Начать";
         SET(statistics) = "Статистика";
         SET(store) = "Магазин";
+        SET(submit) = "Отправить";
         SET(successfullyLoggedIn) = "Добро пожаловать, %1";
         SET(successfullyLoggedOut) = "Вы успешно вышли из аккаунта";
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";

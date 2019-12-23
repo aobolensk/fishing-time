@@ -32,6 +32,7 @@ public: /* Constants */
     static const int SELLERS_COUNT = 3;
     static const int SLOTS_COUNT = 9;
     static const int LOTTERY_BUTTONS_COUNT = 50;
+    static const int LOTTERY_NEED_BUTTONS_COUNT = 7;
     static const int NETS_TIMER_INTERVAL = 5 * 60 * 1000;
 private:
     Game *game;

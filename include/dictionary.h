@@ -153,6 +153,7 @@ public:
             start,
             statistics,
             store,
+            submit,
             successfullyLoggedIn,
             successfullyLoggedOut,
             thisUserAlreadyExistsText,
