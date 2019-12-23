@@ -36,6 +36,10 @@ LotteryMenu::LotteryMenu(Game *game, QGridLayout *grid) :
 void LotteryMenu::display() {
     this->pre_display();
 
+    currentTicket = "";
+    comboLabel.setText("");
+    ticketLabel.setText("");
+
     QMap <QString, int>::const_iterator item = game->users[game->activeUser].inventory.get().begin();
     for (; item != game->users[game->activeUser].inventory.get().end(); ++item) {
         if (item.key().startsWith("ticket.")) {
@@ -63,6 +67,13 @@ void LotteryMenu::selectTicketFunction() {
     ticketLabel.setText(currentTicket);
     combo.clear();
 
+    ticketSelector.clear();
+    ticketSelector.setVisible(false);
+    ticketSelector.setEnabled(false);
+
+    selectTicketButton.setVisible(false);
+    selectTicketButton.setEnabled(false);
+
     ticketGrid = new QGridLayout(nullptr);
     grid->addLayout(ticketGrid, 3, 0, 1, 3);
 
@@ -84,7 +95,7 @@ void LotteryMenu::selectTicketFunction() {
                 }
                 QList <int> sortedCombo = combo.toList();
                 std::sort(sortedCombo.begin(), sortedCombo.end());
-                QString comboText = "C: {";
+                QString comboText = game->str.combination + ": {";
                 bool first = true;
                 for (int x : sortedCombo) {
                     if (!first) {
@@ -115,7 +126,7 @@ void LotteryMenu::submitFunction() {
     std::shuffle(answer.begin(), answer.end(), rng);
     answer.resize(Config::LOTTERY_NEED_BUTTONS_COUNT);
     std::sort(answer.begin(), answer.end());
-    QString expectedText = "E: {";
+    QString expectedText = game->str.answer + ": {";
     bool first = true;
     for (int x : answer) {
         if (!first) {
@@ -133,17 +144,11 @@ void LotteryMenu::submitFunction() {
             ++matchings;
         }
     }
-    comboLabel.setText(comboLabel.text() + "\n" + QString::number(matchings) + " matchings found."
-                                           "\n" + QString::number(matchings * 100) + " coins earned.");
+    comboLabel.setText(comboLabel.text() + "\n" +
+                       game->str.matchingsFound.arg(QString::number(matchings)) + "\n" +
+                       game->str.coinsEarned.arg(QString::number(matchings * 100)) + "\n");
     game->users[game->activeUser].changeCoins(matchings * 100);
     game->users[game->activeUser].inventory.changeItem(currentTicket, -1);
-    ticketSelector.clear();
-    QMap <QString, int>::const_iterator item = game->users[game->activeUser].inventory.get().begin();
-    for (; item != game->users[game->activeUser].inventory.get().end(); ++item) {
-        if (item.key().startsWith("ticket.")) {
-            ticketSelector.addItem(item.key() + " (" + QString::number(item.value()) + ")");
-        }
-    }
 
     submitButton.setVisible(false);
     submitButton.setEnabled(false);

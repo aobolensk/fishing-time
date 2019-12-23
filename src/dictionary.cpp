@@ -94,6 +94,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
                                 "OS: %2<br>"
                                 "Compiler: %3<br>"
                                 "License: %4<br>";
+        SET(answer) = "Answer";
         SET(appearance) = "Appearance";
         SET(appearanceSettings) = "Appearance settings";
         SET(autoSavePeriod) = "Autosave period";
@@ -110,7 +111,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
         SET(coins) = "Coins";
+        SET(coinsEarned) = "%1 coins earned";
         SET(colorTheme) = "Color theme";
+        SET(combination) = "Combination";
         SET(commandReturned) = "Command %1 returned %2";
         SET(configFile) = "Configuration file";
         SET(confirmPassword) = "Confirm password";
@@ -182,6 +185,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(mainMenuText) = "%1";
         SET(market) = "Market";
         SET(marketDescription) = "You can sell fish that you caught here. Just choose quantity and press button. All these deals update once a day.";
+        SET(matchingsFound) = "%1 matchings found";
         SET(min) = "min";
         SET(name) = "Name";
         SET(netSlot) = "Net slot %1\nNet: %2";
@@ -372,6 +376,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
                                 "ОС: %2<br>"
                                 "Компилятор: %3<br>"
                                 "Лицензия: %4<br>";
+        SET(answer) = "Ответ";
         SET(appearance) = "Внешний вид";
         SET(appearanceSettings) = "Настройки внешнего вида";
         SET(autoSavePeriod) = "Период автосохранения";
@@ -388,7 +393,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
         SET(coins) = "Монет";
+        SET(coinsEarned) = "%1 монет заработано";
         SET(colorTheme) = "Цветовая тема";
+        SET(combination) = "Комбинация";
         SET(commandReturned) = "Команда %1 завершилась с кодом %2";
         SET(configFile) = "Файл конфигурации";
         SET(confirmPassword) = "Подтвердите пароль";
@@ -460,6 +467,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(mainMenuText) = "%1";
         SET(market) = "Рынок";
         SET(marketDescription) = "Вы можете продать пойманную рыбу здесь. Просто выберите количество и нажмите на кнопку. Все эти сделки обновляются раз в день.";
+        SET(matchingsFound) = "%1 совпадений найдено";
         SET(min) = "мин";
         SET(name) = "Имя";
         SET(netSlot) = "Слот для сетей %1\nСеть: %2";
