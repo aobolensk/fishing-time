@@ -1,3 +1,4 @@
+#include <QVector>
 #include "lotterymenu.h"
 #include "game.h"
 
@@ -58,7 +59,7 @@ void LotteryMenu::display() {
 }
 
 void LotteryMenu::selectTicketFunction() {
-    QString currentTicket = ticketSelector.currentText().split(" ").first();
+    currentTicket = ticketSelector.currentText().split(" ").first();
     ticketLabel.setText(currentTicket);
     combo.clear();
 
@@ -81,9 +82,11 @@ void LotteryMenu::selectTicketFunction() {
                 } else {
                     combo.erase(combo.find(i + 1));
                 }
+                QList <int> sortedCombo = combo.toList();
+                std::sort(sortedCombo.begin(), sortedCombo.end());
                 QString comboText = "C: {";
                 bool first = true;
-                for (int x : combo) {
+                for (int x : sortedCombo) {
                     if (!first) {
                         comboText += ", " + QString::number(x);
                     } else {
@@ -103,7 +106,47 @@ void LotteryMenu::selectTicketFunction() {
 }
 
 void LotteryMenu::submitFunction() {
+    if (combo.size() != 7) {
+        return;
+    }
+    QVector <int> answer(Config::LOTTERY_BUTTONS_COUNT);
+    std::iota(answer.begin(), answer.end(), 1);
+    std::mt19937 rng(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+    std::shuffle(answer.begin(), answer.end(), rng);
+    answer.resize(Config::LOTTERY_NEED_BUTTONS_COUNT);
+    std::sort(answer.begin(), answer.end());
+    QString expectedText = "E: {";
+    bool first = true;
+    for (int x : answer) {
+        if (!first) {
+            expectedText += ", " + QString::number(x);
+        } else {
+            expectedText += QString::number(x);
+            first = false;
+        }
+    }
+    expectedText += "}";
+    comboLabel.setText(comboLabel.text() + "\n" + expectedText);
+    int matchings = 0;
+    for (int x : combo) {
+        if (std::find(answer.begin(), answer.end(), x) != answer.end()) {
+            ++matchings;
+        }
+    }
+    comboLabel.setText(comboLabel.text() + "\n" + QString::number(matchings) + " matchings found."
+                                           "\n" + QString::number(matchings * 100) + " coins earned.");
+    game->users[game->activeUser].changeCoins(matchings * 100);
+    game->users[game->activeUser].inventory.changeItem(currentTicket, -1);
+    ticketSelector.clear();
+    QMap <QString, int>::const_iterator item = game->users[game->activeUser].inventory.get().begin();
+    for (; item != game->users[game->activeUser].inventory.get().end(); ++item) {
+        if (item.key().startsWith("ticket.")) {
+            ticketSelector.addItem(item.key() + " (" + QString::number(item.value()) + ")");
+        }
+    }
 
+    submitButton.setVisible(false);
+    submitButton.setEnabled(false);
 }
 
 void LotteryMenu::backFunction() {

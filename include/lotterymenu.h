@@ -11,6 +11,7 @@ class LotteryMenu : public Menu {
 private:
     Q_OBJECT
 private:
+    QString currentTicket;
     QLabel ticketLabel,
            comboLabel;
     QComboBox ticketSelector;
