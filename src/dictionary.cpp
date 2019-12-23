@@ -21,6 +21,9 @@ Dictionary::Dictionary(Game *game) :
         #define LIST_OF_NETS \
             X("net.basic", &basicNet) \
 
+        #define LIST_OF_TICKETS \
+            X("ticket.basic", &basicTicket) \
+
         #define X(itemId, itemNamePtr) \
               itemId ,
         fishIds({
@@ -31,6 +34,7 @@ Dictionary::Dictionary(Game *game) :
         itemIds({
             LIST_OF_FISH
             LIST_OF_NETS
+            LIST_OF_TICKETS
             "item.undefined"
         }),
         #undef X
@@ -40,6 +44,7 @@ Dictionary::Dictionary(Game *game) :
         itemNames({
             LIST_OF_FISH
             LIST_OF_NETS
+            LIST_OF_TICKETS
             {"item.undefined", nullptr}
         })
         #undef X
@@ -89,12 +94,14 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
                                 "OS: %2<br>"
                                 "Compiler: %3<br>"
                                 "License: %4<br>";
+        SET(answer) = "Answer";
         SET(appearance) = "Appearance";
         SET(appearanceSettings) = "Appearance settings";
         SET(autoSavePeriod) = "Autosave period";
         SET(autoSavePeriodSet) = "Autosave period is set to %1 minutes";
         SET(back) = "Back";
         SET(basicNet) = "Basic net";
+        SET(basicTicket) = "Basic ticket";
         SET(bream) = "Bream";
         SET(builtIn) = "Built-in";
         SET(buy) = "Buy";
@@ -104,7 +111,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(click) = "Click";
         SET(clicksCount) = "Clicks count";
         SET(coins) = "Coins";
+        SET(coinsEarned) = "%1 coins earned";
         SET(colorTheme) = "Color theme";
+        SET(combination) = "Combination";
         SET(commandReturned) = "Command %1 returned %2";
         SET(configFile) = "Configuration file";
         SET(confirmPassword) = "Confirm password";
@@ -167,6 +176,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(loggerLevel) = "Logging level";
         SET(loggerLevelDebug) = "Debug (more logs)";
         SET(loggerLevelRelease) = "Release (less logs)";
+        SET(lottery) = "Lottery";
         SET(mainLabelText) =
             "Welcome, %1\n"
             "Level: %2 (%3 / %4 XP)\n"
@@ -175,6 +185,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(mainMenuText) = "%1";
         SET(market) = "Market";
         SET(marketDescription) = "You can sell fish that you caught here. Just choose quantity and press button. All these deals update once a day.";
+        SET(matchingsFound) = "%1 matchings found";
         SET(min) = "min";
         SET(name) = "Name";
         SET(netSlot) = "Net slot %1\nNet: %2";
@@ -206,6 +217,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(roach) = "Roach";
         SET(saving) = "Saving...";
         SET(savingIsComplete) = "Saving is complete";
+        SET(select) = "Select";
         SET(selectItemFromList) = "Select item from list";
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
         SET(set) = "Set";
@@ -218,6 +230,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(statistics) = "Statistics";
         SET(store) = "Store";
         SET(reportAnError) = "Report an error";
+        SET(submit) = "Submit";
         SET(successfullyLoggedIn) = "Successfully logged in as \"%1\"";
         SET(successfullyLoggedOut) = "Successfully logged out";
         SET(thisUserAlreadyExistsText) = "This user already exists";
@@ -363,12 +376,14 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
                                 "ОС: %2<br>"
                                 "Компилятор: %3<br>"
                                 "Лицензия: %4<br>";
+        SET(answer) = "Ответ";
         SET(appearance) = "Внешний вид";
         SET(appearanceSettings) = "Настройки внешнего вида";
         SET(autoSavePeriod) = "Период автосохранения";
         SET(autoSavePeriodSet) = "Период автосохранения установлен в %1 минут";
         SET(back) = "Назад";
         SET(basicNet) = "Базовая сеть";
+        SET(basicTicket) = "Базовый билет";
         SET(bream) = "Лещ";
         SET(builtIn) = "Встроенный";
         SET(buy) = "Купить";
@@ -378,7 +393,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
         SET(coins) = "Монет";
+        SET(coinsEarned) = "%1 монет заработано";
         SET(colorTheme) = "Цветовая тема";
+        SET(combination) = "Комбинация";
         SET(commandReturned) = "Команда %1 завершилась с кодом %2";
         SET(configFile) = "Файл конфигурации";
         SET(confirmPassword) = "Подтвердите пароль";
@@ -441,6 +458,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(loggerLevel) = "Уровень логов";
         SET(loggerLevelDebug) = "Отладка (больше логов)";
         SET(loggerLevelRelease) = "Выпуск (меньше логов)";
+        SET(lottery) = "Лотерея";
         SET(mainLabelText) =
             "Добро пожаловать, %1\n"
             "Уровень: %2 (%3 / %4 XP)\n"
@@ -449,6 +467,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(mainMenuText) = "%1";
         SET(market) = "Рынок";
         SET(marketDescription) = "Вы можете продать пойманную рыбу здесь. Просто выберите количество и нажмите на кнопку. Все эти сделки обновляются раз в день.";
+        SET(matchingsFound) = "%1 совпадений найдено";
         SET(min) = "мин";
         SET(name) = "Имя";
         SET(netSlot) = "Слот для сетей %1\nСеть: %2";
@@ -481,6 +500,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(roach) = "Плотва";
         SET(saving) = "Сохранение...";
         SET(savingIsComplete) = "Сохранение завершено";
+        SET(select) = "Выбрать";
         SET(selectItemFromList) = "Выберите предмет из списка";
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
         SET(set) = "Установить";
@@ -492,6 +512,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(start) = "Начать";
         SET(statistics) = "Статистика";
         SET(store) = "Магазин";
+        SET(submit) = "Отправить";
         SET(successfullyLoggedIn) = "Добро пожаловать, %1";
         SET(successfullyLoggedOut) = "Вы успешно вышли из аккаунта";
         SET(thisUserAlreadyExistsText) = "Пользователь с таким логином уже существует";

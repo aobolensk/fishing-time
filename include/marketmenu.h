@@ -10,7 +10,8 @@ class MarketMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    QPushButton backButton,
+    QPushButton lotteryButton,
+                backButton,
                 dialogButton[Config::SELLERS_COUNT];
     QLabel descriptionLabel,
            infoLabel,
@@ -22,6 +23,7 @@ private:
     QMetaObject::Connection timerUpdater;
     int seed = -1;
 private slots:
+    void lotteryFunction();
     void backFunction() override;
     void updateDeals();
 public slots:

@@ -25,6 +25,7 @@ Game::Game(QWidget *parent, const QString &file) :
         popUpInventoryMenu(PopUpInventoryMenu(this)),
         gameMenu(GameMenu(this, &grid, &popUpInventoryMenu)),
         marketMenu(MarketMenu(this, &grid)),
+        lotteryMenu(LotteryMenu(this, &grid)),
         storeMenu(StoreMenu(this, &grid)),
         settingsMenu(SettingsMenu(this, &grid)),
         appearanceSettingsMenu(AppearanceSettingsMenu(this, &grid)),

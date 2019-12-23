@@ -30,6 +30,12 @@ MarketMenu::MarketMenu(Game *game, QGridLayout *grid) :
         grid->addWidget(&dialogButton[i], 3, i);
         connect(&dialogButton[i], &QPushButton::clicked, [this, i](){processDialog(i);});
     }
+
+    grid->addWidget(&lotteryButton, 4, 1);
+    lotteryButton.setVisible(false);
+    lotteryButton.setEnabled(false);
+    connect(&lotteryButton, SIGNAL(released()), this, SLOT(lotteryFunction()));
+
     grid->addWidget(&backButton, 4, 2);
     backButton.setVisible(false);
     backButton.setEnabled(false);
@@ -147,11 +153,20 @@ void MarketMenu::display() {
         quantityText[i].setEnabled(true);
     }
 
+    lotteryButton.setText(game->str.lottery);
+    lotteryButton.setVisible(true);
+    lotteryButton.setEnabled(true);
+
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
 
     displayed = true;
+}
+
+void MarketMenu::lotteryFunction() {
+    this->hide();
+    game->lotteryMenu.display();
 }
 
 void MarketMenu::backFunction() {
@@ -182,6 +197,9 @@ void MarketMenu::hide() {
         quantityText[i].setVisible(false);
         quantityText[i].setEnabled(false);
     }
+
+    lotteryButton.setVisible(false);
+    lotteryButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

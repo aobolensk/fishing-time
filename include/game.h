@@ -13,6 +13,7 @@
 #include "popupinventorymenu.h"
 #include "gamemenu.h"
 #include "marketmenu.h"
+#include "lotterymenu.h"
 #include "storemenu.h"
 #include "settingsmenu.h"
 #include "appearancesettingsmenu.h"
@@ -68,6 +69,7 @@ public:
     PopUpInventoryMenu popUpInventoryMenu;
     GameMenu gameMenu;
     MarketMenu marketMenu;
+    LotteryMenu lotteryMenu;
     StoreMenu storeMenu;
     SettingsMenu settingsMenu;
     AppearanceSettingsMenu appearanceSettingsMenu;
