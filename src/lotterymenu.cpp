@@ -64,6 +64,9 @@ void LotteryMenu::display() {
 
 void LotteryMenu::selectTicketFunction() {
     currentTicket = ticketSelector.currentText().split(" ").first();
+    if (currentTicket == "") {
+        return;
+    }
     ticketLabel.setText(currentTicket);
     combo.clear();
 
