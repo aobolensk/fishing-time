@@ -21,6 +21,9 @@ Dictionary::Dictionary(Game *game) :
         #define LIST_OF_NETS \
             X("net.basic", &basicNet) \
 
+        #define LIST_OF_TICKETS \
+            X("ticket.basic", &basicTicket) \
+
         #define X(itemId, itemNamePtr) \
               itemId ,
         fishIds({
@@ -31,6 +34,7 @@ Dictionary::Dictionary(Game *game) :
         itemIds({
             LIST_OF_FISH
             LIST_OF_NETS
+            LIST_OF_TICKETS
             "item.undefined"
         }),
         #undef X
@@ -40,6 +44,7 @@ Dictionary::Dictionary(Game *game) :
         itemNames({
             LIST_OF_FISH
             LIST_OF_NETS
+            LIST_OF_TICKETS
             {"item.undefined", nullptr}
         })
         #undef X
@@ -95,6 +100,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(autoSavePeriodSet) = "Autosave period is set to %1 minutes";
         SET(back) = "Back";
         SET(basicNet) = "Basic net";
+        SET(basicTicket) = "Basic ticket";
         SET(bream) = "Bream";
         SET(builtIn) = "Built-in";
         SET(buy) = "Buy";
@@ -370,6 +376,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(autoSavePeriodSet) = "Период автосохранения установлен в %1 минут";
         SET(back) = "Назад";
         SET(basicNet) = "Базовая сеть";
+        SET(basicTicket) = "Базовый билет";
         SET(bream) = "Лещ";
         SET(builtIn) = "Встроенный";
         SET(buy) = "Купить";

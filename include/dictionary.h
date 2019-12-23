@@ -31,6 +31,7 @@ public:
             autoSavePeriodSet,
             back,
             basicNet,
+            basicTicket,
             bream,
             builtIn,
             buy,
