@@ -141,6 +141,7 @@ public:
             roach,
             saving,
             savingIsComplete,
+            select,
             selectItemFromList,
             sellerText,
             set,

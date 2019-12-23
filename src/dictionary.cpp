@@ -213,6 +213,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(roach) = "Roach";
         SET(saving) = "Saving...";
         SET(savingIsComplete) = "Saving is complete";
+        SET(select) = "Select";
         SET(selectItemFromList) = "Select item from list";
         SET(sellerText) = "Seller %1\nbuys %2\nfor %3 coins each\n\nYou have: %4";
         SET(set) = "Set";
@@ -490,6 +491,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(roach) = "Плотва";
         SET(saving) = "Сохранение...";
         SET(savingIsComplete) = "Сохранение завершено";
+        SET(select) = "Выбрать";
         SET(selectItemFromList) = "Выберите предмет из списка";
         SET(sellerText) = "Продавец %1\nпокупает %2\nза %3 монет каждый товар\n\nУ вас есть: %4";
         SET(set) = "Установить";
