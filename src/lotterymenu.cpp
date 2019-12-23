@@ -43,7 +43,8 @@ void LotteryMenu::display() {
     QMap <QString, int>::const_iterator item = game->users[game->activeUser].inventory.get().begin();
     for (; item != game->users[game->activeUser].inventory.get().end(); ++item) {
         if (item.key().startsWith("ticket.")) {
-            ticketSelector.addItem(item.key() + " (" + QString::number(item.value()) + ")");
+            ticketIds.push_back(item.key());
+            ticketSelector.addItem(game->str.getItemName(item.key()) + " (" + QString::number(item.value()) + ")");
         }
     }
     ticketSelector.setVisible(true);
@@ -63,7 +64,7 @@ void LotteryMenu::display() {
 }
 
 void LotteryMenu::selectTicketFunction() {
-    currentTicket = ticketSelector.currentText().split(" ").first();
+    currentTicket = ticketIds[ticketSelector.currentIndex()];
     if (currentTicket == "") {
         return;
     }
@@ -71,6 +72,7 @@ void LotteryMenu::selectTicketFunction() {
     combo.clear();
 
     ticketSelector.clear();
+    ticketIds.clear();
     ticketSelector.setVisible(false);
     ticketSelector.setEnabled(false);
 
@@ -166,6 +168,7 @@ void LotteryMenu::hide() {
     this->pre_hide();
 
     ticketSelector.clear();
+    ticketIds.clear();
     ticketSelector.setVisible(false);
     ticketSelector.setEnabled(false);
 

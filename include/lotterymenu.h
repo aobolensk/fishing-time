@@ -14,6 +14,7 @@ private:
     QString currentTicket;
     QLabel ticketLabel,
            comboLabel;
+    QVector <QString> ticketIds;
     QComboBox ticketSelector;
     QGridLayout *ticketGrid;
     QSet <int> combo;
