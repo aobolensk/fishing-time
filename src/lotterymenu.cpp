@@ -36,14 +36,15 @@ LotteryMenu::LotteryMenu(Game *game, QGridLayout *grid) :
 void LotteryMenu::display() {
     this->pre_display();
 
-    currentTicket = "";
+    currentTicketId = "";
     comboLabel.setText("");
     ticketLabel.setText("");
 
     QMap <QString, int>::const_iterator item = game->users[game->activeUser].inventory.get().begin();
     for (; item != game->users[game->activeUser].inventory.get().end(); ++item) {
         if (item.key().startsWith("ticket.")) {
-            ticketSelector.addItem(item.key() + " (" + QString::number(item.value()) + ")");
+            ticketIds.push_back(item.key());
+            ticketSelector.addItem(game->str.getItemName(item.key()) + " (" + QString::number(item.value()) + ")");
         }
     }
     ticketSelector.setVisible(true);
@@ -63,14 +64,15 @@ void LotteryMenu::display() {
 }
 
 void LotteryMenu::selectTicketFunction() {
-    currentTicket = ticketSelector.currentText().split(" ").first();
-    if (currentTicket == "") {
+    currentTicketId = ticketIds[ticketSelector.currentIndex()];
+    if (currentTicketId == "") {
         return;
     }
-    ticketLabel.setText(currentTicket);
+    ticketLabel.setText(game->str.getItemName(currentTicketId));
     combo.clear();
 
     ticketSelector.clear();
+    ticketIds.clear();
     ticketSelector.setVisible(false);
     ticketSelector.setEnabled(false);
 
@@ -82,7 +84,7 @@ void LotteryMenu::selectTicketFunction() {
 
     comboLabel.setVisible(true);
 
-    if (currentTicket == "ticket.basic") {
+    if (currentTicketId == "ticket.basic") {
         for (int i = 0; i < Config::LOTTERY_BUTTONS_COUNT; ++i) {
             ticketGrid->addWidget(&numberButton[i], i / 10, i % 10);
             numberButton[i].setText(QString::number(i + 1));
@@ -151,7 +153,7 @@ void LotteryMenu::submitFunction() {
                        game->str.matchingsFound.arg(QString::number(matchings)) + "\n" +
                        game->str.coinsEarned.arg(QString::number(matchings * 100)) + "\n");
     game->users[game->activeUser].changeCoins(matchings * 100);
-    game->users[game->activeUser].inventory.changeItem(currentTicket, -1);
+    game->users[game->activeUser].inventory.changeItem(currentTicketId, -1);
 
     submitButton.setVisible(false);
     submitButton.setEnabled(false);
@@ -166,6 +168,7 @@ void LotteryMenu::hide() {
     this->pre_hide();
 
     ticketSelector.clear();
+    ticketIds.clear();
     ticketSelector.setVisible(false);
     ticketSelector.setEnabled(false);
 

@@ -505,6 +505,10 @@ void Console::registerCommands() {
                 log.error(game->str.youAreNotLoggedIn);
                 return 1;
             }
+            if (args.size() != 3) {
+                log.error(game->str.invalidArgumentsFormat.arg(args[0]));
+                return 1;
+            }
             for (int i = 0; i < game->str.itemIds.count(); ++i) {
                 if (args[1] == game->str.itemIds[i]) {
                     bool flag;

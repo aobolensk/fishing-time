@@ -11,9 +11,10 @@ class LotteryMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    QString currentTicket;
+    QString currentTicketId;
     QLabel ticketLabel,
            comboLabel;
+    QVector <QString> ticketIds;
     QComboBox ticketSelector;
     QGridLayout *ticketGrid;
     QSet <int> combo;
