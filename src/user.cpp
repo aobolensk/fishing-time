@@ -19,6 +19,7 @@ QJsonObject User::serialize() const {
     jsonObj["coins"] = coins;
     jsonObj["experience"] = experience;
     jsonObj["privilegeLevel"] = privilegeLevel;
+    jsonObj["lastTicketDay"] = lastTicketDay;
     jsonObj["passwordHash"] = passwordHash;
     jsonObj["signUpTime"] = signUpTime;
     jsonObj["inGameTime"] = inGameTime;
@@ -45,6 +46,7 @@ QVariant User::deserialize(const QVariantMap &map) {
     user.coins = map["coins"].toLongLong();
     user.experience = map["experience"].toLongLong();
     user.privilegeLevel = map["privilegeLevel"].toInt();
+    user.lastTicketDay = map["lastTicketDay"].toInt();
     user.passwordHash = map["passwordHash"].toString();
     user.signUpTime = map["signUpTime"].toString();
     user.inGameTime = map["inGameTime"].toLongLong();
@@ -102,6 +104,10 @@ void User::incInGameTime(qint64 time) {
     inGameTime += time;
 }
 
+void User::updateLastTicketDay() {
+    lastTicketDay = QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0)));
+}
+
 qint64 User::getClicks() const {
     return clicks;
 }
@@ -145,6 +151,10 @@ qint64 User::getPrivilegeLevel() const {
 
 QString User::getInGameTime() const {
     return QDateTime::fromTime_t(inGameTime).toUTC().toString("hh:mm:ss");
+}
+
+bool User::canGetTicket() const {
+    return QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0))) < lastTicketDay;
 }
 
 QVector <QPair<QString, QString>> User::getStatistsics(Game *game) const {

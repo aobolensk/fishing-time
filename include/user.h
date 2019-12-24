@@ -13,6 +13,7 @@ private:
     qint64 coins = 0ll;
     qint64 experience = 0ll;
     int privilegeLevel = 0;
+    int lastTicketDay = 0;
     // Statistics
     QString signUpTime;
     qint64 clicks = 0ll;
@@ -45,6 +46,7 @@ public:
     void setPasswordHash(const QString &hashedPassword);
     void setPrivilegeLevel(int level);
     void incInGameTime(qint64 time);
+    void updateLastTicketDay();
     // Getters
     QString getUsername() const;
     QString getPasswordHash() const;
@@ -56,6 +58,7 @@ public:
     qint64 getNeededForNextLevel() const;
     qint64 getPrivilegeLevel() const;
     QString getInGameTime() const;
+    bool canGetTicket() const;
     // Statistics
     QVector <QPair<QString, QString>> getStatistsics(Game *game) const;
     QVector <QPair<QString, QMap <QString, QString>>> getItemStatistsics() const;

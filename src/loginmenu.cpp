@@ -98,6 +98,11 @@ void LoginMenu::loginFunction() {
         this->hide();
         game->gameMenu.display();
         game->userTimestamp = QDateTime::currentDateTime();
+        if (game->users[game->activeUser].canGetTicket()) {
+            game->users[game->activeUser].inventory.changeItem("ticket.basic", 1);
+            game->logger.info(game->users[game->activeUser].getUsername() + " got one ticket!");
+            game->users[game->activeUser].updateLastTicketDay();
+        }
     } else {
         QMessageBox::warning(game, game->str.fishingTime + ": " + game->str.warning, game->str.incorrectPassword);
         passwordText.setText("");
