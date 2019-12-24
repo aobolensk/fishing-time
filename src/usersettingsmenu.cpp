@@ -7,18 +7,23 @@ UsersettingsMenu::UsersettingsMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
     grid->addWidget(&usersettingsLabel, 0, 0, 1, 2);
     usersettingsLabel.setVisible(false);
+    usersettingsLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     grid->addWidget(&changePasswordLabel, 1, 0);
     changePasswordLabel.setVisible(false);
+    changePasswordLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     grid->addWidget(&oldPasswordLabel, 2, 0);
     oldPasswordLabel.setVisible(false);
+    oldPasswordLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     grid->addWidget(&newPasswordLabel, 2, 1);
     newPasswordLabel.setVisible(false);
+    newPasswordLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     grid->addWidget(&newPasswordConfirmationLabel, 2, 2);
     newPasswordConfirmationLabel.setVisible(false);
+    newPasswordConfirmationLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     grid->addWidget(&oldPasswordText, 3, 0);
     oldPasswordText.setEchoMode(QLineEdit::Password);
