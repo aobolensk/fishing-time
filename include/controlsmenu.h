@@ -30,10 +30,11 @@ private slots:
 protected slots:
     bool eventFilter(QObject *obj, QEvent *event) override;
 public:
-    QKeySequence getKeySequence(const QKeyEvent *const key);
-    QKeySequence get(Controls control);
+    QKeySequence getKeySequence(const QKeyEvent *const key) const;
+    QKeySequence get(Controls control) const;
     void setDefault(Controls control, int key);
     void set(Controls control, int key);
+    void setDefaults();
 public:
     ControlsMenu(Game *game, QGridLayout *grid);
     ~ControlsMenu();

@@ -34,6 +34,21 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
+void ControlsMenu::setDefaults() {
+    this->setDefault(Controls::HIDE_UI_ELEMENTS, 67108936); // Ctrl + H
+    if (this->get(Controls::HIDE_UI_ELEMENTS) == 0) {
+        this->set(Controls::HIDE_UI_ELEMENTS, 67108936); // Ctrl + H
+    }
+    this->setDefault(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
+    if (this->get(Controls::TOGGLE_FULLSCREEN_MODE) == 0) {
+        this->set(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
+    }
+    this->setDefault(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
+    if (this->get(Controls::GO_TO_PREVIOUS_MENU) == 0) {
+        this->set(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
+    }
+}
+
 void ControlsMenu::display() {
     this->pre_display();
 
@@ -97,7 +112,7 @@ void ControlsMenu::display() {
     displayed = true;
 }
 
-QKeySequence ControlsMenu::getKeySequence(const QKeyEvent *const key) {
+QKeySequence ControlsMenu::getKeySequence(const QKeyEvent *const key) const {
     int keyInt = key->key();
     Qt::Key keyCode = static_cast<Qt::Key>(keyInt);
     if (keyCode == Qt::Key_Control ||
@@ -135,7 +150,7 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
     return Menu::eventFilter(obj, event);
 }
 
-QKeySequence ControlsMenu::get(Controls control) {
+QKeySequence ControlsMenu::get(Controls control) const {
     return controls[(size_t)control];
 }
 
