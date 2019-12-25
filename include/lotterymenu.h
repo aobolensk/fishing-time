@@ -12,7 +12,8 @@ private:
     Q_OBJECT
 private:
     QString currentTicketId;
-    QLabel ticketLabel,
+    QLabel descriptionLabel,
+           ticketLabel,
            comboLabel;
     QVector <QString> ticketIds;
     QComboBox ticketSelector;

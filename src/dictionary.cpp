@@ -177,6 +177,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(loggerLevelDebug) = "Debug (more logs)";
         SET(loggerLevelRelease) = "Release (less logs)";
         SET(lottery) = "Lottery";
+        SET(lotteryDescription) = "Here you can use your lottery tickets that are given you for free every day.\n"
+                                  "You need to select 7 different numbers and computer will match them with winning combination.\n"
+                                  "Depending on how many numbers were guessed you receive your prize.";
         SET(mainLabelText) =
             "Welcome, %1\n"
             "Level: %2 (%3 / %4 XP)\n"
@@ -459,6 +462,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(loggerLevelDebug) = "Отладка (больше логов)";
         SET(loggerLevelRelease) = "Выпуск (меньше логов)";
         SET(lottery) = "Лотерея";
+        SET(lotteryDescription) = "Здесь вы можете использовать свои лотерейные билеты, которые выдается вам бесплатно каждый день.\n"
+                                  "Вам нужно выбрать 7 различных чисел и компьютер сопоставит их с выигрышной комбинацией.\n"
+                                  "В зависимости от того, сколько чисел вы угадали, вы получите свой приз.";
         SET(mainLabelText) =
             "Добро пожаловать, %1\n"
             "Уровень: %2 (%3 / %4 XP)\n"

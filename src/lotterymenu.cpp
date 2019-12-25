@@ -4,6 +4,11 @@
 
 LotteryMenu::LotteryMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
+    grid->addWidget(&descriptionLabel, 0, 0, 1, 3);
+    descriptionLabel.setVisible(false);
+    descriptionLabel.setEnabled(false);
+    descriptionLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
     grid->addWidget(&ticketSelector, 1, 1);
     ticketSelector.setVisible(false);
     ticketSelector.setEnabled(false);
@@ -39,6 +44,9 @@ void LotteryMenu::display() {
     currentTicketId = "";
     comboLabel.setText("");
     ticketLabel.setText("");
+
+    descriptionLabel.setText(game->str.lotteryDescription);
+    descriptionLabel.setVisible(true);
 
     QMap <QString, int>::const_iterator item = game->users[game->activeUser].inventory.get().begin();
     for (; item != game->users[game->activeUser].inventory.get().end(); ++item) {
@@ -166,6 +174,8 @@ void LotteryMenu::backFunction() {
 
 void LotteryMenu::hide() {
     this->pre_hide();
+
+    descriptionLabel.setVisible(false);
 
     ticketSelector.clear();
     ticketIds.clear();
