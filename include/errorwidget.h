@@ -2,7 +2,7 @@
 #define INCLUDE_ERRORWIDGET_H_
 #include <QGridLayout>
 #include <QLabel>
-#include "menu.h"
+#include "overlaywidget.h"
 
 class ErrorWidget : public QWidget {
 private:
@@ -10,6 +10,7 @@ private:
 private:
     QGridLayout grid;
     QLabel errorLabel;
+    OverlayWidget overlay;
 public:
     ErrorWidget();
     ~ErrorWidget();
