@@ -1,9 +1,18 @@
 #include <QApplication>
 #include <QElapsedTimer>
+#include <csignal>
 #include "game.h"
-#include "user.h"
+#include "errorwidget.h"
+
+void errorWindow(int signum) {
+    ErrorWidget error;
+    error.show();
+    QApplication::exec();
+    exit(signum);
+}
 
 int main(int argc, char *argv[]) {
+    signal(SIGSEGV, errorWindow);
     QApplication app(argc, argv);
     QString config = "config.json";
     if (argc >= 2)
