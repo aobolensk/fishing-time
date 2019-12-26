@@ -92,7 +92,8 @@ void LotteryMenu::selectTicketFunction() {
 
     comboLabel.setVisible(true);
 
-    if (currentTicketId == "ticket.basic") {
+    if (currentTicketId == "ticket.basic" ||
+        currentTicketId == "ticket.rare") {
         for (int i = 0; i < Config::LOTTERY_BUTTONS_COUNT; ++i) {
             ticketGrid->addWidget(&numberButton[i], i / 10, i % 10);
             numberButton[i].setText(QString::number(i + 1));
@@ -157,10 +158,16 @@ void LotteryMenu::submitFunction() {
             ++matchings;
         }
     }
+    int reward = 0;
+    if (currentTicketId == "ticket.basic") {
+        reward = matchings * 100;
+    } else if (currentTicketId == "ticket.rare") {
+        reward = matchings * 1000;
+    }
     comboLabel.setText(comboLabel.text() + "\n" +
                        game->str.matchingsFound.arg(QString::number(matchings)) + "\n" +
-                       game->str.coinsEarned.arg(QString::number(matchings * 100)) + "\n");
-    game->users[game->activeUser].changeCoins(matchings * 100);
+                       game->str.coinsEarned.arg(QString::number(reward)) + "\n");
+    game->users[game->activeUser].changeCoins(reward);
     game->users[game->activeUser].inventory.changeItem(currentTicketId, -1);
 
     submitButton.setVisible(false);

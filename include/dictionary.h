@@ -140,6 +140,7 @@ public:
             quantityShouldBeANumber,
             quantityShouldBeMoreThanZero,
             rating,
+            rareTicket,
             reportAnError,
             reset,
             resetPasswordConfirmation,

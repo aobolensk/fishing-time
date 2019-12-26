@@ -23,6 +23,7 @@ Dictionary::Dictionary(Game *game) :
 
         #define LIST_OF_TICKETS \
             X("ticket.basic", &basicTicket) \
+            X("ticket.rare", &rareTicket) \
 
         #define X(itemId, itemNamePtr) \
               itemId ,
@@ -215,6 +216,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(quantityShouldBeANumber) = "Quantity should be a number";
         SET(quantityShouldBeMoreThanZero) = "Quantity should be more than zero";
         SET(rating) = "Rating";
+        SET(rareTicket) = "Rare ticket";
         SET(reset) = "Reset";
         SET(resetPasswordConfirmation) = "Do you really want to reset your password?";
         SET(roach) = "Roach";
@@ -500,6 +502,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(quantityShouldBeANumber) = "Количество должно быть числом";
         SET(quantityShouldBeMoreThanZero) = "Количество должно быть больше нуля";
         SET(rating) = "Рейтинг";
+        SET(rareTicket) = "Редкий билет";
         SET(reportAnError) = "Сообщить об ошибке";
         SET(reset) = "Сбросить";
         SET(resetPasswordConfirmation) = "Вы действительно хотите сбросить пароль?";
