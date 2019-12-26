@@ -81,9 +81,13 @@ QString ErrorWidget::getErrorText() {
 
 void ErrorWidget::signalHandler(int signum) {
     ErrorWidget error;
+    error.setErrorText(error.getErrorText() + "\nReceived \"" +
     #ifndef _WIN32
-    error.setErrorText(error.getErrorText() + "\nReceived \"" + strsignal(signum) + "\" signal");
+        strsignal(signum) +
+    #else
+        QString::number(signum) +
     #endif  // _WIN32
+        "\" signal");
     error.show();
     QApplication::exec();
     exit(signum);
