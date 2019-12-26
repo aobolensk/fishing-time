@@ -21,18 +21,32 @@ ErrorWidget::ErrorWidget() :
     );
     this->setGeometry(100, 200, 640, 480);
     this->setFixedSize(this->width(), this->height());
+
     grid.addWidget(&errorLabel, 0, 0);
     QFont font = errorLabel.font();
     font.setPointSize(14);
     errorLabel.setFont(font);
     errorLabel.setText("An unknown error occured!");
     errorLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    qDebug().noquote() << getStacktrace();
+
+    #ifdef STACKTRACE_AVAILABLE
+    grid.addWidget(&stacktraceLabel, 1, 0);
+    stacktraceLabel.setText("Stacktrace:");
+    stacktraceLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+    QString stacktrace = getStacktrace();
+
+    grid.addWidget(&stacktraceText, 2, 0);
+    stacktraceText.setReadOnly(true);
+    stacktraceText.setText(stacktrace);
+
+    qDebug().noquote() << stacktrace;
+    #endif
 }
 
 QString ErrorWidget::getStacktrace() {
     QString result;
-    #if defined(__GNUC__) && defined(__linux__)
+    #ifdef STACKTRACE_AVAILABLE
     void *buffer[Config::STACKTRACE_SIZE];
     int size = backtrace(buffer, Config::STACKTRACE_SIZE);
     char **symbols = backtrace_symbols(buffer, size);
