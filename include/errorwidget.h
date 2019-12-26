@@ -27,6 +27,8 @@ private slots:
 public:
     ErrorWidget();
     ~ErrorWidget();
+    void setErrorText(const QString &text);
+    QString getErrorText();
     static QString getStacktrace();
     static void signalHandler(int signum);
 };

@@ -71,8 +71,17 @@ ErrorWidget::~ErrorWidget() {
 
 }
 
+void ErrorWidget::setErrorText(const QString &text) {
+    return this->errorLabel.setText(text);
+}
+
+QString ErrorWidget::getErrorText() {
+    return this->errorLabel.text();
+}
+
 void ErrorWidget::signalHandler(int signum) {
     ErrorWidget error;
+    error.setErrorText(error.getErrorText() + "\nReceived \"" + strsignal(signum) + "\" signal");
     error.show();
     QApplication::exec();
     exit(signum);
