@@ -1,3 +1,8 @@
+#if defined(__GNUC__) && defined(__linux__)
+#include <execinfo.h>
+#endif
+#include <QDebug>
+#include "config.h"
 #include "errorwidget.h"
 #include "utils.h"
 
@@ -22,6 +27,21 @@ ErrorWidget::ErrorWidget() :
     errorLabel.setFont(font);
     errorLabel.setText("An unknown error occured!");
     errorLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    qDebug().noquote() << getStacktrace();
+}
+
+QString ErrorWidget::getStacktrace() {
+    QString result;
+    #if defined(__GNUC__) && defined(__linux__)
+    void *buffer[Config::STACKTRACE_SIZE];
+    int size = backtrace(buffer, Config::STACKTRACE_SIZE);
+    char **symbols = backtrace_symbols(buffer, size);
+    for (int i = 1; i < size; ++i) {
+        result += QString(symbols[i]) + '\n';
+    }
+    free(symbols);
+    #endif
+    return result;
 }
 
 ErrorWidget::~ErrorWidget() {

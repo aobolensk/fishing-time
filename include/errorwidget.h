@@ -14,6 +14,7 @@ private:
 public:
     ErrorWidget();
     ~ErrorWidget();
+    static QString getStacktrace();
 };
 
 #endif  // INCLUDE_ERRORWIDGET_H_

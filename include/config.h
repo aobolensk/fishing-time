@@ -34,6 +34,7 @@ public: /* Constants */
     static const int LOTTERY_BUTTONS_COUNT = 50;
     static const int LOTTERY_NEED_BUTTONS_COUNT = 7;
     static const int NETS_TIMER_INTERVAL = 5 * 60 * 1000;
+    static const int STACKTRACE_SIZE = 1024;
 private:
     Game *game;
     bool isReady = false;
