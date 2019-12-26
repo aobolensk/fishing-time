@@ -99,8 +99,14 @@ void LoginMenu::loginFunction() {
         game->gameMenu.display();
         game->userTimestamp = QDateTime::currentDateTime();
         if (game->users[game->activeUser].canGetTicket()) {
-            game->users[game->activeUser].inventory.changeItem("ticket.basic", 1);
-            game->logger.info(game->users[game->activeUser].getUsername() + " got one ticket!");
+            std::uniform_int_distribution <> dist(0, 9);
+            if (dist(game->randomGenerator) == 0) {
+                game->users[game->activeUser].inventory.changeItem("ticket.rare", 1);
+                game->logger.info(game->users[game->activeUser].getUsername() + " got one rare ticket!");
+            } else {
+                game->users[game->activeUser].inventory.changeItem("ticket.basic", 1);
+                game->logger.info(game->users[game->activeUser].getUsername() + " got one ticket!");
+            }
             game->users[game->activeUser].updateLastTicketDay();
         }
     } else {
