@@ -28,6 +28,7 @@ public:
     ErrorWidget();
     ~ErrorWidget();
     static QString getStacktrace();
+    static void signalHandler(int signum);
 };
 
 #endif  // INCLUDE_ERRORWIDGET_H_

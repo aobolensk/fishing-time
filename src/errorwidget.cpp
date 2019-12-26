@@ -70,3 +70,10 @@ QString ErrorWidget::getStacktrace() {
 ErrorWidget::~ErrorWidget() {
 
 }
+
+void ErrorWidget::signalHandler(int signum) {
+    ErrorWidget error;
+    error.show();
+    QApplication::exec();
+    exit(signum);
+}

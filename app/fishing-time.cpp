@@ -4,15 +4,8 @@
 #include "game.h"
 #include "errorwidget.h"
 
-void errorWindow(int signum) {
-    ErrorWidget error;
-    error.show();
-    QApplication::exec();
-    exit(signum);
-}
-
 int main(int argc, char *argv[]) {
-    signal(SIGSEGV, errorWindow);
+    signal(SIGSEGV, ErrorWidget::signalHandler);
     QApplication app(argc, argv);
     QString config = "config.json";
     if (argc >= 2)
