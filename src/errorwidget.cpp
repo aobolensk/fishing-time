@@ -1,6 +1,7 @@
 #if defined(__GNUC__) && defined(__linux__)
 #include <execinfo.h>
 #endif
+#include <QApplication>
 #include <QDebug>
 #include "config.h"
 #include "errorwidget.h"
@@ -42,6 +43,14 @@ ErrorWidget::ErrorWidget() :
 
     qDebug().noquote() << stacktrace;
     #endif
+
+    grid.addWidget(&exitButton, 3, 0);
+    exitButton.setText("Exit");
+    connect(&exitButton, SIGNAL(released()), this, SLOT(exitFunction()));
+}
+
+void ErrorWidget::exitFunction() {
+    QApplication::exit();
 }
 
 QString ErrorWidget::getStacktrace() {

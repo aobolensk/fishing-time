@@ -2,6 +2,7 @@
 #define INCLUDE_ERRORWIDGET_H_
 #include <QGridLayout>
 #include <QLabel>
+#include <QPushButton>
 #include <QTextEdit>
 #include "overlaywidget.h"
 
@@ -19,7 +20,10 @@ private:
     QLabel stacktraceLabel;
     QTextEdit stacktraceText;
     #endif
+    QPushButton exitButton;
     OverlayWidget overlay;
+private slots:
+    void exitFunction();
 public:
     ErrorWidget();
     ~ErrorWidget();
