@@ -18,12 +18,10 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
         controlsText[i].setReadOnly(true);
 
         grid->addWidget(&controlsButton[i], i + 1, 2);
-        controlsButton[i].setText(game->str.edit);
         controlsButton[i].setVisible(false);
         controlsButton[i].setEnabled(false);
 
         grid->addWidget(&resetButton[i], i + 1, 3);
-        resetButton[i].setText(game->str.reset);
         resetButton[i].setVisible(false);
         resetButton[i].setEnabled(false);
     }
@@ -79,12 +77,15 @@ void ControlsMenu::display() {
         controlsText[i].setVisible(true);
         controlsText[i].setEnabled(true);
 
+        controlsButton[i].setText(game->str.edit);
         controlsButton[i].setVisible(true);
         controlsButton[i].setEnabled(true);
-
         connect(&controlsButton[i], static_cast<void(QPushButton::*)()>(&QPushButton::released),
             [this, i]() {
                 if (currentControl != (Controls)i) {
+                    if (currentControl != Controls::CONTROLS_N) {
+                        controlsButton[(int)currentControl].setText(game->str.edit);
+                    }
                     currentControl = (Controls)i;
                     controlsButton[i].setText(game->str.set);
                 } else {
@@ -94,9 +95,9 @@ void ControlsMenu::display() {
             }
         );
 
+        resetButton[i].setText(game->str.reset);
         resetButton[i].setVisible(true);
         resetButton[i].setEnabled(true);
-
         connect(&resetButton[i], static_cast<void(QPushButton::*)()>(&QPushButton::released),
             [this, i]() {
                 controls[i] = defaultControls[i];
