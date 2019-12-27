@@ -140,9 +140,24 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
             QKeyEvent *key = static_cast<QKeyEvent *>(event);
             QKeySequence seq = getKeySequence(key);
             if (seq[0]) {
-                QString keyText = seq.toString(QKeySequence::NativeText);
-                controls[(size_t)currentControl] = seq;
-                controlsText[(size_t)currentControl].setText(keyText);
+                bool set = true;
+                for (size_t i = 0; i < (size_t)Controls::CONTROLS_N; ++i) {
+                    if (i == (size_t)currentControl) continue;
+                    if (seq == controls[i]) {
+                        if (controls[i] == defaultControls[i]) {
+                            set = false;
+                        } else {
+                            controls[i] = defaultControls[i];
+                            QString keyText = controls[i].toString(QKeySequence::NativeText);
+                            controlsText[i].setText(keyText);
+                        }
+                    }
+                }
+                if (set) {
+                    QString keyText = seq.toString(QKeySequence::NativeText);
+                    controls[(size_t)currentControl] = seq;
+                    controlsText[(size_t)currentControl].setText(keyText);
+                }
                 controlsButton[(size_t)currentControl].setText(game->str.edit);
                 currentControl = Controls::CONTROLS_N;
             }
