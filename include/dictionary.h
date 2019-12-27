@@ -212,6 +212,7 @@ public:
     } commands;
     QMap <QString, QString> stats = {
         {"stats.got", ""},
+        {"stats.used", ""},
         {"stats.sold", ""},
         {"stats.bought", ""},
         {"stats.caught", ""},

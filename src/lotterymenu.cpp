@@ -168,6 +168,7 @@ void LotteryMenu::submitFunction() {
                        game->str.matchingsFound.arg(QString::number(matchings)) + "\n" +
                        game->str.coinsEarned.arg(QString::number(reward)) + "\n");
     game->users[game->activeUser].changeCoins(reward);
+    game->users[game->activeUser].inventory.updateStats(currentTicketId, "stats.used", 1);
     game->users[game->activeUser].inventory.changeItem(currentTicketId, -1);
 
     submitButton.setVisible(false);

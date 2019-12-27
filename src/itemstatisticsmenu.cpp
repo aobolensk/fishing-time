@@ -34,10 +34,12 @@ void ItemStatisticsMenu::updateStatistics() {
             "<td align=\"center\">%3</td>"
             "<td align=\"center\">%4</td>"
             "<td align=\"center\">%5</td>"
+            "<td align=\"center\">%6</td>"
         "</tr>"
     ).arg(
         game->str.item,
         game->str.stats["stats.got"],
+        game->str.stats["stats.used"],
         game->str.stats["stats.sold"],
         game->str.stats["stats.bought"],
         game->str.stats["stats.caught"]
@@ -55,6 +57,10 @@ void ItemStatisticsMenu::updateStatistics() {
             int gotValue = 0;
             if (item.value().find("stats.got") != item.value().end()) {
                 gotValue = item.value()["stats.got"];
+            }
+            int usedValue = 0;
+            if (item.value().find("stats.used") != item.value().end()) {
+                usedValue = item.value()["stats.used"];
             }
             int soldValue = 0;
             if (item.value().find("stats.sold") != item.value().end()) {
@@ -75,10 +81,12 @@ void ItemStatisticsMenu::updateStatistics() {
                     "<td align=\"center\">%3</td>"
                     "<td align=\"center\">%4</td>"
                     "<td align=\"center\">%5</td>"
+                    "<td align=\"center\">%6</td>"
                 "</tr>"
             ).arg(
                 *it2.value(),
                 QString::number(gotValue),
+                QString::number(usedValue),
                 QString::number(soldValue),
                 QString::number(boughtValue),
                 QString::number(caughtValue)
