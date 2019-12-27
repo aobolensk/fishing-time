@@ -102,6 +102,14 @@ void ControlsMenu::display() {
             [this, i]() {
                 controls[i] = defaultControls[i];
                 controlsText[(size_t)i].setText(controls[i].toString(QKeySequence::NativeText));
+                for (size_t j = 0; j < (size_t)Controls::CONTROLS_N; ++j) {
+                    if (i == j) continue;
+                    if (controls[j] == controls[i]) {
+                        controls[j] = defaultControls[j];
+                        QString keyText = controls[j].toString(QKeySequence::NativeText);
+                        controlsText[j].setText(keyText);
+                    }
+                }
             }
         );
     }
