@@ -66,7 +66,9 @@ void MarketMenu::updateDeals() {
 }
 
 QString MarketMenu::getDealInfo(int seller) {
-    this->updateDeals();
+    if (game->getCurrentMenu() != this) {
+        this->updateDeals();
+    }
     return game->str.sellerText.arg(
         QString::number(seller),
         game->str.getItemName(goodId[seller]),
