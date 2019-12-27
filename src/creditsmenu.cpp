@@ -3,6 +3,14 @@
 
 CreditsMenu::CreditsMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
+    grid->addWidget(&creditsLabel, 0, 1);
+    creditsLabel.setVisible(false);
+    creditsLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    creditsLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+
+    grid->addWidget(&contributorsListLabel, 1, 1);
+    contributorsListLabel.setVisible(false);
+
     grid->addWidget(&backButton, 2, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
@@ -11,6 +19,16 @@ CreditsMenu::CreditsMenu(Game *game, QGridLayout *grid) :
 
 void CreditsMenu::display() {
     this->pre_display();
+
+    creditsLabel.setText(game->str.credits);
+    creditsLabel.setVisible(true);
+
+    contributorsListLabel.setText(
+        "Contributors:\n\n"
+        "gooddoog\n"
+        "Abrams19\n"
+    );
+    contributorsListLabel.setVisible(true);
 
     backButton.setText(game->str.back);
     backButton.setVisible(true);
@@ -26,6 +44,10 @@ void CreditsMenu::backFunction() {
 
 void CreditsMenu::hide() {
     this->pre_hide();
+
+    creditsLabel.setVisible(false);
+
+    contributorsListLabel.setVisible(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);
