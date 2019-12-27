@@ -2,9 +2,9 @@
 #include "game.h"
 
 FileLog::FileLog(Game *game) :
-    Log(game),
-    file(nullptr),
-    fs(nullptr) {
+        Log(game),
+        file(nullptr),
+        fs(nullptr) {
 }
 
 void FileLog::open(const QString &filePath) {

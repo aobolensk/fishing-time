@@ -7,9 +7,9 @@
 #include "game.h"
 
 Logger::Logger(Game *game) :
-    Menu(game, nullptr, true),
-    log(game, &console),
-    fileLog(game) {
+        Menu(game, nullptr, true),
+        log(game, &console),
+        fileLog(game) {
     QSettings settings;
     if (!this->restoreGeometry(settings.value("loggerGeometry").toByteArray())) {
         qDebug() << "Unable to restore console window geometry. Loading defaults...";

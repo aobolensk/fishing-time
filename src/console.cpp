@@ -8,8 +8,8 @@
 #include "game.h"
 
 Console::Console(Game *game) :
-    Menu(game, nullptr, true),
-    log(game, &console) {
+        Menu(game, nullptr, true),
+        log(game, &console) {
     QSettings settings;
     if (!this->restoreGeometry(settings.value("consoleGeometry").toByteArray())) {
         qDebug() << "Unable to restore console window geometry. Loading defaults...";

@@ -5,9 +5,9 @@
 #include "user.h"
 
 User::User(const QString &name, const QString &password) :
-    username(name),
-    passwordHash(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5)),
-    signUpTime(QDateTime::currentDateTime().toString(Qt::ISODate)) {
+        username(name),
+        passwordHash(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5)),
+        signUpTime(QDateTime::currentDateTime().toString(Qt::ISODate)) {
 
 }
 

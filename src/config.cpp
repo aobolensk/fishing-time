@@ -5,7 +5,7 @@
 #include "utils.h"
 
 Config::Config(Game *game) :
-    game(game) {
+        game(game) {
     qDebug() << "Project directory:" << TOSTRING(PROJECT_DIR);
 }
 

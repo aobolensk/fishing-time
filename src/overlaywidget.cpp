@@ -1,9 +1,9 @@
 #include "overlaywidget.h"
 
 OverlayWidget::OverlayWidget(QWidget *parent) :
-    QWidget(parent),
-    text(this),
-    layout(QHBoxLayout(this)) {
+        QWidget(parent),
+        text(this),
+        layout(QHBoxLayout(this)) {
     layout.addWidget(&text);
     layout.addStretch(1);
     this->resize(parent->size());

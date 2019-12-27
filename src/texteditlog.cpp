@@ -2,8 +2,9 @@
 #include "game.h"
 
 TextEditLog::TextEditLog(Game *game, QTextEdit *logField) :
-    Log(game),
-    console(logField) {}
+        Log(game),
+        console(logField) {
+}
 
 void TextEditLog::debug(const QString &message) {
     if (game->loggerLevel == LoggerLevel::DEBUG) {

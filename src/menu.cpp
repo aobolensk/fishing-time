@@ -3,9 +3,9 @@
 #include "game.h"
 
 Menu::Menu(Game *game, QGridLayout *grid, bool floating) :
-    game(game),
-    grid(grid),
-    floating(floating) {
+        game(game),
+        grid(grid),
+        floating(floating) {
     if (!this->grid) {
         this->grid = new QGridLayout(this);
     }
