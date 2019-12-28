@@ -21,6 +21,8 @@ int main(int argc, char *argv[]) {
         game.hideAll();
         FT_ERROR::error->show();
         app.exec();
+        delete FT_ERROR::error;
+        FT_ERROR::error = nullptr;
     }
     return retCode;
 }
