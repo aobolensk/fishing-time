@@ -1,13 +1,14 @@
 #ifndef INCLUDE_UTILS_H_
 #define INCLUDE_UTILS_H_
-#include <stdexcept>
+#include <QDebug>
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
 
-#define FT_ASSERT(expr, text)                                                   \
-    if (!(expr)) {                                                              \
-        throw std::runtime_error((text).toStdString());                         \
-    }                                                                           \
+#define FT_ASSERT(expr, text)   \
+    if (!(expr)) {              \
+        qCritical() << text;    \
+        exit(1);                \
+    }                           \
 
 #endif  // INCLUDE_UTILS_H_
