@@ -161,7 +161,14 @@ void GameMenu::clickFunction() {
 }
 
 bool GameMenu::eventFilter(QObject *obj, QEvent *event) {
-    if (event->type() == QEvent::MouseMove) {
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *key = static_cast<QKeyEvent *>(event);
+        if (key->key() == Qt::Key_Enter || key->key() == Qt::Key_Return) {
+            if (!key->isAutoRepeat()) {
+                clickFunction();
+            }
+        }
+    } else if (event->type() == QEvent::MouseMove) {
         QMouseEvent *e = static_cast<QMouseEvent *>(event);
         qDebug() << e->pos() << game->height();
         if (!displayedButtons && e->pos().y() > game->height() * 2 / 3) {
