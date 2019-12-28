@@ -29,6 +29,7 @@ ErrorWidget::ErrorWidget() :
     errorLabel.setFont(font);
     errorLabel.setText("An unknown error occured!");
     errorLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    errorLabel.setWordWrap(true);
 
     #ifdef STACKTRACE_AVAILABLE
     grid.addWidget(&stacktraceLabel, 1, 0);

@@ -102,6 +102,7 @@ public:
     QString getConfigFileName();
     void setCurrentMenu(Menu *menu);
     Menu *getCurrentMenu() const;
+    void hideAll();
     Language activeLanguage = Language::English;
     QTimer autoSaveTimer;
 public:

@@ -3,6 +3,7 @@
 #include <csignal>
 #include "game.h"
 #include "errorwidget.h"
+#include "utils.h"
 
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, ErrorWidget::signalHandler);
@@ -15,5 +16,13 @@ int main(int argc, char *argv[]) {
     Game game(nullptr, config);
     game.logger.info("Game loaded in " + QString::number(timer.elapsed()) + " milliseconds");
     game.show();
-    return app.exec();
+    int retCode = app.exec();
+    if (FT_ERROR::error) {
+        game.hideAll();
+        FT_ERROR::error->show();
+        app.exec();
+        delete FT_ERROR::error;
+        FT_ERROR::error = nullptr;
+    }
+    return retCode;
 }
