@@ -176,6 +176,14 @@ void Game::deserialize() {
     this->cfg.applyColorTheme(colorTheme);
 }
 
+void Game::hideAll() {
+    this->hide();
+    this->console.hide();
+    this->logger.hide();
+    this->aboutMenu.hide();
+    this->popUpInventoryMenu.hide();
+}
+
 void Game::updateTimePlayed() {
     if (activeUser != -1 && userTimestamp.isValid()) {
         this->users[this->activeUser].incInGameTime(
