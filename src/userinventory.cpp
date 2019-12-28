@@ -1,4 +1,5 @@
 #include "user.h"
+#include "utils.h"
 
 void User::Inventory::changeItem(const QString &name, int quantity) {
     if (true) {
@@ -25,8 +26,12 @@ void User::Inventory::changeItem(const QString &name, int quantity) {
     }
 }
 
-void User::Inventory::updateStats(const QString &name, const QString &stat, int quantity) {
-    Q_ASSERT(quantity >= 0);
+void User::Inventory::updateStats(const QString &name, const QString &stat, int quantity,
+                                  const QMap <QString, QString> *stats) {
+    FT_ASSERT(quantity >= 0, "Attempt to increase '" + stat + "' stat by " + QString::number(quantity));
+    if (stats) {
+        FT_ASSERT(stats->find(stat) != stats->end(), "Attempt to change non-existing stat: " + stat);
+    }
     auto it = itemStatistics.find(name);
     if (it == itemStatistics.end()) {
         return;

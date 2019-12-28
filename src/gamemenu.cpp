@@ -154,7 +154,7 @@ void GameMenu::clickFunction() {
             qMin(rnd / (MOD / game->locations[game->activeLocation].getFishCount()),
             game->locations[game->activeLocation].getFishCount() - 1));
     game->users[game->activeUser].inventory.changeItem(fish, 1);
-    game->users[game->activeUser].inventory.updateStats(fish, "stats.caught", 1);
+    game->users[game->activeUser].inventory.updateStats(fish, "stats.caught", 1, &game->str.stats);
     game->users[game->activeUser].incClicks();
     game->users[game->activeUser].changeExperience(1);
     updateInfo();
