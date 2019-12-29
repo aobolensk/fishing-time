@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QProcess>
+#include <QSettings>
 #include "config.h"
 #include "errorwidget.h"
 #include "utils.h"
@@ -22,8 +23,11 @@ ErrorWidget::ErrorWidget() :
         QSysInfo::currentCpuArchitecture() +
         "\n"
     );
-    this->setGeometry(100, 200, 640, 480);
-    this->setFixedSize(this->width(), this->height());
+    QSettings settings;
+    if (!this->restoreGeometry(settings.value("errorWindowGeometry").toByteArray())) {
+        this->setGeometry(QRect(QPoint(100, 200), QSize(640, 480)));
+    }
+    this->setWindowTitle("Fishing Time: Error");
 
     grid.addWidget(&errorLabel, 0, 0);
     QFont font = errorLabel.font();
@@ -61,7 +65,8 @@ QString ErrorWidget::getStacktrace() {
 }
 
 ErrorWidget::~ErrorWidget() {
-
+    QSettings settings;
+    settings.setValue("errorWindowGeometry", this->saveGeometry());
 }
 
 void ErrorWidget::setErrorLabel(const QString &text) {
