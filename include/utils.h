@@ -7,16 +7,12 @@
 #define TOSTRING(x) STRINGIFY(x)
 
 namespace FT_ERROR {
-    extern ErrorWidget *error;
+    void ft_assert(QString place, QString text);
 }
 
-#define FT_ASSERT(expr, text)                               \
-    if (!(expr)) {                                          \
-        FT_ERROR::error = new ErrorWidget();                \
-        FT_ERROR::error->setErrorText(                      \
-            QStringLiteral("Assertion failed at "           \
-            __FILE__ ":" TOSTRING(__LINE__) ": ") + text);  \
-        qApp->exit(1);                                      \
-    }                                                       \
+#define FT_ASSERT(expr, text)                                       \
+    if (!(expr)) {                                                  \
+        FT_ERROR::ft_assert(__FILE__ ":" TOSTRING(__LINE__), text); \
+    }                                                               \
 
 #endif  // INCLUDE_UTILS_H_

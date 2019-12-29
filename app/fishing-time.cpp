@@ -6,6 +6,20 @@
 #include "utils.h"
 
 int main(int argc, char *argv[]) {
+    if (argc == 2 && !strcmp(argv[1], "--err")) {
+        QApplication app(argc, argv);
+        QFile errorLog("error.log");
+        errorLog.open(QIODevice::ReadOnly);
+        QTextStream f(&errorLog);
+        QString buffer;
+        buffer = f.readLine();
+        ErrorWidget error;
+        error.setErrorLabel(buffer);
+        buffer = f.readAll();
+        error.setErrorText(buffer);
+        error.show();
+        return app.exec();
+    }
     signal(SIGSEGV, ErrorWidget::signalHandler);
     QApplication app(argc, argv);
     QString config = "config.json";
@@ -16,13 +30,5 @@ int main(int argc, char *argv[]) {
     Game game(nullptr, config);
     game.logger.info("Game loaded in " + QString::number(timer.elapsed()) + " milliseconds");
     game.show();
-    int retCode = app.exec();
-    if (FT_ERROR::error) {
-        game.hideAll();
-        FT_ERROR::error->show();
-        app.exec();
-        delete FT_ERROR::error;
-        FT_ERROR::error = nullptr;
-    }
-    return retCode;
+    return app.exec();
 }
