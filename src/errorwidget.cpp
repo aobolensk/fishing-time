@@ -84,7 +84,7 @@ void ErrorWidget::signalHandler(int signum) {
     QFile errorLog("error.log");
     if (errorLog.open(QFile::ReadWrite | QIODevice::Truncate | QIODevice::Text)) {
         QTextStream f(&errorLog);
-        f << "SIGSEGV" << endl;
+        f << "Got signal: " << signum << endl;
         f << getStacktrace();
         qApp->exit(1);
         QStringList newArgs = {
