@@ -2,7 +2,9 @@
 #include <execinfo.h>
 #endif
 #include <QApplication>
+#include <QFile>
 #include <QDebug>
+#include <QProcess>
 #include "config.h"
 #include "errorwidget.h"
 #include "utils.h"
@@ -27,25 +29,15 @@ ErrorWidget::ErrorWidget() :
     QFont font = errorLabel.font();
     font.setPointSize(14);
     errorLabel.setFont(font);
-    errorLabel.setText("An unknown error occured!");
+    errorLabel.setText("An unknown error occurred!");
     errorLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     errorLabel.setWordWrap(true);
 
-    #ifdef STACKTRACE_AVAILABLE
-    grid.addWidget(&stacktraceLabel, 1, 0);
-    stacktraceLabel.setText("Stacktrace:");
-    stacktraceLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    grid.addWidget(&errorText, 1, 0);
+    errorText.setReadOnly(true);
+    errorText.stackUnder(&overlay);
 
-    QString stacktrace = getStacktrace();
-
-    grid.addWidget(&stacktraceText, 2, 0);
-    stacktraceText.setReadOnly(true);
-    stacktraceText.setText(stacktrace);
-
-    qDebug().noquote() << stacktrace;
-    #endif
-
-    grid.addWidget(&exitButton, 3, 0);
+    grid.addWidget(&exitButton, 2, 0);
     exitButton.setText("Exit");
     connect(&exitButton, SIGNAL(released()), this, SLOT(exitFunction()));
 }
@@ -72,24 +64,33 @@ ErrorWidget::~ErrorWidget() {
 
 }
 
-void ErrorWidget::setErrorText(const QString &text) {
-    return this->errorLabel.setText(text);
+void ErrorWidget::setErrorLabel(const QString &text) {
+    this->errorLabel.setText(text);
 }
 
-QString ErrorWidget::getErrorText() {
+QString ErrorWidget::getErrorLabel() {
     return this->errorLabel.text();
 }
 
+void ErrorWidget::setErrorText(const QString &text) {
+    this->errorText.setText(text);
+}
+
+QString ErrorWidget::getErrorText() {
+    return this->errorText.toPlainText();
+}
+
 void ErrorWidget::signalHandler(int signum) {
-    ErrorWidget error;
-    error.setErrorText(error.getErrorText() + "\nReceived \"" +
-    #ifndef _WIN32
-        strsignal(signum) +
-    #else
-        QString::number(signum) +
-    #endif  // _WIN32
-        "\" signal");
-    error.show();
-    QApplication::exec();
+    QFile errorLog("error.log");
+    if (errorLog.open(QFile::ReadWrite | QIODevice::Truncate | QIODevice::Text)) {
+        QTextStream f(&errorLog);
+        f << "SIGSEGV" << endl;
+        f << getStacktrace();
+        qApp->exit(1);
+        QStringList newArgs = {
+            "--err"
+        };
+        QProcess::startDetached(qApp->arguments()[0], newArgs);
+    }
     exit(signum);
 }

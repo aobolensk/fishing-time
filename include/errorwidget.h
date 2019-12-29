@@ -16,10 +16,7 @@ private:
 private:
     QGridLayout grid;
     QLabel errorLabel;
-    #ifdef STACKTRACE_AVAILABLE
-    QLabel stacktraceLabel;
-    QTextEdit stacktraceText;
-    #endif
+    QTextEdit errorText;
     QPushButton exitButton;
     OverlayWidget overlay;
 private slots:
@@ -27,6 +24,8 @@ private slots:
 public:
     ErrorWidget();
     ~ErrorWidget();
+    void setErrorLabel(const QString &text);
+    QString getErrorLabel();
     void setErrorText(const QString &text);
     QString getErrorText();
     static QString getStacktrace();

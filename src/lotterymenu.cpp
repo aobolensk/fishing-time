@@ -72,6 +72,9 @@ void LotteryMenu::display() {
 }
 
 void LotteryMenu::selectTicketFunction() {
+    if (ticketSelector.currentIndex() == -1) {
+        return;
+    }
     currentTicketId = ticketIds[ticketSelector.currentIndex()];
     if (currentTicketId == "") {
         return;
