@@ -18,7 +18,6 @@ ItemStatisticsMenu::ItemStatisticsMenu(Game *game, QGridLayout *grid) :
 
 void ItemStatisticsMenu::updateStatistics() {
     QString statText;
-    auto stats = game->users[game->activeUser].getStatistsics(game);
     statText += "<table border=\"1\" width=\"100%\" table-layout=\"fixed\">";
     statText += QString(
         "<tr>"
