@@ -88,6 +88,11 @@ void User::changeExperience(qint64 quantity) {
 
 void User::changeCoins(qint64 quantity) {
     if (coins + quantity >= 0) {
+        if (quantity >= 0) {
+            earnedCoins += quantity;
+        } else {
+            spentCoins -= quantity;
+        }
         coins += quantity;
     }
 }
