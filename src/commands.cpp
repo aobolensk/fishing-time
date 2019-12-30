@@ -248,7 +248,7 @@ void Console::registerCommands() {
                 log.error(game->str.youAreNotLoggedIn);
                 return 1;
             }
-            auto stats = game->users[game->activeUser].getStatistsics(game);
+            auto stats = game->users[game->activeUser].getStatistics(game);
             auto it = stats.cbegin();
             while (it != stats.cend()) {
                 log.writeln(it->first + ": " + it->second);
@@ -553,7 +553,7 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             (void) args;
             for (int i = 0; i < game->users.size(); ++i) {
-                auto stats = game->users[i].getStatistsics(game);
+                auto stats = game->users[i].getStatistics(game);
                 auto it = stats.cbegin();
                 while (it != stats.cend()) {
                     log.writeln(it->first + ": " + it->second);

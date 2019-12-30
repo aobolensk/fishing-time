@@ -24,7 +24,7 @@ StatisticsMenu::StatisticsMenu(Game *game, QGridLayout *grid) :
 void StatisticsMenu::updateStatistics() {
     qDebug() << "Statistics have been updated";
     QString statText;
-    auto stats = game->users[game->activeUser].getStatistsics(game);
+    auto stats = game->users[game->activeUser].getStatistics(game);
     auto it = stats.cbegin();
     statText += "<table border=\"1\" width=\"100%\">";
     while (it != stats.cend()) {

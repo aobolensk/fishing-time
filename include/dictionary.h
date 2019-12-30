@@ -166,6 +166,8 @@ public:
             timePlayed,
             timeShouldBeANumber,
             toggleFullscreenMode,
+            totalEarnedCoins,
+            totalSpentCoins,
             unknownCommand,
             unknownUser,
             useManToGetDescription,
