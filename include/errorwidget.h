@@ -30,6 +30,7 @@ public:
     QString getErrorText();
     static QString getStacktrace();
     static void signalHandler(int signum);
+    static int launchViewer(int *argc, char***argv);
 };
 
 #endif  // INCLUDE_ERRORWIDGET_H_
