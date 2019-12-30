@@ -162,6 +162,8 @@ QVector <QPair<QString, QString>> User::getStatistsics(Game *game) const {
     QVector <QPair<QString, QString>> result;
     result.push_back({game->str.username, this->getUsername()});
     result.push_back({game->str.coins, QString::number(this->getCoins())});
+    result.push_back({game->str.totalEarnedCoins, QString::number(this->earnedCoins)});
+    result.push_back({game->str.totalSpentCoins, QString::number(this->spentCoins)});
     result.push_back({game->str.clicksCount, QString::number(this->getClicks())});
     result.push_back({game->str.timePlayed, this->getInGameTime()});
     return result;
