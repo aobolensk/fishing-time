@@ -63,7 +63,7 @@ public:
     QString getInGameTime() const;
     bool canGetTicket() const;
     // Statistics
-    QVector <QPair<QString, QString>> getStatistsics(Game *game) const;
+    QVector <QPair<QString, QString>> getStatistics(Game *game) const;
     QVector <QPair<QString, QMap <QString, QString>>> getItemStatistsics() const;
 };
 

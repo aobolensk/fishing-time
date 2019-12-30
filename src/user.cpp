@@ -162,7 +162,7 @@ bool User::canGetTicket() const {
     return QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0))) < lastTicketDay;
 }
 
-QVector <QPair<QString, QString>> User::getStatistsics(Game *game) const {
+QVector <QPair<QString, QString>> User::getStatistics(Game *game) const {
     game->updateTimePlayed();
     QVector <QPair<QString, QString>> result;
     result.push_back({game->str.username, this->getUsername()});
