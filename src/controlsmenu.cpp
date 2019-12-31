@@ -110,6 +110,10 @@ void ControlsMenu::display() {
                         controlsText[j].setText(keyText);
                     }
                 }
+                if (currentControl != Controls::CONTROLS_N) {
+                    controlsButton[(size_t)currentControl].setText(game->str.edit);
+                    currentControl = Controls::CONTROLS_N;
+                }
             }
         );
     }
