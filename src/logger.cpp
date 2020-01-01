@@ -102,7 +102,7 @@ void Logger::error(const QString &message) {
 
 void Logger::display() {
     this->setWindowTitle(game->str.fishingTime + ": " + game->str.log);
-    this->setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
+    this->setWindowIcon(QIcon(":/images/icon.png"));
     this->show();
 
     clearButton.setText(game->str.clear);

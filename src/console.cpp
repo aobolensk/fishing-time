@@ -223,7 +223,7 @@ void Console::commandParser() {
 
 void Console::display() {
     this->setWindowTitle(game->str.fishingTime + ": " + game->str.console);
-    this->setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
+    this->setWindowIcon(QIcon(":/images/icon.png"));
     this->show();
 
     jumpToBottomButton.setText(game->str.jumpToBottom);

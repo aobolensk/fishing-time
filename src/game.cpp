@@ -42,6 +42,7 @@ Game::Game(QWidget *parent, const QString &file) :
         userProfileMenu(UserProfileMenu(this, &grid)),
         aboutMenu(AboutMenu(this)),
         overlay(OverlayWidget(this)) {
+    Q_INIT_RESOURCE(resources);
     QSettings settings;
     if (!this->restoreGeometry(settings.value("mainWindowGeometry").toByteArray())) {
         this->logger.error("Unable to restore game window geometry. Loading defaults...");
@@ -49,7 +50,7 @@ Game::Game(QWidget *parent, const QString &file) :
     }
     this->setLayout(&grid);
     this->setWindowTitle(str.fishingTime);
-    this->setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
+    this->setWindowIcon(QIcon(":/images/icon.png"));
     grid.setColumnStretch(0, 1);
     grid.setColumnStretch(1, 1);
     grid.setColumnStretch(2, 1);

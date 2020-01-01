@@ -1,7 +1,9 @@
 file(GLOB_RECURSE headers "../include/*.h")
+file(GLOB_RECURSE resources "../resources/*.qrc")
 file(GLOB_RECURSE sources "./*.cpp")
 
-add_library(${PROJECT_NAME}_lib ${sources} ${headers})
+qt5_add_resources(RC_SRC ${resources})
+add_library(${PROJECT_NAME}_lib ${sources} ${headers} ${RC_SRC})
 set_target_properties(${PROJECT_NAME}_lib PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 qt5_use_modules(${PROJECT_NAME}_lib Widgets)
 if (MSVC)

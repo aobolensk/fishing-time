@@ -672,12 +672,12 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
 
     if (!initialSetup) {
         game->aboutMenu.setWindowTitle(fishingTime + ": " + about);
-        game->aboutMenu.setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
+        game->aboutMenu.setWindowIcon(QIcon(":/images/icon.png"));
         game->console.setWindowTitle(fishingTime + ": " + console);
-        game->console.setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
+        game->console.setWindowIcon(QIcon(":/images/icon.png"));
         game->setWindowTitle(fishingTime);
         game->gameMenu.getPopUpInventoryTable().setWindowTitle(fishingTime + ": " + inventory);
-        game->gameMenu.getPopUpInventoryTable().setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
+        game->gameMenu.getPopUpInventoryTable().setWindowIcon(QIcon(":/images/icon.png"));
         game->logger.info("Set language: " + QString::number((int)l));
     }
 }
