@@ -16,7 +16,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_BINARY_DIR}/bin")
 execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse HEAD WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}" OUTPUT_VARIABLE commit_hash)
 string(STRIP ${commit_hash} commit_hash)
 add_definitions(-DCOMMIT_HASH=${commit_hash})
-add_definitions(-DPROJECT_DIR=${PROJECT_SOURCE_DIR})
 
 if (DEBUG)
     message(STATUS "Debug mode is enabled")
