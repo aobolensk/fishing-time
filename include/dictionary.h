@@ -67,6 +67,7 @@ public:
             eraseAllDataConfirmation,
             exit,
             exitConfirmation,
+            exitFromTheGame,
             experience,
             fish,
             fishLabelText,

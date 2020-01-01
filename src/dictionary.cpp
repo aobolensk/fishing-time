@@ -137,6 +137,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(eraseAllDataConfirmation) = "Do you really want to erase all your data?";
         SET(exit) = "Exit";
         SET(exitConfirmation) = "Do you want to exit?";
+        SET(exitFromTheGame) = "Exit from the game";
         SET(experience) = "Experience";
         SET(fish) = "Fish";
         SET(fishLabelText) = "Fish that can be caught in location %1:\n%2";
@@ -426,6 +427,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(eraseAllDataConfirmation) = "Вы действительно хотите удалить все данные?";
         SET(exit) = "Выход";
         SET(exitConfirmation) = "Вы действительно хотите выйти из игры?";
+        SET(exitFromTheGame) = "Выход из игры";
         SET(experience) = "Опыт";
         SET(fish) = "Рыба";
         SET(fishLabelText) = "Рыба, которую можно поймать в локации %1:\n%2";

@@ -45,6 +45,10 @@ void ControlsMenu::setDefaults() {
     if (this->get(Controls::GO_TO_PREVIOUS_MENU) == 0) {
         this->set(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
     }
+    this->setDefault(Controls::EXIT_FROM_THE_GAME, 67108945); // Ctrl + Q
+    if (this->get(Controls::EXIT_FROM_THE_GAME) == 0) {
+        this->set(Controls::EXIT_FROM_THE_GAME, 67108945); // Ctrl + Q
+    }
 }
 
 void ControlsMenu::display() {
@@ -65,6 +69,9 @@ void ControlsMenu::display() {
             break;
         case Controls::GO_TO_PREVIOUS_MENU:
             controlsLabel[i].setText(game->str.goToPreviousMenu);
+            break;
+        case Controls::EXIT_FROM_THE_GAME:
+            controlsLabel[i].setText(game->str.exitFromTheGame);
             break;
         case Controls::CONTROLS_N:
             break;

@@ -9,6 +9,7 @@ enum class Controls {
     HIDE_UI_ELEMENTS,
     TOGGLE_FULLSCREEN_MODE,
     GO_TO_PREVIOUS_MENU,
+    EXIT_FROM_THE_GAME,
     CONTROLS_N
 };
 

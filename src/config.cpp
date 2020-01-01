@@ -34,6 +34,7 @@ void Config::deserialize(const QVariantMap &map) {
     game->controlsMenu.set(Controls::HIDE_UI_ELEMENTS, controls["hideUIElements"].toInt());
     game->controlsMenu.set(Controls::TOGGLE_FULLSCREEN_MODE, controls["toggleFullscreenMode"].toInt());
     game->controlsMenu.set(Controls::GO_TO_PREVIOUS_MENU, controls["goToPreviousMenu"].toInt());
+    game->controlsMenu.set(Controls::EXIT_FROM_THE_GAME, controls["exitFromTheGame"].toInt());
     isReady = true;
 }
 
@@ -52,6 +53,7 @@ QJsonObject Config::serialize() const {
     controls["hideUIElements"] = game->controlsMenu.get(Controls::HIDE_UI_ELEMENTS)[0];
     controls["toggleFullscreenMode"] = game->controlsMenu.get(Controls::TOGGLE_FULLSCREEN_MODE)[0];
     controls["goToPreviousMenu"] = game->controlsMenu.get(Controls::GO_TO_PREVIOUS_MENU)[0];
+    controls["exitFromTheGame"] = game->controlsMenu.get(Controls::EXIT_FROM_THE_GAME)[0];
     jsonObj["controls"] = QJsonObject::fromVariantMap(controls);
     return jsonObj;
 }
