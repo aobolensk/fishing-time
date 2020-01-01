@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QKeyEvent>
 #include "menu.h"
 #include "game.h"
@@ -42,6 +43,12 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
                     game->removeEventFilter(this);
                     this->display();
                 }
+            }
+        } else if (seq == game->controlsMenu.get(Controls::EXIT_FROM_THE_GAME)) {
+            // Exit from the game
+            if (this != &game->controlsMenu) {
+                game->hideAll();
+                QApplication::quit();
             }
         }
     }

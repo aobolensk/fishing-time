@@ -173,6 +173,7 @@ void LotteryMenu::submitFunction() {
     game->users[game->activeUser].changeCoins(reward);
     game->users[game->activeUser].inventory.updateStats(currentTicketId, "stats.used", 1, &game->str.stats);
     game->users[game->activeUser].inventory.changeItem(currentTicketId, -1);
+    game->users[game->activeUser].incWonCoins(reward);
 
     submitButton.setVisible(false);
     submitButton.setEnabled(false);
