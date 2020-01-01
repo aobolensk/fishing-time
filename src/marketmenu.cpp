@@ -117,6 +117,7 @@ void MarketMenu::processDialog(int seller) {
     game->users[game->activeUser].changeCoins(goodPrice[seller] * quantity);
     game->users[game->activeUser].inventory.updateStats(goodId[seller], "stats.sold", quantity, &game->str.stats);
     game->users[game->activeUser].changeExperience(quantity);
+    game->users[game->activeUser].incEarnedCoins(goodPrice[seller] * quantity);
     game->logger.info("Sold " + QString::number(quantity) + " of " + goodId[seller] + " to seller " + QString::number(seller));
     game->logger.info("Earned " +  QString::number(goodPrice[seller] * quantity) + " coins");
     updateInfo();
