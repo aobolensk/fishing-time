@@ -89,7 +89,7 @@ void User::changeExperience(qint64 quantity) {
 void User::changeCoins(qint64 quantity) {
     if (coins + quantity >= 0) {
         if (quantity >= 0) {
-            earnedCoins += quantity;
+            gotCoins += quantity;
         } else {
             spentCoins -= quantity;
         }
@@ -167,7 +167,7 @@ QVector <QPair<QString, QString>> User::getStatistics(Game *game) const {
     QVector <QPair<QString, QString>> result;
     result.push_back({game->str.username, this->getUsername()});
     result.push_back({game->str.coins, QString::number(this->getCoins())});
-    result.push_back({game->str.totalEarnedCoins, QString::number(this->earnedCoins)});
+    result.push_back({game->str.totalGotCoins, QString::number(this->gotCoins)});
     result.push_back({game->str.totalSpentCoins, QString::number(this->spentCoins)});
     result.push_back({game->str.clicksCount, QString::number(this->getClicks())});
     result.push_back({game->str.timePlayed, this->getInGameTime()});
