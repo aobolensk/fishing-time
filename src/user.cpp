@@ -23,6 +23,10 @@ QJsonObject User::serialize() const {
     jsonObj["passwordHash"] = passwordHash;
     jsonObj["signUpTime"] = signUpTime;
     jsonObj["inGameTime"] = inGameTime;
+    jsonObj["gotCoins"] = gotCoins;
+    jsonObj["spentCoins"] = spentCoins;
+    jsonObj["earnedCoins"] = earnedCoins;
+    jsonObj["wonCoins"] = wonCoins;
     QVariantMap inv;
     for (auto i = inventory.get().begin(); i != inventory.get().end(); ++i) {
         inv[i.key()] = i.value();
@@ -50,6 +54,10 @@ QVariant User::deserialize(const QVariantMap &map) {
     user.passwordHash = map["passwordHash"].toString();
     user.signUpTime = map["signUpTime"].toString();
     user.inGameTime = map["inGameTime"].toLongLong();
+    user.gotCoins = map["gotCoins"].toLongLong();
+    user.spentCoins = map["spentCoins"].toLongLong();
+    user.earnedCoins = map["earnedCoins"].toLongLong();
+    user.wonCoins = map["wonCoins"].toLongLong();
     QVariantMap inv = map["inventory"].toJsonObject().toVariantMap();
     QMap <QString, int> inventory;
     for (auto i = inv.begin(); i != inv.end(); ++i) {
