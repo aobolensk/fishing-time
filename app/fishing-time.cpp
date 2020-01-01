@@ -6,6 +6,12 @@
 #include "utils.h"
 
 int main(int argc, char *argv[]) {
+    if (argc == 2 && !strcmp(argv[1], "--help")) {
+        qDebug() << "Usage:";
+        qDebug() << argv[0] << "      - start the game";
+        qDebug() << argv[0] << "--err - show last error message";
+        return 0;
+    }
     if (argc == 2 && !strcmp(argv[1], "--err")) {
         return ErrorWidget::launchViewer(&argc, &argv);
     }
