@@ -17,6 +17,8 @@ private:
     // Statistics
     qint64 gotCoins = 0ll;
     qint64 spentCoins = 0ll;
+    qint64 earnedCoins = 0ll;
+    qint64 wonCoins = 0ll;
     QString signUpTime;
     qint64 clicks = 0ll;
     qint64 inGameTime = 0ll;
@@ -50,6 +52,8 @@ public:
     void setPrivilegeLevel(int level);
     void incInGameTime(qint64 time);
     void updateLastTicketDay();
+    void incEarnedCoins(qint64 coins);
+    void incWonCoins(qint64 coins);
     // Getters
     QString getUsername() const;
     QString getPasswordHash() const;

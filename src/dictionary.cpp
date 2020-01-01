@@ -243,8 +243,10 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(timePlayed) = "Time played";
         SET(timeShouldBeANumber) = "Time should be a number";
         SET(toggleFullscreenMode) = "Toggle fullscreen mode";
+        SET(totalEarnedCoins) = "Earned coins (in total)";
         SET(totalGotCoins) = "Got coins (in total)";
         SET(totalSpentCoins) = "Spent coins (in total)";
+        SET(totalWonCoins) = "Won coins (in total)";
         SET(unknownCommand) = "Unknown command: %1";
         SET(unknownUser) = "User \"%1\" is not found";
         SET(useManToGetDescription) = "Use 'man &lt;command&gt;' to get description";
@@ -533,8 +535,10 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(timePlayed) = "Проведено времени в игре";
         SET(timeShouldBeANumber) = "Время должно быть числом";
         SET(toggleFullscreenMode) = "Вкл./выкл. полноэкранный режим";
+        SET(totalEarnedCoins) = "Заработано монет (всего)";
         SET(totalGotCoins) = "Получено монет (всего)";
         SET(totalSpentCoins) = "Потрачено монет (всего)";
+        SET(totalWonCoins) = "Выиграно монет (всего)";
         SET(unknownCommand) = "Неизвестная команда: %1";
         SET(unknownUser) = "Пользователь \"%1\" не найден";
         SET(useManToGetDescription) = "Используйте 'man &lt;команда&gt;' чтобы получить описание";
