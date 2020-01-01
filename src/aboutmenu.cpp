@@ -61,7 +61,7 @@ void AboutMenu::display() {
     this->pre_display();
 
     this->setWindowTitle(game->str.fishingTime + ": " + game->str.about);
-    this->setWindowIcon(QIcon(Config::imagesDirectory + "icon.png"));
+    this->setWindowIcon(QIcon(":/images/icon.png"));
     this->setVisible(true);
 
     descriptionLabel.setText(getAboutInfo());
