@@ -113,12 +113,12 @@ void User::updateLastTicketDay() {
     lastTicketDay = QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0)));
 }
 
-void User::incEarnedCoins(qint64 coins) {
-    earnedCoins += coins;
+void User::incEarnedCoins(qint64 quantity) {
+    earnedCoins += quantity;
 }
 
-void User::incWonCoins(qint64 coins) {
-    wonCoins += coins;
+void User::incWonCoins(qint64 quantity) {
+    wonCoins += quantity;
 }
 
 qint64 User::getClicks() const {

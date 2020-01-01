@@ -52,8 +52,8 @@ public:
     void setPrivilegeLevel(int level);
     void incInGameTime(qint64 time);
     void updateLastTicketDay();
-    void incEarnedCoins(qint64 coins);
-    void incWonCoins(qint64 coins);
+    void incEarnedCoins(qint64 quantity);
+    void incWonCoins(qint64 quantity);
     // Getters
     QString getUsername() const;
     QString getPasswordHash() const;
