@@ -9,19 +9,19 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
     controlsTitleLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     for (size_t i = 0; i < (size_t)Controls::CONTROLS_N; ++i) {
-        grid->addWidget(&controlsLabel[i], i + 1, 0);
+        grid->addWidget(&controlsLabel[i], static_cast<int>(i + 1), 0);
         controlsLabel[i].setVisible(false);
         controlsLabel[i].setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-        grid->addWidget(&controlsText[i], i + 1, 1);
+        grid->addWidget(&controlsText[i], static_cast<int>(i + 1), 1);
         controlsText[i].setVisible(false);
         controlsText[i].setReadOnly(true);
 
-        grid->addWidget(&controlsButton[i], i + 1, 2);
+        grid->addWidget(&controlsButton[i], static_cast<int>(i + 1), 2);
         controlsButton[i].setVisible(false);
         controlsButton[i].setEnabled(false);
 
-        grid->addWidget(&resetButton[i], i + 1, 3);
+        grid->addWidget(&resetButton[i], static_cast<int>(i + 1), 3);
         resetButton[i].setVisible(false);
         resetButton[i].setEnabled(false);
     }
