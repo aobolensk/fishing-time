@@ -110,7 +110,7 @@ void LotteryMenu::selectTicketFunction() {
                 } else {
                     combo.erase(combo.find(i + 1));
                 }
-                QList <int> sortedCombo = combo.toList();
+                QList <int> sortedCombo = combo.values();
                 std::sort(sortedCombo.begin(), sortedCombo.end());
                 QString comboText = game->str.combination + ": {";
                 bool first = true;
