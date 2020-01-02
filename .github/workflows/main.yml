@@ -42,6 +42,22 @@ jobs:
       run: |
         cd build
         ./bin/fishing-time_test
+  windows-msvc-build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+    - name: Build application
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        cmake --build .
+    - name: Run tests
+      run: |
+        cd build
+        bin\\fishing-time_test
   macOS-build:
     runs-on: macOS-latest
     steps:
