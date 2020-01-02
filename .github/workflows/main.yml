@@ -87,7 +87,27 @@ jobs:
       run: |
         cd build
         bin\\fishing-time_test
-  macOS-build:
+  macOS-gcc-build:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup environment
+      run: |
+        brew install qt gcc@9
+    - name: Build application
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_PREFIX_PATH=$(brew --prefix qt)/lib/cmake/Qt5
+        cmake --build . -- -j
+      env:
+        CC: gcc-9
+        CXX: g++-9
+    - name: Run tests
+      run: |
+        cd build
+        ./bin/fishing-time_test
+  macOS-clang-build:
     runs-on: macOS-latest
     steps:
     - uses: actions/checkout@v1
