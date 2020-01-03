@@ -12,6 +12,7 @@ private:
     QTextEdit statisticsText;
     QPushButton backButton;
 private slots:
+    void updateStatistics();
     void backFunction() override;
 public:
     CoinStatisticsMenu(Game *game, QGridLayout *grid);

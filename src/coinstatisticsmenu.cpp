@@ -19,9 +19,31 @@ CoinStatisticsMenu::CoinStatisticsMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
+void CoinStatisticsMenu::updateStatistics() {
+    QString statText;
+    auto stats = game->users[game->activeUser].getCoinStatistics(game);
+    auto it = stats.cbegin();
+    statText += "<table border=\"1\" width=\"100%\">";
+    while (it != stats.cend()) {
+        statText += QString(
+            "<tr>"
+                "<td width=\"50%\">%1</td>"
+                "<td width=\"50%\">%2</td>"
+            "</tr>"
+        ).arg(
+            it->first,
+            it->second
+        );
+        ++it;
+    }
+    statText += "</table>";
+    statisticsText.setText(statText);
+}
+
 void CoinStatisticsMenu::display() {
     this->pre_display();
 
+    updateStatistics();
     statisticsLabel.setText(game->str.coinStatistics);
     statisticsLabel.setVisible(true);
 
