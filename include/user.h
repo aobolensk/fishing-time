@@ -68,6 +68,7 @@ public:
     bool canGetTicket() const;
     // Statistics
     QVector <QPair<QString, QString>> getStatistics(Game *game) const;
+    QVector <QPair<QString, QString>> getCoinStatistics(Game *game) const;
     QVector <QPair<QString, QMap <QString, QString>>> getItemStatistsics() const;
 };
 
