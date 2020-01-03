@@ -16,6 +16,8 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
         grid->addWidget(&controlsText[i], static_cast<int>(i + 1), 1);
         controlsText[i].setVisible(false);
         controlsText[i].setReadOnly(true);
+        controlsText[i].setFocusPolicy(Qt::NoFocus);
+        controlsText[i].setEnabled(false);
 
         grid->addWidget(&controlsButton[i], static_cast<int>(i + 1), 2);
         controlsButton[i].setVisible(false);
@@ -82,7 +84,6 @@ void ControlsMenu::display() {
             this->controls[i].toString(QKeySequence::NativeText)
         );
         controlsText[i].setVisible(true);
-        controlsText[i].setEnabled(true);
 
         controlsButton[i].setText(game->str.edit);
         controlsButton[i].setVisible(true);
@@ -211,7 +212,6 @@ void ControlsMenu::hide() {
         controlsLabel[i].setVisible(false);
 
         controlsText[i].setVisible(false);
-        controlsText[i].setEnabled(false);
 
         controlsButton[i].setVisible(false);
         controlsButton[i].setEnabled(false);
