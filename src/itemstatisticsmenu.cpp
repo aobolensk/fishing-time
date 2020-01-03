@@ -3,14 +3,17 @@
 
 ItemStatisticsMenu::ItemStatisticsMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
-    grid->addWidget(&statisticsText, 0, 0, 1, 3);
+    grid->addWidget(&statisticsLabel, 0, 1);
+    statisticsLabel.setVisible(false);
+
+    grid->addWidget(&statisticsText, 1, 0, 1, 3);
     statisticsText.setReadOnly(true);
     statisticsText.setVisible(false);
     statisticsText.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     statisticsText.setTextInteractionFlags(Qt::NoTextInteraction);
     statisticsText.setFrameStyle(QFrame::NoFrame);
 
-    grid->addWidget(&backButton, 1, 1);
+    grid->addWidget(&backButton, 2, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -19,13 +22,6 @@ ItemStatisticsMenu::ItemStatisticsMenu(Game *game, QGridLayout *grid) :
 void ItemStatisticsMenu::updateStatistics() {
     QString statText;
     statText += "<table border=\"1\" width=\"100%\" table-layout=\"fixed\">";
-    statText += QString(
-        "<tr>"
-            "<td colspan=\"5\">%1</td>"
-        "</tr>"
-    ).arg(
-        game->str.itemStatistics
-    );
     statText += QString(
         "<tr>"
             "<td align=\"center\">%1</td>"
@@ -101,6 +97,9 @@ void ItemStatisticsMenu::display() {
     this->pre_display();
 
     updateStatistics();
+    statisticsLabel.setVisible(true);
+    statisticsLabel.setText(game->str.itemStatistics);
+
     statisticsText.setVisible(true);
 
     backButton.setText(game->str.back);
@@ -117,6 +116,8 @@ void ItemStatisticsMenu::backFunction() {
 
 void ItemStatisticsMenu::hide() {
     this->pre_hide();
+
+    statisticsLabel.setVisible(false);
 
     statisticsText.setVisible(false);
 

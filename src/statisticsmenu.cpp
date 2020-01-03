@@ -3,19 +3,27 @@
 
 StatisticsMenu::StatisticsMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
-    grid->addWidget(&statisticsText, 0, 0, 1, 3);
+    grid->addWidget(&statisticsLabel, 0, 1);
+    statisticsLabel.setVisible(false);
+
+    grid->addWidget(&statisticsText, 1, 0, 1, 3);
     statisticsText.setReadOnly(true);
     statisticsText.setVisible(false);
     statisticsText.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     statisticsText.setTextInteractionFlags(Qt::NoTextInteraction);
     statisticsText.setFrameStyle(QFrame::NoFrame);
 
-    grid->addWidget(&itemsButton, 1, 0);
+    grid->addWidget(&itemsButton, 2, 0);
     itemsButton.setVisible(false);
     itemsButton.setEnabled(false);
     connect(&itemsButton, SIGNAL(released()), this, SLOT(itemsFunction()));
 
-    grid->addWidget(&backButton, 2, 1);
+    grid->addWidget(&coinsButton, 2, 1);
+    coinsButton.setVisible(false);
+    coinsButton.setEnabled(false);
+    connect(&coinsButton, SIGNAL(released()), this, SLOT(coinsFunction()));
+
+    grid->addWidget(&backButton, 3, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -49,11 +57,19 @@ void StatisticsMenu::display() {
     timerUpdater = connect(&timer, SIGNAL(timeout()), this, SLOT(updateStatistics()));
     timer.start(Config::STATISTICS_UPDATE_PERIOD);
     updateStatistics();
+
+    statisticsLabel.setText(game->str.statistics);
+    statisticsLabel.setVisible(true);
+
     statisticsText.setVisible(true);
 
     itemsButton.setText(game->str.items);
     itemsButton.setVisible(true);
     itemsButton.setEnabled(true);
+
+    coinsButton.setText(game->str.coins);
+    coinsButton.setVisible(true);
+    coinsButton.setEnabled(true);
 
     backButton.setText(game->str.back);
     backButton.setVisible(true);
@@ -72,16 +88,26 @@ void StatisticsMenu::itemsFunction() {
     game->itemStatisticsMenu.display();
 }
 
+void StatisticsMenu::coinsFunction() {
+    this->hide();
+    game->coinStatisticsMenu.display();
+}
+
 void StatisticsMenu::hide() {
     this->pre_hide();
 
     timer.stop();
     disconnect(timerUpdater);
 
+    statisticsLabel.setVisible(false);
+
     statisticsText.setVisible(false);
 
     itemsButton.setVisible(false);
     itemsButton.setEnabled(false);
+
+    coinsButton.setVisible(false);
+    coinsButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

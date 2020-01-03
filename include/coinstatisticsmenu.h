@@ -1,10 +1,10 @@
-#ifndef INCLUDE_ITEMSTATISTICSMENU_H_
-#define INCLUDE_ITEMSTATISTICSMENU_H_
+#ifndef INCLUDE_COINSTATISTICSMENU_H_
+#define INCLUDE_COINSTATISTICSMENU_H_
 #include <QPushButton>
 #include <QTextEdit>
 #include "menu.h"
 
-class ItemStatisticsMenu : public Menu {
+class CoinStatisticsMenu : public Menu {
 private:
     Q_OBJECT
 private:
@@ -15,10 +15,10 @@ private slots:
     void updateStatistics();
     void backFunction() override;
 public:
-    ItemStatisticsMenu(Game *game, QGridLayout *grid);
-    ~ItemStatisticsMenu();
+    CoinStatisticsMenu(Game *game, QGridLayout *grid);
+    ~CoinStatisticsMenu();
     void display() override;
     void hide() override;
 };
 
-#endif  // INCLUDE_ITEMSTATISTICSMENU_H_
+#endif  // INCLUDE_COINSTATISTICSMENU_H_
