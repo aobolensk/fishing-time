@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QProcess>
+#include "aboutmenu.h"
 #include "utils.h"
 
 void FT_ERROR::ft_assert(QString place, QString text) {
@@ -10,6 +11,10 @@ void FT_ERROR::ft_assert(QString place, QString text) {
         QTextStream f(&errorLog);
         f << "Assertion failed at " << place << ": " << text << endl;
         f << ErrorWidget::getStacktrace();
+        f << "-----------------------------------\n"
+            "Version: " TOSTRING(COMMIT_HASH) "\n"
+            "OS: " + AboutMenu::getSystemInfo() + "\n"
+            "Compiler: " + AboutMenu::getCompilerInfo() + "\n";
         qApp->exit(1);
         QStringList newArgs = {
             "--err"
