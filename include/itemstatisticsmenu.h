@@ -8,6 +8,7 @@ class ItemStatisticsMenu : public Menu {
 private:
     Q_OBJECT
 private:
+    QLabel statisticsLabel;
     QTextEdit statisticsText;
     QPushButton backButton;
 private slots:
