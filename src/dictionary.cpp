@@ -113,6 +113,7 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(clicksCount) = "Clicks count";
         SET(coins) = "Coins";
         SET(coinsEarned) = "%1 coins earned";
+        SET(coinStatistics) = "Coin statistics";
         SET(colorTheme) = "Color theme";
         SET(combination) = "Combination";
         SET(commandReturned) = "Command %1 returned %2";
@@ -403,8 +404,9 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         SET(clear) = "Очистить";
         SET(click) = "Нажимай!";
         SET(clicksCount) = "Количество кликов";
-        SET(coins) = "Монет";
+        SET(coins) = "Монеты";
         SET(coinsEarned) = "%1 монет заработано";
+        SET(coinStatistics) = "Статистика по монетам";
         SET(colorTheme) = "Цветовая тема";
         SET(combination) = "Комбинация";
         SET(commandReturned) = "Команда %1 завершилась с кодом %2";

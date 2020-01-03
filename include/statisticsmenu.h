@@ -11,12 +11,14 @@ private:
 private:
     QTextEdit statisticsText;
     QPushButton itemsButton,
+                coinsButton,
                 backButton;
     QTimer timer;
     QMetaObject::Connection timerUpdater;
 private slots:
     void updateStatistics();
     void itemsFunction();
+    void coinsFunction();
     void backFunction() override;
 public:
     StatisticsMenu(Game *game, QGridLayout *grid);

@@ -15,6 +15,11 @@ StatisticsMenu::StatisticsMenu(Game *game, QGridLayout *grid) :
     itemsButton.setEnabled(false);
     connect(&itemsButton, SIGNAL(released()), this, SLOT(itemsFunction()));
 
+    grid->addWidget(&coinsButton, 1, 1);
+    coinsButton.setVisible(false);
+    coinsButton.setEnabled(false);
+    connect(&coinsButton, SIGNAL(released()), this, SLOT(coinsFunction()));
+
     grid->addWidget(&backButton, 2, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
@@ -55,6 +60,10 @@ void StatisticsMenu::display() {
     itemsButton.setVisible(true);
     itemsButton.setEnabled(true);
 
+    coinsButton.setText(game->str.coins);
+    coinsButton.setVisible(true);
+    coinsButton.setEnabled(true);
+
     backButton.setText(game->str.back);
     backButton.setVisible(true);
     backButton.setEnabled(true);
@@ -72,6 +81,11 @@ void StatisticsMenu::itemsFunction() {
     game->itemStatisticsMenu.display();
 }
 
+void StatisticsMenu::coinsFunction() {
+    this->hide();
+    game->coinStatisticsMenu.display();
+}
+
 void StatisticsMenu::hide() {
     this->pre_hide();
 
@@ -82,6 +96,9 @@ void StatisticsMenu::hide() {
 
     itemsButton.setVisible(false);
     itemsButton.setEnabled(false);
+
+    coinsButton.setVisible(false);
+    coinsButton.setEnabled(false);
 
     backButton.setVisible(false);
     backButton.setEnabled(false);

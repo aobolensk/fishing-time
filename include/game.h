@@ -21,6 +21,7 @@
 #include "netsmenu.h"
 #include "statisticsmenu.h"
 #include "itemstatisticsmenu.h"
+#include "coinstatisticsmenu.h"
 #include "usersettingsmenu.h"
 #include "signupmenu.h"
 #include "ratingmenu.h"
@@ -77,6 +78,7 @@ public:
     NetsMenu netsMenu;
     StatisticsMenu statisticsMenu;
     ItemStatisticsMenu itemStatisticsMenu;
+    CoinStatisticsMenu coinStatisticsMenu;
     SignupMenu signupMenu;
     UsersettingsMenu usersettingsMenu;
     RatingMenu ratingMenu;

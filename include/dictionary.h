@@ -43,6 +43,7 @@ public:
             clicksCount,
             coins,
             coinsEarned,
+            coinStatistics,
             colorTheme,
             combination,
             commandReturned,
