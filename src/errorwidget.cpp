@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QProcess>
 #include <QSettings>
+#include "aboutmenu.h"
 #include "config.h"
 #include "errorwidget.h"
 #include "utils.h"
@@ -91,6 +92,10 @@ void ErrorWidget::signalHandler(int signum) {
         QTextStream f(&errorLog);
         f << "Got signal: " << signum << endl;
         f << getStacktrace();
+        f << "-----------------------------------\n"
+            "Version: " TOSTRING(COMMIT_HASH) "\n"
+            "OS: " + AboutMenu::getSystemInfo() + "\n"
+            "Compiler: " + AboutMenu::getCompilerInfo() + "\n";
         qApp->exit(1);
         QStringList newArgs = {
             "--err"
