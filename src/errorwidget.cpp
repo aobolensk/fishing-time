@@ -17,12 +17,7 @@ ErrorWidget::ErrorWidget() :
     overlay.setText(
         "Fishing Time (development build)\n"
         "Version: " TOSTRING(COMMIT_HASH) "\n"
-        "OS: " +
-        QSysInfo::prettyProductName() + " " +
-        QSysInfo::kernelType() + " " +
-        QSysInfo::kernelVersion() + " " +
-        QSysInfo::currentCpuArchitecture() +
-        "\n"
+        "OS: " + AboutMenu::getSystemInfo() + "\n"
     );
     QSettings settings;
     if (!this->restoreGeometry(settings.value("errorWindowGeometry").toByteArray())) {
