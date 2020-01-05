@@ -6,6 +6,9 @@
 #include "utils.h"
 
 int main(int argc, char *argv[]) {
+    QApplication::setOrganizationName("gooddoog");
+    QApplication::setOrganizationDomain("github.com/gooddoog/fishing-time");
+    QApplication::setApplicationName("Fishing Time");
     if (argc == 2 && !strcmp(argv[1], "--help")) {
         qDebug() << "Usage:";
         qDebug() << argv[0] << "      - start the game";
