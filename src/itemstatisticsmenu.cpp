@@ -5,6 +5,7 @@ ItemStatisticsMenu::ItemStatisticsMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
     grid->addWidget(&statisticsLabel, 0, 1);
     statisticsLabel.setVisible(false);
+    statisticsLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     grid->addWidget(&statisticsText, 1, 0, 1, 3);
     statisticsText.setReadOnly(true);
