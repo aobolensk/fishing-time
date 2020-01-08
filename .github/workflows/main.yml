@@ -37,8 +37,11 @@ jobs:
       run: |
         mkdir build
         cd build
-        CC="clang-9" CXX="clang++-9" cmake ..
+        cmake ..
         cmake --build . -- -j
+      env:
+        CC: clang-9
+        CXX: clang++-9
     - name: Run tests
       run: |
         cd build
