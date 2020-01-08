@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QTextEdit>
 #include <deque>
+#include <functional>
 #include "texteditlog.h"
 #include "menu.h"
 

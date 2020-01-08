@@ -1,3 +1,4 @@
+#include <chrono>
 #include <QVector>
 #include "lotterymenu.h"
 #include "game.h"
