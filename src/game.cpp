@@ -168,7 +168,6 @@ void Game::deserialize() {
             }
         }
     }
-    this->controlsMenu.setDefaults();
     this->setFont(this->textFont);
     this->console.setFont(this->textFont);
     this->aboutMenu.setFont(this->textFont);
