@@ -28,7 +28,7 @@ if (MSVC)
     # disabled warning C4127: conditional expression is constant
     if (NOT DEBUG)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /O2")
-    endif (DEBUG)
+    endif (NOT DEBUG)
 else(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -pedantic")
     if (DEBUG)
