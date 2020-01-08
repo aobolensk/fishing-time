@@ -30,13 +30,14 @@ jobs:
     - name: Setup environment
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+        sudo add-apt-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main"
         sudo apt update
-        sudo apt install clang-8 qt5-default
+        sudo apt install clang-9 qt5-default
     - name: Build application
       run: |
         mkdir build
         cd build
-        CC="clang-8" CXX="clang++-8" cmake ..
+        CC="clang-9" CXX="clang++-9" cmake ..
         cmake --build . -- -j
     - name: Run tests
       run: |
