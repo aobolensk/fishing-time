@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < argc; ++i) {
         args.append(argv[i]);
     }
-    parser.process(args);
+    parser.parse(args);
     if (parser.isSet(errorOption)) {
         return ErrorWidget::launchViewer(&argc, &argv);
     }
@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
         return 0;
     }
     QApplication app(argc, argv);
+    parser.process(args);
     signal(SIGSEGV, ErrorWidget::signalHandler);
     QString config = "config.json";
     if (argc >= 2)
