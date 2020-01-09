@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
     QApplication::setOrganizationDomain("github.com/gooddoog/fishing-time");
     QApplication::setApplicationName("Fishing Time");
     QApplication::setApplicationVersion(TOSTRING(COMMIT_HASH));
+    QApplication app(argc, argv);
     QCommandLineParser parser;
     parser.addHelpOption();
     parser.addVersionOption();
@@ -20,21 +21,15 @@ int main(int argc, char *argv[]) {
     parser.addOption(errorOption);
     QCommandLineOption resetOption(QStringList() << "r" << "reset", "Resets game settings.");
     parser.addOption(resetOption);
-    QStringList args;
-    for (int i = 0; i < argc; ++i) {
-        args.append(argv[i]);
-    }
-    parser.parse(args);
+    parser.process(app);
     if (parser.isSet(errorOption)) {
-        return ErrorWidget::launchViewer(&argc, &argv);
+        return ErrorWidget::launchViewer();
     }
     if (parser.isSet(resetOption)) {
         QSettings settings;
         settings.clear();
         return 0;
     }
-    QApplication app(argc, argv);
-    parser.process(args);
     signal(SIGSEGV, ErrorWidget::signalHandler);
     QString config = "config.json";
     QElapsedTimer timer;

@@ -100,8 +100,7 @@ void ErrorWidget::signalHandler(int signum) {
     exit(signum);
 }
 
-int ErrorWidget::launchViewer(int *argc, char***argv) {
-    QApplication app(*argc, *argv);
+int ErrorWidget::launchViewer() {
     QFile errorLog("error.log");
     ErrorWidget error;
     if (errorLog.exists()) {
@@ -114,5 +113,5 @@ int ErrorWidget::launchViewer(int *argc, char***argv) {
         error.setErrorText(buffer);
     }
     error.show();
-    return app.exec();
+    return qApp->exec();
 }
