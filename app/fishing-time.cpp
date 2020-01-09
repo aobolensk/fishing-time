@@ -1,6 +1,8 @@
 #include <QApplication>
+#include <QCommandLineParser>
 #include <QElapsedTimer>
 #include <QSettings>
+#include <QStringList>
 #include <csignal>
 #include "game.h"
 #include "errorwidget.h"
@@ -10,23 +12,23 @@ int main(int argc, char *argv[]) {
     QApplication::setOrganizationName("gooddoog");
     QApplication::setOrganizationDomain("github.com/gooddoog/fishing-time");
     QApplication::setApplicationName("Fishing Time");
-    if (argc == 2 && !strcmp(argv[1], "--help")) {
-        qDebug() << "Usage:";
-        qDebug() << argv[0] << "        - start the game";
-        qDebug() << argv[0] << "--err   - show last error message";
-        qDebug() << argv[0] << "--reset - reset game settings";
-        return 0;
-    }
-    if (argc == 2 && !strcmp(argv[1], "--err")) {
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    QCommandLineOption errorOption(QStringList() << "e" << "err", "Shows last error message.");
+    parser.addOption(errorOption);
+    QCommandLineOption resetOption(QStringList() << "r" << "reset", "Resets game settings.");
+    parser.addOption(resetOption);
+    QApplication app(argc, argv);
+    parser.process(app);
+    if (parser.isSet(errorOption)) {
         return ErrorWidget::launchViewer(&argc, &argv);
     }
-    if (argc == 2 && !strcmp(argv[1], "--reset")) {
+    if (parser.isSet(resetOption)) {
         QSettings settings;
         settings.clear();
         return 0;
     }
     signal(SIGSEGV, ErrorWidget::signalHandler);
-    QApplication app(argc, argv);
     QString config = "config.json";
     if (argc >= 2)
         config = argv[1];
