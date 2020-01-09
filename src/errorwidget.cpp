@@ -103,14 +103,16 @@ void ErrorWidget::signalHandler(int signum) {
 int ErrorWidget::launchViewer(int *argc, char***argv) {
     QApplication app(*argc, *argv);
     QFile errorLog("error.log");
-    errorLog.open(QIODevice::ReadOnly);
-    QTextStream f(&errorLog);
-    QString buffer;
-    buffer = f.readLine();
     ErrorWidget error;
-    error.setErrorLabel(buffer);
-    buffer = f.readAll();
-    error.setErrorText(buffer);
+    if (errorLog.exists()) {
+        errorLog.open(QIODevice::ReadOnly);
+        QTextStream f(&errorLog);
+        QString buffer;
+        buffer = f.readLine();
+        error.setErrorLabel(buffer);
+        buffer = f.readAll();
+        error.setErrorText(buffer);
+    }
     error.show();
     return app.exec();
 }
