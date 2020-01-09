@@ -18,8 +18,11 @@ int main(int argc, char *argv[]) {
     parser.addOption(errorOption);
     QCommandLineOption resetOption(QStringList() << "r" << "reset", "Resets game settings.");
     parser.addOption(resetOption);
-    QApplication app(argc, argv);
-    parser.process(app);
+    QStringList args;
+    for (int i = 0; i < argc; ++i) {
+        args.append(argv[i]);
+    }
+    parser.process(args);
     if (parser.isSet(errorOption)) {
         return ErrorWidget::launchViewer(&argc, &argv);
     }
@@ -28,6 +31,7 @@ int main(int argc, char *argv[]) {
         settings.clear();
         return 0;
     }
+    QApplication app(argc, argv);
     signal(SIGSEGV, ErrorWidget::signalHandler);
     QString config = "config.json";
     if (argc >= 2)
