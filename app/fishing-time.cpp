@@ -37,8 +37,6 @@ int main(int argc, char *argv[]) {
     parser.process(args);
     signal(SIGSEGV, ErrorWidget::signalHandler);
     QString config = "config.json";
-    if (argc >= 2)
-        config = argv[1];
     QElapsedTimer timer;
     timer.start();
     Game game(nullptr, config);
