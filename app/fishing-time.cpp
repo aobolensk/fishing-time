@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     QApplication::setApplicationName("Fishing Time");
     QCommandLineParser parser;
     parser.addHelpOption();
-    QCommandLineOption errorOption(QStringList() << "e" << "err", "Shows last error message.");
+    QCommandLineOption errorOption(QStringList() << "e" << "err" << "error", "Shows last error message.");
     parser.addOption(errorOption);
     QCommandLineOption resetOption(QStringList() << "r" << "reset", "Resets game settings.");
     parser.addOption(resetOption);
