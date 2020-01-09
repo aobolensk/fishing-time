@@ -12,8 +12,10 @@ int main(int argc, char *argv[]) {
     QApplication::setOrganizationName("gooddoog");
     QApplication::setOrganizationDomain("github.com/gooddoog/fishing-time");
     QApplication::setApplicationName("Fishing Time");
+    QApplication::setApplicationVersion(TOSTRING(COMMIT_HASH));
     QCommandLineParser parser;
     parser.addHelpOption();
+    parser.addVersionOption();
     QCommandLineOption errorOption(QStringList() << "e" << "err" << "error", "Shows last error message.");
     parser.addOption(errorOption);
     QCommandLineOption resetOption(QStringList() << "r" << "reset", "Resets game settings.");
