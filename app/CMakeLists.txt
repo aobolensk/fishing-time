@@ -11,6 +11,8 @@ if (NOT DEBUG)
                 WIN32_EXECUTABLE YES
                 LINK_FLAGS "/ENTRY:mainCRTStartup"
             )
+        elseif(CMAKE_COMPILER_IS_GNUCXX)
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows")
         endif (MSVC)
     endif (WIN32)
 endif (NOT DEBUG)
