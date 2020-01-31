@@ -9,12 +9,12 @@ private:
     Q_OBJECT
 private:
     QLabel infoLabel;
-    QPushButton logButton,
-                consoleButton,
-                startButton,
+    QPushButton startButton,
                 settingsButton,
+                consoleButton,
                 creditsButton,
                 ratingButton,
+                logButton,
                 aboutButton,
                 reportButton,
                 exitButton;

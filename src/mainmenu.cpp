@@ -5,29 +5,24 @@
 
 MainMenu::MainMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
-    grid->addWidget(&infoLabel, 0, 2);
-    infoLabel.setVisible(false);
-    infoLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
-    grid->addWidget(&logButton, 2, 2);
-    logButton.setVisible(false);
-    logButton.setEnabled(false);
-    connect(&logButton, SIGNAL(released()), this, SLOT(logFunction()));
-
-    grid->addWidget(&consoleButton, 1, 2);
-    consoleButton.setVisible(false);
-    consoleButton.setEnabled(false);
-    connect(&consoleButton, SIGNAL(released()), this, SLOT(consoleFunction()));
-
     grid->addWidget(&startButton, 0, 1);
     startButton.setVisible(false);
     startButton.setEnabled(false);
     connect(&startButton, SIGNAL(released()), this, SLOT(startFunction()));
 
+    grid->addWidget(&infoLabel, 0, 2);
+    infoLabel.setVisible(false);
+    infoLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
     grid->addWidget(&settingsButton, 1, 1);
     settingsButton.setVisible(false);
     settingsButton.setEnabled(false);
     connect(&settingsButton, SIGNAL(released()), this, SLOT(settingsFunction()));
+
+    grid->addWidget(&consoleButton, 1, 2);
+    consoleButton.setVisible(false);
+    consoleButton.setEnabled(false);
+    connect(&consoleButton, SIGNAL(released()), this, SLOT(consoleFunction()));
 
     grid->addWidget(&creditsButton, 2, 0);
     creditsButton.setVisible(false);
@@ -38,6 +33,11 @@ MainMenu::MainMenu(Game *game, QGridLayout *grid) :
     ratingButton.setVisible(false);
     ratingButton.setEnabled(false);
     connect(&ratingButton, SIGNAL(released()), this, SLOT(ratingFunction()));
+
+    grid->addWidget(&logButton, 2, 2);
+    logButton.setVisible(false);
+    logButton.setEnabled(false);
+    connect(&logButton, SIGNAL(released()), this, SLOT(logFunction()));
 
     grid->addWidget(&aboutButton, 3, 1);
     aboutButton.setVisible(false);
