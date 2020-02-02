@@ -2,6 +2,7 @@
 #include <QVector>
 #include "lotterymenu.h"
 #include "game.h"
+#include "utils.h"
 
 LotteryMenu::LotteryMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
@@ -127,6 +128,8 @@ void LotteryMenu::selectTicketFunction() {
                 comboLabel.setText(comboText);
             });
         }
+    } else {
+        FT_ASSERT(0, "Invalid ticket: " + currentTicketId);
     }
 
     submitButton.setText(game->str.submit);

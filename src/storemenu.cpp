@@ -2,6 +2,7 @@
 #include <QMessageBox>
 #include "storemenu.h"
 #include "game.h"
+#include "utils.h"
 
 StoreMenu::StoreMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
@@ -50,6 +51,7 @@ void StoreMenu::display() {
 
 
 void StoreMenu::addItem(const StoreMenu::Item &item, int &index) {
+    FT_ASSERT(index >= 0 && index < Config::STORE_MAX_ITEMS_COUNT, "Invalid item index");
     itemLabel[index].setText(game->str.getItemName(item.id) + ": " + QString::number(item.price));
     itemLabel[index].setVisible(true);
     itemLabel[index].setEnabled(true);
@@ -109,7 +111,7 @@ void StoreMenu::updateInfo() {
 }
 
 void StoreMenu::buyFunction(int index) {
-    qDebug() << "Buy" << index;
+    FT_ASSERT(index >= 0 && index < Config::STORE_MAX_ITEMS_COUNT, "Invalid item index: " + QString::number(index));
     bool ok;
     int quantity = quantityText[index].text().toInt(&ok, 10);
     if (!ok) {

@@ -2,6 +2,7 @@
 #include <QMessageBox>
 #include "gamemenu.h"
 #include "game.h"
+#include "utils.h"
 
 MarketMenu::MarketMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
@@ -66,6 +67,7 @@ void MarketMenu::updateDeals() {
 }
 
 QString MarketMenu::getDealInfo(int seller) {
+    FT_ASSERT(seller >= 0 && seller < Config::SELLERS_COUNT, "Invalid seller index: " + QString::number(seller));
     if (game->getCurrentMenu() != this) {
         this->updateDeals();
     }
@@ -78,6 +80,7 @@ QString MarketMenu::getDealInfo(int seller) {
 }
 
 void MarketMenu::setQuantity(int index, int quantity) {
+    FT_ASSERT(index >= 0 && index < Config::SELLERS_COUNT, "Invalid seller index: " + QString::number(index));
     this->quantityText[index].setText(QString::number(quantity));
 }
 
