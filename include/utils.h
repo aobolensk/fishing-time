@@ -1,7 +1,5 @@
 #ifndef INCLUDE_UTILS_H_
 #define INCLUDE_UTILS_H_
-#include <QApplication>
-#include "errorwidget.h"
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)

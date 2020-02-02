@@ -1,8 +1,10 @@
+#include <QApplication>
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
 #include <QProcess>
 #include "aboutmenu.h"
+#include "errorwidget.h"
 #include "utils.h"
 
 void FT_ERROR::ft_assert(QString place, QString text) {
