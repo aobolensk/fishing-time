@@ -51,6 +51,12 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
                 QApplication::quit();
             }
         }
+    } else if (event->type() == QEvent::MouseButtonPress) {
+        QMouseEvent *key = static_cast<QMouseEvent *>(event);
+        if (key->buttons() & Qt::BackButton) {
+            // Go to previous menu
+            this->backFunction();
+        }
     }
     return QObject::eventFilter(obj, event);
 }
