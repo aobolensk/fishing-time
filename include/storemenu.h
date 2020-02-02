@@ -19,17 +19,19 @@ private:
             price(price) {
         }
         ~Item() = default;
-    } item[Config::STORE_MAX_ITEMS_COUNT];
+    } itemRecord[Config::STORE_MAX_ITEMS_COUNT];
     QLabel itemLabel[Config::STORE_MAX_ITEMS_COUNT],
            infoLabel;
     QLineEdit quantityText[Config::STORE_MAX_ITEMS_COUNT];
     QPushButton buyButton[Config::STORE_MAX_ITEMS_COUNT],
                 backButton;
+    QMetaObject::Connection itemUpdater[Config::STORE_MAX_ITEMS_COUNT];
 private slots:
     void buyFunction(int index);
     void backFunction() override;
 private:
     void addItem(const Item &item, int &index);
+    void clearTable();
     void updateInfo();
     void updateTable();
 public:
