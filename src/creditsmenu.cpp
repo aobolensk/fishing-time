@@ -25,7 +25,7 @@ void CreditsMenu::display() {
 
     contributorsListLabel.setText(
         "Contributors:\n\n"
-        "gooddoog\n"
+        "aobolensk\n"
         "Abrams19\n"
     );
     contributorsListLabel.setVisible(true);
