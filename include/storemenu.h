@@ -3,26 +3,35 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
-#include <QTableWidget>
 #include "menu.h"
+#include "config.h"
 
 class StoreMenu : public Menu {
 private:
     Q_OBJECT
 private:
-    QLabel selectedItemLabel,
+    struct Item {
+        QString id;
+        qint64 price;
+        Item() = default;
+        Item(const QString &id, qint64 price) :
+            id(id),
+            price(price) {
+        }
+        ~Item() = default;
+    } itemRecord[Config::STORE_MAX_ITEMS_COUNT];
+    QLabel itemLabel[Config::STORE_MAX_ITEMS_COUNT],
            infoLabel;
-    QLineEdit quantityText;
-    QPushButton buyButton,
+    QLineEdit quantityText[Config::STORE_MAX_ITEMS_COUNT];
+    QPushButton buyButton[Config::STORE_MAX_ITEMS_COUNT],
                 backButton;
-    QTableWidget storeTable;
-    QTableWidgetItem idHeader,
-                     nameHeader,
-                     priceHeader;
+    QMetaObject::Connection itemUpdater[Config::STORE_MAX_ITEMS_COUNT];
 private slots:
-    void buyFunction();
+    void buyFunction(int index);
     void backFunction() override;
 private:
+    void addItem(const Item &item, int &index);
+    void clearTable();
     void updateInfo();
     void updateTable();
 public:
