@@ -18,9 +18,14 @@ string(STRIP ${commit_hash} commit_hash)
 add_definitions(-DCOMMIT_HASH=${commit_hash})
 
 if (DEBUG)
-    message(STATUS "Debug mode is enabled")
+    message(STATUS "[-DDEBUG] Debug mode is enabled")
     set (CMAKE_BUILD_TYPE Debug)
 endif (DEBUG)
+
+if (NO_ASSERTS)
+    message(STATUS "[-DNO_ASSERTS] Assertions have been disabled")
+    add_definitions(-DFT_IGNORE_ASSERTS=1)
+endif (NO_ASSERTS)
 
 set(CMAKE_CXX_STANDARD 17)
 if (MSVC)
