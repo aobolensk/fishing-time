@@ -22,6 +22,11 @@ if (DEBUG)
     set (CMAKE_BUILD_TYPE Debug)
 endif (DEBUG)
 
+if (NO_ASSERTS)
+    message(STATUS "[-DNO_ASSERTS] Assertions have been disabled")
+    add_definitions(-DFT_IGNORE_ASSERTS=1)
+endif (NO_ASSERTS)
+
 set(CMAKE_CXX_STANDARD 17)
 if (MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /wd4127")
