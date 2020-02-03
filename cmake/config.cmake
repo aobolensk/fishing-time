@@ -18,7 +18,7 @@ string(STRIP ${commit_hash} commit_hash)
 add_definitions(-DCOMMIT_HASH=${commit_hash})
 
 if (DEBUG)
-    message(STATUS "Debug mode is enabled")
+    message(STATUS "[-DDEBUG] Debug mode is enabled")
     set (CMAKE_BUILD_TYPE Debug)
 endif (DEBUG)
 
