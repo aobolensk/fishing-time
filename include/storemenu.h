@@ -36,7 +36,7 @@ private:
     void updateTable();
 public:
     StoreMenu(Game *game, QGridLayout *grid);
-    ~StoreMenu();
+    ~StoreMenu() override;
     void display() override;
     void hide() override;
 };

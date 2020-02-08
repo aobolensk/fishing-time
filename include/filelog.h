@@ -23,7 +23,7 @@ public:
     virtual void setColor(const QString &color) override;
     virtual void resetColor() override;
     FileLog(Game *game);
-    ~FileLog();
+    ~FileLog() override;
 };
 
 #endif  // INCLUDE_FILELOG_H_

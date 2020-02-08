@@ -14,7 +14,7 @@ private slots:
     void backFunction() override;
 public:
     AboutMenu(Game *game);
-    ~AboutMenu();
+    ~AboutMenu() override;
     void display() override;
     void hide() override;
     QString getAboutInfo();

@@ -38,7 +38,7 @@ private slots:
     void backFunction() override;
 public:
     SettingsMenu(Game *game, QGridLayout *grid);
-    ~SettingsMenu();
+    ~SettingsMenu() override;
     void display() override;
     void hide() override;
 };

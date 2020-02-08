@@ -25,7 +25,7 @@ private slots:
     void backFunction() override;
 public:
     NetsMenu(Game *game, QGridLayout *grid);
-    ~NetsMenu();
+    ~NetsMenu() override;
     void display() override;
     void hide() override;
     void foldNets();

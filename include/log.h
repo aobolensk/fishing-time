@@ -22,7 +22,7 @@ public:
     virtual void setColor(const QString &color) = 0;
     virtual void resetColor() = 0;
     Log(Game *game);
-    ~Log() = default;
+    virtual ~Log() = default;
 };
 
 #endif  // INCLUDE_LOG_H_

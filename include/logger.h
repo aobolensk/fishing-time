@@ -28,7 +28,7 @@ public:
     void error(const QString &message);
 public:
     Logger(Game *game = nullptr);
-    ~Logger() = default;
+    ~Logger() override = default;
     void display() override;
     void hide() override;
     void setFile(const QString &filePath);

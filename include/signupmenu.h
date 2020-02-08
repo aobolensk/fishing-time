@@ -23,7 +23,7 @@ private slots:
     void backFunction() override;
 public:
     SignupMenu(Game *game, QGridLayout *grid);
-    ~SignupMenu();
+    ~SignupMenu() override;
     void display() override;
     void hide() override;
 };

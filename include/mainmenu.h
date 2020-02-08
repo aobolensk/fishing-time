@@ -31,7 +31,7 @@ private slots:
     void exitFunction();
 public:
     MainMenu(Game *game, QGridLayout *grid);
-    ~MainMenu();
+    ~MainMenu() override;
     void display() override;
     void hide() override;
 };

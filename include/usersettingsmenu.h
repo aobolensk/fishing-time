@@ -26,7 +26,7 @@ private slots:
     void backFunction() override;
 public:
     UsersettingsMenu(Game *game, QGridLayout *grid);
-    ~UsersettingsMenu();
+    ~UsersettingsMenu() override;
     void display() override;
     void hide() override;
 };

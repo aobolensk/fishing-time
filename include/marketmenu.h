@@ -3,6 +3,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QTimer>
 #include "menu.h"
 #include "config.h"
 
@@ -34,7 +35,7 @@ public:
     void setQuantity(int index, int quantity);
 public:
     MarketMenu(Game *game, QGridLayout *grid);
-    ~MarketMenu();
+    ~MarketMenu() override;
     QString getDealInfo(int seller);
     void display() override;
     void hide() override;

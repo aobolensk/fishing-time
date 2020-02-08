@@ -15,7 +15,7 @@ private slots:
     void backFunction() override;
 public:
     CreditsMenu(Game *game, QGridLayout *grid);
-    ~CreditsMenu();
+    ~CreditsMenu() override;
     void display() override;
     void hide() override;
 };

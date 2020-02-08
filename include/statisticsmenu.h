@@ -24,7 +24,7 @@ private slots:
     void backFunction() override;
 public:
     StatisticsMenu(Game *game, QGridLayout *grid);
-    ~StatisticsMenu();
+    ~StatisticsMenu() override;
     void display() override;
     void hide() override;
 };

@@ -1,5 +1,6 @@
 #ifndef INCLUDE_COINSTATISTICSMENU_H_
 #define INCLUDE_COINSTATISTICSMENU_H_
+#include <QLabel>
 #include <QPushButton>
 #include <QTextEdit>
 #include "menu.h"
@@ -16,7 +17,7 @@ private slots:
     void backFunction() override;
 public:
     CoinStatisticsMenu(Game *game, QGridLayout *grid);
-    ~CoinStatisticsMenu();
+    ~CoinStatisticsMenu() override;
     void display() override;
     void hide() override;
 };

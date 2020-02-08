@@ -25,7 +25,7 @@ private slots:
     void backFunction() override;
 public:
     RatingMenu(Game *game, QGridLayout *grid);
-    ~RatingMenu();
+    ~RatingMenu() override;
     void display() override;
     void hide() override;
 };

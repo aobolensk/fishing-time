@@ -29,7 +29,7 @@ private slots:
     void backFunction() override;
 public:
     LotteryMenu(Game *game, QGridLayout *grid);
-    ~LotteryMenu();
+    ~LotteryMenu() override;
     void display() override;
     void hide() override;
 };

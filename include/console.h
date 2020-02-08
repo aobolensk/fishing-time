@@ -54,7 +54,7 @@ private slots:
     void jumpToBottomFunction();
 public:
     Console(Game *game = nullptr);
-    ~Console() = default;
+    ~Console() override = default;
     void display() override;
     void hide() override;
 };

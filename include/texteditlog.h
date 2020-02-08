@@ -20,7 +20,7 @@ public:
     virtual void setColor(const QString &color) override;
     virtual void resetColor() override;
     TextEditLog(Game *game, QTextEdit *logField);
-    ~TextEditLog() = default;
+    ~TextEditLog() override = default;
 };
 
 #endif  // INCLUDE_TEXTEDITLOG_H_
