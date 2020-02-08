@@ -2,8 +2,8 @@
 #include "inventorymenu.h"
 #include "game.h"
 
-InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid) :
-        Menu(game, grid),
+InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid_, bool popup) :
+        Menu(game, grid_, popup),
         fishTable(game),
         othersTable(game) {
     grid->addWidget(&descriptionLabel, 0, 1);
@@ -40,10 +40,12 @@ InventoryMenu::InventoryMenu(Game *game, QGridLayout *grid) :
     othersTable.setEnabled(false);
     othersTable.horizontalHeader()->setStretchLastSection(true);
 
-    grid->addWidget(&backButton, 5, 1);
-    backButton.setVisible(false);
-    backButton.setEnabled(false);
-    connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
+    if (!this->floating) {
+        grid->addWidget(&backButton, 5, 1);
+        backButton.setVisible(false);
+        backButton.setEnabled(false);
+        connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
+    }
 }
 
 void InventoryMenu::updateInventoryTables() {
@@ -114,9 +116,11 @@ void InventoryMenu::display() {
     othersTable.setVisible(true);
     othersTable.setEnabled(true);
 
-    backButton.setText(game->str.back);
-    backButton.setVisible(true);
-    backButton.setEnabled(true);
+    if (!floating) {
+        backButton.setText(game->str.back);
+        backButton.setVisible(true);
+        backButton.setEnabled(true);
+    }
 
     displayed = true;
 }
@@ -141,8 +145,10 @@ void InventoryMenu::hide() {
     othersTable.setVisible(false);
     othersTable.setEnabled(false);
 
-    backButton.setVisible(false);
-    backButton.setEnabled(false);
+    if (!floating) {
+        backButton.setVisible(false);
+        backButton.setEnabled(false);
+    }
 
     displayed = false;
 }

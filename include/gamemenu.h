@@ -4,7 +4,7 @@
 #include <QPushButton>
 #include <QTableWidget>
 #include "menu.h"
-#include "popupinventorymenu.h"
+#include "inventorymenu.h"
 
 class GameMenu : public Menu {
 private:
@@ -23,7 +23,7 @@ private:
                 locationButton;
     QLabel infoLabel,
            fishLabel;
-    PopUpInventoryMenu *popUpInventoryTable;
+    InventoryMenu *popUpInventoryTable;
     QTableWidgetItem nameHeader,
                      quantityHeader;
 protected:
@@ -47,9 +47,9 @@ private:
     void hideButtons();
 public:
     void updateInfo();
-    PopUpInventoryMenu &getPopUpInventoryTable();
+    InventoryMenu &getPopUpInventoryTable();
 public:
-    GameMenu(Game *game, QGridLayout *grid, PopUpInventoryMenu *inv);
+    GameMenu(Game *game, QGridLayout *grid, InventoryMenu *inv);
     ~GameMenu();
     void display() override;
     void hide() override;

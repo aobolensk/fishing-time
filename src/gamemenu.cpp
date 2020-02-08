@@ -4,7 +4,7 @@
 #include "gamemenu.h"
 #include "game.h"
 
-GameMenu::GameMenu(Game *game, QGridLayout *grid, PopUpInventoryMenu *inv) :
+GameMenu::GameMenu(Game *game, QGridLayout *grid, InventoryMenu *inv) :
         Menu(game, grid),
         popUpInventoryTable(inv) {
     QSettings settings;
@@ -336,7 +336,7 @@ void GameMenu::updateInfo() {
     }
 }
 
-PopUpInventoryMenu &GameMenu::getPopUpInventoryTable() {
+InventoryMenu &GameMenu::getPopUpInventoryTable() {
     return *popUpInventoryTable;
 }
 

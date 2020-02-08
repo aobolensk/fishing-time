@@ -10,7 +10,6 @@
 #include <random>
 #include "mainmenu.h"
 #include "loginmenu.h"
-#include "popupinventorymenu.h"
 #include "gamemenu.h"
 #include "marketmenu.h"
 #include "lotterymenu.h"
@@ -67,7 +66,7 @@ public:
     QVector <Location> locations;
     MainMenu mainMenu;
     LoginMenu loginMenu;
-    PopUpInventoryMenu popUpInventoryMenu;
+    InventoryMenu popUpInventoryMenu;
     GameMenu gameMenu;
     MarketMenu marketMenu;
     LotteryMenu lotteryMenu;
