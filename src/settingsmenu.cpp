@@ -21,10 +21,10 @@ SettingsMenu::SettingsMenu(Game *game, QGridLayout *grid) :
 
     grid->addWidget(&languageSelector, 2, 1);
     for (int i = 0; i < game->str.languages.size(); ++i) {
-        languageSelector.addItem(game->str.languages[(Language)i].first + " (" +
-            QString::number(game->str.getNumberOfEntries((Language)i)) + "/" +
+        languageSelector.addItem(game->str.languages[static_cast<Language>(i)].first + " (" +
+            QString::number(game->str.getNumberOfEntries(static_cast<Language>(i))) + "/" +
             QString::number(game->str.getTotalNumberOfEntries()) + " -> " +
-            QString::number(game->str.getReadiness((Language)i)) + "%) ready");
+            QString::number(game->str.getReadiness(static_cast<Language>(i))) + "%) ready");
     }
     languageSelector.setVisible(false);
     languageSelector.setEnabled(false);
@@ -97,13 +97,13 @@ void SettingsMenu::display() {
     languageLabel.setText(game->str.language);
     languageLabel.setVisible(true);
 
-    languageSelector.setCurrentIndex((int)game->activeLanguage);
+    languageSelector.setCurrentIndex(static_cast<int>(game->activeLanguage));
     languageSelector.setVisible(true);
     languageSelector.setEnabled(true);
     languageUpdater = connect(&languageSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
         [this](int index) {
             this->hide();
-            this->game->str.setLanguage(this->game->activeLanguage = (Language)index);
+            this->game->str.setLanguage(this->game->activeLanguage = static_cast<Language>(index));
             this->display();
         });
 
@@ -112,13 +112,13 @@ void SettingsMenu::display() {
 
     loggerLevelSelector.addItem(game->str.loggerLevelRelease);
     loggerLevelSelector.addItem(game->str.loggerLevelDebug);
-    loggerLevelSelector.setCurrentIndex((int)game->loggerLevel);
+    loggerLevelSelector.setCurrentIndex(static_cast<int>(game->loggerLevel));
     loggerLevelSelector.setVisible(true);
     loggerLevelSelector.setEnabled(true);
     loggerLevelUpdater = connect(&loggerLevelSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
     [this](int index) {
         if (index != -1) {
-            this->game->loggerLevel = (LoggerLevel)index;
+            this->game->loggerLevel = static_cast<LoggerLevel>(index);
         }
     });
 

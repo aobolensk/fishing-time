@@ -300,7 +300,7 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             if (args.size() == 1) {
                 log.info(game->str.loggerLevel + ": " +
-                    QString::number((int)game->loggerLevel));
+                    QString::number(static_cast<int>(game->loggerLevel)));
             } else if (args.size() == 2) {
                 args[1] = args[1].toLower();
                 if (args[1] == "debug") {
@@ -325,7 +325,7 @@ void Console::registerCommands() {
         [&](QStringList &args) -> int {
             if (args.size() == 1) {
                 log.info(game->str.language + ": " +
-                    QString::number((int)game->activeLanguage));
+                    QString::number(static_cast<int>(game->activeLanguage)));
             } else if (args.size() == 2) {
                 args[1] = args[1].toLower();
                 if (args[1] == "en") {
@@ -354,7 +354,7 @@ void Console::registerCommands() {
             }
             if (args.size() == 1) {
                 log.info(game->str.location + ": " +
-                    QString::number((int)game->activeLanguage));
+                    QString::number(static_cast<int>(game->activeLanguage)));
             } else if (args.size() == 2) {
                 args[1] = args[1].toLower();
                 if (args[1] == "volga") {
@@ -386,7 +386,7 @@ void Console::registerCommands() {
                     game->str.privilegeLevelCommon);
             } else {
                 log.write(game->str.yourPrivilegeLevel + ": ");
-                switch((PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel()) {
+                switch(static_cast<PrivilegeLevel>(game->users[game->activeUser].getPrivilegeLevel())) {
                 case PrivilegeLevel::Common:
                     log.writeln(game->str.privilegeLevelCommon);
                     break;
@@ -446,14 +446,14 @@ void Console::registerCommands() {
                 log.error(game->str.youAreNotLoggedIn);
                 return 1;
             }
-            switch ((PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel()) {
+            switch (static_cast<PrivilegeLevel>(game->users[game->activeUser].getPrivilegeLevel())) {
             case PrivilegeLevel::Common:
-                game->users[game->activeUser].setPrivilegeLevel((int)PrivilegeLevel::Super);
+                game->users[game->activeUser].setPrivilegeLevel(static_cast<int>(PrivilegeLevel::Super));
                 log.writeln(game->str.yourPrivilegeLevel + ": " +
                     game->str.privilegeLevelSuper);
                 break;
             case PrivilegeLevel::Super:
-                game->users[game->activeUser].setPrivilegeLevel((int)PrivilegeLevel::Common);
+                game->users[game->activeUser].setPrivilegeLevel(static_cast<int>(PrivilegeLevel::Common));
                 log.writeln(game->str.yourPrivilegeLevel + ": " +
                     game->str.privilegeLevelCommon);
                 break;

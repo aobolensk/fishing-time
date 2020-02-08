@@ -51,13 +51,13 @@ static int hash(int x) {
 }
 
 void MarketMenu::updateDeals() {
-    int currentSeed = QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0)));
+    int currentSeed = static_cast<int>(QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0))));
     if (seed == currentSeed) {
         qDebug() << "Seed is not changed";
         return;
     }
     seed = currentSeed;
-    std::mt19937 randGen(seed + hash(game->activeLocation + 1));
+    std::mt19937 randGen(static_cast<unsigned>(seed + hash(game->activeLocation + 1)));
     qDebug() << "Random seed:" << seed + hash(game->activeLocation + 1);
     std::uniform_int_distribution<> gen(0, game->str.fishIds.size() - 2);
     for (int i = 0; i < Config::SELLERS_COUNT; ++i) {

@@ -137,7 +137,8 @@ int Console::parseCommand(QStringList &args) {
     int retCode = 0;
     if (commandIterator != commands.end()) {
         if ((game->activeUser == -1 && commandIterator->privilege <= PrivilegeLevel::Common) ||
-            (game->activeUser != -1 && commandIterator->privilege <= (PrivilegeLevel)game->users[game->activeUser].getPrivilegeLevel())) {
+            (game->activeUser != -1 && commandIterator->privilege <=
+                                       static_cast<PrivilegeLevel>(game->users[game->activeUser].getPrivilegeLevel()))) {
             retCode = commandIterator->function(args);
             if (retCode != 0) {
                 log.error(game->str.commandReturned.arg(
