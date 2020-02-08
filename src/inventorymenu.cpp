@@ -67,6 +67,7 @@ void InventoryMenu::updateInventoryTables() {
         QTableWidgetItem *cell = table->item(*i, 0);
         if (!cell) {
             cell = new QTableWidgetItem;
+            cell->setTextAlignment(Qt::AlignCenter);
             table->setItem(*i, 0, cell);
         }
         cell->setText(game->str.getItemName(it.key()));
@@ -74,6 +75,7 @@ void InventoryMenu::updateInventoryTables() {
         cell = table->item(*i, 1);
         if (!cell) {
             cell = new QTableWidgetItem;
+            cell->setTextAlignment(Qt::AlignCenter);
             table->setItem(*i, 1, cell);
         }
         cell->setText(QString::number(it.value()));
