@@ -63,13 +63,13 @@ void AppearanceSettingsMenu::display() {
 
     inventoryTypeSelector.addItem(game->str.popUp);
     inventoryTypeSelector.addItem(game->str.builtIn);
-    inventoryTypeSelector.setCurrentIndex((int)game->inventoryType);
+    inventoryTypeSelector.setCurrentIndex(static_cast<int>(game->inventoryType));
     inventoryTypeSelector.setVisible(true);
     inventoryTypeSelector.setEnabled(true);
     inventoryTypeUpdater = connect(&inventoryTypeSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
     [this](int index) {
         if (index != -1) {
-            this->game->inventoryType = (InventoryType)index;
+            this->game->inventoryType = static_cast<InventoryType>(index);
         }
     });
 
@@ -85,13 +85,13 @@ void AppearanceSettingsMenu::display() {
 
     colorThemeSelector.addItem(game->str.lightTheme);
     colorThemeSelector.addItem(game->str.darkTheme);
-    colorThemeSelector.setCurrentIndex((int)game->colorTheme);
+    colorThemeSelector.setCurrentIndex(static_cast<int>(game->colorTheme));
     colorThemeSelector.setVisible(true);
     colorThemeSelector.setEnabled(true);
     colorThemeUpdater = connect(&colorThemeSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
     [this](int index) {
         if (index != -1) {
-            this->game->colorTheme = (ColorTheme)index;
+            this->game->colorTheme = static_cast<ColorTheme>(index);
             this->game->cfg.applyColorTheme(this->game->colorTheme);
         }
     });

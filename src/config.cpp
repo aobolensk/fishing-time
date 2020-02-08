@@ -17,16 +17,16 @@ const QColor Config::DARK_THEME_TEXT_COLOR = QColor(240, 240, 240);
 void Config::deserialize(const QVariantMap &map) {
     if (isReady)
         return;
-    game->activeLanguage = (Language)map["language"].toInt();
+    game->activeLanguage = static_cast<Language>(map["language"].toInt());
     game->autoSavePeriod = map["autoSavePeriod"].toInt();
-    game->inventoryType = (InventoryType)map["inventoryType"].toInt();
-    game->colorTheme = (ColorTheme)map["colorTheme"].toInt();
-    game->loggerLevel = (LoggerLevel)map["loggerLevel"].toInt();
+    game->inventoryType = static_cast<InventoryType>(map["inventoryType"].toInt());
+    game->colorTheme = static_cast<ColorTheme>(map["colorTheme"].toInt());
+    game->loggerLevel = static_cast<LoggerLevel>(map["loggerLevel"].toInt());
     if (map["logFile"].toString().size() > 0) {
         game->logFile = map["logFile"].toString();
     }
     if (map.constFind("showBgImages") != map.cend()) {
-        game->showBgImages = (bool)map["showBgImages"].toInt();
+        game->showBgImages = static_cast<bool>(map["showBgImages"].toInt());
     }
     game->textFont.fromString(map["textFont"].toString());
     QVariantMap controls = map["controls"].toJsonObject().toVariantMap();
@@ -40,13 +40,13 @@ void Config::deserialize(const QVariantMap &map) {
 QJsonObject Config::serialize() const {
     QJsonObject jsonObj;
     jsonObj["fishingtime_object"] = "config";
-    jsonObj["language"] = (int)game->activeLanguage;
+    jsonObj["language"] = static_cast<int>(game->activeLanguage);
     jsonObj["autoSavePeriod"] = game->autoSavePeriod;
-    jsonObj["inventoryType"] = (int)game->inventoryType;
-    jsonObj["colorTheme"] = (int)game->colorTheme;
-    jsonObj["loggerLevel"] = (int)game->loggerLevel;
+    jsonObj["inventoryType"] = static_cast<int>(game->inventoryType);
+    jsonObj["colorTheme"] = static_cast<int>(game->colorTheme);
+    jsonObj["loggerLevel"] = static_cast<int>(game->loggerLevel);
     jsonObj["logFile"] = game->logFile;
-    jsonObj["showBgImages"] = (int)game->showBgImages;
+    jsonObj["showBgImages"] = static_cast<int>(game->showBgImages);
     jsonObj["textFont"] = game->font().toString();
     QVariantMap controls;
     controls["hideUIElements"] = game->controlsMenu.get(Controls::HIDE_UI_ELEMENTS)[0];
@@ -89,5 +89,5 @@ void Config::applyColorTheme(ColorTheme theme) {
     game->console.setFont(game->textFont);
     game->aboutMenu.setFont(game->textFont);
     game->gameMenu.getPopUpInventoryTable().setFont(game->textFont);
-    game->logger.info("Applied theme: " + QString::number((int)theme));
+    game->logger.info("Applied theme: " + QString::number(static_cast<int>(theme)));
 }

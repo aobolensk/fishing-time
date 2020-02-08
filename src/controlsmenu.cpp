@@ -8,7 +8,7 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
     controlsTitleLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     controlsTitleLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    for (size_t i = 0; i < (size_t)Controls::CONTROLS_N; ++i) {
+    for (size_t i = 0; i < static_cast<size_t>(Controls::CONTROLS_N); ++i) {
         grid->addWidget(&controlsLabel[i], static_cast<int>(i + 1), 0);
         controlsLabel[i].setVisible(false);
         controlsLabel[i].setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -28,7 +28,7 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
         resetButton[i].setEnabled(false);
     }
 
-    grid->addWidget(&backButton, (size_t)Controls::CONTROLS_N + 1, 1);
+    grid->addWidget(&backButton, static_cast<size_t>(Controls::CONTROLS_N) + 1, 1);
     backButton.setVisible(false);
     backButton.setEnabled(false);
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
@@ -61,8 +61,8 @@ void ControlsMenu::display() {
     controlsTitleLabel.setText(game->str.controls);
     controlsTitleLabel.setVisible(true);
 
-    for (size_t i = 0; i < (size_t)Controls::CONTROLS_N; ++i) {
-        switch ((Controls)i) {
+    for (size_t i = 0; i < static_cast<size_t>(Controls::CONTROLS_N); ++i) {
+        switch (static_cast<Controls>(i)) {
         case Controls::HIDE_UI_ELEMENTS:
             controlsLabel[i].setText(game->str.hideUIElements);
             break;
@@ -90,11 +90,11 @@ void ControlsMenu::display() {
         controlsButton[i].setEnabled(true);
         connect(&controlsButton[i], static_cast<void(QPushButton::*)()>(&QPushButton::released),
             [this, i]() {
-                if (currentControl != (Controls)i) {
+                if (currentControl != static_cast<Controls>(i)) {
                     if (currentControl != Controls::CONTROLS_N) {
-                        controlsButton[(int)currentControl].setText(game->str.edit);
+                        controlsButton[static_cast<int>(currentControl)].setText(game->str.edit);
                     }
-                    currentControl = (Controls)i;
+                    currentControl = static_cast<Controls>(i);
                     controlsButton[i].setText(game->str.set);
                 } else {
                     currentControl = Controls::CONTROLS_N;
@@ -109,8 +109,8 @@ void ControlsMenu::display() {
         connect(&resetButton[i], static_cast<void(QPushButton::*)()>(&QPushButton::released),
             [this, i]() {
                 controls[i] = defaultControls[i];
-                controlsText[(size_t)i].setText(controls[i].toString(QKeySequence::NativeText));
-                for (size_t j = 0; j < (size_t)Controls::CONTROLS_N; ++j) {
+                controlsText[static_cast<size_t>(i)].setText(controls[i].toString(QKeySequence::NativeText));
+                for (size_t j = 0; j < static_cast<size_t>(Controls::CONTROLS_N); ++j) {
                     if (i == j) continue;
                     if (controls[j] == controls[i]) {
                         controls[j] = defaultControls[j];
@@ -119,7 +119,7 @@ void ControlsMenu::display() {
                     }
                 }
                 if (currentControl != Controls::CONTROLS_N) {
-                    controlsButton[(size_t)currentControl].setText(game->str.edit);
+                    controlsButton[static_cast<size_t>(currentControl)].setText(game->str.edit);
                     currentControl = Controls::CONTROLS_N;
                 }
             }
@@ -161,8 +161,8 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
             QKeySequence seq = getKeySequence(key);
             if (seq[0]) {
                 bool set = true;
-                for (size_t i = 0; i < (size_t)Controls::CONTROLS_N; ++i) {
-                    if (i == (size_t)currentControl) continue;
+                for (size_t i = 0; i < static_cast<size_t>(Controls::CONTROLS_N); ++i) {
+                    if (i == static_cast<size_t>(currentControl)) continue;
                     if (seq == controls[i]) {
                         if (controls[i] == defaultControls[i]) {
                             set = false;
@@ -175,10 +175,10 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
                 }
                 if (set) {
                     QString keyText = seq.toString(QKeySequence::NativeText);
-                    controls[(size_t)currentControl] = seq;
-                    controlsText[(size_t)currentControl].setText(keyText);
+                    controls[static_cast<size_t>(currentControl)] = seq;
+                    controlsText[static_cast<size_t>(currentControl)].setText(keyText);
                 }
-                controlsButton[(size_t)currentControl].setText(game->str.edit);
+                controlsButton[static_cast<size_t>(currentControl)].setText(game->str.edit);
                 currentControl = Controls::CONTROLS_N;
             }
         }
@@ -187,15 +187,15 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
 }
 
 QKeySequence ControlsMenu::get(Controls control) const {
-    return controls[(size_t)control];
+    return controls[static_cast<size_t>(control)];
 }
 
 void ControlsMenu::setDefault(Controls control, int key) {
-    defaultControls[(size_t)control] = QKeySequence(key);
+    defaultControls[static_cast<size_t>(control)] = QKeySequence(key);
 }
 
 void ControlsMenu::set(Controls control, int key) {
-    controls[(size_t)control] = QKeySequence(key);
+    controls[static_cast<size_t>(control)] = QKeySequence(key);
 }
 
 void ControlsMenu::backFunction() {
@@ -208,7 +208,7 @@ void ControlsMenu::hide() {
 
     controlsTitleLabel.setVisible(false);
 
-    for (size_t i = 0; i < (size_t)Controls::CONTROLS_N; ++i) {
+    for (size_t i = 0; i < static_cast<size_t>(Controls::CONTROLS_N); ++i) {
         controlsLabel[i].setVisible(false);
 
         controlsText[i].setVisible(false);

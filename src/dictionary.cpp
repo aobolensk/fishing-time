@@ -54,7 +54,7 @@ Dictionary::Dictionary(Game *game) :
 
         {
     for (int i = languages.count() - 1; i >= 0; --i)
-        this->setLanguage((Language)i, true);
+        this->setLanguage(static_cast<Language>(i), true);
     numberOfStrings = updatesCount;
     if (getReadiness(Language::English) != 100.)
         throw std::logic_error("Default language (English) does not contain all necessary translations. "
@@ -70,7 +70,7 @@ const QString &Dictionary::getItemName(const QString &itemId) const {
 
 
 double Dictionary::getReadiness(Language l) {
-    return (double)getNumberOfEntries(l) / getTotalNumberOfEntries() * 100.;
+    return static_cast<double>(getNumberOfEntries(l)) / getTotalNumberOfEntries() * 100.;
 }
 
 int Dictionary::getNumberOfEntries(Language l) {

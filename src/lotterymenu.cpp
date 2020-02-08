@@ -143,7 +143,7 @@ void LotteryMenu::submitFunction() {
     }
     QVector <int> answer(Config::LOTTERY_BUTTONS_COUNT);
     std::iota(answer.begin(), answer.end(), 1);
-    std::mt19937 rng(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+    std::mt19937 rng(static_cast<unsigned>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
     std::shuffle(answer.begin(), answer.end(), rng);
     answer.resize(Config::LOTTERY_NEED_BUTTONS_COUNT);
     std::sort(answer.begin(), answer.end());
