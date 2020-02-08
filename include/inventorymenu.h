@@ -22,7 +22,7 @@ private:
 private slots:
     void backFunction() override;
 public:
-    InventoryMenu(Game *game, QGridLayout *grid);
+    InventoryMenu(Game *game, QGridLayout *grid, bool popup);
     ~InventoryMenu();
     void updateInventoryTables();
     void display() override;
