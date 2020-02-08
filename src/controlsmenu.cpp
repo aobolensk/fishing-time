@@ -3,8 +3,6 @@
 
 ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
-    this->setDefaults();
-
     grid->addWidget(&controlsTitleLabel, 0, 1);
     controlsTitleLabel.setVisible(false);
     controlsTitleLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);

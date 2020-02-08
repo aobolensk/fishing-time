@@ -172,6 +172,7 @@ void Game::deserialize() {
     this->console.setFont(this->textFont);
     this->aboutMenu.setFont(this->textFont);
     this->gameMenu.getPopUpInventoryTable().setFont(this->textFont);
+    this->controlsMenu.setDefaults();
     str.setLanguage(activeLanguage);
     setAutoSavePeriod(autoSavePeriod);
     this->cfg.applyColorTheme(colorTheme);
