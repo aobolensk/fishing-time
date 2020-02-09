@@ -21,21 +21,24 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
         QKeyEvent *key = static_cast<QKeyEvent *>(event);
         QKeySequence seq = game->controlsMenu.getKeySequence(key);
         qDebug() << typeid(*this).name() << "->" << key->key();
+        auto menuCheck = [&]() {
+            return this != &game->controlsMenu || !game->controlsMenu.isInEditingMode();
+        };
         if (seq == game->controlsMenu.get(Controls::GO_TO_PREVIOUS_MENU)) {
             // Go to previous menu
-            if (this != &game->controlsMenu) {
+            if (menuCheck()) {
                 this->backFunction();
             }
         } else if (seq == game->controlsMenu.get(Controls::TOGGLE_FULLSCREEN_MODE)) {
             // Toggle fullscreen mode
-            if (this != &game->controlsMenu) {
+            if (menuCheck()) {
                 game->window()->setWindowState(
                     game->window()->windowState() ^ Qt::WindowFullScreen
                 );
             }
         } else if (seq == game->controlsMenu.get(Controls::HIDE_UI_ELEMENTS)) {
             // Hide UI elements
-            if (this != &game->controlsMenu) {
+            if (menuCheck()) {
                 if (this->displayed) {
                     this->hide();
                     game->installEventFilter(this);
@@ -46,7 +49,7 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
             }
         } else if (seq == game->controlsMenu.get(Controls::EXIT_FROM_THE_GAME)) {
             // Exit from the game
-            if (this != &game->controlsMenu) {
+            if (menuCheck()) {
                 game->hideAll();
                 QApplication::quit();
             }

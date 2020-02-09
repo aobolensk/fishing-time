@@ -36,6 +36,7 @@ public:
     void setDefault(Controls control, int key);
     void set(Controls control, int key);
     void setDefaults();
+    bool isInEditingMode();
 public:
     ControlsMenu(Game *game, QGridLayout *grid);
     ~ControlsMenu();

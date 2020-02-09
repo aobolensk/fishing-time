@@ -181,6 +181,7 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
                 controlsButton[static_cast<size_t>(currentControl)].setText(game->str.edit);
                 currentControl = Controls::CONTROLS_N;
             }
+            return false;
         }
     }
     return Menu::eventFilter(obj, event);
@@ -201,6 +202,10 @@ void ControlsMenu::set(Controls control, int key) {
 void ControlsMenu::backFunction() {
     this->hide();
     game->settingsMenu.display();
+}
+
+bool ControlsMenu::isInEditingMode() {
+    return currentControl != Controls::CONTROLS_N;
 }
 
 void ControlsMenu::hide() {
