@@ -15,7 +15,7 @@ namespace FT_ERROR {
         FT_ERROR::ft_assert(__FILE__ ":" TOSTRING(__LINE__), text); \
     }
 #else
-#define FT_ASSERT(expr, text)
+#define FT_ASSERT(expr, text) ((void) (expr))
 #endif  // FT_IGNORE_ASSERTS
 
 #endif  // INCLUDE_UTILS_H_
