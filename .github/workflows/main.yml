@@ -53,7 +53,7 @@ jobs:
     - name: Install Qt
       uses: aobolensk/install-qt-action@v2
       with:
-        version: 5.14.0
+        version: 5.14.1
         arch: win64_msvc2017_64
     - name: Build application
       run: |
@@ -76,7 +76,7 @@ jobs:
     - name: Install Qt
       uses: aobolensk/install-qt-action@v2
       with:
-        version: 5.14.0
+        version: 5.14.1
         arch: win64_mingw73
     - name: Build application
       run: |
