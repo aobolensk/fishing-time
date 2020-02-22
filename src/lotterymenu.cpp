@@ -138,7 +138,7 @@ void LotteryMenu::selectTicketFunction() {
 }
 
 void LotteryMenu::submitFunction() {
-    if (combo.size() != 7) {
+    if (combo.size() != Config::LOTTERY_NEED_BUTTONS_COUNT) {
         return;
     }
     QVector <int> answer(Config::LOTTERY_BUTTONS_COUNT);
@@ -167,9 +167,9 @@ void LotteryMenu::submitFunction() {
     }
     int reward = 0;
     if (currentTicketId == "ticket.basic") {
-        reward = matchings * 100;
+        reward = matchings * Config::LOTTERY_BASIC_TICKET_COEFFICIENT;
     } else if (currentTicketId == "ticket.rare") {
-        reward = matchings * 1000;
+        reward = matchings * Config::LOTTERY_RARE_TICKET_COEFFICIENT;
     }
     comboLabel.setText(comboLabel.text() + "\n" +
                        game->str.matchingsFound.arg(QString::number(matchings)) + "\n" +
