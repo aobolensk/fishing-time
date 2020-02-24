@@ -1,4 +1,3 @@
-#include <QtCore>
 #include "core.h"
 
 Core::Core() :

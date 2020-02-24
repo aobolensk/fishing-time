@@ -2,7 +2,6 @@
 #define INCLUDE_CORE_H_
 #include <QDateTime>
 #include <QString>
-#include <QTimer>
 #include <random>
 #include "config.h"
 #include "dictionary.h"
