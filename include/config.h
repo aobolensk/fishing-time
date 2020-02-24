@@ -2,6 +2,7 @@
 #define INCLUDE_CONFIG_H_
 #include <QVariantMap>
 
+class Core;
 class Game;
 
 enum class InventoryType {
@@ -39,14 +40,13 @@ public: /* Constants */
     static const int NETS_TIMER_INTERVAL = 5 * 60 * 1000;
     static const int STACKTRACE_SIZE = 1024;
 private:
-    Game *game;
     bool isReady = false;
 public:
-    Config(Game *game = nullptr);
+    Config();
     ~Config() = default;
-    void deserialize(const QVariantMap &map);
-    QJsonObject serialize() const;
-    void applyColorTheme(ColorTheme theme);
+    void deserialize(Game *game, const QVariantMap &map);
+    QJsonObject serialize(Game *game) const;
+    void applyColorTheme(Game *game, ColorTheme theme);
 };
 
 #endif  // INCLUDE_CONFIG_H_

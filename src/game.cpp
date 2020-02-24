@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QDateTime>
 #include <QJsonArray>
 #include <QJsonParseError>
 #include <QMessageBox>
@@ -10,16 +11,28 @@ Game::Game(QWidget *parent, const QString &file) :
         QWidget(parent),
         grid(QGridLayout(this)),
         configFile(file),
-        #ifndef __MINGW32__
-            randomGenerator(rd()),
-        #else
-            randomGenerator(static_cast<unsigned>(time(nullptr))),
-        #endif  // __MINGW32__
-        cfg(Config(this)),
+        core(),
+        // Wrappers for core fields
+        randomGenerator(core.randomGenerator),
+        cfg(core.cfg),
+        str(core.str),
+        users(core.users),
+        locations(core.locations),
+        activeUser(core.activeUser),
+        activeLocation(core.activeLocation),
+        activeLanguage(core.activeLanguage),
+        bgImagePath(core.bgImagePath),
+        showBgImages(core.showBgImages),
+        userTimestamp(core.userTimestamp),
+        inventoryType(core.inventoryType),
+        colorTheme(core.colorTheme),
+        loggerLevel(core.loggerLevel),
+        textFont(core.textFont),
+        logFile(core.logFile),
+        autoSavePeriod(core.autoSavePeriod),
+        // End of wrappers for core fields
         logger(Logger(this)),
         console(Console(this)),
-        str(Dictionary(this)),
-        locations(Location::initializeLocations()),
         mainMenu(MainMenu(this, &grid)),
         loginMenu(LoginMenu(this, &grid)),
         popUpInventoryMenu(InventoryMenu(this, nullptr, true)),
@@ -50,17 +63,17 @@ Game::Game(QWidget *parent, const QString &file) :
         this->setGeometry(QRect(QPoint(100, 100), QSize(640, 480)));
     }
     this->setLayout(&grid);
-    this->setWindowTitle(str.fishingTime);
+    this->setWindowTitle(core.str.fishingTime);
     this->setWindowIcon(QIcon(":/images/icon.png"));
     grid.setColumnStretch(0, 1);
     grid.setColumnStretch(1, 1);
     grid.setColumnStretch(2, 1);
     this->deserialize();
-    this->logger.setFile(this->logFile);
+    this->logger.setFile(core.logFile);
     this->mainMenu.display();
     this->logger.info("Logging system is successfully initialized!");
     this->logger.debug("Debug logging system is enabled!");
-    overlay.setText(this->str.debugOverlayText.arg(
+    overlay.setText(core.str.debugOverlayText.arg(
         TOSTRING(COMMIT_HASH),
         this->aboutMenu.getSystemInfo()
     ));
@@ -81,13 +94,13 @@ void Game::setConfigFile(const QString &newConfigFile) {
 }
 
 int Game::getAutoSavePeriod() {
-    return autoSavePeriod;
+    return core.autoSavePeriod;
 }
 
 void Game::resizeEvent(QResizeEvent *event) {
     (void) event;
-    if (this->showBgImages && this->bgImagePath.size()) {
-        QPixmap bkgnd(this->bgImagePath);
+    if (core.showBgImages && core.bgImagePath.size()) {
+        QPixmap bkgnd(core.bgImagePath);
         int w = this->width();
         int h = this->height();
         bkgnd = bkgnd.scaled(QSize(w, h), Qt::KeepAspectRatio);
@@ -106,10 +119,10 @@ void Game::resizeEvent(QResizeEvent *event) {
 }
 
 void Game::setBackgroundImage(const QString &backgroundImagePath) {
-    if (this->showBgImages) {
-        this->bgImagePath = backgroundImagePath;
-        if (this->bgImagePath.size()) {
-            QPixmap bkgnd(this->bgImagePath);
+    if (core.showBgImages) {
+        core.bgImagePath = backgroundImagePath;
+        if (core.bgImagePath.size()) {
+            QPixmap bkgnd(core.bgImagePath);
             int w = this->width();
             int h = this->height();
             bkgnd = bkgnd.scaled(QSize(w, h), Qt::KeepAspectRatio);
@@ -126,7 +139,7 @@ void Game::setBackgroundImage(const QString &backgroundImagePath) {
             this->setPalette(palette);
         } else {
             QPalette palette = this->palette();
-            switch (this->colorTheme) {
+            switch (core.colorTheme) {
             case ColorTheme::LIGHT:
                 palette.setColor(QPalette::Window, Config::LIGHT_THEME_WINDOW_COLOR);
                 break;
@@ -140,8 +153,8 @@ void Game::setBackgroundImage(const QString &backgroundImagePath) {
 }
 
 void Game::deserialize() {
-    this->users.clear();
-    this->activeUser = -1;
+    core.users.clear();
+    core.activeUser = -1;
     QFile config(configFile);
     if (!config.exists()) {
         this->logger.error("File " + configFile + " does not exist");
@@ -157,25 +170,25 @@ void Game::deserialize() {
             if (map["fishingtime_object"] == QString("user")) {
                 result = User::deserialize(map);
                 if (!result.isNull()) {
-                    users.push_back(result.value<User>());
+                    core.users.push_back(result.value<User>());
                 } else {
                     this->logger.error("Result of user deserialization is null");
                 }
             } else if (map["fishingtime_object"] == QString("config")) {
-                cfg.deserialize(map);
+                core.cfg.deserialize(this, map);
             } else {
                 this->logger.error("Unknown object found in JSON file");
             }
         }
     }
-    this->setFont(this->textFont);
-    this->console.setFont(this->textFont);
-    this->aboutMenu.setFont(this->textFont);
-    this->gameMenu.getPopUpInventoryTable().setFont(this->textFont);
+    this->setFont(core.textFont);
+    this->console.setFont(core.textFont);
+    this->aboutMenu.setFont(core.textFont);
+    this->gameMenu.getPopUpInventoryTable().setFont(core.textFont);
     this->controlsMenu.setDefaults();
-    str.setLanguage(activeLanguage);
-    setAutoSavePeriod(autoSavePeriod);
-    this->cfg.applyColorTheme(colorTheme);
+    core.str.setLanguage(core.activeLanguage);
+    setAutoSavePeriod(core.autoSavePeriod);
+    core.cfg.applyColorTheme(this, core.colorTheme);
 }
 
 void Game::hideAll() {
@@ -187,12 +200,12 @@ void Game::hideAll() {
 }
 
 void Game::updateTimePlayed() {
-    if (activeUser != -1 && userTimestamp.isValid()) {
-        this->users[this->activeUser].incInGameTime(
+    if (core.activeUser != -1 && core.userTimestamp.isValid()) {
+        core.users[core.activeUser].incInGameTime(
             QDateTime::currentDateTime().toMSecsSinceEpoch() / 1000 -
-            userTimestamp.toMSecsSinceEpoch() / 1000
+            core.userTimestamp.toMSecsSinceEpoch() / 1000
         );
-        userTimestamp = QDateTime::currentDateTime();
+        core.userTimestamp = QDateTime::currentDateTime();
     }
 }
 
@@ -204,15 +217,15 @@ void Game::serialize() {
     settings.setValue("aboutWindowGeometry", aboutMenu.saveGeometry());
     settings.setValue("inventoryWindowGeometry", gameMenu.getPopUpInventoryTable().saveGeometry());
     updateTimePlayed();
-    if (activeUser != -1 && activeLocation != -1)
+    if (core.activeUser != -1 && core.activeLocation != -1)
         netsMenu.foldNets();
     QFile config(configFile);
     if (!config.open(QIODevice::WriteOnly | QIODevice::Text)) {
         this->logger.error("Can not open file: " + configFile);
     } else {
         QJsonArray jsons;
-        jsons.push_back(cfg.serialize());
-        for (const User &user : users) {
+        jsons.push_back(core.cfg.serialize(this));
+        for (const User &user : core.users) {
             jsons.push_back(user.serialize());
         }
         QJsonDocument doc(jsons);
@@ -226,7 +239,7 @@ void Game::closeEvent(QCloseEvent *event) {
         this->console.hide();
         this->logger.hide();
         QMessageBox::StandardButton closeResult =
-            QMessageBox::question(this, str.fishingTime, str.exitConfirmation,
+            QMessageBox::question(this, core.str.fishingTime, core.str.exitConfirmation,
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
         if (closeResult != QMessageBox::Yes) {
             event->ignore();

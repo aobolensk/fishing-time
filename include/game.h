@@ -1,13 +1,12 @@
 #ifndef INCLUDE_GAME_H_
 #define INCLUDE_GAME_H_
 #include <QCloseEvent>
-#include <QDateTime>
 #include <QDebug>
 #include <QGridLayout>
 #include <QPushButton>
 #include <QString>
 #include <QTimer>
-#include <random>
+#include "core.h"
 #include "mainmenu.h"
 #include "loginmenu.h"
 #include "gamemenu.h"
@@ -30,10 +29,6 @@
 #include "locationmenu.h"
 #include "aboutmenu.h"
 #include "overlaywidget.h"
-#include "user.h"
-#include "location.h"
-#include "dictionary.h"
-#include "config.h"
 #include "logger.h"
 #include "console.h"
 
@@ -52,18 +47,28 @@ private:
 private slots:
     void autoSaveFunction();
 private:
-    std::random_device rd;
-    int autoSavePeriod = 3;
     Menu *currentMenu = nullptr;
 public:
-    QString logFile = "log.txt";
-    std::mt19937 randomGenerator;
-    Config cfg;
+    Core core;
+    std::mt19937 &randomGenerator;
+    Config &cfg;
+    Dictionary &str;
+    QVector <User> &users;
+    QVector <Location> &locations;
+    int &activeUser;
+    int &activeLocation;
+    Language &activeLanguage;
+    QString &bgImagePath;
+    bool &showBgImages;
+    QDateTime &userTimestamp;
+    InventoryType &inventoryType;
+    ColorTheme &colorTheme;
+    LoggerLevel &loggerLevel;
+    QFont &textFont;
+    QString &logFile;
+    int &autoSavePeriod;
     Logger logger;
     Console console;
-    Dictionary str;
-    QVector <User> users;
-    QVector <Location> locations;
     MainMenu mainMenu;
     LoginMenu loginMenu;
     InventoryMenu popUpInventoryMenu;
@@ -87,15 +92,6 @@ public:
     UserProfileMenu userProfileMenu;
     AboutMenu aboutMenu;
     OverlayWidget overlay;
-    int activeUser = -1;
-    int activeLocation = -1;
-    QString bgImagePath;
-    bool showBgImages = true;
-    QDateTime userTimestamp;
-    InventoryType inventoryType = InventoryType::POPUP;
-    ColorTheme colorTheme = ColorTheme::LIGHT;
-    LoggerLevel loggerLevel = LoggerLevel::RELEASE;
-    QFont textFont = QFont("Noto Sans", 11, QFont::Normal, false);
     void setAutoSavePeriod(int periodInMinutes);
     void setConfigFile(const QString &newConfigFile);
     void setBackgroundImage(const QString &backgroundImagePath);
@@ -104,13 +100,12 @@ public:
     void setCurrentMenu(Menu *menu);
     Menu *getCurrentMenu() const;
     void hideAll();
-    Language activeLanguage = Language::English;
     QTimer autoSaveTimer;
 public:
     Game(QWidget *parent, const QString &configFile);
     ~Game();
-    friend QJsonObject Config::serialize() const;
-    friend void Config::deserialize(const QVariantMap &map);
+    friend QJsonObject Config::serialize(Game *game) const;
+    friend void Config::deserialize(Game *game, const QVariantMap &map);
     void manualSave();
     void updateTimePlayed();
 };

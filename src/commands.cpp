@@ -329,9 +329,9 @@ void Console::registerCommands() {
             } else if (args.size() == 2) {
                 args[1] = args[1].toLower();
                 if (args[1] == "en") {
-                    this->game->str.setLanguage(game->activeLanguage = Language::English);
+                    this->game->str.setLanguage(game->activeLanguage = Language::English, game);
                 } else if (args[1] == "ru") {
-                    this->game->str.setLanguage(game->activeLanguage = Language::Russian);
+                    this->game->str.setLanguage(game->activeLanguage = Language::Russian, game);
                 } else {
                     log.error(game->str.invalidArgumentsFormat.arg(args[0]));
                     return 1;

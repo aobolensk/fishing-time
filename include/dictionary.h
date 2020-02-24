@@ -237,13 +237,12 @@ public:
     } links;
 private:
     int numberOfStrings = 0;
-    Game *game;
 public:
-    Dictionary(Game *game);
+    Dictionary();
     double getReadiness(Language l);
     int getNumberOfEntries(Language l);
     int getTotalNumberOfEntries();
-    void setLanguage(Language l, bool initialSetup = false);
+    void setLanguage(Language l, Game *game = nullptr, bool initialSetup = false);
     const QString &getItemName(const QString &id) const;
 };
 #endif  // INCLUDE_DICTIONARY_H_

@@ -4,8 +4,7 @@
 #include "game.h"
 #include "utils.h"
 
-Config::Config(Game *game) :
-        game(game) {
+Config::Config() {
 
 }
 
@@ -14,11 +13,11 @@ const QColor Config::LIGHT_THEME_TEXT_COLOR = QColor(20, 20, 20);
 const QColor Config::DARK_THEME_WINDOW_COLOR = QColor(64, 64, 64);
 const QColor Config::DARK_THEME_TEXT_COLOR = QColor(240, 240, 240);
 
-void Config::deserialize(const QVariantMap &map) {
+void Config::deserialize(Game *game, const QVariantMap &map) {
     if (isReady)
         return;
     game->activeLanguage = static_cast<Language>(map["language"].toInt());
-    game->autoSavePeriod = map["autoSavePeriod"].toInt();
+    game->core.autoSavePeriod = map["autoSavePeriod"].toInt();
     game->inventoryType = static_cast<InventoryType>(map["inventoryType"].toInt());
     game->colorTheme = static_cast<ColorTheme>(map["colorTheme"].toInt());
     game->loggerLevel = static_cast<LoggerLevel>(map["loggerLevel"].toInt());
@@ -37,7 +36,7 @@ void Config::deserialize(const QVariantMap &map) {
     isReady = true;
 }
 
-QJsonObject Config::serialize() const {
+QJsonObject Config::serialize(Game *game) const {
     QJsonObject jsonObj;
     jsonObj["fishingtime_object"] = "config";
     jsonObj["language"] = static_cast<int>(game->activeLanguage);
@@ -57,7 +56,7 @@ QJsonObject Config::serialize() const {
     return jsonObj;
 }
 
-void Config::applyColorTheme(ColorTheme theme) {
+void Config::applyColorTheme(Game *game, ColorTheme theme) {
     QApplication::setStyle(QStyleFactory::create("Fusion"));
     QPalette p(game->palette());
     switch (theme) {
