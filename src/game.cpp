@@ -12,6 +12,7 @@ Game::Game(QWidget *parent, const QString &file) :
         grid(QGridLayout(this)),
         configFile(file),
         core(),
+        // Wrappers for core fields
         randomGenerator(core.randomGenerator),
         cfg(core.cfg),
         str(core.str),
@@ -29,6 +30,7 @@ Game::Game(QWidget *parent, const QString &file) :
         textFont(core.textFont),
         logFile(core.logFile),
         autoSavePeriod(core.autoSavePeriod),
+        // End of wrappers for core fields
         logger(Logger(this)),
         console(Console(this)),
         mainMenu(MainMenu(this, &grid)),
