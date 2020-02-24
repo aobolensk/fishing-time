@@ -40,10 +40,9 @@ public: /* Constants */
     static const int NETS_TIMER_INTERVAL = 5 * 60 * 1000;
     static const int STACKTRACE_SIZE = 1024;
 private:
-    Core *core;
     bool isReady = false;
 public:
-    Config(Core *core = nullptr);
+    Config();
     ~Config() = default;
     void deserialize(Game *game, const QVariantMap &map);
     QJsonObject serialize(Game *game) const;

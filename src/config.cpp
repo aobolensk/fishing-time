@@ -4,8 +4,7 @@
 #include "game.h"
 #include "utils.h"
 
-Config::Config(Core *core) :
-        core(core) {
+Config::Config() {
 
 }
 
