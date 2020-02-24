@@ -4,7 +4,7 @@
 
 static int updatesCount = 0;
 
-Dictionary::Dictionary(Game *game) :
+Dictionary::Dictionary(Core *core) :
         languages({
             {Language::English, {"English", 0}},
             {Language::Russian, {"Russian", 0}}
@@ -50,11 +50,11 @@ Dictionary::Dictionary(Game *game) :
         })
         #undef X
         ,
-        game(game)
+        core(core)
 
         {
     for (int i = languages.count() - 1; i >= 0; --i)
-        this->setLanguage(static_cast<Language>(i), true);
+        this->setLanguage(static_cast<Language>(i), nullptr, true);
     numberOfStrings = updatesCount;
     if (getReadiness(Language::English) != 100.)
         throw std::logic_error("Default language (English) does not contain all necessary translations. "
@@ -83,7 +83,7 @@ int Dictionary::getTotalNumberOfEntries() {
 
 #define SET(string) (++updatesCount); (*(const_cast<QString*>(&string)))
 
-void Dictionary::setLanguage(Language l, bool initialSetup) {
+void Dictionary::setLanguage(Language l, Game *game, bool initialSetup) {
     updatesCount = 0;
     switch (l) {
     case Language::English: {
@@ -673,12 +673,14 @@ void Dictionary::setLanguage(Language l, bool initialSetup) {
         languages[Language::Russian].second = updatesCount;
         break;
     } default: {
-        this->game->logger.error("Unknown language");
+        if (game) {
+            game->logger.error("Unknown language");
+        }
         break;
     }
     }
 
-    if (!initialSetup) {
+    if (game && !initialSetup) {
         game->aboutMenu.setWindowTitle(fishingTime + ": " + about);
         game->aboutMenu.setWindowIcon(QIcon(":/images/icon.png"));
         game->console.setWindowTitle(fishingTime + ": " + console);

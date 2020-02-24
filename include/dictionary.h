@@ -3,6 +3,7 @@
 #include <QMap>
 #include <QVector>
 
+class Core;
 class Game;
 
 enum class Language {
@@ -237,13 +238,13 @@ public:
     } links;
 private:
     int numberOfStrings = 0;
-    Game *game;
+    Core *core;
 public:
-    Dictionary(Game *game);
+    Dictionary(Core *core);
     double getReadiness(Language l);
     int getNumberOfEntries(Language l);
     int getTotalNumberOfEntries();
-    void setLanguage(Language l, bool initialSetup = false);
+    void setLanguage(Language l, Game *game = nullptr, bool initialSetup = false);
     const QString &getItemName(const QString &id) const;
 };
 #endif  // INCLUDE_DICTIONARY_H_
