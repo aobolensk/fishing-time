@@ -50,7 +50,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        qt_version: '5.14.1'
+        qt_version: 5.14.1
     steps:
     - uses: actions/checkout@v1
     - name: Install Qt
@@ -72,7 +72,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        qt_version: '5.14.1'
+        qt_version: 5.14.1
     steps:
     - uses: actions/checkout@v1
     - name: Install MSYS2
