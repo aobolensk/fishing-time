@@ -1,4 +1,4 @@
-name: Ubuntu nightly
+name: macOS nightly
 
 on:
   schedule:
