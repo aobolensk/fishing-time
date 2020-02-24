@@ -3,7 +3,7 @@ name: Build application
 on: [push, pull_request]
 
 jobs:
-  ubuntu-gcc-build-apt:
+  ubuntu-gcc-build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -23,7 +23,7 @@ jobs:
       run: |
         cd build
         ./bin/fishing-time_test
-  ubuntu-clang-build-apt:
+  ubuntu-clang-build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -46,68 +46,11 @@ jobs:
       run: |
         cd build
         ./bin/fishing-time_test
-  ubuntu-gcc-build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        qt_version: ['5.12.6', '5.14.1']
-    steps:
-    - uses: actions/checkout@v1
-    - name: Install gcc
-      run: |
-        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo apt update
-        sudo apt install g++-9
-        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 --slave /usr/bin/g++ g++ /usr/bin/g++-9
-    - name: Install Qt
-      uses: aobolensk/install-qt-action@v2
-      with:
-        version: ${{ matrix.qt_version }}
-    - name: Build application
-      run: |
-        mkdir build
-        cd build
-        cmake ..
-        cmake --build . -- -j
-    - name: Run tests
-      run: |
-        cd build
-        ./bin/fishing-time_test
-  ubuntu-clang-build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        qt_version: ['5.12.6', '5.14.1']
-    steps:
-    - uses: actions/checkout@v1
-    - name: Install clang
-      run: |
-        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo add-apt-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main"
-        sudo apt update
-        sudo apt install clang-9
-    - name: Install Qt
-      uses: aobolensk/install-qt-action@v2
-      with:
-        version: ${{ matrix.qt_version }}
-    - name: Build application
-      run: |
-        mkdir build
-        cd build
-        cmake ..
-        cmake --build . -- -j
-      env:
-        CC: clang-9
-        CXX: clang++-9
-    - name: Run tests
-      run: |
-        cd build
-        ./bin/fishing-time_test
   windows-msvc-build:
     runs-on: windows-latest
     strategy:
       matrix:
-        qt_version: ['5.12.6', '5.14.1']
+        qt_version: '5.14.1'
     steps:
     - uses: actions/checkout@v1
     - name: Install Qt
@@ -129,7 +72,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        qt_version: ['5.12.6', '5.14.1']
+        qt_version: '5.14.1'
     steps:
     - uses: actions/checkout@v1
     - name: Install MSYS2
