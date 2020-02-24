@@ -48,12 +48,15 @@ jobs:
         ./bin/fishing-time_test
   windows-msvc-build:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        qt_version: ['5.14.1']
     steps:
     - uses: actions/checkout@v1
     - name: Install Qt
       uses: aobolensk/install-qt-action@v2
       with:
-        version: 5.14.1
+        version: ${{ matrix.qt_version }}
         arch: win64_msvc2017_64
     - name: Build application
       run: |
@@ -67,6 +70,9 @@ jobs:
         bin\\fishing-time_test
   windows-mingw-build:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        qt_version: ['5.14.1']
     steps:
     - uses: actions/checkout@v1
     - name: Install MSYS2
@@ -76,7 +82,7 @@ jobs:
     - name: Install Qt
       uses: aobolensk/install-qt-action@v2
       with:
-        version: 5.14.1
+        version: ${{ matrix.qt_version }}
         arch: win64_mingw73
     - name: Build application
       run: |
