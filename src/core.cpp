@@ -8,7 +8,7 @@ Core::Core() :
             randomGenerator(static_cast<unsigned>(time(nullptr))),
         #endif  // __MINGW32__
         cfg(),
-        str(Dictionary(this)),
+        str(),
         locations(Location::initializeLocations()) {
 
 }

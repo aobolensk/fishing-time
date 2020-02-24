@@ -4,7 +4,7 @@
 
 static int updatesCount = 0;
 
-Dictionary::Dictionary(Core *core) :
+Dictionary::Dictionary() :
         languages({
             {Language::English, {"English", 0}},
             {Language::Russian, {"Russian", 0}}
@@ -49,9 +49,6 @@ Dictionary::Dictionary(Core *core) :
             {"item.undefined", nullptr}
         })
         #undef X
-        ,
-        core(core)
-
         {
     for (int i = languages.count() - 1; i >= 0; --i)
         this->setLanguage(static_cast<Language>(i), nullptr, true);

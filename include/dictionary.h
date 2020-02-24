@@ -3,7 +3,6 @@
 #include <QMap>
 #include <QVector>
 
-class Core;
 class Game;
 
 enum class Language {
@@ -238,9 +237,8 @@ public:
     } links;
 private:
     int numberOfStrings = 0;
-    Core *core;
 public:
-    Dictionary(Core *core);
+    Dictionary();
     double getReadiness(Language l);
     int getNumberOfEntries(Language l);
     int getTotalNumberOfEntries();
