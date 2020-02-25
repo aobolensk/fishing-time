@@ -2,7 +2,7 @@ name: Ubuntu nightly
 
 on:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 1 * * *'
 
 jobs:
   ubuntu-gcc-build-nightly:
@@ -33,6 +33,7 @@ jobs:
         cd build
         ./bin/fishing-time_test
   ubuntu-clang-build-nightly:
+    needs: ubuntu-gcc-build-nightly
     runs-on: ubuntu-latest
     strategy:
       matrix:
