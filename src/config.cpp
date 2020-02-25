@@ -39,11 +39,11 @@ void Config::deserialize(const QVariantMap &map) {
         core->showBgImages = static_cast<bool>(map["showBgImages"].toInt());
     }
     core->textFont.fromString(map["textFont"].toString());
-    QVariantMap controls = map["controls"].toJsonObject().toVariantMap();
-    this->setKey(Controls::HIDE_UI_ELEMENTS, controls["hideUIElements"].toInt());
-    this->setKey(Controls::TOGGLE_FULLSCREEN_MODE, controls["toggleFullscreenMode"].toInt());
-    this->setKey(Controls::GO_TO_PREVIOUS_MENU, controls["goToPreviousMenu"].toInt());
-    this->setKey(Controls::EXIT_FROM_THE_GAME, controls["exitFromTheGame"].toInt());
+    QVariantMap controlsMap = map["controls"].toJsonObject().toVariantMap();
+    this->setKey(Controls::HIDE_UI_ELEMENTS, controlsMap["hideUIElements"].toInt());
+    this->setKey(Controls::TOGGLE_FULLSCREEN_MODE, controlsMap["toggleFullscreenMode"].toInt());
+    this->setKey(Controls::GO_TO_PREVIOUS_MENU, controlsMap["goToPreviousMenu"].toInt());
+    this->setKey(Controls::EXIT_FROM_THE_GAME, controlsMap["exitFromTheGame"].toInt());
     isReady = true;
 }
 
@@ -58,11 +58,11 @@ QJsonObject Config::serialize() const {
     jsonObj["logFile"] = core->logFile;
     jsonObj["showBgImages"] = static_cast<int>(core->showBgImages);
     jsonObj["textFont"] = core->textFont.toString();
-    QVariantMap controls;
-    controls["hideUIElements"] = this->getKey(Controls::HIDE_UI_ELEMENTS)[0];
-    controls["toggleFullscreenMode"] = this->getKey(Controls::TOGGLE_FULLSCREEN_MODE)[0];
-    controls["goToPreviousMenu"] = this->getKey(Controls::GO_TO_PREVIOUS_MENU)[0];
-    controls["exitFromTheGame"] = this->getKey(Controls::EXIT_FROM_THE_GAME)[0];
-    jsonObj["controls"] = QJsonObject::fromVariantMap(controls);
+    QVariantMap controlsMap;
+    controlsMap["hideUIElements"] = this->getKey(Controls::HIDE_UI_ELEMENTS)[0];
+    controlsMap["toggleFullscreenMode"] = this->getKey(Controls::TOGGLE_FULLSCREEN_MODE)[0];
+    controlsMap["goToPreviousMenu"] = this->getKey(Controls::GO_TO_PREVIOUS_MENU)[0];
+    controlsMap["exitFromTheGame"] = this->getKey(Controls::EXIT_FROM_THE_GAME)[0];
+    jsonObj["controls"] = QJsonObject::fromVariantMap(controlsMap);
     return jsonObj;
 }
