@@ -6,7 +6,7 @@ Core::Core() :
         #else
             randomGenerator(static_cast<unsigned>(time(nullptr))),
         #endif  // __MINGW32__
-        cfg(),
+        cfg(this),
         str(),
         locations(Location::initializeLocations()) {
 

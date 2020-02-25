@@ -41,8 +41,10 @@ public: /* Constants */
     static const int STACKTRACE_SIZE = 1024;
 private:
     bool isReady = false;
+    Core *core;
 public:
-    Config();
+    Config() = delete;
+    Config(Core *core);
     ~Config() = default;
     void deserialize(Game *game, const QVariantMap &map);
     QJsonObject serialize(Game *game) const;

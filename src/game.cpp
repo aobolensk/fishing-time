@@ -253,6 +253,7 @@ void Game::serialize() {
     settings.setValue("aboutWindowGeometry", aboutMenu.saveGeometry());
     settings.setValue("inventoryWindowGeometry", gameMenu.getPopUpInventoryTable().saveGeometry());
     updateTimePlayed();
+    core.textFont = this->font();
     if (core.activeUser != -1 && core.activeLocation != -1)
         netsMenu.foldNets();
     QFile config(configFile);
