@@ -2,10 +2,10 @@ name: Windows nightly
 
 on:
   schedule:
-    - cron: '30 2 * * *'
+    - cron: '0 2 * * *'
 
 jobs:
-  windows-msvc-build:
+  windows-msvc-build-nightly:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -27,7 +27,8 @@ jobs:
       run: |
         cd build
         bin\\fishing-time_test
-  windows-mingw-build:
+  windows-mingw-build-nightly:
+    needs: windows-msvc-build-nightly
     runs-on: windows-latest
     strategy:
       matrix:
