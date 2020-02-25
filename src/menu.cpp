@@ -24,19 +24,19 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
         auto menuCheck = [&]() {
             return this != &game->controlsMenu || !game->controlsMenu.isInEditingMode();
         };
-        if (seq == game->controlsMenu.get(Controls::GO_TO_PREVIOUS_MENU)) {
+        if (seq == game->cfg.getKey(Controls::GO_TO_PREVIOUS_MENU)) {
             // Go to previous menu
             if (menuCheck()) {
                 this->backFunction();
             }
-        } else if (seq == game->controlsMenu.get(Controls::TOGGLE_FULLSCREEN_MODE)) {
+        } else if (seq == game->cfg.getKey(Controls::TOGGLE_FULLSCREEN_MODE)) {
             // Toggle fullscreen mode
             if (menuCheck()) {
                 game->window()->setWindowState(
                     game->window()->windowState() ^ Qt::WindowFullScreen
                 );
             }
-        } else if (seq == game->controlsMenu.get(Controls::HIDE_UI_ELEMENTS)) {
+        } else if (seq == game->cfg.getKey(Controls::HIDE_UI_ELEMENTS)) {
             // Hide UI elements
             if (menuCheck()) {
                 if (this->displayed) {
@@ -47,7 +47,7 @@ bool Menu::eventFilter(QObject *obj, QEvent *event) {
                     this->display();
                 }
             }
-        } else if (seq == game->controlsMenu.get(Controls::EXIT_FROM_THE_GAME)) {
+        } else if (seq == game->cfg.getKey(Controls::EXIT_FROM_THE_GAME)) {
             // Exit from the game
             if (menuCheck()) {
                 game->hideAll();
