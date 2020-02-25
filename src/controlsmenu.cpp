@@ -35,21 +35,21 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
 }
 
 void ControlsMenu::setDefaults() {
-    this->setDefault(Controls::HIDE_UI_ELEMENTS, 67108936); // Ctrl + H
-    if (this->get(Controls::HIDE_UI_ELEMENTS) == 0) {
-        this->set(Controls::HIDE_UI_ELEMENTS, 67108936); // Ctrl + H
+    game->cfg.setDefaultKey(Controls::HIDE_UI_ELEMENTS, 67108936); // Ctrl + H
+    if (game->cfg.getKey(Controls::HIDE_UI_ELEMENTS) == 0) {
+        game->cfg.setKey(Controls::HIDE_UI_ELEMENTS, 67108936); // Ctrl + H
     }
-    this->setDefault(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
-    if (this->get(Controls::TOGGLE_FULLSCREEN_MODE) == 0) {
-        this->set(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
+    game->cfg.setDefaultKey(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
+    if (game->cfg.getKey(Controls::TOGGLE_FULLSCREEN_MODE) == 0) {
+        game->cfg.setKey(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
     }
-    this->setDefault(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
-    if (this->get(Controls::GO_TO_PREVIOUS_MENU) == 0) {
-        this->set(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
+    game->cfg.setDefaultKey(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
+    if (game->cfg.getKey(Controls::GO_TO_PREVIOUS_MENU) == 0) {
+        game->cfg.setKey(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
     }
-    this->setDefault(Controls::EXIT_FROM_THE_GAME, 67108945); // Ctrl + Q
-    if (this->get(Controls::EXIT_FROM_THE_GAME) == 0) {
-        this->set(Controls::EXIT_FROM_THE_GAME, 67108945); // Ctrl + Q
+    game->cfg.setDefaultKey(Controls::EXIT_FROM_THE_GAME, 67108945); // Ctrl + Q
+    if (game->cfg.getKey(Controls::EXIT_FROM_THE_GAME) == 0) {
+        game->cfg.setKey(Controls::EXIT_FROM_THE_GAME, 67108945); // Ctrl + Q
     }
 }
 
@@ -81,7 +81,7 @@ void ControlsMenu::display() {
         controlsLabel[i].setVisible(true);
 
         controlsText[i].setText(
-            this->controls[i].toString(QKeySequence::NativeText)
+            this->game->cfg.controls[i].toString(QKeySequence::NativeText)
         );
         controlsText[i].setVisible(true);
 
@@ -108,13 +108,13 @@ void ControlsMenu::display() {
         resetButton[i].setEnabled(true);
         connect(&resetButton[i], static_cast<void(QPushButton::*)()>(&QPushButton::released),
             [this, i]() {
-                controls[i] = defaultControls[i];
-                controlsText[static_cast<size_t>(i)].setText(controls[i].toString(QKeySequence::NativeText));
+                game->cfg.controls[i] = game->cfg.defaultControls[i];
+                controlsText[static_cast<size_t>(i)].setText(game->cfg.controls[i].toString(QKeySequence::NativeText));
                 for (size_t j = 0; j < static_cast<size_t>(Controls::CONTROLS_N); ++j) {
                     if (i == j) continue;
-                    if (controls[j] == controls[i]) {
-                        controls[j] = defaultControls[j];
-                        QString keyText = controls[j].toString(QKeySequence::NativeText);
+                    if (game->cfg.controls[j] == game->cfg.controls[i]) {
+                        game->cfg.controls[j] = game->cfg.defaultControls[j];
+                        QString keyText = game->cfg.controls[j].toString(QKeySequence::NativeText);
                         controlsText[j].setText(keyText);
                     }
                 }
@@ -163,19 +163,19 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
                 bool set = true;
                 for (size_t i = 0; i < static_cast<size_t>(Controls::CONTROLS_N); ++i) {
                     if (i == static_cast<size_t>(currentControl)) continue;
-                    if (seq == controls[i]) {
-                        if (controls[i] == defaultControls[i]) {
+                    if (seq == game->cfg.controls[i]) {
+                        if (game->cfg.controls[i] == game->cfg.defaultControls[i]) {
                             set = false;
                         } else {
-                            controls[i] = defaultControls[i];
-                            QString keyText = controls[i].toString(QKeySequence::NativeText);
+                            game->cfg.controls[i] = game->cfg.defaultControls[i];
+                            QString keyText = game->cfg.controls[i].toString(QKeySequence::NativeText);
                             controlsText[i].setText(keyText);
                         }
                     }
                 }
                 if (set) {
                     QString keyText = seq.toString(QKeySequence::NativeText);
-                    controls[static_cast<size_t>(currentControl)] = seq;
+                    game->cfg.controls[static_cast<size_t>(currentControl)] = seq;
                     controlsText[static_cast<size_t>(currentControl)].setText(keyText);
                 }
                 controlsButton[static_cast<size_t>(currentControl)].setText(game->str.edit);
@@ -185,18 +185,6 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
         }
     }
     return Menu::eventFilter(obj, event);
-}
-
-QKeySequence ControlsMenu::get(Controls control) const {
-    return controls[static_cast<size_t>(control)];
-}
-
-void ControlsMenu::setDefault(Controls control, int key) {
-    defaultControls[static_cast<size_t>(control)] = QKeySequence(key);
-}
-
-void ControlsMenu::set(Controls control, int key) {
-    controls[static_cast<size_t>(control)] = QKeySequence(key);
 }
 
 void ControlsMenu::backFunction() {

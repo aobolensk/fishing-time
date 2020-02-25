@@ -1,10 +1,9 @@
-#include <QApplication>
-#include <QStyleFactory>
 #include "config.h"
 #include "game.h"
 #include "utils.h"
 
-Config::Config() {
+Config::Config(Core *core) :
+    core(core) {
 
 }
 
@@ -13,80 +12,57 @@ const QColor Config::LIGHT_THEME_TEXT_COLOR = QColor(20, 20, 20);
 const QColor Config::DARK_THEME_WINDOW_COLOR = QColor(64, 64, 64);
 const QColor Config::DARK_THEME_TEXT_COLOR = QColor(240, 240, 240);
 
-void Config::deserialize(Game *game, const QVariantMap &map) {
+void Config::deserialize(const QVariantMap &map) {
     if (isReady)
         return;
-    game->activeLanguage = static_cast<Language>(map["language"].toInt());
-    game->core.autoSavePeriod = map["autoSavePeriod"].toInt();
-    game->inventoryType = static_cast<InventoryType>(map["inventoryType"].toInt());
-    game->colorTheme = static_cast<ColorTheme>(map["colorTheme"].toInt());
-    game->loggerLevel = static_cast<LoggerLevel>(map["loggerLevel"].toInt());
+    core->activeLanguage = static_cast<Language>(map["language"].toInt());
+    core->autoSavePeriod = map["autoSavePeriod"].toInt();
+    core->inventoryType = static_cast<InventoryType>(map["inventoryType"].toInt());
+    core->colorTheme = static_cast<ColorTheme>(map["colorTheme"].toInt());
+    core->loggerLevel = static_cast<LoggerLevel>(map["loggerLevel"].toInt());
     if (map["logFile"].toString().size() > 0) {
-        game->logFile = map["logFile"].toString();
+        core->logFile = map["logFile"].toString();
     }
     if (map.constFind("showBgImages") != map.cend()) {
-        game->showBgImages = static_cast<bool>(map["showBgImages"].toInt());
+        core->showBgImages = static_cast<bool>(map["showBgImages"].toInt());
     }
-    game->textFont.fromString(map["textFont"].toString());
-    QVariantMap controls = map["controls"].toJsonObject().toVariantMap();
-    game->controlsMenu.set(Controls::HIDE_UI_ELEMENTS, controls["hideUIElements"].toInt());
-    game->controlsMenu.set(Controls::TOGGLE_FULLSCREEN_MODE, controls["toggleFullscreenMode"].toInt());
-    game->controlsMenu.set(Controls::GO_TO_PREVIOUS_MENU, controls["goToPreviousMenu"].toInt());
-    game->controlsMenu.set(Controls::EXIT_FROM_THE_GAME, controls["exitFromTheGame"].toInt());
+    core->textFont.fromString(map["textFont"].toString());
+    QVariantMap controlsMap = map["controls"].toJsonObject().toVariantMap();
+    this->setKey(Controls::HIDE_UI_ELEMENTS, controlsMap["hideUIElements"].toInt());
+    this->setKey(Controls::TOGGLE_FULLSCREEN_MODE, controlsMap["toggleFullscreenMode"].toInt());
+    this->setKey(Controls::GO_TO_PREVIOUS_MENU, controlsMap["goToPreviousMenu"].toInt());
+    this->setKey(Controls::EXIT_FROM_THE_GAME, controlsMap["exitFromTheGame"].toInt());
     isReady = true;
 }
 
-QJsonObject Config::serialize(Game *game) const {
+QJsonObject Config::serialize() const {
     QJsonObject jsonObj;
     jsonObj["fishingtime_object"] = "config";
-    jsonObj["language"] = static_cast<int>(game->activeLanguage);
-    jsonObj["autoSavePeriod"] = game->autoSavePeriod;
-    jsonObj["inventoryType"] = static_cast<int>(game->inventoryType);
-    jsonObj["colorTheme"] = static_cast<int>(game->colorTheme);
-    jsonObj["loggerLevel"] = static_cast<int>(game->loggerLevel);
-    jsonObj["logFile"] = game->logFile;
-    jsonObj["showBgImages"] = static_cast<int>(game->showBgImages);
-    jsonObj["textFont"] = game->font().toString();
-    QVariantMap controls;
-    controls["hideUIElements"] = game->controlsMenu.get(Controls::HIDE_UI_ELEMENTS)[0];
-    controls["toggleFullscreenMode"] = game->controlsMenu.get(Controls::TOGGLE_FULLSCREEN_MODE)[0];
-    controls["goToPreviousMenu"] = game->controlsMenu.get(Controls::GO_TO_PREVIOUS_MENU)[0];
-    controls["exitFromTheGame"] = game->controlsMenu.get(Controls::EXIT_FROM_THE_GAME)[0];
-    jsonObj["controls"] = QJsonObject::fromVariantMap(controls);
+    jsonObj["language"] = static_cast<int>(core->activeLanguage);
+    jsonObj["autoSavePeriod"] = core->autoSavePeriod;
+    jsonObj["inventoryType"] = static_cast<int>(core->inventoryType);
+    jsonObj["colorTheme"] = static_cast<int>(core->colorTheme);
+    jsonObj["loggerLevel"] = static_cast<int>(core->loggerLevel);
+    jsonObj["logFile"] = core->logFile;
+    jsonObj["showBgImages"] = static_cast<int>(core->showBgImages);
+    jsonObj["textFont"] = core->textFont.toString();
+    QVariantMap controlsMap;
+    controlsMap["hideUIElements"] = this->getKey(Controls::HIDE_UI_ELEMENTS)[0];
+    controlsMap["toggleFullscreenMode"] = this->getKey(Controls::TOGGLE_FULLSCREEN_MODE)[0];
+    controlsMap["goToPreviousMenu"] = this->getKey(Controls::GO_TO_PREVIOUS_MENU)[0];
+    controlsMap["exitFromTheGame"] = this->getKey(Controls::EXIT_FROM_THE_GAME)[0];
+    jsonObj["controls"] = QJsonObject::fromVariantMap(controlsMap);
     return jsonObj;
 }
 
-void Config::applyColorTheme(Game *game, ColorTheme theme) {
-    QApplication::setStyle(QStyleFactory::create("Fusion"));
-    QPalette p(game->palette());
-    switch (theme) {
-    case ColorTheme::LIGHT:
-        p.setColor(QPalette::Window, LIGHT_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::Button, LIGHT_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::Base, LIGHT_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::ButtonText, LIGHT_THEME_TEXT_COLOR);
-        p.setColor(QPalette::WindowText, LIGHT_THEME_TEXT_COLOR);
-        p.setColor(QPalette::Text, LIGHT_THEME_TEXT_COLOR);
-        break;
-    case ColorTheme::DARK:
-        p.setColor(QPalette::Window, DARK_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::Button, DARK_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::Base, DARK_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::ButtonText, DARK_THEME_TEXT_COLOR);
-        p.setColor(QPalette::WindowText, DARK_THEME_TEXT_COLOR);
-        p.setColor(QPalette::Text, DARK_THEME_TEXT_COLOR);
-        break;
-    }
-    game->setAutoFillBackground(true);
-    game->setPalette(p);
-    game->aboutMenu.setPalette(p);
-    game->logger.setPalette(p);
-    game->console.setPalette(p);
-    game->gameMenu.getPopUpInventoryTable().setPalette(p);
-    game->setFont(game->textFont);
-    game->logger.setFont(game->textFont);
-    game->console.setFont(game->textFont);
-    game->aboutMenu.setFont(game->textFont);
-    game->gameMenu.getPopUpInventoryTable().setFont(game->textFont);
-    game->logger.info("Applied theme: " + QString::number(static_cast<int>(theme)));
+QKeySequence Config::getKey(Controls control) const {
+    return this->controls[static_cast<size_t>(control)];
+}
+
+void Config::setDefaultKey(Controls control, int key) {
+    this->defaultControls[static_cast<size_t>(control)] = QKeySequence(key);
+}
+
+void Config::setKey(Controls control, int key) {
+    this->controls[static_cast<size_t>(control)] = QKeySequence(key);
 }

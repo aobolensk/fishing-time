@@ -92,7 +92,7 @@ void AppearanceSettingsMenu::display() {
     [this](int index) {
         if (index != -1) {
             this->game->colorTheme = static_cast<ColorTheme>(index);
-            this->game->cfg.applyColorTheme(this->game, this->game->colorTheme);
+            this->game->applyColorTheme(this->game->colorTheme);
         }
     });
 
