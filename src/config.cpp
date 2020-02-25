@@ -7,18 +7,6 @@ Config::Config(Core *core) :
 
 }
 
-QKeySequence Config::getKey(Controls control) const {
-    return this->controls[static_cast<size_t>(control)];
-}
-
-void Config::setDefaultKey(Controls control, int key) {
-    this->defaultControls[static_cast<size_t>(control)] = QKeySequence(key);
-}
-
-void Config::setKey(Controls control, int key) {
-    this->controls[static_cast<size_t>(control)] = QKeySequence(key);
-}
-
 const QColor Config::LIGHT_THEME_WINDOW_COLOR = QColor(250, 250, 250);
 const QColor Config::LIGHT_THEME_TEXT_COLOR = QColor(20, 20, 20);
 const QColor Config::DARK_THEME_WINDOW_COLOR = QColor(64, 64, 64);
@@ -65,4 +53,16 @@ QJsonObject Config::serialize() const {
     controlsMap["exitFromTheGame"] = this->getKey(Controls::EXIT_FROM_THE_GAME)[0];
     jsonObj["controls"] = QJsonObject::fromVariantMap(controlsMap);
     return jsonObj;
+}
+
+QKeySequence Config::getKey(Controls control) const {
+    return this->controls[static_cast<size_t>(control)];
+}
+
+void Config::setDefaultKey(Controls control, int key) {
+    this->defaultControls[static_cast<size_t>(control)] = QKeySequence(key);
+}
+
+void Config::setKey(Controls control, int key) {
+    this->controls[static_cast<size_t>(control)] = QKeySequence(key);
 }
