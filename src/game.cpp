@@ -4,6 +4,7 @@
 #include <QJsonParseError>
 #include <QMessageBox>
 #include <QSettings>
+#include <QStyleFactory>
 #include "game.h"
 #include "utils.h"
 
@@ -97,6 +98,41 @@ int Game::getAutoSavePeriod() {
     return core.autoSavePeriod;
 }
 
+void Game::applyColorTheme(ColorTheme theme) {
+    QApplication::setStyle(QStyleFactory::create("Fusion"));
+    QPalette p(this->palette());
+    switch (theme) {
+    case ColorTheme::LIGHT:
+        p.setColor(QPalette::Window, Config::LIGHT_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::Button, Config::LIGHT_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::Base, Config::LIGHT_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::ButtonText, Config::LIGHT_THEME_TEXT_COLOR);
+        p.setColor(QPalette::WindowText, Config::LIGHT_THEME_TEXT_COLOR);
+        p.setColor(QPalette::Text, Config::LIGHT_THEME_TEXT_COLOR);
+        break;
+    case ColorTheme::DARK:
+        p.setColor(QPalette::Window, Config::DARK_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::Button, Config::DARK_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::Base, Config::DARK_THEME_WINDOW_COLOR);
+        p.setColor(QPalette::ButtonText, Config::DARK_THEME_TEXT_COLOR);
+        p.setColor(QPalette::WindowText, Config::DARK_THEME_TEXT_COLOR);
+        p.setColor(QPalette::Text, Config::DARK_THEME_TEXT_COLOR);
+        break;
+    }
+    this->setAutoFillBackground(true);
+    this->setPalette(p);
+    this->aboutMenu.setPalette(p);
+    this->logger.setPalette(p);
+    this->console.setPalette(p);
+    this->gameMenu.getPopUpInventoryTable().setPalette(p);
+    this->setFont(this->textFont);
+    this->logger.setFont(this->textFont);
+    this->console.setFont(this->textFont);
+    this->aboutMenu.setFont(this->textFont);
+    this->gameMenu.getPopUpInventoryTable().setFont(this->textFont);
+    this->logger.info("Applied theme: " + QString::number(static_cast<int>(theme)));
+}
+
 void Game::resizeEvent(QResizeEvent *event) {
     (void) event;
     if (core.showBgImages && core.bgImagePath.size()) {
@@ -188,7 +224,7 @@ void Game::deserialize() {
     this->controlsMenu.setDefaults();
     core.str.setLanguage(core.activeLanguage);
     setAutoSavePeriod(core.autoSavePeriod);
-    core.cfg.applyColorTheme(this, core.colorTheme);
+    this->applyColorTheme(core.colorTheme);
 }
 
 void Game::hideAll() {

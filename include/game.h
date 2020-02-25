@@ -101,6 +101,7 @@ public:
     Menu *getCurrentMenu() const;
     void hideAll();
     QTimer autoSaveTimer;
+    void applyColorTheme(ColorTheme theme);
 public:
     Game(QWidget *parent, const QString &configFile);
     ~Game();

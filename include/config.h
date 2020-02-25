@@ -46,7 +46,6 @@ public:
     ~Config() = default;
     void deserialize(Game *game, const QVariantMap &map);
     QJsonObject serialize(Game *game) const;
-    void applyColorTheme(Game *game, ColorTheme theme);
 };
 
 #endif  // INCLUDE_CONFIG_H_

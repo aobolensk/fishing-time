@@ -1,5 +1,3 @@
-#include <QApplication>
-#include <QStyleFactory>
 #include "config.h"
 #include "game.h"
 #include "utils.h"
@@ -54,39 +52,4 @@ QJsonObject Config::serialize(Game *game) const {
     controls["exitFromTheGame"] = game->controlsMenu.get(Controls::EXIT_FROM_THE_GAME)[0];
     jsonObj["controls"] = QJsonObject::fromVariantMap(controls);
     return jsonObj;
-}
-
-void Config::applyColorTheme(Game *game, ColorTheme theme) {
-    QApplication::setStyle(QStyleFactory::create("Fusion"));
-    QPalette p(game->palette());
-    switch (theme) {
-    case ColorTheme::LIGHT:
-        p.setColor(QPalette::Window, LIGHT_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::Button, LIGHT_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::Base, LIGHT_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::ButtonText, LIGHT_THEME_TEXT_COLOR);
-        p.setColor(QPalette::WindowText, LIGHT_THEME_TEXT_COLOR);
-        p.setColor(QPalette::Text, LIGHT_THEME_TEXT_COLOR);
-        break;
-    case ColorTheme::DARK:
-        p.setColor(QPalette::Window, DARK_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::Button, DARK_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::Base, DARK_THEME_WINDOW_COLOR);
-        p.setColor(QPalette::ButtonText, DARK_THEME_TEXT_COLOR);
-        p.setColor(QPalette::WindowText, DARK_THEME_TEXT_COLOR);
-        p.setColor(QPalette::Text, DARK_THEME_TEXT_COLOR);
-        break;
-    }
-    game->setAutoFillBackground(true);
-    game->setPalette(p);
-    game->aboutMenu.setPalette(p);
-    game->logger.setPalette(p);
-    game->console.setPalette(p);
-    game->gameMenu.getPopUpInventoryTable().setPalette(p);
-    game->setFont(game->textFont);
-    game->logger.setFont(game->textFont);
-    game->console.setFont(game->textFont);
-    game->aboutMenu.setFont(game->textFont);
-    game->gameMenu.getPopUpInventoryTable().setFont(game->textFont);
-    game->logger.info("Applied theme: " + QString::number(static_cast<int>(theme)));
 }
