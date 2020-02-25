@@ -24,7 +24,7 @@ const QColor Config::LIGHT_THEME_TEXT_COLOR = QColor(20, 20, 20);
 const QColor Config::DARK_THEME_WINDOW_COLOR = QColor(64, 64, 64);
 const QColor Config::DARK_THEME_TEXT_COLOR = QColor(240, 240, 240);
 
-void Config::deserialize(Game *game, const QVariantMap &map) {
+void Config::deserialize(const QVariantMap &map) {
     if (isReady)
         return;
     core->activeLanguage = static_cast<Language>(map["language"].toInt());
@@ -47,7 +47,7 @@ void Config::deserialize(Game *game, const QVariantMap &map) {
     isReady = true;
 }
 
-QJsonObject Config::serialize(Game *game) const {
+QJsonObject Config::serialize() const {
     QJsonObject jsonObj;
     jsonObj["fishingtime_object"] = "config";
     jsonObj["language"] = static_cast<int>(core->activeLanguage);

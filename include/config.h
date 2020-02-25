@@ -58,8 +58,8 @@ public:
     Config() = delete;
     Config(Core *core);
     ~Config() = default;
-    void deserialize(Game *game, const QVariantMap &map);
-    QJsonObject serialize(Game *game) const;
+    void deserialize(const QVariantMap &map);
+    QJsonObject serialize() const;
     QKeySequence getKey(Controls control) const;
     void setDefaultKey(Controls control, int key);
     void setKey(Controls control, int key);

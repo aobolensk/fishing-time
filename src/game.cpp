@@ -211,7 +211,7 @@ void Game::deserialize() {
                     this->logger.error("Result of user deserialization is null");
                 }
             } else if (map["fishingtime_object"] == QString("config")) {
-                core.cfg.deserialize(this, map);
+                core.cfg.deserialize(map);
             } else {
                 this->logger.error("Unknown object found in JSON file");
             }
@@ -261,7 +261,7 @@ void Game::serialize() {
         this->logger.error("Can not open file: " + configFile);
     } else {
         QJsonArray jsons;
-        jsons.push_back(core.cfg.serialize(this));
+        jsons.push_back(core.cfg.serialize());
         for (const User &user : core.users) {
             jsons.push_back(user.serialize());
         }
