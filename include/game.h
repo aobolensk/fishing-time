@@ -32,7 +32,7 @@
 #include "logger.h"
 #include "console.h"
 
-class Game : public QWidget {
+class Game : public QWidget, public Core {
 private:
     Q_OBJECT
 private:
@@ -49,24 +49,6 @@ private slots:
 private:
     Menu *currentMenu = nullptr;
 public:
-    Core core;
-    std::mt19937 &randomGenerator;
-    Config &cfg;
-    Dictionary &str;
-    QVector <User> &users;
-    QVector <Location> &locations;
-    int &activeUser;
-    int &activeLocation;
-    Language &activeLanguage;
-    QString &bgImagePath;
-    bool &showBgImages;
-    QDateTime &userTimestamp;
-    InventoryType &inventoryType;
-    ColorTheme &colorTheme;
-    LoggerLevel &loggerLevel;
-    QFont &textFont;
-    QString &logFile;
-    int &autoSavePeriod;
     Logger logger;
     Console console;
     MainMenu mainMenu;
