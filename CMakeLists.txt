@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.12)
 project(fishing-time)
 
 set(CMAKE_AUTOMOC ON)
@@ -7,9 +7,7 @@ set(CMAKE_AUTOUIC ON)
 
 cmake_policy(SET CMP0020 NEW)
 cmake_policy(SET CMP0043 NEW)
-if(${CMAKE_VERSION} VERSION_GREATER "3.10.0")
-    cmake_policy(SET CMP0071 NEW)
-endif()
+cmake_policy(SET CMP0071 NEW)
 if(${CMAKE_VERSION} VERSION_GREATER "3.13.0")
     cmake_policy(SET CMP0079 NEW)
 endif()

@@ -4,6 +4,13 @@
 #include "game.h"
 #include "utils.h"
 
+Console::Command::Command(std::function <int(QStringList &)> function, PrivilegeLevel privilege, const QString *description) :
+        function(function),
+        privilege(privilege),
+        description(description) {
+
+}
+
 void Console::registerCommands() {
     /* Register commands only in this function.
      * Function is defined as mapping from QString
