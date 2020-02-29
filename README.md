@@ -5,7 +5,7 @@
 # Fishing Time
 
 ### Requirements
-- [CMake](https://cmake.org/download/) 3.0+
+- [CMake](https://cmake.org/download/) 3.12+
 - [Qt5](https://www.qt.io/download)
 
 ### Build and run
