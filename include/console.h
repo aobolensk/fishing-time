@@ -20,6 +20,7 @@ private:
         PrivilegeLevel privilege;
         const QString *description;
         Command() = default;
+        Command(std::function <int(QStringList &)> function, PrivilegeLevel privilege, const QString *description);
         ~Command() = default;
     };
     class InputHistory {
