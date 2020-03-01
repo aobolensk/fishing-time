@@ -85,7 +85,11 @@ void ErrorWidget::signalHandler(int signum) {
     QFile errorLog("error.log");
     if (errorLog.open(QFile::ReadWrite | QIODevice::Truncate | QIODevice::Text)) {
         QTextStream f(&errorLog);
+        #if _POSIX_C_SOURCE >= 200809L
+        f << "Got signal: " << QString(strsignal(signum)) << endl;
+        #else
         f << "Got signal: " << signum << endl;
+        #endif  // __unix__
         f << getStacktrace();
         f << "-----------------------------------\n"
             "Version: " TOSTRING(COMMIT_HASH) "\n"
