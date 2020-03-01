@@ -33,7 +33,6 @@ jobs:
         cd build
         ./bin/fishing-time_test
   macOS-clang-build-nightly:
-    needs: macOS-gcc-build-nightly
     strategy:
       matrix:
         qt_version: ['5.12.6', '5.14.1']

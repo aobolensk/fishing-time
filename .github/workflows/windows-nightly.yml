@@ -28,7 +28,6 @@ jobs:
         cd build
         bin\\fishing-time_test
   windows-mingw-build-nightly:
-    needs: windows-msvc-build-nightly
     runs-on: windows-latest
     strategy:
       matrix:
