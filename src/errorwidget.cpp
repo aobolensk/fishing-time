@@ -89,7 +89,7 @@ void ErrorWidget::signalHandler(int signum) {
         f << "Got signal: " << QString(strsignal(signum)) << endl;
         #else
         f << "Got signal: " << signum << endl;
-        #endif  // __unix__
+        #endif  // _POSIX_C_SOURCE >= 200809L
         f << getStacktrace();
         f << "-----------------------------------\n"
             "Version: " TOSTRING(COMMIT_HASH) "\n"
