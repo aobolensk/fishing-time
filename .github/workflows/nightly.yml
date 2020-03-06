@@ -8,6 +8,7 @@ jobs:
   ubuntu-gcc-build-nightly:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         qt_version: ['5.12.6', '5.14.1']
     steps:
@@ -35,6 +36,7 @@ jobs:
   ubuntu-clang-build-nightly:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         qt_version: ['5.12.6', '5.14.1']
     steps:
@@ -65,6 +67,7 @@ jobs:
   macOS-gcc-build-nightly:
     runs-on: macOS-latest
     strategy:
+      fail-fast: false
       matrix:
         qt_version: ['5.12.6', '5.14.1']
     steps:
@@ -91,6 +94,7 @@ jobs:
         ./bin/fishing-time_test
   macOS-clang-build-nightly:
     strategy:
+      fail-fast: false
       matrix:
         qt_version: ['5.12.6', '5.14.1']
     runs-on: macOS-latest
@@ -113,6 +117,7 @@ jobs:
   windows-msvc-build-nightly:
     runs-on: windows-latest
     strategy:
+      fail-fast: false
       matrix:
         qt_version: ['5.12.6', '5.14.1']
     steps:
@@ -135,6 +140,7 @@ jobs:
   windows-mingw-build-nightly:
     runs-on: windows-latest
     strategy:
+      fail-fast: false
       matrix:
         qt_version: ['5.12.6', '5.14.1']
     steps:
