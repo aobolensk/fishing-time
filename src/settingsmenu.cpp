@@ -103,7 +103,7 @@ void SettingsMenu::display() {
     languageUpdater = connect(&languageSelector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
         [this](int index) {
             this->hide();
-            this->game->str.setLanguage(this->game->activeLanguage = static_cast<Language>(index));
+            this->game->str.setLanguage(this->game->activeLanguage = static_cast<Language>(index), game);
             this->display();
         });
 
