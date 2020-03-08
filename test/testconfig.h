@@ -7,6 +7,7 @@ class TestConfig : public QObject {
 private slots:
     void defaultConfigCheck();
     void reloadConfig();
+    void defaultControlsAreSetAfterInitialization();
 };
 
 #endif  // TEST_TESTCONFIG_H_

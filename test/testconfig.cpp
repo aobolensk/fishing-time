@@ -28,3 +28,11 @@ void TestConfig::reloadConfig() {
     QCOMPARE(config["showBgImages"].toInt(), 1);
     QCOMPARE(config["logFile"].toString(), QStringLiteral("log.txt"));
 }
+
+void TestConfig::defaultControlsAreSetAfterInitialization() {
+    Core core;
+    QJsonObject config = core.cfg.serialize();
+    for (size_t i = 0; i < static_cast<size_t>(Controls::CONTROLS_N); ++i) {
+        QCOMPARE(core.cfg.getKey(static_cast<Controls>(i)), core.cfg.defaultControls[i]);
+    }
+}
