@@ -62,7 +62,6 @@ void TestInventory::coinStatsAreEmptyByDefault() {
 }
 
 void TestInventory::itemStatsAreEmptyByDefault() {
-    Core core;
     User user("username", "password");
     QVector <QPair<QString, QMap <QString, QString>>> stats = user.getItemStatistics();
     for (const QPair<QString, QMap <QString, QString>> &elem : stats) {
