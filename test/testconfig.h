@@ -6,6 +6,7 @@ class TestConfig : public QObject {
     Q_OBJECT
 private slots:
     void defaultConfigCheck();
+    void reloadConfig();
 };
 
 #endif  // TEST_TESTCONFIG_H_
