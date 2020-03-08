@@ -215,16 +215,6 @@ void Game::hideAll() {
     this->popUpInventoryMenu.hide();
 }
 
-void Game::updateTimePlayed() {
-    if (activeUser != -1 && userTimestamp.isValid()) {
-        users[activeUser].incInGameTime(
-            QDateTime::currentDateTime().toMSecsSinceEpoch() / 1000 -
-            userTimestamp.toMSecsSinceEpoch() / 1000
-        );
-        userTimestamp = QDateTime::currentDateTime();
-    }
-}
-
 void Game::serialize() {
     QSettings settings;
     settings.setValue("mainWindowGeometry", this->saveGeometry());

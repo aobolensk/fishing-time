@@ -10,12 +10,6 @@ private slots:
     void setPasswordHash();
     void getPrivilegeLevel();
     void setPrivilegeLevel();
-    void inventoryAddItem();
-    void inventoryDeleteItem();
-    void inventoryQuantityIsNotLessThanZero();
-    void statsAddNewStat();
-    void statsWrongStatIsEmpty();
-    void statsWrongItemStatIsEmpty();
 };
 
 #endif  // TEST_TESTUSER_H_

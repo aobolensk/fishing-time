@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "menu.h"
 
+class Core;
 class Game;
 
 class Menu : public QWidget {

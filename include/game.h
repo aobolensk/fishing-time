@@ -90,7 +90,6 @@ public:
     friend QJsonObject Config::serialize() const;
     friend void Config::deserialize(const QVariantMap &map);
     void manualSave();
-    void updateTimePlayed();
 };
 
 #endif  // INCLUDE_GAME_H_

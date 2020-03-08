@@ -178,27 +178,27 @@ bool User::canGetTicket() const {
     return QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0))) < lastTicketDay;
 }
 
-QVector <QPair<QString, QString>> User::getStatistics(Game *game) const {
-    game->updateTimePlayed();
+QVector <QPair<QString, QString>> User::getStatistics(Core *core) const {
+    core->updateTimePlayed();
     QVector <QPair<QString, QString>> result;
-    result.push_back({game->str.username, this->getUsername()});
-    result.push_back({game->str.coins, QString::number(this->getCoins())});
-    result.push_back({game->str.clicksCount, QString::number(this->getClicks())});
-    result.push_back({game->str.timePlayed, this->getInGameTime()});
+    result.push_back({core->str.username, this->getUsername()});
+    result.push_back({core->str.coins, QString::number(this->getCoins())});
+    result.push_back({core->str.clicksCount, QString::number(this->getClicks())});
+    result.push_back({core->str.timePlayed, this->getInGameTime()});
     return result;
 }
 
-QVector <QPair<QString, QString>> User::getCoinStatistics(Game *game) const {
+QVector <QPair<QString, QString>> User::getCoinStatistics(Core *core) const {
     QVector <QPair<QString, QString>> result;
-    result.push_back({game->str.coins, QString::number(this->getCoins())});
-    result.push_back({game->str.totalGotCoins, QString::number(this->gotCoins)});
-    result.push_back({game->str.totalEarnedCoins, QString::number(this->earnedCoins)});
-    result.push_back({game->str.totalWonCoins, QString::number(this->wonCoins)});
-    result.push_back({game->str.totalSpentCoins, QString::number(this->spentCoins)});
+    result.push_back({core->str.coins, QString::number(this->getCoins())});
+    result.push_back({core->str.totalGotCoins, QString::number(this->gotCoins)});
+    result.push_back({core->str.totalEarnedCoins, QString::number(this->earnedCoins)});
+    result.push_back({core->str.totalWonCoins, QString::number(this->wonCoins)});
+    result.push_back({core->str.totalSpentCoins, QString::number(this->spentCoins)});
     return result;
 }
 
-QVector <QPair<QString, QMap <QString, QString>>> User::getItemStatistsics() const {
+QVector <QPair<QString, QMap <QString, QString>>> User::getItemStatistics() const {
     QVector <QPair<QString, QMap <QString, QString>>> result;
     auto item = this->inventory.getItemStats().cbegin();
     while (item != this->inventory.getItemStats().cend()) {
