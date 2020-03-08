@@ -7,6 +7,11 @@ class TestInventory : public QObject {
 private slots:
     void addNewItem();
     void getNonExistantItem();
+    void deleteItem();
+    void inventoryQuantityIsNotLessThanZero();
+    void addNewStat();
+    void wrongStatIsEmpty();
+    void wrongItemStatIsEmpty();
 };
 
 #endif  // TEST_TESTINVENTORY_H_
