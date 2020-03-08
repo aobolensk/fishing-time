@@ -30,6 +30,7 @@ public:
     QString logFile = "log.txt";
     int autoSavePeriod = 3;
     void setAutoSavePeriod(int periodInMinutes);
+    void updateTimePlayed();
 public:
     Core();
 };

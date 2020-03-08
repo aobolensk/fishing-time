@@ -11,3 +11,13 @@ Core::Core() :
         locations(Location::initializeLocations()) {
 
 }
+
+void Core::updateTimePlayed() {
+    if (activeUser != -1 && userTimestamp.isValid()) {
+        users[activeUser].incInGameTime(
+            QDateTime::currentDateTime().toMSecsSinceEpoch() / 1000 -
+            userTimestamp.toMSecsSinceEpoch() / 1000
+        );
+        userTimestamp = QDateTime::currentDateTime();
+    }
+}
