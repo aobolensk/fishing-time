@@ -12,6 +12,8 @@ private slots:
     void addNewStat();
     void wrongStatIsEmpty();
     void wrongItemStatIsEmpty();
+    void coinStatsAreEmptyByDefault();
+    void itemStatsAreEmptyByDefault();
 };
 
 #endif  // TEST_TESTINVENTORY_H_

@@ -48,3 +48,24 @@ void TestInventory::wrongItemStatIsEmpty() {
     user.inventory.updateStats("test", "received", 10, nullptr);
     QCOMPARE(user.inventory.getItemStats()["test2"]["received"], 0);
 }
+
+void TestInventory::coinStatsAreEmptyByDefault() {
+    Core core;
+    User user("username", "password");
+    QVector <QPair<QString, QString>> stats = user.getCoinStatistics(&core);
+    for (const QPair<QString, QString> &elem : stats) {
+        bool ok;
+        int stat = elem.second.toInt(&ok);
+        QCOMPARE(ok, true);
+        QCOMPARE(stat, 0);
+    }
+}
+
+void TestInventory::itemStatsAreEmptyByDefault() {
+    Core core;
+    User user("username", "password");
+    QVector <QPair<QString, QMap <QString, QString>>> stats = user.getItemStatistics();
+    for (const QPair<QString, QMap <QString, QString>> &elem : stats) {
+        QCOMPARE(elem.second.size(), 0);
+    }
+}
