@@ -198,7 +198,7 @@ QVector <QPair<QString, QString>> User::getCoinStatistics(Core *core) const {
     return result;
 }
 
-QVector <QPair<QString, QMap <QString, QString>>> User::getItemStatistsics() const {
+QVector <QPair<QString, QMap <QString, QString>>> User::getItemStatistics() const {
     QVector <QPair<QString, QMap <QString, QString>>> result;
     auto item = this->inventory.getItemStats().cbegin();
     while (item != this->inventory.getItemStats().cend()) {

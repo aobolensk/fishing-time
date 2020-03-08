@@ -262,7 +262,7 @@ void Console::registerCommands() {
                 ++it;
             }
             log.writeln(game->str.itemStatistics + ":");
-            auto itemStats = game->users[game->activeUser].getItemStatistsics();
+            auto itemStats = game->users[game->activeUser].getItemStatistics();
             auto item = itemStats.cbegin();
             while (item != itemStats.cend()) {
                 log.writeln(*game->str.itemNames[item->first] + ": ");
