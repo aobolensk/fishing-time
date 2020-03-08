@@ -4,7 +4,22 @@
 
 Config::Config(Core *core) :
     core(core) {
-
+    this->setDefaultKey(Controls::HIDE_UI_ELEMENTS, 67108936); // Ctrl + H
+    if (this->getKey(Controls::HIDE_UI_ELEMENTS) == 0) {
+        this->setKey(Controls::HIDE_UI_ELEMENTS, 67108936); // Ctrl + H
+    }
+    this->setDefaultKey(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
+    if (this->getKey(Controls::TOGGLE_FULLSCREEN_MODE) == 0) {
+        this->setKey(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
+    }
+    this->setDefaultKey(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
+    if (this->getKey(Controls::GO_TO_PREVIOUS_MENU) == 0) {
+        this->setKey(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
+    }
+    this->setDefaultKey(Controls::EXIT_FROM_THE_GAME, 67108945); // Ctrl + Q
+    if (this->getKey(Controls::EXIT_FROM_THE_GAME) == 0) {
+        this->setKey(Controls::EXIT_FROM_THE_GAME, 67108945); // Ctrl + Q
+    }
 }
 
 const QColor Config::LIGHT_THEME_WINDOW_COLOR = QColor(250, 250, 250);

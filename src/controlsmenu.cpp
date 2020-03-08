@@ -34,25 +34,6 @@ ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
     connect(&backButton, SIGNAL(released()), this, SLOT(backFunction()));
 }
 
-void ControlsMenu::setDefaults() {
-    game->cfg.setDefaultKey(Controls::HIDE_UI_ELEMENTS, 67108936); // Ctrl + H
-    if (game->cfg.getKey(Controls::HIDE_UI_ELEMENTS) == 0) {
-        game->cfg.setKey(Controls::HIDE_UI_ELEMENTS, 67108936); // Ctrl + H
-    }
-    game->cfg.setDefaultKey(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
-    if (game->cfg.getKey(Controls::TOGGLE_FULLSCREEN_MODE) == 0) {
-        game->cfg.setKey(Controls::TOGGLE_FULLSCREEN_MODE, 16777274); // F11
-    }
-    game->cfg.setDefaultKey(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
-    if (game->cfg.getKey(Controls::GO_TO_PREVIOUS_MENU) == 0) {
-        game->cfg.setKey(Controls::GO_TO_PREVIOUS_MENU, 16777216); // Esc
-    }
-    game->cfg.setDefaultKey(Controls::EXIT_FROM_THE_GAME, 67108945); // Ctrl + Q
-    if (game->cfg.getKey(Controls::EXIT_FROM_THE_GAME) == 0) {
-        game->cfg.setKey(Controls::EXIT_FROM_THE_GAME, 67108945); // Ctrl + Q
-    }
-}
-
 void ControlsMenu::display() {
     this->pre_display();
 
