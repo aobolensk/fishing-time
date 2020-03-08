@@ -23,7 +23,6 @@ protected slots:
     bool eventFilter(QObject *obj, QEvent *event) override;
 public:
     QKeySequence getKeySequence(const QKeyEvent *const key) const;
-    void setDefaults();
     bool isInEditingMode();
 public:
     ControlsMenu(Game *game, QGridLayout *grid);
