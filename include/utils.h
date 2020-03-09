@@ -18,4 +18,8 @@ namespace FT_ERROR {
 #define FT_ASSERT(expr, text) ((void) (expr))
 #endif  // FT_IGNORE_ASSERTS
 
+namespace ft_utils {
+    int toInt(const QKeySequence &obj);
+}  // namespace ft_utils
+
 #endif  // INCLUDE_UTILS_H_

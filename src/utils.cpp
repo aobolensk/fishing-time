@@ -30,3 +30,7 @@ void FT_ERROR::ft_assert(QString place, QString text) {
     }
     exit(1);
 }
+
+int ft_utils::toInt(const QKeySequence &obj) {
+    return obj[0];
+}
