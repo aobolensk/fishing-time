@@ -70,6 +70,10 @@ QJsonObject Config::serialize() const {
     return jsonObj;
 }
 
+void Config::setKey(Controls control, int key) {
+    this->controls[static_cast<size_t>(control)] = QKeySequence(key);
+}
+
 QKeySequence Config::getKey(Controls control) const {
     return this->controls[static_cast<size_t>(control)];
 }
@@ -78,6 +82,6 @@ void Config::setDefaultKey(Controls control, int key) {
     this->defaultControls[static_cast<size_t>(control)] = QKeySequence(key);
 }
 
-void Config::setKey(Controls control, int key) {
-    this->controls[static_cast<size_t>(control)] = QKeySequence(key);
+QKeySequence Config::getDefaultKey(Controls control) const {
+    return this->defaultControls[static_cast<size_t>(control)];
 }
