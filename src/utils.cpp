@@ -7,7 +7,7 @@
 #include "errorwidget.h"
 #include "utils.h"
 
-void FT_ERROR::ft_assert(QString place, QString text) {
+void ft_error::ft_assert(QString place, QString text) {
     QFile errorLog("error.log");
     if (errorLog.open(QFile::ReadWrite | QIODevice::Truncate | QIODevice::Text)) {
         QTextStream f(&errorLog);
