@@ -1,5 +1,6 @@
 #include "controlsmenu.h"
 #include "game.h"
+#include "utils.h"
 
 ControlsMenu::ControlsMenu(Game *game, QGridLayout *grid) :
         Menu(game, grid) {
@@ -140,7 +141,7 @@ bool ControlsMenu::eventFilter(QObject *obj, QEvent *event) {
         if (currentControl != Controls::CONTROLS_N) {
             QKeyEvent *key = static_cast<QKeyEvent *>(event);
             QKeySequence seq = getKeySequence(key);
-            if (seq[0]) {
+            if (ft_utils::toInt(seq)) {
                 bool set = true;
                 for (size_t i = 0; i < static_cast<size_t>(Controls::CONTROLS_N); ++i) {
                     if (i == static_cast<size_t>(currentControl)) continue;
