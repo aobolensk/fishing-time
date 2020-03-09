@@ -48,21 +48,22 @@ public: /* Constants */
     static const int LOTTERY_RARE_TICKET_COEFFICIENT = 1000;
     static const int NETS_TIMER_INTERVAL = 5 * 60 * 1000;
     static const int STACKTRACE_SIZE = 1024;
-public:
-    QKeySequence defaultControls[(size_t)Controls::CONTROLS_N],
-                 controls[(size_t)Controls::CONTROLS_N];
 private:
     bool isReady = false;
     Core *core;
+    QKeySequence defaultControls[(size_t)Controls::CONTROLS_N],
+                 controls[(size_t)Controls::CONTROLS_N];
 public:
     Config() = delete;
     Config(Core *core);
     ~Config() = default;
     void deserialize(const QVariantMap &map);
     QJsonObject serialize() const;
+    void setKey(Controls control, int key);
     QKeySequence getKey(Controls control) const;
     void setDefaultKey(Controls control, int key);
-    void setKey(Controls control, int key);
+    QKeySequence getDefaultKey(Controls control) const;
+    friend class ControlsMenu;
 };
 
 #endif  // INCLUDE_CONFIG_H_

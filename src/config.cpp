@@ -62,12 +62,16 @@ QJsonObject Config::serialize() const {
     jsonObj["showBgImages"] = static_cast<int>(core->showBgImages);
     jsonObj["textFont"] = core->textFont.toString();
     QVariantMap controlsMap;
-    controlsMap["hideUIElements"] = this->getKey(Controls::HIDE_UI_ELEMENTS)[0];
-    controlsMap["toggleFullscreenMode"] = this->getKey(Controls::TOGGLE_FULLSCREEN_MODE)[0];
-    controlsMap["goToPreviousMenu"] = this->getKey(Controls::GO_TO_PREVIOUS_MENU)[0];
-    controlsMap["exitFromTheGame"] = this->getKey(Controls::EXIT_FROM_THE_GAME)[0];
+    controlsMap["hideUIElements"] = ft_utils::toInt(this->getKey(Controls::HIDE_UI_ELEMENTS));
+    controlsMap["toggleFullscreenMode"] = ft_utils::toInt(this->getKey(Controls::TOGGLE_FULLSCREEN_MODE));
+    controlsMap["goToPreviousMenu"] = ft_utils::toInt(this->getKey(Controls::GO_TO_PREVIOUS_MENU));
+    controlsMap["exitFromTheGame"] = ft_utils::toInt(this->getKey(Controls::EXIT_FROM_THE_GAME));
     jsonObj["controls"] = QJsonObject::fromVariantMap(controlsMap);
     return jsonObj;
+}
+
+void Config::setKey(Controls control, int key) {
+    this->controls[static_cast<size_t>(control)] = QKeySequence(key);
 }
 
 QKeySequence Config::getKey(Controls control) const {
@@ -78,6 +82,6 @@ void Config::setDefaultKey(Controls control, int key) {
     this->defaultControls[static_cast<size_t>(control)] = QKeySequence(key);
 }
 
-void Config::setKey(Controls control, int key) {
-    this->controls[static_cast<size_t>(control)] = QKeySequence(key);
+QKeySequence Config::getDefaultKey(Controls control) const {
+    return this->defaultControls[static_cast<size_t>(control)];
 }
