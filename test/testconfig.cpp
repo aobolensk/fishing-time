@@ -33,6 +33,7 @@ void TestConfig::defaultControlsAreSetAfterInitialization() {
     Core core;
     QJsonObject config = core.cfg.serialize();
     for (size_t i = 0; i < static_cast<size_t>(Controls::CONTROLS_N); ++i) {
-        QCOMPARE(core.cfg.getKey(static_cast<Controls>(i)), core.cfg.defaultControls[i]);
+        QCOMPARE(core.cfg.getKey(static_cast<Controls>(i))[0],
+                 core.cfg.getDefaultKey(static_cast<Controls>(i))[0]);
     }
 }
