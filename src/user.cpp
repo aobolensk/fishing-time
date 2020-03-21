@@ -118,7 +118,8 @@ void User::incInGameTime(qint64 time) {
 }
 
 void User::updateLastTicketDay() {
-    lastTicketDay = QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0)));
+    lastTicketDay = static_cast<int>(
+        QDateTime::currentDateTime().daysTo(QDateTime(QDate(2019, 1, 1), QTime(0, 0))));
 }
 
 void User::incEarnedCoins(qint64 quantity) {
@@ -171,7 +172,7 @@ qint64 User::getPrivilegeLevel() const {
 }
 
 QString User::getInGameTime() const {
-    return QDateTime::fromTime_t(inGameTime).toUTC().toString("hh:mm:ss");
+    return QDateTime::fromTime_t(static_cast<quint32>(inGameTime)).toUTC().toString("hh:mm:ss");
 }
 
 bool User::canGetTicket() const {
