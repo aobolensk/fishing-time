@@ -72,6 +72,4 @@ public:
     QVector <QPair<QString, QMap <QString, QString>>> getItemStatistics() const;
 };
 
-Q_DECLARE_METATYPE(User)
-
 #endif  // INCLUDE_USER_H_

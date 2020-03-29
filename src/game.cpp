@@ -8,6 +8,8 @@
 #include "game.h"
 #include "utils.h"
 
+Q_DECLARE_METATYPE(User)
+
 Game::Game(QWidget *parent, const QString &file) :
         QWidget(parent),
         Core(),
