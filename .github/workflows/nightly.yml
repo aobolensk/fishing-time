@@ -20,7 +20,7 @@ jobs:
         sudo apt install g++-9
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 --slave /usr/bin/g++ g++ /usr/bin/g++-9
     - name: Install Qt
-      uses: aobolensk/install-qt-action@v2
+      uses: jurplel/install-qt-action@v2
       with:
         version: ${{ matrix.qt_version }}
     - name: Build application
@@ -48,7 +48,7 @@ jobs:
         sudo apt update
         sudo apt install clang-10
     - name: Install Qt
-      uses: aobolensk/install-qt-action@v2
+      uses: jurplel/install-qt-action@v2
       with:
         version: ${{ matrix.qt_version }}
     - name: Build application
@@ -76,7 +76,7 @@ jobs:
       run: |
         brew install gcc@9
     - name: Install Qt
-      uses: aobolensk/install-qt-action@v2
+      uses: jurplel/install-qt-action@v2
       with:
         version: ${{ matrix.qt_version }}
     - name: Build application
@@ -101,7 +101,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install Qt
-      uses: aobolensk/install-qt-action@v2
+      uses: jurplel/install-qt-action@v2
       with:
         version: ${{ matrix.qt_version }}
     - name: Build application
@@ -123,7 +123,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install Qt
-      uses: aobolensk/install-qt-action@v2
+      uses: jurplel/install-qt-action@v2
       with:
         version: ${{ matrix.qt_version }}
         arch: win64_msvc2017_64
@@ -150,7 +150,7 @@ jobs:
     - name: Install gcc
       run: msys2do pacman -S --noconfirm mingw-w64-x86_64-gcc
     - name: Install Qt
-      uses: aobolensk/install-qt-action@v2
+      uses: jurplel/install-qt-action@v2
       with:
         version: ${{ matrix.qt_version }}
         arch: win64_mingw73
