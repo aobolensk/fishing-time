@@ -1,7 +1,5 @@
 #include <QApplication>
 #include "argparser.h"
-#include "game.h"
-#include "errorwidget.h"
 #include "utils.h"
 
 int main(int argc, char *argv[]) {
