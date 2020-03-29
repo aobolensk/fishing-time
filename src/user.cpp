@@ -4,6 +4,8 @@
 #include "game.h"
 #include "user.h"
 
+Q_DECLARE_METATYPE(User)
+
 User::User(const QString &name, const QString &password) :
         username(name),
         passwordHash(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5)),
