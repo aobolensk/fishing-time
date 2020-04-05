@@ -87,8 +87,6 @@ public:
 public:
     Game(QWidget *parent, const QString &configFile);
     ~Game();
-    friend QJsonObject Config::serialize() const;
-    friend void Config::deserialize(const QVariantMap &map);
     void manualSave();
 };
 
