@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include "dictionary.h"
 #include "game.h"
 #include "utils.h"
