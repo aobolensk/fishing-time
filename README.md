@@ -6,7 +6,7 @@
 
 ### Requirements
 - [CMake](https://cmake.org/download/) 3.12+
-- [Qt5](https://www.qt.io/download)
+- [Qt5](https://www.qt.io/download) 5.12+
 
 ### Build and run
 
