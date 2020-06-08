@@ -23,14 +23,15 @@ endif (NO_ASSERTS)
 
 set(CMAKE_CXX_STANDARD 20)
 if (MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /wd4127 /wd5054")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /wd4127 /wd5054 /wd4996")
     # disabled warning C4127: conditional expression is constant
     # disabled warning C5054: operator *: deprecated between enumerations of different types
+    # disabled warning C4996: deprecated declarations
     if (NOT DEBUG)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /O2")
     endif (NOT DEBUG)
 else(MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -pedantic -Wconversion")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -pedantic -Wconversion -Wno-deprecated-declarations")
     if (DEBUG)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O1 -ggdb3")
     else()
