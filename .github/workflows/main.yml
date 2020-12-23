@@ -83,9 +83,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install MSYS2
-      uses: numworks/setup-msys2@v1
+      uses: msys2/setup-msys2@v2
     - name: Install gcc
-      run: msys2do pacman -S --noconfirm mingw-w64-x86_64-gcc
+      shell: msys2 {0}
+      run: pacman -S --noconfirm mingw-w64-x86_64-gcc
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
       with:
