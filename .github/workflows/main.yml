@@ -30,7 +30,6 @@ jobs:
     - name: Setup environment
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo add-apt-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-10 main"
         sudo apt update
         sudo apt install clang-10 qt5-default
     - name: Build application
