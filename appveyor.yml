@@ -6,13 +6,19 @@ environment:
   matrix:
   - COMPILER: MinGW
     QT_PATH: C:\Qt\5.13\mingw73_32
-  - COMPILER: MSVC
+  - COMPILER: MSVC17
     QT_PATH: C:\Qt\5.13\msvc2017
+  - COMPILER: MSVC19
+    QT_PATH: C:\Qt\5.15\msvc2019
 
 matrix:
   exclude:
     - COMPILER: MinGW
       image: Visual Studio 2019
+    - COMPILER: MSVC17
+      image: Visual Studio 2019
+    - COMPILER: MSVC19
+      image: Visual Studio 2017
 
 before_build:
 for:
@@ -34,8 +40,10 @@ build_script:
   - set PATH=%QT_PATH%\bin;%PATH%
   - mkdir build
   - cd build
-  - if %COMPILER% == MSVC cmake .. "-DCMAKE_PREFIX_PATH=%QT_PATH%" -A Win32
+  - if %COMPILER% == MSVC17 cmake .. "-DCMAKE_PREFIX_PATH=%QT_PATH%" -A Win32
+  - if %COMPILER% == MSVC19 cmake .. "-DCMAKE_PREFIX_PATH=%QT_PATH%" -A Win32
   - if %COMPILER% == MinGW cmake .. -G "MinGW Makefiles" "-DCMAKE_PREFIX_PATH=%QT_PATH%" -DCMAKE_SH="CMAKE_SH-NOTFOUND"
-  - if %COMPILER% == MSVC cmake --build .
+  - if %COMPILER% == MSVC17 cmake --build .
+  - if %COMPILER% == MSVC19 cmake --build .
   - if %COMPILER% == MinGW cmake --build . -- -j
   - bin\\fishing-time_test
