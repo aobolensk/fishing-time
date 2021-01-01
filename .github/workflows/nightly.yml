@@ -175,3 +175,20 @@ jobs:
       run: |
         cd build
         bin\\fishing-time_test
+  FreeBSD-clang-build:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build on FreeBSD
+      id: build
+      uses: vmactions/freebsd-vm@v0.0.9
+      with:
+        usesh: true
+        prepare: pkg install -y cmake qt5 git
+        run: |
+          freebsd-version
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build . -- -j 2
+          ./bin/fishing-time_test
