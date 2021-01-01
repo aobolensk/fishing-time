@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/aobolensk/fishing-time.svg?branch=master)](https://travis-ci.org/aobolensk/fishing-time)
 [![Build status](https://ci.appveyor.com/api/projects/status/dmb4hl04kuy7h1li?svg=true)](https://ci.appveyor.com/project/aobolensk/fishing-time)
 [![Actions Status](https://github.com/aobolensk/fishing-time/workflows/Build%20application/badge.svg)](https://github.com/aobolensk/fishing-time/actions)
 
