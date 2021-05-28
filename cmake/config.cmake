@@ -23,10 +23,11 @@ endif (NO_ASSERTS)
 
 set(CMAKE_CXX_STANDARD 20)
 if (MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /wd4127 /wd5054 /wd4996")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /wd4127 /wd5054 /wd4996 /wd5240")
     # disabled warning C4127: conditional expression is constant
     # disabled warning C5054: operator *: deprecated between enumerations of different types
     # disabled warning C4996: deprecated declarations
+    # disabled warning C5240: 'nodiscard': attribute is ignored in this syntactic position
     if (NOT DEBUG)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /O2")
     endif (NOT DEBUG)
